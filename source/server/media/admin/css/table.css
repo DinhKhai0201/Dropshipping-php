@@ -1,0 +1,64 @@
+#dropdown-action-user, #dropdown-action-category{
+    float: right;
+}
+
+.dropdown-menu-action {
+    padding: 15% 5%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.content-dropdown {
+    margin: 0 auto;
+}
+
+.btn-action {
+    width: 90%;
+    margin-bottom: 5px;
+}
+
+.categories-cv{
+    background: green;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 5px;
+    display: block;
+    margin: 3px;
+}
+.categories-cv:nth-child(5n+1){
+    background: rgb(255, 123, 0);
+}
+.categories-cv:nth-child(5n+2){
+    background: rgb(238, 255, 0);
+}
+.categories-cv:nth-child(5n+3){
+    background: rgb(115, 255, 0);
+}
+.categories-cv:nth-child(5n+4){
+    background: rgb(0, 255, 200);
+}
+.categories-cv:nth-child(5n+5){
+    background: rgb(3, 113, 133);
+}
+table>tbody>tr>td {
+    padding: 5px !important;
+}
+
+table.dataTable {
+    border-collapse: collapse !important;
+}
+
+.table-credit input{
+    width: 60px;
+    height: 35px;
+    display: inline-block;
+    margin-right: 5px;
+    border: 0;
+    border: 1px solid #CCC;
+}
+.table-credit button{
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+}

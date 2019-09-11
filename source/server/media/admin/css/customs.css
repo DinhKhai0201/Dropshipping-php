@@ -1,0 +1,47 @@
+input {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+}
+.profile-table tbody tr td{
+   height: 40px;
+   padding-left: 20px;
+}
+select{
+    min-width: 100px;
+    height: 33.5px;
+    border-radius: 4px;
+}
+.fakeLoader{
+    display: none;
+}
+
+.modal-cv-online{
+    z-index: 9999;
+}
+.form-add-cv .form-input-upload{
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.form-add-cv button{
+    padding: 8px 15px;
+    width: 100px;
+    margin: 10px;
+}
+.showRecordApply{
+    position: relative;
+}
+.Notify-Cicle{
+    display: block;
+    min-width: 18px;
+    height:18px;
+    position: absolute;
+    top:-3px;
+    border: solid 1px #ff5900;
+    border-radius: 50%;
+    right: -10px;
+    background-color: white;
+    color: #ff5900;
+    line-height: 15px;
+}

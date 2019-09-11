@@ -1,0 +1,6 @@
+<?php
+define('DB_HOST','localhost');
+define('DB_USER','root');
+define('DB_PASSWORD','minhtriet2006');
+define('DB_NAME','job_seeker');
+?>
