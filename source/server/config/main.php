@@ -49,7 +49,7 @@ $app['areaPath'] = '';
 
 $app['roles'] = [
 	'1'=>'admin',
-	'2'=>'employer',
+	'2'=>'supplier',
 	'3'=>'jobseeker',
 	'4'=>'adsmanager',
 	'5'=>'jobmanager',
@@ -213,13 +213,6 @@ $app['married'] = [
 	'1' => 'Đã có gia đình',
 ];
 
-$app['type_of_works'] = [
-	['type' => 'Hợp đồng', 'color' => '#dd3333'],
-	['type' => 'Toàn thời gian', 'color' => '#dd9933'],
-	['type' => 'Bán thời gian', 'color' => '#81d742'],
-	['type' => 'Tạm thời', 'color' => '#8224e3']
-];
-
 $app['ads'] = [
 	'1' => [
 		'name' => 'Trang chủ',
@@ -231,48 +224,7 @@ $app['ads'] = [
 			'5' => 'Khu vực phải'
 		]
 	],
-	// '2' => [
-	// 	'name' => 'Trang tìm kiếm',
-	// 	'position' => [
-	// 		'1' => 'Top',
-	// 		'2' => 'Buttom',
-	// 		'3' => 'Left',
-	// 		'4' => 'Right',
-	// 		'5' => 'Top medium',
-	// 	]
-	// ],
-	'3' => [
-		'name' => 'Trang việc làm chi tiết',
-		'position' => [
-			'1' => 'Góc phải',
-			'2' => 'Khu vực giữa',
-			'3' => 'Khu vực giữa 2',
-			'5' => 'Đầu trang',
-		]
-	],
-	'4' => [
-		'name' => 'Trang chi tiết nhà tuyển dụng',
-		'position' => [
-			'1' => 'Góc phải',
-			// '2' => 'Khu vực giữa',
-		]
-	],
-	'5' => [
-		'name' => 'Trang danh sách việc làm',
-		'position' => [
-			'1' => 'Khu vực giữa',
-			'2' => 'Góc trái dưới',
-			'3' => 'Cuối trang',
-		]
-	],
-	'6' => [
-		'name' => 'Trang danh sách nhà tuyển dụng',
-		'position' => [
-			'1' => 'Khu vực giữa',
-			'2' => 'Góc trái dưới',
-			'3' => 'Cuối trang',
-		]
-	]
+	
 ];
 
 
@@ -292,12 +244,6 @@ $app['districts'] = [
     "cam le"		=>"Quận Cẩm Lệ",
     "hoa vang"		=>"Huyện Hòa Vang",
 	"khu vuc lan can"=>"Khu vực lân cận Đà Nẵng"
-];
-
-$app['experience'] = [
-	'0' => 'Không yêu cầu',
-	'1' => 'Có kinh nghiệm',
-	'2' => 'Chưa có kinh nghiệm'
 ];
 
 

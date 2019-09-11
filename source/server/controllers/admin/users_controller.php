@@ -13,7 +13,7 @@ class users_controller extends vendor_backend_controller {
 			$type = $app['prs']['type'];
 			$role='';
 			if($type=='admin') 			$role='1';
-			if($type=='employer') 		$role='2';
+			if($type=='supplier') 		$role='2';
 			if($type=='candidate') 		$role='3';
 			if($type=='jobmanager') 	$role='5';
 			if($type=='adsmanager') 	$role='4';

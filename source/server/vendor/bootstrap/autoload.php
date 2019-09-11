@@ -43,7 +43,7 @@ spl_autoload_register(function ($classname)  {
 		if (is_file($areaFilename)) {
 			include_once($areaFilename);
 		} else {
-			include_once("controllers/staticpages_controller.php");
+			// include_once("controllers/staticpages_controller.php");
 		}
   }
 });
