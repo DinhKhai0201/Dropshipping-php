@@ -5,9 +5,9 @@ $(document).ready(function () {
 		var listChecked = [];
 		var strFil = "";
 		var ctl = $("table.dataTable").attr("controller");
-
 		function delRecord(id, act) {
 			urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
+
 			$.ajax({
 				url: urlDele,
 				success: function (data) {
@@ -19,7 +19,6 @@ $(document).ready(function () {
 		}
 
 		function toggleRecord(id, job_hot) {
-			// alert("job_hot: "  + job_hot);
 			urlToggle = rootUrl+"admin/"+ctl+"/changejobhot/"+ id+"/"+ job_hot;
 			$.ajax({
 				url: urlToggle,

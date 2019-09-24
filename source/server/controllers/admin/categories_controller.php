@@ -81,7 +81,7 @@ class categories_controller extends vendor_backend_controller
 
 	public function del($id) {
 		$category = new category_model();
-		if($category->delRelativeRecord($id)) echo "Delete Successful";
+		if($category->delRecord($id)) echo "Delete Successful";
 		else echo "error";
 	}
 

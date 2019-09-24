@@ -17,7 +17,7 @@ class login_controller extends vendor_crud_controller {
 		if (isset($_SESSION['user']['role']) && 
 			(	$_SESSION['user']['role']==$rolesFlip["admin"] ||
 				$_SESSION['user']['role']==$rolesFlip["adsmanager"] ||
-				$_SESSION['user']['role']==$rolesFlip["jobmanager"]
+				$_SESSION['user']['role']==$rolesFlip["supplier"]
 			)) {
 			header( "Location: ".vendor_app_util::url(array('ctl'=>'dashboard')));
 		}

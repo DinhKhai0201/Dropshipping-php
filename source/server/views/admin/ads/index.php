@@ -126,7 +126,9 @@ if(isset($app['prs']['status'])) {
 								</td>
 						
 								<td class="tabletShow" id="<?php echo("page".$record['id']);?>">
-                                    <?php global $app; echo $app['ads'][$record['page']]['name']; ?> 
+									<?php global $app; echo $app['ads'][$record['page']]['name']; 
+									
+									?> 
 								</td>
 
 								<td class="tabletShow" id="<?php echo("position".$record['id']);?>">

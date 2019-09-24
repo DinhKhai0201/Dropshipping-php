@@ -548,7 +548,7 @@ a:active, a:focus, a:hover {
 .user-panel {
     position: relative;
     width: 100%;
-    padding: 10px 0 10px;
+    padding: 0px 0 10px;
 }
 .user-panel:after, .user-panel:before {
     content: " ";

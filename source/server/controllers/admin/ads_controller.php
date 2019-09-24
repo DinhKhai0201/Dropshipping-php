@@ -39,30 +39,21 @@ class ads_controller extends vendor_adsmanager_controller
 		if(isset($_POST['btn_submit'])) {
 			$adData = $_POST['ad'];
 			if($_FILES['image']['tmp_name']) {
-        $s3 = new vendor_aws();
-        $s3->delete($this->record['image'], 'ads');
+				if($this->record['image'] && file_exists(RootURI."/media/upload/" .$this->controller.'/'.$this->record['image']))
+					unlink(RootURI."/media/upload/" .$this->controller.'/'.$this->record['image']);
 				if($this->record['page']==1 && $this->record['position']==4){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($this->record['page']==3 && $this->record['position']==5){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==5 && $adData['position']==1){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==5 && $adData['position']==3){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==6 && $adData['position']==1){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==6 && $adData['position']==3){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
-				}else{
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
-        }
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
+				}else $adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true]);
 			}
 			$valid = $cm->validator($adData, $id['1']);
 			if($valid['status']){
@@ -90,29 +81,21 @@ class ads_controller extends vendor_adsmanager_controller
 			$valid = $um->validator($adData);
 			// exit(json_encode($valid));
 			if($_FILES['image']['tmp_name']){
-        $s3 = new vendor_aws();
 				if($adData['page']==1 && $adData['position']==4){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==3 && $adData['position']==5){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==5 && $adData['position']==1){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==5 && $adData['position']==3){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==6 && $adData['position']==1){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else if($adData['page']==6 && $adData['position']==3){
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true ]);
 				}else{
-          $fileName = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'ads');
-          $adData['image'] = $fileName;
-        }
+					$adData['image'] = $this->uploadImg($_FILES,['folder'=>'ads', 'origin'=> true]);
+				}
 			}
 			if($valid['status']) {
 				
@@ -146,10 +129,7 @@ class ads_controller extends vendor_adsmanager_controller
 	}
 
 	public function del($id) {
-    $ad = new ad_model();
-    $s3 = new vendor_aws();
-    $image = $ad->getRecord($id)['image'];
-    $s3->delete($image, 'ads');
+		$ad = new ad_model();
 		if($ad->delRelativeRecord($id)) echo "Delete Successful";
 		else echo "error";
 	}
@@ -157,13 +137,7 @@ class ads_controller extends vendor_adsmanager_controller
 	public function delmany() {
 		global $app;
 		$ids = $app['prs']['ids'];
-    $ads = new ad_model();
-    $arrId = explode(',', $ids);
-    $s3 = new vendor_aws();
-    foreach ($arrId as $key => $value) {
-      $image = $ads->getRecord($value)['image'];
-      $s3->delete($image, 'ads');
-    }
+		$ads = new ad_model();
 		if($ads->delRelativeRecords($ids)) echo "Delete many successful";
 		else echo "error";
 	}

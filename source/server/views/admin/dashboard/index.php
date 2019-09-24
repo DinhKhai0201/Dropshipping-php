@@ -17,7 +17,7 @@
         <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>Accounts</h3>
+              <h3>User</h3>
               <p><?= ($this->noUsers-$this->noNonAdminUsers); ?> admins and <?= $this->noNonAdminUsers; ?> users</p>
             </div>
             <a href="<?php echo vendor_app_util::url(["ctl"=>"users"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
@@ -65,7 +65,7 @@
       </div>
     </section>
     <?php } ?>
-    <?php if( isset($_SESSION['user']) && isset($_SESSION['user']['role']) && $_SESSION['user']['role']==$this->rolesFlip['jobmanager'] ){ ?>
+    <?php if( isset($_SESSION['user']) && isset($_SESSION['user']['role']) && $_SESSION['user']['role']==$this->rolesFlip['supplier'] ){ ?>
     <section class="content">
       <div class="row">
         <div class="col-lg-3 col-md-6 col-xs-6">
