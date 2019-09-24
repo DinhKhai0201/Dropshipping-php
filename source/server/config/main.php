@@ -49,10 +49,10 @@ $app['areaPath'] = '';
 
 $app['roles'] = [
 	'1'=>'admin',
-	'2'=>'supplier',
-	'3'=>'jobseeker',
-	'4'=>'adsmanager',
-	'5'=>'jobmanager',
+	'2'=>'customer',
+	'3'=>'supplier',
+	'4'=>'shipper',
+	'5'=>'adsmanager',
 ];
 
 

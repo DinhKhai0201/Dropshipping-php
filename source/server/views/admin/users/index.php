@@ -51,9 +51,9 @@ if(isset($app['prs']['status'])) {
 							<select id="select_list_users_type">
 								<option value="all" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='all') echo 'selected' ?>>All</option>
 								<option value="admin" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='admin') echo 'selected' ?>>Admin</option>
-								<option value="employer" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='employer') echo 'selected' ?>>Employer</option>
-								<option value="candidate" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='candidate') echo 'selected' ?>>Candidate</option>
-								<option value="jobmanager" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='jobmanager') echo 'selected' ?>>Job manager</option>
+								<option value="customer" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='customer') echo 'selected' ?>>Customer</option>
+								<option value="supplier" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='suppier') echo 'selected' ?>>Supplier</option>
+								<option value="shipper" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='shipper') echo 'selected' ?>>Shipper</option>
 								<option value="adsmanager" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='adsmanager') echo 'selected' ?>>Ads manager</option>
 							</select>
 							<button class="btn btn-apply" id='btn_filter_users_table'>Filter</button></li>
@@ -133,9 +133,9 @@ if(isset($app['prs']['status'])) {
 								</a>
 
 								<button data-placement="right" title="Delete user" id="del<?php echo $record['id']; ?>" type="button" class="btn btn-danger del-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-remove"></i></button>
-								
+							
 								<button data-placement="right" title="<?php echo ($record['status']==1)?'Deactive':'Active'; ?>" id="toggle<?php echo $record['id']; ?>" type="button" class="btn btn-normal toggle-status-record" alt="<?php echo $record['id'].'_'.$record['status']; ?>"><i class="fa fa-toggle-<?php echo ($record['status']==1)?'on':'off'; ?>"></i></button>
-								
+						
 								</td>
 
 							</tr>

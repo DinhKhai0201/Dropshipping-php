@@ -13,10 +13,10 @@ class users_controller extends vendor_backend_controller {
 			$type = $app['prs']['type'];
 			$role='';
 			if($type=='admin') 			$role='1';
-			if($type=='supplier') 		$role='2';
-			if($type=='candidate') 		$role='3';
-			if($type=='jobmanager') 	$role='5';
-			if($type=='adsmanager') 	$role='4';
+			if($type=='customer') 		$role='2';
+			if($type=='supplier') 		$role='3';
+			if($type=='shipper') 	    $role='4';
+			if($type=='adsmanager') 	$role='5';
 			$conditions .= (($conditions)? " AND ":"")." role=".$role;
 		}
 
@@ -43,9 +43,9 @@ class users_controller extends vendor_backend_controller {
 			// 	$name = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'users');
 			// 	$userData['avata'] = $name;
 			// }
-			if($_FILES['image']['tmp_name'])
+			if($_FILES['image']['tmp_name']) {
 				$userData['avata'] = vendor_app_util::uploadImg($_FILES);
-			$userData['avata'] = vendor_app_util::uploadImg($_FILES);
+			}
 			if($valid['status']) {
 				$userData['password'] = vendor_app_util::generatePassword($userData['password']);
 				unset($userData['password_confirm']);
@@ -108,28 +108,9 @@ class users_controller extends vendor_backend_controller {
 	public function view($id) {
 		$um = new user_model();
 		$this->record = $um->getRecord($id);
-
-		if($this->record['role'] == 2){
-	        $job = new job_model();
-	        $conditions = "jobs.user_id = ".$id;
-			$this->records = $job->allp('*',['conditions'=>$conditions, 'joins'=> false, 'order'=>'id ASC']);
-			$company_model = new company_model();
-			$this->company = $company_model->getRecordWhere(['user_id'=>$id]);
-		}
-		if($this->record['role'] == 3){
-			$cv_user_model = new cv_user_model();
-			$this->cvs = $cv_user_model->all('*', [
-				'joins' => ['cv_template', 'cv_job_info'],
-				'conditions' => ' user_id = ' . $this->record['id'],
-				'order'=> 'id ASC',
-				'get-child' => true,
-				'distinct' => true
-			]);
-			$cv_user_model = new cv_user_model();
-			$this->cv_user = $cv_user_model->getRecordWhere(['user_id'=>$id]);
-		}
 		$this->display();
 	}
+
 
 	public function changestatus() {
 		global $app;
@@ -141,10 +122,7 @@ class users_controller extends vendor_backend_controller {
 	}
 
 	public function del($id) {
-    $user = new user_model();
-    $s3 = new vendor_aws();
-    $image = $user->getRecord($id)['avata'];
-    $s3->delete($image, 'users');
+		$user = new user_model();
 		if($user->delRelativeRecord($id, "role != 1")) echo "Delete Successful";
 		else echo "error";
 	}
@@ -152,13 +130,7 @@ class users_controller extends vendor_backend_controller {
 	public function delmany() {
 		global $app;
 		$ids = $app['prs']['ids'];
-    $users = new user_model();
-    $arrId = explode(',', $ids);
-    $s3 = new vendor_aws();
-    foreach ($arrId as $key => $value) {
-      $image = $users->getRecord($value)['avatar'];
-      $s3->delete($image, 'users');
-    }
+		$users = new user_model();
 		if($users->delRelativeRecords($ids, "role != 1")) echo "Delete many successful";
 		else echo "error";
 	}

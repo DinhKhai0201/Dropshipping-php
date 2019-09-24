@@ -165,7 +165,7 @@
 					<hr>
 					<div id="legend">
 						<?php if($this->record['role'] == 2) {?>
-							<legend class="">Danh sách công việc đăng tuyển</legend>
+							<legend class="">List order</legend>
 							<div class="box-body">
 								<div id="table_wrapper" class="dataTables_wrapper form-inline dt-boostrap">
 									<div class="col-sm-12">
@@ -219,7 +219,7 @@
 								</div>
 							</div>
 						<?php } if($this->record['role'] == 3) { ?> 
-							<legend class="">Danh sách CV đã tạo</legend>
+							<legend class="">List supplier</legend>
 							<div class="row" style="padding-top: 15px; padding-bottom: 15px;">
 								<?php if(count($this->cvs)) {?>
 					        <?php foreach($this->cvs as $cv) {?>
