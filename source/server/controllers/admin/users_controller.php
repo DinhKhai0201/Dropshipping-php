@@ -38,11 +38,14 @@ class users_controller extends vendor_backend_controller {
 			$um = new user_model();
 			$userData = $_POST['user'];
 			$valid = $um->validator($userData);
-			if($_FILES['image']['tmp_name']){
-        $s3 = new vendor_aws();
-        $name = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'users');
-        $userData['avata'] = $name;
-      }
+			// if($_FILES['image']['tmp_name']){
+			// 	$s3 = new vendor_aws();
+			// 	$name = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], 'users');
+			// 	$userData['avata'] = $name;
+			// }
+			if($_FILES['image']['tmp_name'])
+				$userData['avata'] = vendor_app_util::uploadImg($_FILES);
+			$userData['avata'] = vendor_app_util::uploadImg($_FILES);
 			if($valid['status']) {
 				$userData['password'] = vendor_app_util::generatePassword($userData['password']);
 				unset($userData['password_confirm']);
@@ -65,12 +68,16 @@ class users_controller extends vendor_backend_controller {
 		$this->record = $um->getRecord($id);
 		if(isset($_POST['btn_submit'])) {
 			$userData = $_POST['user'];
+		//aws
+		// 	if($_FILES['image']['tmp_name']) {
+        // $s3 = new vendor_aws();
+        // $s3->delete($this->record['avata'], $this->controller);
+        // $name = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], $this->controller);
+		// $userData['avata'] = $name;
 			if($_FILES['image']['tmp_name']) {
-        $s3 = new vendor_aws();
-        $s3->delete($this->record['avata'], $this->controller);
-        $name = $s3->createWithDate($_FILES['image']['name'], $_FILES['image']['tmp_name'], $this->controller);
-        $userData['avata'] = $name;
-
+				if($this->record['avata'] && file_exists(RootURI."/media/upload/" .$this->controller.'/'.$this->record['avata']))
+					unlink(RootURI."/media/upload/" .$this->controller.'/'.$this->record['avata']);
+				$userData['avata'] = vendor_app_util::uploadImg($_FILES);
 			}
 			$valid = $um->validator($userData, $id);
 			if($valid['status']){
@@ -121,7 +128,6 @@ class users_controller extends vendor_backend_controller {
 			$cv_user_model = new cv_user_model();
 			$this->cv_user = $cv_user_model->getRecordWhere(['user_id'=>$id]);
 		}
-		// echo "Start <br/>"; echo '<pre>'; print_r($this->cvs);echo '</pre>';exit("End Data");
 		$this->display();
 	}
 

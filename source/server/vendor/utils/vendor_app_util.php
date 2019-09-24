@@ -1,4 +1,5 @@
 <?php
+include_once RootURI.'components/SimpleImage/SimpleImage_Component.php'; 
 class vendor_app_util {
 	public static function url($options=null) {
 		if($options=='/')
@@ -284,6 +285,55 @@ class vendor_app_util {
     $s3 = new vendor_aws();
     return $s3->getBaseUrl();
   }
+  public function uploadImg($flies, $newSize=null) {
+	$t=time();
+	$allowedExts = array("gif", "jpeg", "jpg", "png");
+	$temp = explode(".", $flies["image"]["name"]); //tach chuoi thanh mang tai dau cham
+	$extension = end($temp); //dua con tro den cuoi phan tu mang
+	if ((($flies["image"]["type"] == "image/gif")
+		|| ($flies["image"]["type"] == "image/jpeg")
+		|| ($flies["image"]["type"] == "image/jpg")
+		|| ($flies["image"]["type"] == "image/pjpeg")
+		|| ($flies["image"]["type"] == "image/x-png")
+		|| ($flies["image"]["type"] == "image/png"))
+		&& ($flies["image"]["size"] < 200000000) //?
+		&& in_array($extension, $allowedExts))
+	{
+		if ($flies["image"]["error"] > 0) {
+			//var_dump($flies["image"]["error"]);
+			echo 'error';
+			return false;
+		}
+		$ulfd = RootURI."media/upload/users/";
+		// exit($ulfd);
+		$newfn = time().rand(10000,99999).'.'.$extension;
+		if (file_exists($ulfd . $newfn)) {
+			  return true;
+		} else {
+			move_uploaded_file($flies["image"]["tmp_name"], $ulfd.$newfn);
+			$SimpleImg = new SimpleImage_Component();
+			$SimpleImg->load($ulfd.$newfn);
+			if(isset($newSize['height']) && !isset($newSize['width'])) {
+				$SimpleImg->resizeToHeight($newW);
+			} else {
+				$newW = 1000;
+				if(isset($newSize['width'])) {
+					$newW = $newSize['width'];
+				}
+				$SimpleImg->resizeToWidth($newW);
+			}
+			$SimpleImg->save($ulfd.$newfn);
+			return $newfn;
+		}
+		} else {
+			echo "Invalid file";
+			return false;
+		}
+	}
+
+	public function setProperty($name, $value) {
+		$this->$name = $value;
+	}
 
 }
 ?>

@@ -273,7 +273,19 @@ class vendor_main_model {
 		$conditions = ' WHERE '. $this->table.'.id='.$id;
 		return $this->getRecordCondition($conditions, $fields, $options);
 	}
-
+	public function getRecordId($id, $fields='*', $options=null) {
+		$conditions = '';
+		if(isset($options['conditions'])) {
+			$conditions .= ' and '. $options['conditions'];
+		}
+		$query = "SELECT $fields FROM $this->table where id=$id".$conditions;		
+		$result = mysqli_query($this->con,$query);
+		$records = [];
+		foreach ($result as $key => $value) {
+			$records[]=$value;
+		}
+		return $records;
+	}
 	public function getRecordWhere($wheres, $fields='*', $options=null) {
 		$conditions = ' WHERE ';
 		$i=0;

@@ -26,27 +26,30 @@
           <a href="#">
             <i class="fas fa-info-circle"></i>
             <span>Static page</span>
-          </a>
-          <ul class="treeview-menu">
-            <li <?=($app['ctl']=='static_pages' && $app['act']=='index')? 'class="active"':'';?>><a href="<?=vendor_app_util::url(array('ctl'=>'static_pages', 'act'=>'index')); ?>"><i class="fas fa-info"></i> List page</a></li>
-          </ul>
-        </li>
-        <li class="treeview <?=($app['ctl']=='companies')? 'active menu-open':'';?>">
-          <a href="#">
-            <i class="icon-organization"></i> <span>Stores</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?=($app['ctl']=='companies')? 'class="active"':'';?>>
-              <a href="<?=vendor_app_util::url(array('ctl'=>'companies', 'act'=>'index')); ?>">
-                <i class="fas fa-user-md"></i> Show all Stores
+            <li <?=($app['ctl']=='static_pages' && $app['act']=='index')? 'class="active"':'';?>><a href="<?=vendor_app_util::url(array('ctl'=>'static_pages', 'act'=>'index')); ?>"><i class="fas fa-info"></i> List page</a></li>
+          </ul>
+        </li>
+        <li class="treeview <?=($app['ctl']=='products')? 'active menu-open':'';?>">
+          <a href="#">
+            <i class="icon-organization"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?=($app['ctl']=='products')? 'class="active"':'';?>>
+              <a href="<?=vendor_app_util::url(array('ctl'=>'products', 'act'=>'index')); ?>">
+                <i class="fas fa-user-md"></i> Show all Product
               </a>
             </li>
-            <li <?=($app['ctl']=='companies')? 'class="active"':'';?>>
-              <a href="<?=vendor_app_util::url(array('ctl'=>'companies', 'act'=>'add')); ?>">
-                <i class="fas fa-plus"></i> Add a Stores
+            <li <?=($app['ctl']=='products')? 'class="active"':'';?>>
+              <a href="<?=vendor_app_util::url(array('ctl'=>'products', 'act'=>'add')); ?>">
+                <i class="fas fa-plus"></i> Add a Product
               </a>
             </li>
           </ul>

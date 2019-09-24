@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../images/favicon.ico">
-    <title>Việc làm Đà Nẵng - Trang chủ</title>
+    <title>DropShipping - Trang chủ</title>
 
     <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/css/font-awesome.min.css">
   	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">

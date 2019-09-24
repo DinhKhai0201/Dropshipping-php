@@ -92,14 +92,17 @@
 							<label class="control-label col-md-3" for="avata">Avata</label>
 							<div class="controls col-md-7">
 							<?php if($app['act'] !='add'){ ?>
-								<?php if(isset($this->record['avata'])) { ?>
-                  <img src="<?php 
-                    if(preg_match('/https{0,1}:\/\/.*/', $this->record['avata'])){
-                      echo $this->record['avata'];
-                    }else{
-                      echo vendor_app_util::getUrlAws($this->record['avata'], $app['ctl']);
-                    } ?>">
-								<?php } ?>
+								<?php //if(isset($this->record['avata'])) { ?>
+				  <img src="<?php 
+				  	//aws
+                    // if(preg_match('/https{0,1}:\/\/.*/', $this->record['avata'])){
+                    //   echo $this->record['avata'];
+                    // }else{
+					//   echo vendor_app_util::getUrlAws($this->record['avata'], $app['ctl']); 
+					//} 
+					echo RootREL."media/upload/users/".(!empty($this->record['avata'])? $this->record['avata']: 'no_image.png');
+					?>" width="200px">
+								<?php //} ?>
 							<?php } ?>
 							<?php if($app['act'] !='view'){ ?>
 								<input type="file" id="avata" name="image" placeholder="" class="form-control">

@@ -71,7 +71,7 @@
 				</div>
 				<div class="col-md-4 col-sm-12 col-xs-12 text-center">	
 					<div class="img-profile">
-						<img src="<?php echo vendor_app_util::getUrlAws($this->record['avata'], $app['ctl']); ?>">
+						<img src="<?php echo UploadURI.$app['ctl'].'/'.(!empty($this->record['avata'])?$this->record['avata']:'no_image.png'); ?>" width = '200px'>
 					</div>
 				</div>
 			</div>

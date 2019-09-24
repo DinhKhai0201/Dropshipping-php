@@ -9,4 +9,5 @@ include_once(__DIR__.'/vendor/bootstrap/autoload.php');
 include_once(__DIR__.'/libs/simplehtmldom/simple_html_dom.php');
 include_once(__DIR__.'/vendor/helpers/string/string_helper.php');
 include_once(__DIR__.'/vendor/bootstrap/app.php');
+
 ?>

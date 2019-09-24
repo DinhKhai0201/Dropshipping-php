@@ -20,7 +20,7 @@ spl_autoload_register(function ($classname)  {
 
 	global $app;
 	$arrCL 		= explode("_",$classname);
-	$firstCL 	= current($arrCL);
+	$firstCL 	= current($arrCL);  
 	$lastCL		= end($arrCL);
 	$filename = "";
 	$areaPath = $app['areaPath'];

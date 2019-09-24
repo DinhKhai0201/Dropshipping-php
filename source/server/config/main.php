@@ -28,7 +28,7 @@ define('UploadREL', 'media/upload/');
 define('UploadURI', $relRoot.UploadREL);
 define('RootURI', dirname($_SERVER['SCRIPT_FILENAME'])."/");
 //define('RootURI', '/home1/softdev/public_html/pacificsoftdev.com/pscd/');
-
+// exit(RootURI);
 define('ControllerREL', 'controllers/');
 define('AdminPath', 'admin');
 define('ControllerAdminREL', ControllerREL."/".AdminPath);
@@ -261,7 +261,6 @@ $app['font_families'] = [
 ];
 
 include_once(__DIR__.'/database.php');
-//require_once __DIR__.'/config/main.php';
 
 $mediaFiles = [
 	'css'	=>	[],

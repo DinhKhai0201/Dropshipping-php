@@ -101,6 +101,7 @@
   <div class="fakeLoader"></div>
 
 <?php include_once 'views/admin/layout/'.$this->layout.'footer.php'; ?>
+
 <script src="<?php echo RootREL; ?>media/admin/js/fakeLoader.min.js"></script>
 <script type="text/javascript">
 	$(function () {
