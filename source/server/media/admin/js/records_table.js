@@ -7,10 +7,11 @@ $(document).ready(function () {
 		var ctl = $("table.dataTable").attr("controller");
 		function delRecord(id, act) {
 			urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
-
+			console.log(urlDele);
 			$.ajax({
 				url: urlDele,
 				success: function (data) {
+					// console.log(data);
 					if(data != 'error'){
 						$('#row'+id).remove();
 					}

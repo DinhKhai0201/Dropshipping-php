@@ -36,7 +36,7 @@ class vendor_auth_model extends vendor_main_model {
 				$rolesFlip = array_flip($app['roles']);
 				if (!(
 					$row['role']==$rolesFlip["admin"] ||
-					$row['role']==$rolesFlip["jobmanager"] ||
+					$row['role']==$rolesFlip["supplier"] ||
 					$row['role']==$rolesFlip["adsmanager"]
 				))
 				return 0;
