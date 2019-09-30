@@ -31,6 +31,7 @@ if(isset($app['prs']['status'])) {
 				<h2 class="box-title">Users</h2>
 				</div>
 				<div class="col-sm-4 col-xs-6">
+					
 					<button id="delete-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete users">
 						<i class="fa fa-remove"></i>
 					</button>
@@ -39,6 +40,9 @@ if(isset($app['prs']['status'])) {
 						<i class="fa fa-plus"></i>
 						</button>
 					</a>	
+					<button id="export-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete users">
+						<i class="fa fa-download"></i>
+					</button>
 				</div>
 				<div class="col-sm-8 col-xs-6">
 					<ul class="list-inline list_all">

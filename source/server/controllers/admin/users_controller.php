@@ -1,4 +1,7 @@
 <?php
+
+use function GuzzleHttp\json_encode;
+
 class users_controller extends vendor_backend_controller {
 	public function index() {
 		global $app;
@@ -176,6 +179,12 @@ class users_controller extends vendor_backend_controller {
 		$user = new user_model();
 		$this->records = $user->allp('*',['conditions'=>$conditions, 'joins'=>false]);
 		$this->display();
+	}
+	//export data to exel 
+	public function exportdata() {
+		$um = new user_model();
+		$this->record = $um->getAllRecords();
+		echo json_endcode($this->record);
 	}
  
 }

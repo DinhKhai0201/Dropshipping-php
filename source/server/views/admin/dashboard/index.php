@@ -23,7 +23,7 @@
             <a href="<?php echo vendor_app_util::url(["ctl"=>"users"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-       <!--  <div class="col-lg-3 col-md-6 col-xs-6">
+        <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-success">
             <div class="inner">
               <h3>Static page</h3>
@@ -31,7 +31,7 @@
             </div>
             <a href="<?php echo vendor_app_util::url(["ctl"=>"static_pages"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div> -->
+        </div>
         <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-dark">
             <div class="inner">
@@ -52,7 +52,24 @@
             <a href="<?php echo vendor_app_util::url(["ctl"=>"ads"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-
+        <div class="col-lg-3 col-md-6 col-xs-6">
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>Products</h3>
+              <p><?= $this->noProducts ?> Products</p>
+            </div>
+            <a href="<?php echo vendor_app_util::url(["ctl"=>"products"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-6">
+          <div class="small-box bg-secondary">
+            <div class="inner">
+              <h3>Coupons</h3>
+              <p><?= $this->noCoupons ?> Coupons</p>
+            </div>
+            <a href="<?php echo vendor_app_util::url(["ctl"=>"coupons"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
         <!-- <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-success" style="background-color: #dc3545 !important;">
             <div class="inner">

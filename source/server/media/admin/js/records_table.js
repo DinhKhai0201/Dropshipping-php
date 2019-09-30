@@ -7,11 +7,9 @@ $(document).ready(function () {
 		var ctl = $("table.dataTable").attr("controller");
 		function delRecord(id, act) {
 			urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
-			console.log(urlDele);
 			$.ajax({
 				url: urlDele,
 				success: function (data) {
-					// console.log(data);
 					if(data != 'error'){
 						$('#row'+id).remove();
 					}
@@ -19,14 +17,15 @@ $(document).ready(function () {
 			})
 		}
 
-		function toggleRecord(id, job_hot) {
-			urlToggle = rootUrl+"admin/"+ctl+"/changejobhot/"+ id+"/"+ job_hot;
+		function toggleRecord(id, status) {
+			urlToggle = rootUrl+"admin/"+ctl+"/changestatus/"+ id+"/"+ status;
 			$.ajax({
 				url: urlToggle,
 				success: function (data) {
-					$('#toggle'+id+' i').attr({"class":(job_hot=='0')?'fa fa-toggle-on':'fa fa-toggle-off'});
-					$('#job_hot'+id).html((job_hot=='0')?'Yes':'No');
-					$('#toggle'+id).attr({"alt":(job_hot=='0')?id+"_"+'1':id+"_"+'0'});
+					console.log(data);
+					$('#toggle'+id+' i').attr({"class":(status=='0')?'fa fa-toggle-on':'fa fa-toggle-off'});
+					$('#job_hot'+id).html((status=='0')?'Yes':'No');
+					$('#toggle'+id).attr({"alt":(status=='0')?id+"_"+'1':id+"_"+'0'});
 				}
 			})
 		}
@@ -67,8 +66,8 @@ $(document).ready(function () {
 		});
 		
 		// ok
-		$('tbody.records').on('click','td.btn-act button.toggle-job_hot-record', function () {
-			var isToggle = confirm("Are you sure to change hot job this record?");
+		$('tbody.records').on('click','td.btn-act button.toggle-status-record', function () {
+			var isToggle = confirm("Are you sure to change status this record?");
 			if(isToggle){
 				data = $(this).attr('alt');
 				arr = data.split('_');
@@ -216,6 +215,22 @@ $(document).ready(function () {
 				}
 			})
 		})
+		$('#export-records').on('click', function () {
+			var isExp = confirm("Are you sure to export this data???");
+			if(isExp){
+				urlExp = rootUrl+"admin/"+ctl+"/exportdata/";
+				console.log(urlExp);
+				$.ajax({
+					url: urlExp,
+					success: function (data) {
+						console.log(data);
+						if(data != 'error'){
+							alert("Export thành công");
+						}
+					}
+				})
+			}
+		});
 	
 	})(jQuery);
 	

@@ -12,14 +12,14 @@ class dashboard_controller extends vendor_manager_controller {
 		$this->noNonAdminUsers = $um->getCountRecords(['conditions'=>'role!=1']);
 		$this->noNonAdminActiveUsers = $um->getCountRecords(['conditions'=>'role!=1 AND status=1']);
 
-		// $im = new static_page_model();
-		// $this->noStaticPages = $im->getCountRecords();
+		$im = new static_page_model();
+		$this->noStaticPages = $im->getCountRecords();
 
-		// $job = new job_model();
-		// $this->noJobs = $job->getCountRecords();
+		$coupon = new coupon_model();
+		$this->noCoupons = $coupon->getCountRecords();
 
-		// $company = new company_model();
-		// $this->noCompanies = $company->getCountRecords();
+		$product = new product_model();
+		$this->noProducts = $product->getCountRecords();
 
 		$category = new category_model();
 		$this->noCategories = $category->getCountRecords();

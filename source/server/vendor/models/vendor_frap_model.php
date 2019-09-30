@@ -6,6 +6,7 @@ class vendor_frap_model extends vendor_fra_model {
 		$pagination['data'] = [];
 		if($resultMObject) {
 			while($row = $resultMObject->fetch_assoc()) {
+
 	    		$pagination['data'][] = $row;
 	    	}
 		}
