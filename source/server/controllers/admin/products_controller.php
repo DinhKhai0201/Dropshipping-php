@@ -12,8 +12,8 @@ class products_controller extends vendor_backend_controller {
     if(isset($app['prs']['search'])){
       $conditions .= (($conditions)? " AND ":"").
       " name like '%".$app['prs']['search']."%' OR ".
-      " sku '%".$app['prs']['search']."%' OR".
-      " description	 '%".$app['prs']['search']."%' OR ".
+      " sku like '%".$app['prs']['search']."%' OR".
+      " description	like '%".$app['prs']['search']."%' OR ".
       " id like '%".$app['prs']['search']."%'";
     }
 
