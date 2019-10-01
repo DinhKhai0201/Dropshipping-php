@@ -179,9 +179,6 @@ class vendor_crud_model extends vendor_main_model {
 			$values .=','.$updatedTime;
 		}
 		$query = "INSERT INTO $this->table($fields) VALUES ($values)";
-		// if($this->table === 'cv_education_details'){
-			// echo "Start <br/>"; echo '<pre>'; print_r($query);echo '</pre>';exit("End Data");
-		// }
 		// exit($query);
 		if(mysqli_query($this->con,$query)){
 			return $this->con->insert_id;

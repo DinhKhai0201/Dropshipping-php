@@ -34,12 +34,21 @@
 									<p class="text-danger"><?=$this->errors['slug']; ?></p>
 								<?php } ?>
 						</div>
-						<div class="form-group">
-							<label for="decription">Decription<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="decription" name="coupon[decription]" placeholder="" class="form-control" value="<?php if(isset($this->record['decription'])) echo $this->record['decription']; ?>">
+						<div class="form-group ">
+							<label class="control-label " for="decription">Coupon descriptipn<span style="color:red;">*</span></label>					
+								<?php if($app['act']=='view'){ ?>
+									<div class="form-group" style="padding: 10px;background-color: #e9ecef">
+									<p><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></p>
+									</div>
+									
+
+								<?php }else{ ?>
+									<textarea <?php if($app['act']=='view') echo "disabled"; ?> cols='50' rows='15' type="text" id="editor1" name="coupon[decription]" placeholder="" class="form-control" value=""><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></textarea>
+								<?php } ?>
 								<?php if( isset($this->errors['decription'])) { ?>
 									<p class="text-danger"><?=$this->errors['decription']; ?></p>
 								<?php } ?>
+							
 						</div>
 						<div class="form-group">
 							<label for="coupon_code">Coupon code<span style="color:red;">*</span></label>
@@ -119,7 +128,7 @@
 							<div class="form-group col-sm-6">
 								<label for="time_start">Time start<span style="color:red;">*</span></label>
 								<div class='input-group date' >
-									<input type='text' class="form-control" id='datetimepicker1' value="<?php if(isset($this->record['time_start'])){echo date_format(date_create($this->record['time_start']),"Y/m/d");}?>" name="coupon[time_start]" required="required" placeholder=""/>
+									<input <?php if($app['act']=='view') echo "disabled"; ?> type='text' class="form-control" id='datetimepicker1' value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
 									<?php if( isset($this->errors['time_start'])) { ?>
 										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
 									<?php } ?>
@@ -128,7 +137,7 @@
 							<div class="form-group col-sm-6">
 								<label for="time_end">Time end<span style="color:red;">*</span></label>
 								<div class='input-group date' >
-									<input type='text' class="form-control" id='datetimepicker2' value="<?php if(isset($this->record['time_start'])){echo date_format(date_create($this->record['time_start']),"Y/m/d");}?>" name="coupon[time_start]" required="required" placeholder=""/>
+									<input <?php if($app['act']=='view') echo "disabled"; ?> type='text' class="form-control" id='datetimepicker2' value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
 									<?php if( isset($this->errors['time_start'])) { ?>
 										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
 									<?php } ?>
@@ -178,13 +187,27 @@
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/process_type_coupon.js"></script>
-
-<script>
+<script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
+<script type="text/javascript">
+	CKEDITOR.replace( 'editor1', {} );
+	CKEDITOR.config.baseFloatZIndex = 100001;
+</script>
+<script type="text/javascript">
 	$("#name").keyup(function(){
 		$("#slug").val(slugify($(this).val()));
 	});
 	$(document).ready(function () {
+		$(function() {
         $('#datetimepicker1').datetimepicker();
-        $('#datetimepicker2').datetimepicker();
+        $('#datetimepicker2').datetimepicker({
+			useCurrent: false 
+		});
+		$("#datetimepicker1").on("dp.change", function(e) {
+		$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+		});
+		$("#datetimepicker2").on("dp.change", function(e) {
+		$('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+		});
+	});
     });
 </script>

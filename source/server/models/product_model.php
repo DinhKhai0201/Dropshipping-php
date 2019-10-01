@@ -18,6 +18,12 @@ class product_model extends vendor_pagination_model
         	'price' => ['required', 'int'],
 	    ];
 	}
+	protected $relationships = [
+		'hasMany'	=>	[
+			['rate',	'key'=>'product_id', 'on_del'=>true],
+			['comment',	'key'=>'product_id', 'on_del'=>true],
+		],
+	];
 
 }
 ?>
