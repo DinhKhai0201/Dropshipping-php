@@ -6,8 +6,8 @@
         <div class="col-md-6">
 					<?php if($app['act'] != 'view') { ?>
 						<form 
-							id="form-addcategory" 
-							action="<?php echo vendor_app_util::url(["ctl"=>"categories", "act"=>$app['act'] == 'edit'?$app['act']."/".$this->record['id']:$app['act']]); ?>" 
+							id="form-addproduct" 
+							action="<?php echo vendor_app_util::url(["ctl"=>"products", "act"=>$app['act'] == 'edit'?$app['act']."/".$this->record['id']:$app['act']]); ?>" 
 							method="post" enctype="multipart/form-data" class="form-horizontal"
 						>
 					<?php } ?>
@@ -21,13 +21,13 @@
 							<div class="form-group">
 							<label for="status">Status</label>
 								<?php if($app['act'] !='view'){ ?>
-									<select name="category[status]" id="input-status" class="form-control">
-										<?php foreach (category_model::$status as $k => $v) { ?>
+									<select name="product[status]" id="input-status" class="form-control">
+										<?php foreach (product_model::$status as $k => $v) { ?>
 											<option value="<?=$k;?>" <?=(isset($this->record['status']) && $this->record['status']==$k)? 'selected="selected"':'';?>><?=$v;?></option>
 										<?php } ?>
 									</select>
 								<?php } else { ?>
-									<input disabled type="text" id="status" name="category[status]"  class="form-control" value="<?php if(isset($this->record['status'])) echo category_model::$status[$this->record['status']]; ?>">
+									<input disabled type="text" id="status" name="product[status]"  class="form-control" value="<?php if(isset($this->record['status'])) echo product_model::$status[$this->record['status']]; ?>">
 								<?php } ?>
 							<?php if( isset($this->errors['status'])) { ?>
 								<p class="text-danger"><?=$this->errors['status']; ?></p>
@@ -36,7 +36,7 @@
 
 						<div class="form-group">
 							<label for="name">Name<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="category[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
 								<?php if( isset($this->errors['name'])) { ?>
 									<p class="text-danger"><?=$this->errors['name']; ?></p>
 								<?php } ?>
@@ -44,7 +44,7 @@
 
 						<div class="form-group">
 							<label for="slug">Slug<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="category[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['slug'])) echo $this->record['slug']; ?>">
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="product[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['slug'])) echo $this->record['slug']; ?>">
 								<?php if( isset($this->errors['slug'])) { ?>
 									<p class="text-danger"><?=$this->errors['slug']; ?></p>
 								<?php } ?>
@@ -68,8 +68,8 @@
 							</div>
 
 							<div class="form-group text-center">
-								<a href="<?php echo (vendor_app_util::url(["ctl"=>"categories", "act"=>"edit/".$this->record['id']])) ?>" id="<?php echo("edit".$record['id']);?>" >
-									<button data-placement="top" title="Edit category" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
+								<a href="<?php echo (vendor_app_util::url(["ctl"=>"products", "act"=>"edit/".$this->record['id']])) ?>" id="<?php echo("edit".$record['id']);?>" >
+									<button data-placement="top" title="Edit product" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
 								</a>
 							</div>
 						<?php } ?>

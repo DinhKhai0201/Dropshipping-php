@@ -24,8 +24,8 @@ class dashboard_controller extends vendor_manager_controller {
 		$category = new category_model();
 		$this->noCategories = $category->getCountRecords();
 
-		// $pm = new package_model();
-		// $this->noPackages = $pm->getCountRecords();
+		$order = new order_model();
+		$this->noOrders = $order->getCountRecords();
 
 		$ad = new ad_model();
 		$this->noAds = $ad->getCountRecords();

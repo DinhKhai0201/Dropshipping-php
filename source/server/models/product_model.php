@@ -22,6 +22,8 @@ class product_model extends vendor_pagination_model
 		'hasMany'	=>	[
 			['rate',	'key'=>'product_id', 'on_del'=>true],
 			['comment',	'key'=>'product_id', 'on_del'=>true],
+			['view',	'key'=>'product_id', 'on_del'=>true],
+			['order_item',	'key'=>'product_id', 'on_del'=>true],
 		],
 	];
 
