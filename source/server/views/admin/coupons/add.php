@@ -20,3 +20,6 @@
 </div>
   <!-- /.box -->
 <?php include_once 'views/admin/layout/'.$this->layout.'footer.php'; ?>
+<script type="text/javascript">
+  
+</script>	

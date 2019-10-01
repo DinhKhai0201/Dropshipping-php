@@ -74,13 +74,16 @@ if(isset($app['prs']['status'])) {
 					<table  controller="coupons" class="table table-bordered table-striped no-margin dataTable" style="text-align:center; width:100%;min-width:800px;">
 						<thead>
 							<tr role="row">
-								<th id="checAllTop" class="checkAll" style="width: 10px;">
+								<th id="checAllTop" class="checkAll" style="width: 5px;">
 									<input type="checkbox" name="" id="cb-all-coupon" style="display:none;">
 									<label for="cb-all-coupon"></label>
 								</th>
 								<th style="width: 20px;">ID</th>
 								<th style="width: 250px;">Name</th>
 								<th class="tabletShow" style="width: 200px;">coupon_code</th>
+								<th class="tabletShow" style="width: 50px;">Type coupon</th>
+								<th class="tabletShow" style="width: 30px;">Percent value</th>
+								<th class="tabletShow" style="width: 50px;">Fix value</th>
 								<th class="tabletShow" style="width: 100px;">Time start</th>
 								<th class="tabletShow" style="width: 100px;">Time end</th>
 								<th style="width: 200px;">Action</th>
@@ -105,9 +108,27 @@ if(isset($app['prs']['status'])) {
 								<a href="<?php echo (vendor_app_util::url(["ctl"=>"coupons", "act"=>"view/".$record['id']]));?>" id="viewCoupon<?=$record['id'];?>">
 									<?=$record['name']; ?>	
 								</a>	
+								<td id="<?php echo("id".$record['id']);?>">
+								<a href="<?php echo (vendor_app_util::url(["ctl"=>"coupons", "act"=>"view/".$record['id']]));?>" id="viewCoupon<?=$record['id'];?>">
+									<?=$record['coupon_code']; ?>	
+								</a>
 								</td>
                                     <td class="tabletShow" id="<?php echo("slug".$record['id']);?>">
-                                    <?php echo $record['coupon_code']; ?> 
+									<?php 
+										if( $record['type'] == 0) {
+											echo "Percent value";
+										} else {
+											echo "Fix value";
+										}
+									?> 
+								</td>
+								</td>
+                                    <td class="tabletShow" id="<?php echo("slug".$record['id']);?>">
+                                    <?php echo $record['percent_value']; ?> 
+								</td>
+								</td>
+                                    <td class="tabletShow" id="<?php echo("slug".$record['id']);?>">
+                                    <?php echo $record['fix_value']; ?> 
 								</td>
 								<td class="tabletShow" id="<?php echo("time_start".$record['id']);?>">
                                     <?php echo $record['time_start']; ?> 

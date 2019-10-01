@@ -170,12 +170,12 @@ class vendor_crud_model extends vendor_main_model {
 			$values .= "'".$v."'";
 			$i++;
 		}
-		if($createdTime = $this->recordTime($app['recordTime']['created_at'])) {
-			$fields .= ','.$app['recordTime']['created_at'];
+		if($createdTime = $this->recordTime($app['recordTime']['created'])) {
+			$fields .= ','.$app['recordTime']['created'];
 			$values .=','.$createdTime;
 		}
-		if($updatedTime = $this->recordTime($app['recordTime']['updated_at'])) {
-			$fields .= ','.$app['recordTime']['updated_at'];
+		if($updatedTime = $this->recordTime($app['recordTime']['updated'])) {
+			$fields .= ','.$app['recordTime']['updated'];
 			$values .=','.$updatedTime;
 		}
 		$query = "INSERT INTO $this->table($fields) VALUES ($values)";
@@ -210,12 +210,12 @@ class vendor_crud_model extends vendor_main_model {
 			$setDatas .= $k."='".$v."'";
 			$i++;
 		}
-		if($updatedTime = $this->recordTime($app['recordTime']['updated_at'])) {
-			$setDatas .= ','.$app['recordTime']['updated_at'].'='.$updatedTime;
+		if($updatedTime = $this->recordTime($app['recordTime']['updated'])) {
+			$setDatas .= ','.$app['recordTime']['updated'].'='.$updatedTime;
 		}
 		if($conditions)	$conditions = ' and '.$conditions;
 		$query = "UPDATE $this->table SET $setDatas WHERE id='$id'".$conditions;
-		//echo($query);
+		// exit($query);
 		if(mysqli_query($this->con,$query))
 			return true;
 		else {

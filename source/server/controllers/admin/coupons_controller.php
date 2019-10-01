@@ -12,7 +12,10 @@ class coupons_controller extends vendor_backend_controller {
       if(isset($app['prs']['search'])){
         $conditions .= (($conditions)? " AND ":"").
         " name like '%".$app['prs']['search']."%' OR ".
-        " coupon like '%".$app['prs']['search']."%' OR".
+        " coupon_code like '%".$app['prs']['search']."%' OR".
+        " type like '%".$app['prs']['search']."%' OR ".
+        " percent_value like '%".$app['prs']['search']."%' OR ".
+        " fix_value like '%".$app['prs']['search']."%' OR ".
         " id like '%".$app['prs']['search']."%'";
       }
 
@@ -24,7 +27,7 @@ class coupons_controller extends vendor_backend_controller {
       $cm = new coupon_model();
       $this->record = $cm->getRecord($id);
       if(isset($_POST['btn_submit'])) {
-        $couponData = $_POST['coupons'];
+        $couponData = $_POST['coupon'];
         $valid = $cm->validator($couponData, $id);
         if($valid['status']){
           if($cm->editRecord($id, $couponData)) {

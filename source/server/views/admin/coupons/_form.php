@@ -1,3 +1,4 @@
+
 <section class="content" id="admin-import-page">
   <div class="box">      
     <div class="box-body">
@@ -18,7 +19,88 @@
 								<p><?=$this->errors['database'];?></p> 
 							</div>
 					<?php } ?>
-							<div class="form-group">
+							
+						<div class="form-group">
+							<label for="name">Name<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="coupon[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+								<?php if( isset($this->errors['name'])) { ?>
+									<p class="text-danger"><?=$this->errors['name']; ?></p>
+								<?php } ?>
+						</div>
+						<div class="form-group">
+							<label for="slug">Slug<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="coupon[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['slug'])) echo $this->record['slug']; ?>">
+								<?php if( isset($this->errors['slug'])) { ?>
+									<p class="text-danger"><?=$this->errors['slug']; ?></p>
+								<?php } ?>
+						</div>
+						<div class="form-group">
+							<label for="decription">Decription<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="decription" name="coupon[decription]" placeholder="" class="form-control" value="<?php if(isset($this->record['decription'])) echo $this->record['decription']; ?>">
+								<?php if( isset($this->errors['decription'])) { ?>
+									<p class="text-danger"><?=$this->errors['decription']; ?></p>
+								<?php } ?>
+						</div>
+						<div class="form-group">
+							<label for="coupon_code">Coupon code<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="coupon_code" name="coupon[coupon_code]" placeholder="" class="form-control" value="<?php if(isset($this->record['coupon_code'])) echo $this->record['coupon_code']; ?>">
+								<?php if( isset($this->errors['coupon_code'])) { ?>
+									<p class="text-danger"><?=$this->errors['coupon_code']; ?></p>
+								<?php } ?>
+						</div>
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="status">Type coupon<span style="color:red;">*</span></label>
+							<div class="controls col-md-7">
+								<?php if($app['act'] !='view'){ ?>
+									<select name="coupon[type]" id="input-type" class="form-control ">
+										<?php foreach (coupon_model::$type as $k => $v) { ?>
+									<option value="<?=$k;?>" <?=(isset($this->record['type']) && $this->record['type']==$k)? 'selected="selected"':'';?>><?=$v;?></option>
+								<?php } ?>
+							</select>
+						<?php } else { ?>
+							<input disabled type="text" id="type" name="coupon[type]"  class="form-control" value="<?php if(isset($this->record['type'])) echo coupon_model::$type[$this->record['type']]; ?>">
+						<?php } ?>
+								<?php if( isset($this->errors['status'])) { ?>
+									<p class="text-danger"><?=$this->errors['status']; ?></p>
+								<?php } ?>
+							</div>
+						</div>
+						<?php if($app['act']=='view') { if ($this->record['type'] == 0) {?>
+							<div class="form-group process-type-percent-js" >
+								<label for="type">Percent value (%)<span style="color:red;">*</span></label>
+								<input disabled type="text" id="type" name="coupon[percent_value]" placeholder="" class="form-control" value="<?php if(isset($this->record['percent_value'])) echo $this->record['percent_value']; ?>">
+									<?php if( isset($this->errors['type'])) { ?>
+										<p class="text-danger"><?=$this->errors['type']; ?></p>
+									<?php } ?>
+							</div>
+						<?php } else { ?>
+							<div class="form-group process-type-fixvalue-js">
+							<label for="coupon_code">Fix value<span style="color:red;">*</span></label>
+							<input disabled type="text" id="fix_value" name="coupon[fix_value]" placeholder="" class="form-control" value="<?php if(isset($this->record['fix_value']))  echo $this->record['fix_value']; ?>">
+								<?php if( isset($this->errors['fix_value'])) { ?>
+									<p class="text-danger"><?=$this->errors['fix_value']; ?></p>
+								<?php } ?>
+						</div>
+						<?php }} ?>
+						<?php if($app['act']=='add' OR $app['act']=='edit')  {?>
+							<div class="form-group process-type-percent-js" >
+								<label for="type">Percent value (%)<span style="color:red;">*</span></label>
+								<input  type="number" id="type" name="coupon[percent_value]" min="0" max="100" placeholder="" class="form-control" value="<?php if(isset($this->record['percent_value'])) {echo $this->record['percent_value'];} else {echo "0";}  ?>">
+									<?php if( isset($this->errors['type'])) { ?>
+										<p class="text-danger"><?=$this->errors['type']; ?></p>
+									<?php } ?>
+							</div>
+							<div class="form-group process-type-fixvalue-js" >
+								<label for="coupon_code">Fix value<span style="color:red;">*</span></label>
+								<input  type="number" id="fix_value" name="coupon[fix_value]" min ="0" placeholder="" class="form-control" value="<?php if(isset($this->record['fix_value'])) { echo $this->record['fix_value'];} else {  echo "0";} ?>">
+									<?php if( isset($this->errors['fix_value'])) { ?>
+										<p class="text-danger"><?=$this->errors['fix_value']; ?></p>
+									<?php } ?>
+							</div>
+						<?php } else { ?>
+							
+						<?php } ?>
+						<div class="form-group">
 							<label for="status">Status</label>
 								<?php if($app['act'] !='view'){ ?>
 									<select name="coupon[status]" id="input-status" class="form-control">
@@ -33,30 +115,26 @@
 								<p class="text-danger"><?=$this->errors['status']; ?></p>
 							<?php } ?>
 						</div>
-
-						<div class="form-group">
-							<label for="name">Name<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="coupon[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
-								<?php if( isset($this->errors['name'])) { ?>
-									<p class="text-danger"><?=$this->errors['name']; ?></p>
-								<?php } ?>
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label for="time_start">Time start<span style="color:red;">*</span></label>
+								<div class='input-group date' >
+									<input type='text' class="form-control" id='datetimepicker1' value="<?php if(isset($this->record['time_start'])){echo date_format(date_create($this->record['time_start']),"Y/m/d");}?>" name="coupon[time_start]" required="required" placeholder=""/>
+									<?php if( isset($this->errors['time_start'])) { ?>
+										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
+									<?php } ?>
+								</div>
+							</div>
+							<div class="form-group col-sm-6">
+								<label for="time_end">Time end<span style="color:red;">*</span></label>
+								<div class='input-group date' >
+									<input type='text' class="form-control" id='datetimepicker2' value="<?php if(isset($this->record['time_start'])){echo date_format(date_create($this->record['time_start']),"Y/m/d");}?>" name="coupon[time_start]" required="required" placeholder=""/>
+									<?php if( isset($this->errors['time_start'])) { ?>
+										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
+									<?php } ?>
+								</div>
+							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="coupon_code">Coupon code<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="coupon_code" name="coupon[coupon_code]" placeholder="" class="form-control" value="<?php if(isset($this->record['coupon_code'])) echo $this->record['coupon_code']; ?>">
-								<?php if( isset($this->errors['coupon_code'])) { ?>
-									<p class="text-danger"><?=$this->errors['coupon_code']; ?></p>
-								<?php } ?>
-						</div>
-						<div class="form-group">
-							<label for="coupon_code">Type coupon<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="type" name="coupon[type]" placeholder="" class="form-control" value="<?php if(isset($this->record['type']))  echo $this->record['type']; ?>">
-								<?php if( isset($this->errors['type'])) { ?>
-									<p class="text-danger"><?=$this->errors['type']; ?></p>
-								<?php } ?>
-						</div>
-						
 						<?php if($app['act'] !='view'){ ?>
 							<div class="text-center form-group">
 								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
@@ -65,13 +143,13 @@
 
 						<?php if($app['act'] =='view'){ ?>
 							<div class="form-group">
-								<label for="created">Time start</label>
-								<input disabled type="text" id="time_start" placeholder="" class="form-control" value="<?php if(isset($this->record['time_start'])) echo $this->record['time_start']; ?>">
+								<label for="created">Created</label>
+								<input disabled type="text" id="created" placeholder="" class="form-control" value="<?php if(isset($this->record['created'])) echo $this->record['created']; ?>">
 							</div>
 
 							<div class="form-group">
-								<label for="time_end">Time end</label>
-								<input disabled type="text" id="time_end" placeholder="" class="form-control" value="<?php if(isset($this->record['time_end'])) echo $this->record['time_end']; ?>">
+								<label for="updated">Update</label>
+								<input disabled type="text" id="updated" placeholder="" class="form-control" value="<?php if(isset($this->record['updated'])) echo $this->record['updated']; ?>">
 							</div>
 
 							<div class="form-group text-center">
@@ -85,6 +163,7 @@
 						<?php } ?>
 							</div>
 						</div>
+						
       <table class="table">
         <tbody id="list-data">
 
@@ -98,8 +177,14 @@
 </section>
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
+<script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/process_type_coupon.js"></script>
+
 <script>
 	$("#name").keyup(function(){
 		$("#slug").val(slugify($(this).val()));
 	});
+	$(document).ready(function () {
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
+    });
 </script>
