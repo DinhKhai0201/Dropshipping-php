@@ -39,6 +39,9 @@ if(isset($app['prs']['status'])) {
 						<i class="fa fa-plus"></i>
 						</button>
 					</a>	
+					<button id="export-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Export products">
+						<i class="fa fa-download"></i>
+					</button>
 				</div>
 				<div class="col-sm-8 col-xs-6">
 					<ul class="list-inline list_all">

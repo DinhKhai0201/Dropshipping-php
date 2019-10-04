@@ -93,5 +93,12 @@ class products_controller extends vendor_backend_controller {
     if($product->delRelativeRecords($ids)) echo "Delete many successful";
     else echo "error";
   }
+  //export data to exel 
+	public function exportdata() {
+		$pm = new product_model();
+		$record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status', ['order'=>'id asc']);
+		http_response_code(200);
+		echo (($record));
+	}
 }
 ?>
