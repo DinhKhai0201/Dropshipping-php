@@ -19,6 +19,7 @@ class products_controller extends vendor_backend_controller {
 
     $product = new product_model();
     $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
+    // exit(json_encode($this->records));
     $this->display();
   }
   public function edit($id) {
@@ -49,8 +50,7 @@ class products_controller extends vendor_backend_controller {
       $productData = $_POST['product'];
       // exit(json_encode($_POST));
       $valid = $um->validator($productData);
-      if($valid['status']) {
-        
+      if($valid['status']) {      
         if($um->addRecord($productData))
           header("Location: ".vendor_app_util::url(["ctl"=>"products"]));
         else {

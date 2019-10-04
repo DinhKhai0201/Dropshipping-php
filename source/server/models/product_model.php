@@ -3,10 +3,9 @@ class product_model extends vendor_pagination_model
 {
 	public $nopp = 10;
 	public static $status = [
-						0 => 'No Exist',
-                        1 => 'Exist',
-                        2 => 'Running low',
-                        3 => 'Out of'
+						0 => 'Exist',
+                        1 => 'Running low',
+                        2 => 'Out of'
                         
 					];
 	public function rules() {

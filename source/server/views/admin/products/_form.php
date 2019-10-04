@@ -4,6 +4,9 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
+					<legend class="" ><?php echo ucwords($app['act'].' '.$app['ctl']); ?></legend>
+				</div>
 					<?php if($app['act'] != 'view') { ?>
 						<form 
 							id="form-addproduct" 
@@ -49,7 +52,7 @@
 						</div>
 						<div class="form-group">
 							<label for="name">Slug<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
 								<?php if( isset($this->errors['name'])) { ?>
 									<p class="text-danger"><?=$this->errors['name']; ?></p>
 								<?php } ?>
@@ -62,20 +65,35 @@
 									<p class="text-danger"><?=$this->errors['description']; ?></p>
 								<?php } ?>
 						</div>
+						<div class="form-group ">
+							<label class="control-label " for="decription">Product descriptipn<span style="color:red;">*</span></label>					
+								<?php if($app['act']=='view'){ ?>
+									<div class="form-group" style="padding: 10px;background-color: #e9ecef">
+									<p><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></p>
+									</div>
+								<?php }else{ ?>
+									<textarea <?php if($app['act']=='view') echo "disabled"; ?> cols='50' rows='15' type="text" id="editor1" name="product[decription]" placeholder="" class="form-control" value=""><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></textarea>
+								<?php } ?>
+								<?php if( isset($this->errors['decription'])) { ?>
+									<p class="text-danger"><?=$this->errors['decription']; ?></p>
+								<?php } ?>
+							
+						</div>
 						<div class="form-group">
-							<label for="price">price<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="price" name="product[price]" placeholder="" class="form-control" value="<?php if(isset($this->record['price'])) echo $this->record['price']; ?>">
+							<label for="price">price (USD)<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="number" id="price" name="product[price]" placeholder="" class="form-control" value="<?php if(isset($this->record['price'])) {echo $this->record['price'];} else {echo "0";}  ?>">
 								<?php if( isset($this->errors['price'])) { ?>
 									<p class="text-danger"><?=$this->errors['price']; ?></p>
 								<?php } ?>
 						</div>
 						<div class="form-group">
 							<label for="quanlity">quanlity<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="quanlity" name="product[quanlity]" placeholder="" class="form-control" value="<?php if(isset($this->record['quanlity'])) echo $this->record['quanlity']; ?>">
-								<?php if( isset($this->errors['quanlity'])) { ?>
-									<p class="text-danger"><?=$this->errors['quanlity']; ?></p>
-								<?php } ?>
+							<input  type="number" id="type" name="product[quanlity]" min="0" max="100" placeholder="" class="form-control" value="<?php if(isset($this->record['quanlity'])) {echo $this->record['quanlity'];} else {echo "0";}  ?>">
+									<?php if( isset($this->errors['quanlity'])) { ?>
+										<p class="text-danger"><?=$this->errors['quanlity']; ?></p>
+									<?php } ?>
 						</div>
+						
 						<?php if($app['act'] !='view'){ ?>
 							<div class="text-center form-group">
 								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
@@ -117,6 +135,11 @@
 </section>
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
+<script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
+<script type="text/javascript">
+	CKEDITOR.replace( 'editor1', {} );
+	CKEDITOR.config.baseFloatZIndex = 100001;
+</script>
 <script>
 	$("#name").keyup(function(){
 		$("#slug").val(slugify($(this).val()));

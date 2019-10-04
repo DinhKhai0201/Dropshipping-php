@@ -5,6 +5,9 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
+					<legend class="" ><?php echo ucwords($app['act'].' '.$app['ctl']); ?></legend>
+				</div>
 					<?php if($app['act'] != 'view') { ?>
 						<form 
 							id="form-addcoupon" 
