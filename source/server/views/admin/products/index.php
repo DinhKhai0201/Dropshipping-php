@@ -80,9 +80,9 @@ if(isset($app['prs']['status'])) {
 								</th>
 								<th style="width: 20px;">ID</th>
 								<th style="width: 250px;">Name</th>
-								<th class="tabletShow" style="width: 200px;">Slug</th>
-								<th class="tabletShow" style="width: 100px;">Created</th>
-								<th class="tabletShow" style="width: 100px;">Updated</th>
+								<th class="tabletShow" style="width: 200px;">SKU</th>
+								<th class="tabletShow" style="width: 100px;">Description</th>
+								<th class="tabletShow" style="width: 100px;">Category</th>
 								<th style="width: 200px;">Action</th>
 							</tr>
 						</thead>
@@ -106,16 +106,16 @@ if(isset($app['prs']['status'])) {
 									<?=$record['name']; ?>	
 								</a>	
 								</td>
-                                    <td class="tabletShow" id="<?php echo("slug".$record['id']);?>">
-                                    <?php echo $record['slug']; ?> 
+                                    <td class="tabletShow" id="<?php echo("sku".$record['id']);?>">
+                                    <?php echo $record['sku']; ?> 
 								</td>
 						
-								<td class="tabletShow" id="<?php echo("created".$record['id']);?>">
-                                    <?php echo $record['created']; ?> 
+								<td class="tabletShow" id="<?php echo("description".$record['id']);?>">
+                                    <?php echo $record['description']; ?> 
 								</td>
 
-								<td class="tabletShow" id="<?php echo("updated".$record['id']);?>">
-                                    <?php echo $record['updated']; ?> 
+								<td class="tabletShow" id="<?php echo("category_id".$record['id']);?>">
+                                    <?php echo $record['category_id']; ?> 
 								</td>
 
 							

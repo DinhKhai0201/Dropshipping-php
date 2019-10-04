@@ -18,7 +18,7 @@
 								<p><?=$this->errors['database'];?></p> 
 							</div>
 					<?php } ?>
-							<div class="form-group">
+						<div class="form-group">
 							<label for="status">Status</label>
 								<?php if($app['act'] !='view'){ ?>
 									<select name="product[status]" id="input-status" class="form-control">
@@ -33,7 +33,13 @@
 								<p class="text-danger"><?=$this->errors['status']; ?></p>
 							<?php } ?>
 						</div>
-
+						<div class="form-group">
+							<label for="sku">SKU<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="sku" name="product[sku]" placeholder="" class="form-control" value="<?php if(isset($this->record['sku'])) echo $this->record['sku']; ?>">
+								<?php if( isset($this->errors['sku'])) { ?>
+									<p class="text-danger"><?=$this->errors['sku']; ?></p>
+								<?php } ?>
+						</div>
 						<div class="form-group">
 							<label for="name">Name<span style="color:red;">*</span></label>
 							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
@@ -41,15 +47,35 @@
 									<p class="text-danger"><?=$this->errors['name']; ?></p>
 								<?php } ?>
 						</div>
-
 						<div class="form-group">
-							<label for="slug">Slug<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="product[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['slug'])) echo $this->record['slug']; ?>">
-								<?php if( isset($this->errors['slug'])) { ?>
-									<p class="text-danger"><?=$this->errors['slug']; ?></p>
+							<label for="name">Slug<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+								<?php if( isset($this->errors['name'])) { ?>
+									<p class="text-danger"><?=$this->errors['name']; ?></p>
 								<?php } ?>
 						</div>
 						
+						<div class="form-group">
+							<label for="description">Description<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="description" name="product[description]" placeholder="" class="form-control" value="<?php if(isset($this->record['description'])) echo $this->record['description']; ?>">
+								<?php if( isset($this->errors['description'])) { ?>
+									<p class="text-danger"><?=$this->errors['description']; ?></p>
+								<?php } ?>
+						</div>
+						<div class="form-group">
+							<label for="price">price<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="price" name="product[price]" placeholder="" class="form-control" value="<?php if(isset($this->record['price'])) echo $this->record['price']; ?>">
+								<?php if( isset($this->errors['price'])) { ?>
+									<p class="text-danger"><?=$this->errors['price']; ?></p>
+								<?php } ?>
+						</div>
+						<div class="form-group">
+							<label for="quanlity">quanlity<span style="color:red;">*</span></label>
+							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="quanlity" name="product[quanlity]" placeholder="" class="form-control" value="<?php if(isset($this->record['quanlity'])) echo $this->record['quanlity']; ?>">
+								<?php if( isset($this->errors['quanlity'])) { ?>
+									<p class="text-danger"><?=$this->errors['quanlity']; ?></p>
+								<?php } ?>
+						</div>
 						<?php if($app['act'] !='view'){ ?>
 							<div class="text-center form-group">
 								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
