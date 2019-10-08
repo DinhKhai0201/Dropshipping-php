@@ -1,4 +1,7 @@
 <?php
+
+// use function GuzzleHttp\json_encode;
+
 class products_controller extends vendor_backend_controller { 
   public function index() {
     global $app;
@@ -18,7 +21,7 @@ class products_controller extends vendor_backend_controller {
     }
 
     $product = new product_model();
-    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
+    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category', 'coupon', 'brand', 'store'], 'order'=>'id ASC']);
     // exit(json_encode($this->records));
     $this->display();
   }
@@ -48,7 +51,7 @@ class products_controller extends vendor_backend_controller {
     if(isset($_POST['btn_submit'])) {
       $um = new product_model();
       $productData = $_POST['product'];
-      // exit(json_encode($_POST));
+      exit(json_encode($_POST));
       $valid = $um->validator($productData);
       if($valid['status']) {      
         if($um->addRecord($productData))

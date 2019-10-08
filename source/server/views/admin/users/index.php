@@ -32,15 +32,15 @@ if(isset($app['prs']['status'])) {
 				</div>
 				<div class="col-sm-4 col-xs-6">
 					
-					<button id="delete-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete users">
+					<button id="delete-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title = "Delete users">
 						<i class="fa fa-remove"></i>
 					</button>
 					<a href="<?php echo vendor_app_util::url(['ctl'=>'users','act'=>'add']); ?>" id="add-record">
-						<button class="btn btn-primary pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Add user">
+						<button class="btn btn-primary pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title = "Add user">
 						<i class="fa fa-plus"></i>
 						</button>
 					</a>	
-					<button id="export-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete users">
+					<button id="export-records" class="btn btn-success pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title = "Export users">
 						<i class="fa fa-download"></i>
 					</button>
 				</div>
@@ -60,7 +60,7 @@ if(isset($app['prs']['status'])) {
 								<option value="shipper" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='shipper') echo 'selected' ?>>Shipper</option>
 								<option value="adsmanager" <?php if(isset($app['prs']['type']) && $app['prs']['type']=='adsmanager') echo 'selected' ?>>Ads manager</option>
 							</select>
-							<button class="btn btn-apply" id='btn_filter_users_table'>Filter</button></li>
+							<button class="btn btn-apply" id='btn_filter_users_table' title = "Filter Users">Filter</button></li>
 						</li>
 					</ul>
 				</div>
@@ -71,7 +71,7 @@ if(isset($app['prs']['status'])) {
 							<label>Search:
 								<input type="text" class="search" name='search' placeholder="" aria-controls="example" id='search'>
 							</label>
-							<button type="submit" class="btn btn-info">Submit</button>
+							<button type="submit" class="btn btn-info">Search</button>
 						</form>
 
 					</div>

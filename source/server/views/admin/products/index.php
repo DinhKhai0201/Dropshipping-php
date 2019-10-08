@@ -39,7 +39,7 @@ if(isset($app['prs']['status'])) {
 						<i class="fa fa-plus"></i>
 						</button>
 					</a>	
-					<button id="export-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Export products">
+					<button id="export-records" class="btn btn-success pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Export products">
 						<i class="fa fa-download"></i>
 					</button>
 				</div>
@@ -62,7 +62,7 @@ if(isset($app['prs']['status'])) {
 							<label>Search:
 								<input type="text" class="search" name='search' placeholder="" aria-controls="example" id='search'>
 							</label>
-							<button type="submit" class="btn btn-info">Submit</button>
+							<button type="submit" class="btn btn-info">Search</button>
 						</form>
 
 					</div>
@@ -86,6 +86,7 @@ if(isset($app['prs']['status'])) {
 								<th class="tabletShow" style="width: 200px;">SKU</th>
 								<th class="tabletShow" style="width: 100px;">Description</th>
 								<th class="tabletShow" style="width: 100px;">Category</th>
+								<th class="tabletShow" style="width: 100px;">Store</th>
 								<th style="width: 200px;">Action</th>
 							</tr>
 						</thead>
@@ -117,19 +118,21 @@ if(isset($app['prs']['status'])) {
                                     <?php echo $record['description']; ?> 
 								</td>
 
-								<td class="tabletShow" id="<?php echo("category_id".$record['id']);?>">
-                                    <?php echo $record['category_id']; ?> 
+								<td class="tabletShow" id="<?php echo("categories_name".$record['id']);?>">
+                                    <?php echo $record['categories_name']; ?> 
+								</td>
+								<td class="tabletShow" id="<?php echo("stores_name".$record['id']);?>">
+                                    <?php echo $record['stores_name']; ?> 
 								</td>
 
 							
 								<td  class="btn-act" class="pull-right">
 								<a href="<?php echo (vendor_app_util::url(["ctl"=>"products", "act"=>"edit/".$record['id']])) ?>" id="<?php echo("edit".$record['id']);?>" >
-									<button data-placement="top" title="Edit category" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
+									<button data-placement="top" title="Edit product" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
 								</a>
 
-								<button data-placement="right" title="Delete category" id="del<?php echo $record['id']; ?>" type="button" class="btn btn-danger del-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-remove"></i></button>
+								<button data-placement="right" title="Delete product" id="del<?php echo $record['id']; ?>" type="button" class="btn btn-danger del-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-remove"></i></button>
 								
-								<button data-placement="right" title="<?php echo ($record['status']==1)?'Deactive':'Active'; ?>" id="toggle<?php echo $record['id']; ?>" type="button" class="btn btn-normal toggle-status-record" alt="<?php echo $record['id'].'_'.$record['status']; ?>"><i class="fa fa-toggle-<?php echo ($record['status']==1)?'on':'off'; ?>"></i></button>
 								
 								</td>
 
