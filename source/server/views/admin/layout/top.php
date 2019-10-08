@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../images/favicon.ico">
+    <link rel="icon" href="<?php echo RootREL; ?>media/img/logods.ico">
     <title>DropShipping - Dashboard</title>
 
     <link type="text/css" media="all" href="<?php echo RootREL; ?>media/css/autoptimize2.css" rel="stylesheet"/>

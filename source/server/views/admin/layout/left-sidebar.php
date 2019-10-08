@@ -1,7 +1,7 @@
   <aside class="main-sidebar">
     <section class="sidebar">
       <div class="user-panel">
-        <p><img src="<?php echo RootREL; ?>media/img/logo_public2.png" alt=""></p>
+        <p><img src="<?php echo RootREL; ?>media/img/logods.png" alt="" style="margin: 5px auto;display: table;"</p>
       </div>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="active">

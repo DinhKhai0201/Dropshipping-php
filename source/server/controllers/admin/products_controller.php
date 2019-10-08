@@ -21,8 +21,8 @@ class products_controller extends vendor_backend_controller {
     }
 
     $product = new product_model();
-    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category', 'coupon', 'brand', 'store'], 'order'=>'id ASC']);
-    // exit(json_encode($this->records));
+    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category', 'brand', 'store'], 'order'=>'id ASC']);
+    exit(json_encode($this->records));
     $this->display();
   }
   public function edit($id) {
@@ -51,7 +51,6 @@ class products_controller extends vendor_backend_controller {
     if(isset($_POST['btn_submit'])) {
       $um = new product_model();
       $productData = $_POST['product'];
-      exit(json_encode($_POST));
       $valid = $um->validator($productData);
       if($valid['status']) {      
         if($um->addRecord($productData))
@@ -99,7 +98,7 @@ class products_controller extends vendor_backend_controller {
   //export data to exel 
 	public function exportdata() {
 		$pm = new product_model();
-		$record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status', ['order'=>'id asc']);
+		$record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status',['conditions'=>'', 'joins'=>['category', 'coupon', 'brand', 'store'], 'order'=>'id ASC']);
 		http_response_code(200);
 		echo (($record));
 	}

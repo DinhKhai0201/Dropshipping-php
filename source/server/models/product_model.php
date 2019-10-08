@@ -22,11 +22,10 @@ class product_model extends vendor_pagination_model
 			['rate',	'key'=>'product_id', 'on_del'=>true],
 			['comment',	'key'=>'product_id', 'on_del'=>true],
 			['view',	'key'=>'product_id', 'on_del'=>true],
-			['order_item',	'key'=>'product_id', 'on_del'=>true],
+			['order_item',	'key'=>'product_id', 'on_del'=>true]
 		],
 		'belongTo' => [
 			['category','key'=>'category_id'],
-			['coupon','key'=>'coupon_id'],
 			['store','key'=>'store_id'],
 			['brand','key'=>'brand_id']
 

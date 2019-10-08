@@ -6,10 +6,12 @@ $(document).ready(function () {
 		var strFil = "";
 		var ctl = $("table.dataTable").attr("controller");
 		function delRecord(id, act) {
-			urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
+			let urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
+			console.log(urlDele);
 			$.ajax({
 				url: urlDele,
 				success: function (data) {
+					console.log(data);
 					if(data != 'error'){
 						$('#row'+id).remove();
 					}
@@ -215,52 +217,52 @@ $(document).ready(function () {
 				}
 			})
 		})
+		function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel)  {
+			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+			var CSV = '';    
+			CSV += ReportTitle + '\r\n\n';
+			if (ShowLabel) {
+				var row = "";
+				for (var index in arrData[0]) {
+					row += index + ',';
+				}
+				row = row.slice(0, -1);
+				CSV += row + '\r\n';
+			}
+			for (var i = 0; i < arrData.length; i++) {
+				var row = "";
+				for (var index in arrData[i]) {
+					row += '"' + arrData[i][index] + '",';
+				}
+				row.slice(0, row.length - 1);
+				CSV += row + '\r\n';
+			}
+			if (CSV == '') {        
+				alert("Invalid data");
+				return;
+			}   
+			var fileName = `${ctl}`[0].toUpperCase() +  `${ctl}`.slice(1); 
+			fileName += ReportTitle.replace(/ /g,"_");   
+			var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+			var link = document.createElement("a");    
+			link.href = uri;
+			link.style = "visibility:hidden";
+			link.download = fileName + ".csv";
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
 		$('#export-records').on('click', function () {
 			var isExp = confirm("Are you sure to export this data???");
 			if(isExp){
 				urlExp = rootUrl+"admin/"+ctl+"/exportdata/";
-				console.log(urlExp);
 				$.ajax({
 					url: urlExp,
 					success: function (data) {
 						let tmpdata = JSON.parse(data);
-						console.log('one',tmpdata[0]);
-						JSONToCSVConvertor(tmpdata, " Data Report", true);
-						function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel)  {
-							var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
-							var CSV = '';    
-							CSV += ReportTitle + '\r\n\n';
-							if (ShowLabel) {
-								var row = "";
-								for (var index in arrData[0]) {
-									row += index + ',';
-								}
-								row = row.slice(0, -1);
-								CSV += row + '\r\n';
-							}
-							for (var i = 0; i < arrData.length; i++) {
-								var row = "";
-								for (var index in arrData[i]) {
-									row += '"' + arrData[i][index] + '",';
-								}
-								row.slice(0, row.length - 1);
-								CSV += row + '\r\n';
-							}
-							if (CSV == '') {        
-								alert("Invalid data");
-								return;
-							}   
-							var fileName = `${ctl}`[0].toUpperCase() +  `${ctl}`.slice(1); 
-							fileName += ReportTitle.replace(/ /g,"_");   
-							var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-							var link = document.createElement("a");    
-							link.href = uri;
-							link.style = "visibility:hidden";
-							link.download = fileName + ".csv";
-							document.body.appendChild(link);
-							link.click();
-							document.body.removeChild(link);
-						}
+						let today = new Date().toLocaleString();  
+						JSONToCSVConvertor(tmpdata, " Data Report " + today  , true);
+						
 					}
 				})
 			}
