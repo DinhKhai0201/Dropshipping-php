@@ -22,7 +22,6 @@ class products_controller extends vendor_backend_controller {
 
     $product = new product_model();
     $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category', 'brand', 'store'], 'order'=>'id ASC']);
-    exit(json_encode($this->records));
     $this->display();
   }
   public function edit($id) {
