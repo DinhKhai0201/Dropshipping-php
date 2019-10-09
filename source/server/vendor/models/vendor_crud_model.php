@@ -131,7 +131,7 @@ class vendor_crud_model extends vendor_main_model {
 
 	// Function delete records and relationship with all deep 
 	//public function delRecordsRelationshipAllDeep($ids=null, $conditions=null) {}
-	public function delRsRAD($id=null, $conditions=null) {
+	public function delRsRAD($ids=null, $conditions=null) {
 		if($conditions)	$conditions = ' and '.$conditions;
 		$sql = "DELETE FROM $this->table WHERE id in ($ids) $conditions";
 		if($this->con->query($sql)) {

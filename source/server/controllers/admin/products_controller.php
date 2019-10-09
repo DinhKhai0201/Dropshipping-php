@@ -1,5 +1,4 @@
 <?php
-
 // use function GuzzleHttp\json_encode;
 
 class products_controller extends vendor_backend_controller { 
@@ -9,7 +8,7 @@ class products_controller extends vendor_backend_controller {
 
     if(isset($app['prs']['status'])){
       $status = $app['prs']['status'];
-      $conditions .= (($conditions)? " AND ":"")." status=".($status=='active'?1:0);
+      $conditions .= (($conditions)? " AND ":"")." status=".($status=='exist'?1:0);
     }
     
     if(isset($app['prs']['search'])){
@@ -94,10 +93,10 @@ class products_controller extends vendor_backend_controller {
     if($product->delRelativeRecords($ids)) echo "Delete many successful";
     else echo "error";
   }
-  //export data to exel 
+  //export data 
 	public function exportdata() {
 		$pm = new product_model();
-		$record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status',['conditions'=>'', 'joins'=>['category', 'coupon', 'brand', 'store'], 'order'=>'id ASC']);
+    $record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status',['conditions'=>'', 'joins'=>['category', 'brand', 'store'], 'order'=>'id ASC']);
 		http_response_code(200);
 		echo (($record));
 	}

@@ -47,11 +47,11 @@ if(isset($app['prs']['status'])) {
 					<ul class="list-inline list_all">
 						<li>
 							<select id="select_list_products_status">
-								<option value="all" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='all') echo 'selected' ?>>All status</option>
-								<option value="active" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='active') echo 'selected' ?>>Active</option>
-								<option value="disable" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='disable') echo 'selected' ?>>Disable</option>
+								<option value="all" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='exist') echo 'selected' ?>>Esixt</option>
+								<option value="active" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='runninglow') echo 'selected' ?>>Running low</option>
+								<option value="disable" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='outof') echo 'selected' ?>>Out of</option>
 							</select>
-							<button class="btn btn-apply" id='btn_filter_product_table'>Filter</button></li>
+							<button class="btn btn-apply" id='btn_filter_product_table'>Filter</button>
 						</li>
 					</ul>
 				</div>

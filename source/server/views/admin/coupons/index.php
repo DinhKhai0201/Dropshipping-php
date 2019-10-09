@@ -1,7 +1,9 @@
+
 <?php include_once 'views/admin/layout/'.$this->layout.'top.php'; ?>
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/bootstrap/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/bootstrap/css/checkbox-x.min.css">
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/table.css">
+
 <?php 
 global $app;
 if(isset($app['prs']['status'])) {
@@ -48,7 +50,7 @@ if(isset($app['prs']['status'])) {
 								<option value="active" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='active') echo 'selected' ?>>Active</option>
 								<option value="disable" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='disable') echo 'selected' ?>>Disable</option>
 							</select>
-							<button class="btn btn-apply" id='btn_filter_coupons_table'>Filter</button></li>
+							<button class="btn btn-apply" id='btn_filter_coupons_table'>Filter</button>
 						</li>
 					</ul>
 				</div>

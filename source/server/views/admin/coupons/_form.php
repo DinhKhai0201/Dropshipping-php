@@ -1,4 +1,3 @@
-
 <section class="content" id="admin-import-page">
   <div class="box">      
     <div class="box-body">
@@ -130,8 +129,8 @@
 						<div class="row">
 							<div class="form-group col-sm-6">
 								<label for="time_start">Time start<span style="color:red;">*</span></label>
-								<div class='input-group date' >
-									<input <?php if($app['act']=='view') echo "disabled"; ?> type='text' class="form-control" id='datetimepicker1' value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
+								<div class='input-group ' id ='datetimepicker1' >
+									<input <?php if($app['act']=='view') echo "disabled"; ?> data-format="yyyy-MM-dd hh:mm:ss"   type='text' class="form-control "  value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
 									<?php if( isset($this->errors['time_start'])) { ?>
 										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
 									<?php } ?>
@@ -139,10 +138,11 @@
 							</div>
 							<div class="form-group col-sm-6">
 								<label for="time_end">Time end<span style="color:red;">*</span></label>
-								<div class='input-group date' >
-									<input <?php if($app['act']=='view') echo "disabled"; ?> type='text' class="form-control" id='datetimepicker2' value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
-									<?php if( isset($this->errors['time_start'])) { ?>
-										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
+								<div class='input-group date'  >
+									<input <?php if($app['act']=='view') echo "disabled"; ?> id='datetimepicker2' type='text' class="form-control"  value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_end']);}?>" name="coupon[time_end]" required="required" placeholder=""/>
+								
+									<?php if( isset($this->errors['time_end'])) { ?>
+										<p class="text-danger"><?=$this->errors['time_end']; ?></p>
 									<?php } ?>
 								</div>
 							</div>
@@ -191,6 +191,8 @@
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/process_type_coupon.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
+
+
 <script type="text/javascript">
 	CKEDITOR.replace( 'editor1', {} );
 	CKEDITOR.config.baseFloatZIndex = 100001;
@@ -199,18 +201,4 @@
 	$("#name").keyup(function(){
 		$("#slug").val(slugify($(this).val()));
 	});
-	$(document).ready(function () {
-		$(function() {
-        $('#datetimepicker1').datetimepicker();
-        $('#datetimepicker2').datetimepicker({
-			useCurrent: false 
-		});
-		$("#datetimepicker1").on("dp.change", function(e) {
-		$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
-		});
-		$("#datetimepicker2").on("dp.change", function(e) {
-		$('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
-		});
-	});
-    });
 </script>
