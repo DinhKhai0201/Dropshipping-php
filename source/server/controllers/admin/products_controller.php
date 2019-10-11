@@ -7,16 +7,19 @@ class products_controller extends vendor_backend_controller {
     $conditions = "";
 
     if(isset($app['prs']['status'])){
-      $status = $app['prs']['status'];
-      $conditions .= (($conditions)? " AND ":"")." status=".($status=='exist'?1:0);
+      $status = $app['prs']['status']; 
+      $conditions .= (($conditions)? " AND ":"")." products.status=".($status =='all'?'':($status=='exist'?0:($status=='runninglow'?1:2)));
     }
     
     if(isset($app['prs']['search'])){
       $conditions .= (($conditions)? " AND ":"").
-      " name like '%".$app['prs']['search']."%' OR ".
-      " sku like '%".$app['prs']['search']."%' OR".
-      " description	like '%".$app['prs']['search']."%' OR ".
-      " id like '%".$app['prs']['search']."%'";
+      " products.name like '%".$app['prs']['search']."%' OR ".
+      " products.sku like '%".$app['prs']['search']."%' OR".
+      " products.description	like '%".$app['prs']['search']."%' OR ".
+      " categories.name	like '%".$app['prs']['search']."%' OR ".
+      " stores.name	like '%".$app['prs']['search']."%' OR ".
+      " brands.name	like '%".$app['prs']['search']."%' OR ".
+      " products.id like '%".$app['prs']['search']."%'";
     }
 
     $product = new product_model();
@@ -24,24 +27,30 @@ class products_controller extends vendor_backend_controller {
     $this->display();
   }
   public function edit($id) {
-    $cm = new product_model();
-    $this->record = $cm->getRecord($id);
+    $pm = new product_model();
+    $this->record = $pm->getRecord($id);
     if(isset($_POST['btn_submit'])) {
       $productData = $_POST['product'];
-      $valid = $cm->validator($productData, $id);
+      $valid = $pm->validator($productData, $id);
       if($valid['status']){
-        if($cm->editRecord($id, $productData)) {
+        if($pm->editRecord($id, $productData)) {
           header("Location: ".vendor_app_util::url(["ctl"=>"products"]));
         } else {
           $this->errors = ['database'=>'An error occurred when editing data!'];
           $this->record = $productData;
         }
       } else {
-        $this->errors = $cm::convertErrorMessage($valid['message']);
+        $this->errors = $pm::convertErrorMessage($valid['message']);
         $this->record = $productData;
         $this->record['id'] = $id;
       }
     }
+    $brands = new brand_model();
+    $this->recordsBrands = $brands ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
+    $stores = new store_model();
+    $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
+    $categories = new category_model();
+    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
     $this->display();
   }
 
@@ -49,25 +58,56 @@ class products_controller extends vendor_backend_controller {
     if(isset($_POST['btn_submit'])) {
       $um = new product_model();
       $productData = $_POST['product'];
-      $valid = $um->validator($productData);
-      if($valid['status']) {      
+      if($_FILES['image']['tmp_name']) {
+				$productData['image'] = vendor_app_util::uploadImg($_FILES);
+      }
+      // $countfiles = count($_FILES['image']['tmp_name']);
+      // if($countfiles > 0 && $countfiles < 6) {
+      //   for($i=0;$i<$countfiles;$i++){
+      //     $filename = $_FILES['image']['tmp_name'][$i];
+      //     echo $filename;
+      //    }
+      // } else {
+      //   exit("error");
+      // }
+      // exit($countfiles);
+      // for($i=0;$i<$countfiles;$i++){
+      //   $filename = $_FILES['image']['name'][$i];
+      //   $productData['image'] = vendor_app_util::uploadImg($filename);
+       
+      //  }
+      
+      // $valid = $um->validator($productData);
+      // if($valid['status']) {      
         if($um->addRecord($productData))
           header("Location: ".vendor_app_util::url(["ctl"=>"products"]));
         else {
           $this->errors = ['database'=>'An error occurred when inserting data!'];
           $this->record = $productData;
         }
-      } else {
-        $this->errors = $um::convertErrorMessage($valid['message']);
-        $this->record = $productData;
-      }
+      // } else {
+        // $this->errors = $um::convertErrorMessage($valid['message']);
+        // $this->record = $productData;
+      // }
     }
+    $brand = new brand_model();
+    $this->recordsBrands = $brand ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
+    $stores = new store_model();
+    $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
+    $categories = new category_model();
+    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
     $this->display();
   }
 
   public function view($id) {
-    $cm = new product_model();
-    $this->record = $cm->getRecord($id);
+    $pm = new product_model();
+    $this->record = $pm->getRecord($id);
+    $brand = new brand_model();
+    $this->recordsBrands = $brand ->getAllRecords('*',['conditions'=>'brands.id ='.$this->record['brand_id'], 'joins'=>'', 'order'=>'id ASC']);
+    $stores = new store_model();
+    $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'stores.id='.$this->record['store_id'], 'joins'=>'', 'order'=>'id ASC']);
+    $categories = new category_model();
+    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'categories.id='.$this->record['category_id'], 'joins'=>'', 'order'=>'id ASC']);
     $this->display();
   }
 

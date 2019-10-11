@@ -28,7 +28,6 @@ class vendor_crud_model extends vendor_main_model {
 			}
 		}
 		$sql = "DELETE ".$tables." FROM ".$this->table.$innerJoin." WHERE $this->table.id=$id".$conditions;
-		
 		return $this->con->query($sql);
 	}
 	

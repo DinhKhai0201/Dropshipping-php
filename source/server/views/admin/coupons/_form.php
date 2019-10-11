@@ -42,15 +42,12 @@
 									<div class="form-group" style="padding: 10px;background-color: #e9ecef">
 									<p><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></p>
 									</div>
-									
-
 								<?php }else{ ?>
 									<textarea <?php if($app['act']=='view') echo "disabled"; ?> cols='50' rows='15' type="text" id="editor1" name="coupon[decription]" placeholder="" class="form-control" value=""><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></textarea>
 								<?php } ?>
 								<?php if( isset($this->errors['decription'])) { ?>
 									<p class="text-danger"><?=$this->errors['decription']; ?></p>
 								<?php } ?>
-							
 						</div>
 						<div class="form-group">
 							<label for="coupon_code">Coupon code<span style="color:red;">*</span></label>

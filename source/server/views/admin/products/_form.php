@@ -22,7 +22,92 @@
 								<p><?=$this->errors['database'];?></p> 
 							</div>
 					<?php } ?>
+					<div class="form-group row">
+							<label class="control-label col-md-3" for="name">Name<span style="color:red;">*</span></label>
+							<div class="controls col-md-7">
+								<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+									<?php if( isset($this->errors['name'])) { ?>
+										<p class="text-danger"><?=$this->errors['name']; ?></p>
+									<?php } ?>
+							</div>
+						</div>
 						<div class="form-group row">
+							<label class="control-label col-md-3" for="sku">SKU<span style="color:red;">*</span></label>
+							<div class="controls col-md-7">
+								<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="sku" name="product[sku]" placeholder="" class="form-control" value="<?php if(isset($this->record['sku'])) echo $this->record['sku']; ?>">
+									<?php if( isset($this->errors['sku'])) { ?>
+										<p class="text-danger"><?=$this->errors['sku']; ?></p>
+									<?php } ?>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="slug">Slug<span style="color:red;">*</span></label>
+							<div class="controls col-md-7">
+								<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="product[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+									<?php if( isset($this->errors['slug'])) { ?>
+										<p class="text-danger"><?=$this->errors['slug']; ?></p>
+									<?php } ?>
+							</div>
+						</div>
+						<?php if($app['act'] =='view'){ ?>
+								<div class="form-group row">
+									<label class="control-label col-md-3" for="categories_name">Category name</label>
+									<div class="controls col-md-7">
+										<input required <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="brands_name" name="product[category_id]" placeholder="" class="form-control" value="<?php foreach( $this->recordsCategories as $category){ echo (isset($this->record['category_id']) && $this->record['category_id']==$category['id'])? $category['name']:''; } ?>">
+									</div>
+								</div>
+							<?php } else{ ?>
+								<div class="form-group row">
+									<label class="control-label col-md-3" for="categories_name">Category name</label>
+									<div class="controls col-md-7">
+										<select name="product[category_id]" id="" class="form-control select2 w-p100">
+											<?php foreach( $this->recordsCategories as $category){ ?>
+												<option value="<?=$category['id']?>" <?=(isset($this->record['category_id']) && $this->record['category_id']==$category['id'])? 'selected="selected"':'';?>><?=$category['name']?></option>
+											<?php }  ?>
+										</select>
+									</div>
+								</div>
+						<?php } ?>
+						<?php if($app['act'] =='view'){ ?>
+								<div class="form-group row">
+									<label class="control-label col-md-3" for="brands_name">Brands name</label>
+									<div class="controls col-md-7">
+										<input required <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="brands_name" name="product[brand_id]" placeholder="" class="form-control" value="<?php foreach( $this->recordsBrands as $brand){ echo (isset($this->record['brand_id']) && $this->record['brand_id']==$brand['id'])? $brand['name']:''; } ?>">
+									</div>
+								</div>
+							<?php } else{ ?>
+								<div class="form-group row">
+									<label class="control-label col-md-3" for="brands_name">Brands name</label>
+									<div class="controls col-md-7">
+										<select name="product[brand_id]" id="" class="form-control select2 w-p100">
+											<?php foreach( $this->recordsBrands as $brand){ ?>
+												<option value="<?=$brand['id']?>" <?=(isset($this->record['brand_id']) && $this->record['brand_id']==$brand['id'])? 'selected="selected"':'';?>><?=$brand['name']?></option>
+											<?php }  ?>
+										</select>
+									</div>
+								</div>
+						<?php } ?>
+						<?php if($app['act'] =='view'){ ?>
+								<div class="form-group row">
+									<label class="control-label col-md-3" for="Stores_name">Stores name</label>
+									<div class="controls col-md-7">
+										<input required <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="stores_name" name="product[store_id]" placeholder="" class="form-control" value="<?php foreach( $this->recordsStores as $store){ echo ($store['name']); } ?>">
+									</div>
+								</div>
+							<?php } else{ ?>
+								<div class="form-group row">
+									<label class="control-label col-md-3" for="brands_name">Stores name</label>
+									<div class="controls col-md-7">
+										<select name="product[store_id]" id="" class="form-control select2 w-p100">
+											<?php foreach( $this->recordsStores as $store){ ?>
+												<option value="<?=$store['id']?>" <?=(isset($this->record['store_id']) && $this->record['store_id']==$store['id'])? 'selected="selected"':'';?>><?=$store['name']?></option>
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+						<?php } ?>
+							<div class="form-group row">
 							<label class="control-label col-md-3" for="status">Status<span style="color:red;">*</span></label>
 							<div class="controls col-md-7">
 								<?php if($app['act'] !='view'){ ?>
@@ -39,34 +124,7 @@
 								<?php } ?>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="control-label col-md-3" for="sku">SKU<span style="color:red;">*</span></label>
-							<div class="controls col-md-7">
-								<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="sku" name="product[sku]" placeholder="" class="form-control" value="<?php if(isset($this->record['sku'])) echo $this->record['sku']; ?>">
-									<?php if( isset($this->errors['sku'])) { ?>
-										<p class="text-danger"><?=$this->errors['sku']; ?></p>
-									<?php } ?>
-							</div>
-						</div>
 						
-						<div class="form-group row">
-							<label class="control-label col-md-3" for="name">Name<span style="color:red;">*</span></label>
-							<div class="controls col-md-7">
-								<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
-									<?php if( isset($this->errors['name'])) { ?>
-										<p class="text-danger"><?=$this->errors['name']; ?></p>
-									<?php } ?>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="control-label col-md-3" for="slug">Slug<span style="color:red;">*</span></label>
-							<div class="controls col-md-7">
-								<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="product[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
-									<?php if( isset($this->errors['name'])) { ?>
-										<p class="text-danger"><?=$this->errors['name']; ?></p>
-									<?php } ?>
-							</div>
-						</div>
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="price">Price<span style="color:red;">*</span></label>
 							<div class="controls col-md-7">
@@ -77,34 +135,37 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="control-label col-md-3" for="quanlity">Quanlity<span style="color:red;">*</span></label>
+							<label class="control-label col-md-3" for="quanlity">Quantity<span style="color:red;">*</span></label>
 							<div class="controls col-md-7">
-								<input  <?php if($app['act']=='view') echo "disabled"; ?> type="number" id="type" name="product[quanlity]" min="0" max="100" placeholder="" class="form-control" value="<?php if(isset($this->record['quanlity'])) {echo $this->record['quanlity'];} else {echo "0";}  ?>">
-									<?php if( isset($this->errors['quanlity'])) { ?>
+								<input  <?php if($app['act']=='view') echo "disabled"; ?> type="number" id="type" name="product[quantity]" min="0" max="100" placeholder="" class="form-control" value="<?php if(isset($this->record['quanlity'])) {echo $this->record['quanlity'];} else {echo "0";}  ?>">
+									<?php if( isset($this->errors['quantity'])) { ?>
 										<p class="text-danger"><?=$this->errors['quanlity']; ?></p>
 									<?php } ?>
 							</div>
 						</div>
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="image">Image<span style="color:red;">*</span></label>
+							<div class="controls col-md-7">
+								<input type="file" id="image" name="image" multiple accept=".jpg, .png, .gif" placeholder="" class="form-control">
+									<?php if( isset($this->errors['image'])) { ?>
+										<p class="text-danger"><?=$this->errors['image']; ?></p>
+									<?php } ?>
+							</div>
+						</div>
 						<div class="form-group ">
-							<label class="control-label " for="decription">Product descriptipn<span style="color:red;">*</span></label>					
+							<label class="control-label " for="description">Product descriptipn<span style="color:red;">*</span></label>					
 								<?php if($app['act']=='view'){ ?>
 									<div class="form-group" style="padding: 10px;background-color: #e9ecef">
-									<p><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></p>
+									<p><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></p>
 									</div>
 								<?php }else{ ?>
-									<textarea <?php if($app['act']=='view') echo "disabled"; ?> cols='50' rows='15' type="text" id="editor1" name="product[decription]" placeholder="" class="form-control" value=""><?php if(isset($this->record['decription'])) echo(($this->record['decription'])); ?></textarea>
+									<textarea <?php if($app['act']=='view') echo "disabled"; ?> cols='50' rows='15' type="text" id="editor1" name="product[description]" placeholder="" class="form-control" value=""><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></textarea>
 								<?php } ?>
 								<?php if( isset($this->errors['decription'])) { ?>
 									<p class="text-danger"><?=$this->errors['decription']; ?></p>
 								<?php } ?>
 							
 						</div>
-						<?php if($app['act'] !='view'){ ?>
-							<div class="text-center form-group">
-								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
-							</div>
-						<?php } ?>
-
 						<?php if($app['act'] =='view'){ ?>
 							<div class="form-group row">
 								<label class="control-label col-md-3" for="created">Created at</label>
@@ -119,11 +180,23 @@
 								</div>
 							</div>
 							<div class="form-group text-center">
-								<a href="<?php echo (vendor_app_util::url(["ctl"=>"products", "act"=>"edit/".$this->record['id']])) ?>" id="<?php echo("edit".$record['id']);?>" >
-									<button data-placement="top" title="Edit product" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
+								<a href="<?php echo (vendor_app_util::url(["ctl"=>"products", "act"=>"edit/".$this->record['id']])) ?>" id="<?php echo("edit".$this->record['id']);?>" >
+									<button data-placement="top" title="Edit product" type="button" class="btn btn-primary edit-this->record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
 								</a>
 							</div>
 						<?php } ?>
+						
+						
+						
+						
+						
+						<?php if($app['act'] !='view'){ ?>
+							<div class="text-center form-group">
+								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
+							</div>
+						<?php } ?>
+
+						
 						<?php if($app['act'] != 'view') { ?>
 							</form>
 						<?php } ?>

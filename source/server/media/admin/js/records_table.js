@@ -33,6 +33,7 @@ $(document).ready(function () {
 		}
 
 		$('#btn_filter_'+ctl+'_table').on('click', function(){
+			console.log("a");
 			status= $('#select_list_'+ctl+'_status').val();
 			type= $('#select_list_'+ctl+'_type').val();
 			position= $('#select_list_'+ctl+'_position').val();

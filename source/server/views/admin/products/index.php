@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/bootstrap/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/bootstrap/css/checkbox-x.min.css">
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/table.css">
+<link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/statusproduct.css">
 <?php 
 global $app;
 if(isset($app['prs']['status'])) {
@@ -17,7 +18,7 @@ if(isset($app['prs']['status'])) {
 	var curp 		= parseInt(<?php echo $this->records['curp']; ?>);
 	var nopp 		= parseInt(<?php echo $this->records['nopp']; ?>);
 
-	var getDisable  = <?=(isset($app['prs']['status']) && ($app['prs']['status']==='0'))? 1:0;?>
+	// var getDisable  = <?=(isset($app['prs']['status']) && ($app['prs']['status']==='0'))? 1:0;?>
 </script>
 
 <?php vendor_html_helper::contentheader('Products <small>management</small>', [['urlp'=>['ctl'=>$app['ctl'], 'act'=>$app['act']]]]); ?>
@@ -47,11 +48,12 @@ if(isset($app['prs']['status'])) {
 					<ul class="list-inline list_all">
 						<li>
 							<select id="select_list_products_status">
-								<option value="all" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='exist') echo 'selected' ?>>Esixt</option>
-								<option value="active" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='runninglow') echo 'selected' ?>>Running low</option>
-								<option value="disable" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='outof') echo 'selected' ?>>Out of</option>
+								<option value="all" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='all') echo 'selected' ?>>All</option>
+								<option value="exist" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='exist') echo 'selected' ?>>Esixt</option>
+								<option value="runninglow" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='runninglow') echo 'selected' ?>>Running low</option>
+								<option value="outof" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='outof') echo 'selected' ?>>Out of</option>
 							</select>
-							<button class="btn btn-apply" id='btn_filter_product_table'>Filter</button>
+							<button class="btn btn-apply" id='btn_filter_products_table'>Filter</button>
 						</li>
 					</ul>
 				</div>
@@ -84,9 +86,11 @@ if(isset($app['prs']['status'])) {
 								<th style="width: 20px;">ID</th>
 								<th style="width: 250px;">Name</th>
 								<th class="tabletShow" style="width: 200px;">SKU</th>
-								<th class="tabletShow" style="width: 100px;">Description</th>
 								<th class="tabletShow" style="width: 100px;">Category</th>
 								<th class="tabletShow" style="width: 100px;">Store</th>
+								<th class="tabletShow" style="width: 100px;">Brands</th>
+								<th class="tabletShow" style="width: 100px;">Status</th>
+								<th class="tabletShow" style="width: 100px;">Best selling</th>
 								<th style="width: 200px;">Action</th>
 							</tr>
 						</thead>
@@ -113,10 +117,6 @@ if(isset($app['prs']['status'])) {
                                     <td class="tabletShow" id="<?php echo("sku".$record['id']);?>">
                                     <?php echo $record['sku']; ?> 
 								</td>
-						
-								<td class="tabletShow" id="<?php echo("description".$record['id']);?>">
-                                    <?php echo $record['description']; ?> 
-								</td>
 
 								<td class="tabletShow" id="<?php echo("categories_name".$record['id']);?>">
                                     <?php echo $record['categories_name']; ?> 
@@ -124,8 +124,29 @@ if(isset($app['prs']['status'])) {
 								<td class="tabletShow" id="<?php echo("stores_name".$record['id']);?>">
                                     <?php echo $record['stores_name']; ?> 
 								</td>
-
-							
+								<td class="tabletShow" id="<?php echo("brands_name".$record['id']);?>">
+                                    <?php echo $record['brands_name']; ?> 
+								</td>
+								<td class="tabletShow <?php echo 'status-Product'.$record['status']?>" id="<?php echo("status".$record['id']);?>">
+									<?php if ($record['status'] ==0) {
+										echo "Exist";
+									} else if ($record['status'] ==1) {
+										echo "Running low";
+									} else {
+										echo "Out of";
+									}
+									 
+									 ?> 
+								</td>
+								<td class="tabletShow <?php echo 'bestSelling-Product'.$record['best_selling']?>" id="<?php echo("bestSelling".$record['id']);?>">
+									<?php if ($record['best_selling'] ==1) {
+										echo "Hot";
+									} else {
+										echo "Normal";
+									}
+									 
+									 ?> 
+								</td>
 								<td  class="btn-act" class="pull-right">
 								<a href="<?php echo (vendor_app_util::url(["ctl"=>"products", "act"=>"edit/".$record['id']])) ?>" id="<?php echo("edit".$record['id']);?>" >
 									<button data-placement="top" title="Edit product" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
