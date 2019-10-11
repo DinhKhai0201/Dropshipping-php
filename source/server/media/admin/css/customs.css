@@ -45,3 +45,29 @@ select{
     color: #ff5900;
     line-height: 15px;
 }
+/* //back to top */
+#back-to-top {
+    padding: 10px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 9999;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 30px;
+    background: #a4c8de;
+    color: #444;
+    cursor: pointer;
+    border: 0;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+#back-to-top:hover {
+    background: #cce1ed;
+}
+#back-to-top.show {
+    opacity: 0.7;
+}

@@ -50,3 +50,5 @@
       } 
     ?>
     <div class="content-wrapper">
+    <a href="#" id="back-to-top" title="Back to top">▲
+</a>

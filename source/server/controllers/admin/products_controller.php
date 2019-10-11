@@ -58,25 +58,6 @@ class products_controller extends vendor_backend_controller {
     if(isset($_POST['btn_submit'])) {
       $um = new product_model();
       $productData = $_POST['product'];
-      if($_FILES['image']['tmp_name']) {
-				$productData['image'] = vendor_app_util::uploadImg($_FILES);
-      }
-      // $countfiles = count($_FILES['image']['tmp_name']);
-      // if($countfiles > 0 && $countfiles < 6) {
-      //   for($i=0;$i<$countfiles;$i++){
-      //     $filename = $_FILES['image']['tmp_name'][$i];
-      //     echo $filename;
-      //    }
-      // } else {
-      //   exit("error");
-      // }
-      // exit($countfiles);
-      // for($i=0;$i<$countfiles;$i++){
-      //   $filename = $_FILES['image']['name'][$i];
-      //   $productData['image'] = vendor_app_util::uploadImg($filename);
-       
-      //  }
-      
       // $valid = $um->validator($productData);
       // if($valid['status']) {      
         if($um->addRecord($productData))

@@ -110,7 +110,11 @@
 							<?php if( isset($this->errors['avata'])) { ?>
 								<p class="text-danger"><?=$this->errors['avata']; ?></p>
 							<?php } ?>
+							<div id = "imageDisplayjs">
+								<img id='output' width="100%" height="100%"/>
 							</div>
+							</div>
+							
 						</div>
 
 						<div class="form-group row">

@@ -146,7 +146,7 @@
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="image">Image<span style="color:red;">*</span></label>
 							<div class="controls col-md-7">
-								<input type="file" id="image" name="image" multiple accept=".jpg, .png, .gif" placeholder="" class="form-control">
+								<input  type="file" id="image" name="image[]" multiple accept=".jpg, .png, .gif" placeholder="" class="form-control">
 									<?php if( isset($this->errors['image'])) { ?>
 										<p class="text-danger"><?=$this->errors['image']; ?></p>
 									<?php } ?>
@@ -223,5 +223,19 @@
 <script>
 	$("#name").keyup(function(){
 		$("#slug").val(slugify($(this).val()));
+	});
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#output').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+	$("#image").change(function () {
+        readURL(this);
 	});
 </script>
