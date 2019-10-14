@@ -109,11 +109,10 @@
   <script src="<?php echo RootREL; ?>media/libs/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?php echo RootREL; ?>media/libs/moment/moment.min.js"></script>
   <script src="<?php echo RootREL; ?>media/libs/date-range-picker/daterangepicker.min.js"></script>
-
 	<script src="<?php echo RootREL; ?>media/admin/js/jquery.webticker.min.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/js/template.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/js/dashboard.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/js/demo.js"></script>
-
+  <script src="<?php echo RootREL; ?>media/admin/js/backtotop.js"></script>
 </body>
 </html>

@@ -42,14 +42,24 @@
 								<?php } ?>
 						</div>
 
-						<div class="form-group">
-							<label for="name">Description<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="ad[description]" placeholder="" class="form-control" value="<?php if(isset($this->record['description'])) echo $this->record['description']; ?>">
+						<?php if($app['act']=='view'){ ?>
+							<div class="form-group  row">
+								<label class="control-label col-md-3" for="description">Ads descriptipn<span style="color:red;">*</span></label>
+								<div class="controls  col-md-7" >
+									<p style="padding: 10px;background-color: #e9ecef"><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></p>
+								</div>
 								<?php if( isset($this->errors['description'])) { ?>
 									<p class="text-danger"><?=$this->errors['description']; ?></p>
 								<?php } ?>
-						</div>
-
+							</div>
+						<?php } ?>	
+						<?php if($app['act']=='add' || $app['act']=='edit'){ ?>
+							<label class="control-label " for="description">Ads descriptipn<span style="color:red;">*</span></label>
+							<textarea  cols='50' rows='15' type="text" id="editor1" name="ad[description]" placeholder="" class="form-control" value=""><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></textarea>
+							<?php if( isset($this->errors['description'])) { ?>
+									<p class="text-danger"><?=$this->errors['description']; ?></p>
+								<?php } ?>
+						<?php } ?>
 						<div class="form-group">
 							<label for="status">Page</label>
 
@@ -111,15 +121,22 @@
 								<p class="text-danger"><?=$this->errors['position']; ?></p>
 							<?php } ?>
 						</div>
-
 						<div class="form-group row">
-							<!-- image -->
-							<label class="control-label col-md-3" for="image">Image</label>
+							<!-- Avatar -->
+							<label class="control-label col-md-3" for="image">image</label>
 							<div class="controls col-md-7">
 							<?php if($app['act'] !='add'){ ?>
-								<?php if(isset($this->record['image'])) { ?>
-									<img src="<?php echo vendor_app_util::getUrlAws($this->record['image'], $app['ctl']); ?>">
-								<?php } ?>
+											<?php //if(isset($this->record['image'])) { ?>
+							<img src="<?php 
+								//aws
+								// if(preg_match('/https{0,1}:\/\/.*/', $this->record['image'])){
+								//   echo $this->record['image'];
+								// }else{
+								//   echo vendor_app_util::getUrlAws($this->record['image'], $app['ctl']); 
+								//} 
+								echo RootREL."media/upload/".$app['ctl']."/".(!empty($this->record['image'])? $this->record['image']: 'no_image.png');
+								?>" width="200px" style="margin-bottom: 10px">
+								<?php //} ?>
 							<?php } ?>
 							<?php if($app['act'] !='view'){ ?>
 								<input type="file" id="image" name="image" placeholder="" class="form-control">
@@ -127,8 +144,13 @@
 							<?php if( isset($this->errors['image'])) { ?>
 								<p class="text-danger"><?=$this->errors['image']; ?></p>
 							<?php } ?>
+							<div id = "imageDisplayjs">
+								<img id='output' width="100%" height="100%"/>
 							</div>
+							</div>
+							
 						</div>
+					
 
 						<div class="form-group">
 							<label for="name">Url<span style="color:red;">*</span></label>
@@ -174,6 +196,14 @@
 <script type="text/javascript">
   var rootUrl   = "<?=RootURL;?>";
 </script>  
+<script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
+
+
+<script type="text/javascript">
+	CKEDITOR.replace( 'editor1', {} );
+	CKEDITOR.config.baseFloatZIndex = 100001;
+</script>
+
 <script>
   	var ctl   = "<?php global $app; echo $app['act'];?>";
 	if(ctl === 'add')

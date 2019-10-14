@@ -6,10 +6,12 @@ $(document).ready(function () {
 		var strFil = "";
 		var ctl = $("table.dataTable").attr("controller");
 		function delRecord(id, act) {
-			urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
+			let urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
+			console.log(urlDele);
 			$.ajax({
 				url: urlDele,
 				success: function (data) {
+					console.log(data);
 					if(data != 'error'){
 						$('#row'+id).remove();
 					}
@@ -31,6 +33,7 @@ $(document).ready(function () {
 		}
 
 		$('#btn_filter_'+ctl+'_table').on('click', function(){
+			console.log("a");
 			status= $('#select_list_'+ctl+'_status').val();
 			type= $('#select_list_'+ctl+'_type').val();
 			position= $('#select_list_'+ctl+'_position').val();
@@ -67,14 +70,14 @@ $(document).ready(function () {
 		
 		// ok
 		$('tbody.records').on('click','td.btn-act button.toggle-status-record', function () {
-			var isToggle = confirm("Are you sure to change status this record?");
-			if(isToggle){
+			// var isToggle = confirm("Are you sure to change status this record?");
+			// if(isToggle){
 				data = $(this).attr('alt');
 				arr = data.split('_');
 				id = arr[0];
 				status = arr[1];
 				toggleRecord(id,status);
-			}
+			// }
 		});
 
 		$('table.dataTable').on('click', '.checkAll input', function () {
@@ -215,18 +218,52 @@ $(document).ready(function () {
 				}
 			})
 		})
+		function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel)  {
+			var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+			var CSV = '';    
+			CSV += ReportTitle + '\r\n\n';
+			if (ShowLabel) {
+				var row = "";
+				for (var index in arrData[0]) {
+					row += index + ',';
+				}
+				row = row.slice(0, -1);
+				CSV += row + '\r\n';
+			}
+			for (var i = 0; i < arrData.length; i++) {
+				var row = "";
+				for (var index in arrData[i]) {
+					row += '"' + arrData[i][index] + '",';
+				}
+				row.slice(0, row.length - 1);
+				CSV += row + '\r\n';
+			}
+			if (CSV == '') {        
+				alert("Invalid data");
+				return;
+			}   
+			var fileName = `${ctl}`[0].toUpperCase() +  `${ctl}`.slice(1); 
+			fileName += ReportTitle.replace(/ /g,"_");   
+			var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+			var link = document.createElement("a");    
+			link.href = uri;
+			link.style = "visibility:hidden";
+			link.download = fileName + ".csv";
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
 		$('#export-records').on('click', function () {
 			var isExp = confirm("Are you sure to export this data???");
 			if(isExp){
 				urlExp = rootUrl+"admin/"+ctl+"/exportdata/";
-				console.log(urlExp);
 				$.ajax({
 					url: urlExp,
 					success: function (data) {
-						console.log(data);
-						if(data != 'error'){
-							alert("Export thành công");
-						}
+						let tmpdata = JSON.parse(data);
+						let today = new Date().toLocaleString();  
+						JSONToCSVConvertor(tmpdata, " Data Report " + today  , true);
+						
 					}
 				})
 			}

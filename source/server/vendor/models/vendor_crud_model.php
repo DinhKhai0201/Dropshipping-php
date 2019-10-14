@@ -130,7 +130,7 @@ class vendor_crud_model extends vendor_main_model {
 
 	// Function delete records and relationship with all deep 
 	//public function delRecordsRelationshipAllDeep($ids=null, $conditions=null) {}
-	public function delRsRAD($id=null, $conditions=null) {
+	public function delRsRAD($ids=null, $conditions=null) {
 		if($conditions)	$conditions = ' and '.$conditions;
 		$sql = "DELETE FROM $this->table WHERE id in ($ids) $conditions";
 		if($this->con->query($sql)) {
@@ -179,10 +179,6 @@ class vendor_crud_model extends vendor_main_model {
 			$values .=','.$updatedTime;
 		}
 		$query = "INSERT INTO $this->table($fields) VALUES ($values)";
-		// if($this->table === 'cv_education_details'){
-			// echo "Start <br/>"; echo '<pre>'; print_r($query);echo '</pre>';exit("End Data");
-		// }
-		// exit($query);
 		if(mysqli_query($this->con,$query)){
 			return $this->con->insert_id;
 		}

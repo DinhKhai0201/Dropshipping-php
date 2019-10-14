@@ -4,7 +4,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Users
+    Products
     <small>Control panel</small>
   </h1>
   <ol class="breadcrumb">

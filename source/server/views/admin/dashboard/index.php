@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-xs-6">
-          <div class="small-box bg-info">
+          <div class="small-box bg-primary">
             <div class="inner">
               <h3>Ads</h3>
               <p><?= $this->noAds; ?> Advertisements</p>
@@ -70,6 +70,15 @@
             <a href="<?php echo vendor_app_util::url(["ctl"=>"coupons"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+        <div class="col-lg-3 col-md-6 col-xs-6">
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>Orders</h3>
+              <p><?= $this->noOrders ?> Orders</p>
+            </div>
+            <a href="<?php echo vendor_app_util::url(["ctl"=>"orders"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
         <!-- <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-success" style="background-color: #dc3545 !important;">
             <div class="inner">
@@ -88,11 +97,11 @@
         <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>Jobs</h3>
-              <p><?= $this->noJobs ?> Jobs</p>
+              <h3>Products</h3>
+              <p><?= $this->noProducts ?> Products</p>
             </div>
            
-            <a href="<?php echo vendor_app_util::url(["ctl"=>"jobs"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo vendor_app_util::url(["ctl"=>"products"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>

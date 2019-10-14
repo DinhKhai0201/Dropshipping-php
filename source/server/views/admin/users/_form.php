@@ -3,8 +3,8 @@
 	<div class="box">		   
 		<div class="box-body">
 			<fieldset>
-				<div id="legend">
-					<legend class=""><?php echo ucwords($app['act'].' '.$app['ctl']); ?></legend>
+				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
+					<legend class="" ><?php echo ucwords($app['act'].' '.$app['ctl']); ?></legend>
 				</div>
 					<?php if($app['act'] != 'view') { ?>
 						<form 
@@ -110,7 +110,11 @@
 							<?php if( isset($this->errors['avata'])) { ?>
 								<p class="text-danger"><?=$this->errors['avata']; ?></p>
 							<?php } ?>
+							<div id = "imageDisplayjs">
+								<img id='output' width="100%" height="100%"/>
 							</div>
+							</div>
+							
 						</div>
 
 						<div class="form-group row">
@@ -152,7 +156,7 @@
 
 						<?php if($app['act'] !='view'){ ?>
 							<div class="form-group row">
-								<div class="controls col-md-10">
+								<div class="controls " style="margin: 10px auto;display: table">
 									<input class="btn btn-success pull-right" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
 								</div>
 							</div>

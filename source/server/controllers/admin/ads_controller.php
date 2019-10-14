@@ -25,9 +25,9 @@ class ads_controller extends vendor_adsmanager_controller
 		if(isset($app['prs']['search'])){
 			$conditions .= (($conditions)? " AND ":"").
 			" title like '%".$app['prs']['search']."%' OR ".
-			" url like '%".$app['prs']['search']."%'";
+			" description like '%".$app['prs']['search']."%'";
 		}
-
+		$conditions .= (($conditions)? " AND ":"")." user_id=".$_SESSION['user']['id'];
 		$ad = new ad_model();
 		$this->records = $ad->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
 		$this->display();
@@ -77,6 +77,7 @@ class ads_controller extends vendor_adsmanager_controller
 
 			$um = new ad_model();
 			$adData = $_POST['ad'];
+			$adData['user_id'] = $_SESSION['user']['id'];
 			// exit(json_encode($adData));
 			$valid = $um->validator($adData);
 			// exit(json_encode($valid));

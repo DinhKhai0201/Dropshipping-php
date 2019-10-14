@@ -1,9 +1,12 @@
 <section class="content" id="admin-import-page">
+<div class="row">
   <div class="box">      
     <div class="box-body">
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+      
+        <div class="">
+				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
+					<legend class="" ><?php echo ucwords($app['act'].' '.$app['ctl']); ?></legend>
+				</div>
 					<?php if($app['act'] != 'view') { ?>
 						<form 
 							id="form-addcategory" 
@@ -18,38 +21,41 @@
 								<p><?=$this->errors['database'];?></p> 
 							</div>
 					<?php } ?>
-							<div class="form-group">
-							<label for="status">Status</label>
-								<?php if($app['act'] !='view'){ ?>
-									<select name="category[status]" id="input-status" class="form-control">
-										<?php foreach (category_model::$status as $k => $v) { ?>
-											<option value="<?=$k;?>" <?=(isset($this->record['status']) && $this->record['status']==$k)? 'selected="selected"':'';?>><?=$v;?></option>
+							<div class="form-group row">
+								<label class="control-label col-md-3" for="status">Status<span style="color:red;">*</span></label>
+								<div class="controls col-md-7">
+										<?php if($app['act'] !='view'){ ?>
+											<select name="category[status]" id="input-status" class="form-control">
+												<?php foreach (category_model::$status as $k => $v) { ?>
+													<option value="<?=$k;?>" <?=(isset($this->record['status']) && $this->record['status']==$k)? 'selected="selected"':'';?>><?=$v;?></option>
+												<?php } ?>
+											</select>
+										<?php } else { ?>
+											<input disabled type="text" id="status" name="category[status]"  class="form-control" value="<?php if(isset($this->record['status'])) echo category_model::$status[$this->record['status']]; ?>">
 										<?php } ?>
-									</select>
-								<?php } else { ?>
-									<input disabled type="text" id="status" name="category[status]"  class="form-control" value="<?php if(isset($this->record['status'])) echo category_model::$status[$this->record['status']]; ?>">
-								<?php } ?>
-							<?php if( isset($this->errors['status'])) { ?>
-								<p class="text-danger"><?=$this->errors['status']; ?></p>
-							<?php } ?>
-						</div>
-
-						<div class="form-group">
-							<label for="name">Name<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="category[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
-								<?php if( isset($this->errors['name'])) { ?>
-									<p class="text-danger"><?=$this->errors['name']; ?></p>
-								<?php } ?>
-						</div>
-
-						<div class="form-group">
-							<label for="slug">Slug<span style="color:red;">*</span></label>
-							<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="category[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['slug'])) echo $this->record['slug']; ?>">
-								<?php if( isset($this->errors['slug'])) { ?>
-									<p class="text-danger"><?=$this->errors['slug']; ?></p>
-								<?php } ?>
-						</div>
-						
+									<?php if( isset($this->errors['status'])) { ?>
+										<p class="text-danger"><?=$this->errors['status']; ?></p>
+									<?php } ?>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="control-label col-md-3" for="name">Name<span style="color:red;">*</span></label>
+								<div class="controls col-md-7">
+									<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="name" name="category[name]" placeholder="" class="form-control" value="<?php if(isset($this->record['name'])) echo $this->record['name']; ?>">
+									<?php if( isset($this->errors['name'])) { ?>
+										<p class="text-danger"><?=$this->errors['name']; ?></p>
+									<?php } ?>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="control-label col-md-3" for="slug">Slug<span style="color:red;">*</span></label>
+								<div class="controls col-md-7">
+									<input <?php if($app['act']=='view') echo "disabled"; ?> type="text" id="slug" name="category[slug]" placeholder="" class="form-control" value="<?php if(isset($this->record['slug'])) echo $this->record['slug']; ?>">
+									<?php if( isset($this->errors['slug'])) { ?>
+										<p class="text-danger"><?=$this->errors['slug']; ?></p>
+									<?php } ?>
+								</div>
+							</div>
 						<?php if($app['act'] !='view'){ ?>
 							<div class="text-center form-group">
 								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
@@ -57,14 +63,18 @@
 						<?php } ?>
 
 						<?php if($app['act'] =='view'){ ?>
-							<div class="form-group">
-								<label for="created">Created at</label>
+							<div class="form-group row">
+								<label class="control-label col-md-3" for="created">Created at</label>
+								<div class="controls col-md-7">
 								<input disabled type="text" id="created" placeholder="" class="form-control" value="<?php if(isset($this->record['created'])) echo $this->record['created']; ?>">
+								</div>
 							</div>
 
-							<div class="form-group">
-								<label for="updated">Updated at</label>
-								<input disabled type="text" id="updated" placeholder="" class="form-control" value="<?php if(isset($this->record['updated'])) echo $this->record['updated']; ?>">
+							<div class="form-group row">
+								<label class="control-label col-md-3" for="updated">Updated at</label>
+								<div class="controls col-md-7">
+									<input disabled type="text" id="updated" placeholder="" class="form-control" value="<?php if(isset($this->record['updated'])) echo $this->record['updated']; ?>">
+								</div>
 							</div>
 
 							<div class="form-group text-center">
@@ -80,7 +90,6 @@
 						</div>
       <table class="table">
         <tbody id="list-data">
-
         </tbody>
       </table>
       <div class="loading hide" id="loading" style="">

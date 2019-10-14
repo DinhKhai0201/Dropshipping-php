@@ -183,8 +183,9 @@ class users_controller extends vendor_backend_controller {
 	//export data to exel 
 	public function exportdata() {
 		$um = new user_model();
-		$this->record = $um->getAllRecords();
-		echo json_endcode($this->record);
+		$record = $um->getAllRecordsExport('users.id, users.email, users.avata, users.firstname, users.lastname, users.phone, users.address, users.role, users.status', ['order'=>'id asc']);
+		http_response_code(200);
+		echo (($record));
 	}
  
 }

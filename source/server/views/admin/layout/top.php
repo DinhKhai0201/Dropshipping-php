@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../images/favicon.ico">
+    <link rel="icon" href="<?php echo RootREL; ?>media/img/logods.ico">
     <title>DropShipping - Dashboard</title>
 
     <!-- <link type="text/css" media="all" href="<?php echo RootREL; ?>media/css/autoptimize2.css" rel="stylesheet"/> -->
@@ -24,7 +24,6 @@
 
     <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/style.css">
     <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/customs.css">
-
     <script src="<?php echo RootREL; ?>media/admin/libs/js/jquery.min.js"></script>
     <script src="<?php echo RootREL; ?>media/admin/libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -38,11 +37,11 @@
     <?php 
       if(isset($_SESSION['user'])){
         switch($_SESSION['user']['role']){
-          case 4:
+          case 5:
             include_once 'views/admin/layout/'.$this->layout.'left-sidebar-ads.php';
             break;
-          case 5:
-            include_once 'views/admin/layout/'.$this->layout.'left-sidebar-job.php';
+          case 3:
+            include_once 'views/admin/layout/'.$this->layout.'left-sidebar-supplier.php';
             break;
           case 1:
           default:
@@ -51,3 +50,5 @@
       } 
     ?>
     <div class="content-wrapper">
+    <a href="#" id="back-to-top" title="Back to top">▲
+    </a>

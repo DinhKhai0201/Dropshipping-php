@@ -1,7 +1,7 @@
   <aside class="main-sidebar">
     <section class="sidebar">
       <div class="user-panel">
-        <p><img src="<?php echo RootREL; ?>media/img/logo_public2.png" alt=""></p>
+        <p><img src="<?php echo RootREL; ?>media/img/logods.png" alt="" style="margin: 5px auto;display: table;"></p>
       </div>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="active">
@@ -54,9 +54,9 @@
             </li>
           </ul>
         </li>
-        <li class="treeview <?=($app['ctl']=='orders')? 'active menu-open':'';?>">
+        <!-- <li class="treeview <?=($app['ctl']=='orders')? 'active menu-open':'';?>">
           <a href="#">
-          <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></i> <span>Order</span>
+          <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span>Order</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -73,10 +73,10 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
         <li class="treeview <?=($app['ctl']=='coupons')? 'active menu-open':'';?>">
           <a href="#">
-          <i class="fa fa-check-square-o" aria-hidden="true"></i></i> <span>Coupons</span>
+          <i class="fa fa-check-square-o" aria-hidden="true"></i> <span>Coupons</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -84,7 +84,7 @@
           <ul class="treeview-menu">
             <li <?=($app['ctl']=='coupons')? 'class="active"':'';?>>
               <a href="<?=vendor_app_util::url(array('ctl'=>'coupons', 'act'=>'index')); ?>">
-              <i class="fas fa-align-left"></i></i> Show all Coupons
+              <i class="fas fa-align-left"></i> Show all Coupons
               </a>
             </li>
             <li <?=($app['ctl']=='coupons')? 'class="active"':'';?>>
@@ -113,7 +113,7 @@
           </ul>
         </li>
         
-        <li class="treeview <?=($app['ctl']=='ads')? 'active menu-open':'';?>">
+        <!-- <li class="treeview <?=($app['ctl']=='ads')? 'active menu-open':'';?>">
           <a href="#">
           <i class="fab fa-adversal"></i> <span>Advertisement</span>
             <span class="pull-right-container">
@@ -130,7 +130,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <li class="treeview <?=($app['ctl']=='users')? 'active menu-open':'';?>">
           <a href="#">
