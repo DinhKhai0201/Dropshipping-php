@@ -10,7 +10,7 @@
     <link rel="icon" href="../images/favicon.ico">
     <title>DropShipping - Dashboard</title>
 
-    <link type="text/css" media="all" href="<?php echo RootREL; ?>media/css/autoptimize2.css" rel="stylesheet"/>
+    <!-- <link type="text/css" media="all" href="<?php echo RootREL; ?>media/css/autoptimize2.css" rel="stylesheet"/> -->
     <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/libs/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     

@@ -101,7 +101,7 @@
   </div>
 </div>
 
-	<script src="<?php echo RootREL; ?>media/admin/js/jquery.js"></script>
+	<!-- <script src="<?php echo RootREL; ?>media/admin/js/jquery.js"></script> -->
 	<script src="<?php echo RootREL; ?>media/admin/js/popper.min.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/libs/bootstrap/js/bootstrap.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/js/jquery.slimscroll.js"></script>

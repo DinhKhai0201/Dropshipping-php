@@ -174,3 +174,69 @@ a#dell.btn.btn-danger {
     -webkit-border-radius:5px 0 0 0;
     border-radius:5px 0 0 0
 }
+
+.categories-management{
+    padding: 15px;
+    border: 1px solid rgba(90, 97, 105, 0.1);
+  }
+  .categories-management .col-md-3{
+    padding: 0;
+  }
+  .categories-management .col-md-3.bd-r{
+    border-right: 1px solid rgba(90, 97, 105, 0.1);
+  }
+  .categories-management ul{
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .categories-management ul.level-1, .categories-management ul.level-2, .categories-management ul.level-3, .categories-management ul.level-4{
+      max-height: 300px;
+      overflow: auto;
+  }
+  .categories-management ul li{
+    height: 42px;
+    line-height: 42px;
+    position: relative;
+    padding-left: 10px;
+  
+  }
+  .categories-management ul li:hover{
+    background: #ddd;
+    cursor: pointer;
+  }
+  .categories-management ul li.active{
+    background: #dde2e5;
+  
+  }
+  .categories-management ul li.haschild::after, .categories-management ul li.hasdelete::after{
+    width: 10px;
+    display: block;
+    height: 10px;
+    position: absolute;
+  }
+  .categories-management ul li.haschild::after{
+    content: "";
+    border-top: 1px solid #05c4e1;
+    border-right: 1px solid #05c4e1;
+    transform: rotateZ(45deg);
+    top: 15px;
+    right: 15px;
+  }
+  
+  .categories-management ul li .edit{
+    position: absolute;
+    right: 30px;
+    color: #05c4e1;
+  }
+  .categories-management ul li .delete{
+    position: absolute;
+    right: 10px;
+    color: red;
+  }
+  
+  .categories-management ul li::after{
+  
+  }
+  .categories-management ul li:hover{
+  
+  }
