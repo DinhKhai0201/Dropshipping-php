@@ -1,4 +1,4 @@
- <?php if(isset($_SESSION['user']) && !($_SESSION['user']['role']=='2' || $_SESSION['user']['role'] == '3' )) { ?>
+ <?php if(isset($_SESSION['user']) && !($_SESSION['user']['role']=='2' || $_SESSION['user']['role'] == '4' )) { ?>
   <header class="main-header">
     
     <a href="<?php echo vendor_app_util::url(['ctl'=>'dashboard']); ?>" class="logo">

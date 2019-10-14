@@ -37,11 +37,11 @@
     <?php 
       if(isset($_SESSION['user'])){
         switch($_SESSION['user']['role']){
-          case 4:
+          case 5:
             include_once 'views/admin/layout/'.$this->layout.'left-sidebar-ads.php';
             break;
-          case 5:
-            include_once 'views/admin/layout/'.$this->layout.'left-sidebar-job.php';
+          case 3:
+            include_once 'views/admin/layout/'.$this->layout.'left-sidebar-supplier.php';
             break;
           case 1:
           default:
@@ -51,4 +51,4 @@
     ?>
     <div class="content-wrapper">
     <a href="#" id="back-to-top" title="Back to top">▲
-</a>
+    </a>

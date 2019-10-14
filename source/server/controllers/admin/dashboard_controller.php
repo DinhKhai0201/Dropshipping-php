@@ -18,9 +18,14 @@ class dashboard_controller extends vendor_manager_controller {
 		$coupon = new coupon_model();
 		$this->noCoupons = $coupon->getCountRecords();
 
-		$product = new product_model();
-		$this->noProducts = $product->getCountRecords();
-
+		if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 3){
+			$product = new product_model();
+			$this->noProducts = $product->getCountRecords(['conditions'=>'']);
+		} else {
+			$product = new product_model();
+			$this->noProducts = $product->getCountRecords();
+		}
+		
 		$category = new category_model();
 		$this->noCategories = $category->getCountRecords();
 

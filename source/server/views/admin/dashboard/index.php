@@ -97,11 +97,11 @@
         <div class="col-lg-3 col-md-6 col-xs-6">
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>Jobs</h3>
-              <p><?= $this->noJobs ?> Jobs</p>
+              <h3>Products</h3>
+              <p><?= $this->noProducts ?> Products</p>
             </div>
            
-            <a href="<?php echo vendor_app_util::url(["ctl"=>"jobs"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo vendor_app_util::url(["ctl"=>"products"]); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>

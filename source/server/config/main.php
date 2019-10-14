@@ -54,7 +54,17 @@ $app['roles'] = [
 	'4'=>'shipper',
 	'5'=>'adsmanager',
 ];
-
+$app['currency'] =[
+	'0' => 'USD',
+	'1' => 'GBP',
+	'2' => 'VND',
+	'3' => 'EUR',
+	'4' => 'ETH',
+	'5' => '¥',
+	'6' => 'CAD',
+	'7' => 'AUD',
+	'8' => 'RMB'
+];
 
 $app['recordTime'] = [
 	'created_at'	=>	'created_at',
@@ -86,80 +96,6 @@ $app['weekdays'] = [
 	'Friday',
 	'Saturday',
 	'Sunday'
-];
-
-$app['province'] = [
-	'511' => 'Đà Nẵng',
-	'4' => 'Hà Nội',
-	'8' => 'Hồ Chí Minh',
-	'76' => 'An Giang',
-	'64' => 'Bà Rịa - Vũng Tàu',
-	'781' => 'Bạc Liêu',
-	'281' => 'Bắc Cạn',
-	'240' => 'Bắc Giang',
-	'241' => 'Bắc Ninh',
-	'75' => 'Bến Tre',
-	'65' => 'Bình Dương',
-	'56' => 'Bình Định',
-	'65' => 'Bình Phước',
-	'62' => 'Bình Thuận',
-	'78' => 'Cà Mau',
-	'26' => 'Cao Bằng',
-	'71' => 'Cần Thơ',
-	'50' => 'Dak Lak',
-	'1042' => 'Dak Nông',
-	'900' => 'Điện Biên',
-	'1064' => 'Đồng Bằng Sông Cửu Long',
-	'61' => 'Đồng Nai',
-	'67' => 'Đồng Tháp',
-	'59' => 'Gia Lai',
-	'19' => 'Hà Giang',
-	'351' => 'Hà Nam',
-	'34' => 'Hà Tây',
-	'39' => 'Hà Tĩnh',
-	'320' => 'Hải Dương',
-	'31' => 'Hải Phòng',
-	'780' => 'Hậu Giang',
-	'18' => 'Hòa Bình',
-	'321' => 'Hưng Yên',
-	'901' => 'Khác',
-	'58' => 'Khánh Hòa',
-	'77' => 'Kiên Giang',
-	'60' => 'Kon Tum',
-	'1071' => 'KV Bắc Trung Bộ',
-	'1069' => 'KV Đông Nam Bộ',
-	'1070' => 'KV Nam Trung Bộ',
-	'1072' => 'KV Tây Nguyên',
-	'23' => 'Lai Châu',
-	'25' => 'Lạng Sơn',
-	'20' => 'Lào Cai',
-	'63' => 'Lâm Đồng',
-	'72' => 'Long An',
-	'350' => 'Nam Định',
-	'38' => 'Nghệ An',
-	'30' => 'Ninh Bình',
-	'68' => 'Ninh Thuận',
-	'210' => 'Phú Thọ',
-	'57' => 'Phú Yên',
-	'52' => 'Quảng Bình',
-	'510' => 'Quảng Nam',
-	'55' => 'Quảng Ngãi',
-	'33' => 'Quảng Ninh',
-	'53' => 'Quảng Trị',
-	'79' => 'Sóc Trăng',
-	'22' => 'Sơn La',
-	'66' => 'Tây Ninh',
-	'36' => 'Thái Bình',
-	'280' => 'Thái Nguyên',
-	'37' => 'Thanh Hóa',
-	'54' => 'Thừa Thiên- Huế',
-	'73' => 'Tiền Giang',
-	'1065' => 'Toàn quốc',
-	'74' => 'Trà Vinh',
-	'27' => 'Tuyên Quang',
-	'70' => 'Vĩnh Long',
-	'211' => 'Vĩnh Phúc',
-	'29' => 'Yên Bái'
 ];
 
 $app['Country'] = [
@@ -235,16 +171,6 @@ $app['packages_type'] = [
 	'4' => 'Year',
 ];
 
-$app['districts'] = [
-    "hai chau"		=>"Quận Hải Châu",
-    "thanh khe"		=>"Quận Thanh Khê",
-    "son tra"		=>"Quận Sơn Trà",
-    "ngu hanh son"	=>"Quận Ngũ Hành Sơn",
-    "lien chieu"	=>"Quận Liên Chiểu",
-    "cam le"		=>"Quận Cẩm Lệ",
-    "hoa vang"		=>"Huyện Hòa Vang",
-	"khu vuc lan can"=>"Khu vực lân cận Đà Nẵng"
-];
 
 
 $app['years'] = [];

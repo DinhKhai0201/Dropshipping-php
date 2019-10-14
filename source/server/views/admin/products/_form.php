@@ -152,20 +152,25 @@
 									<?php } ?>
 							</div>
 						</div>
-						<div class="form-group ">
-							<label class="control-label " for="description">Product descriptipn<span style="color:red;">*</span></label>					
-								<?php if($app['act']=='view'){ ?>
-									<div class="form-group" style="padding: 10px;background-color: #e9ecef">
-									<p><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></p>
-									</div>
-								<?php }else{ ?>
-									<textarea <?php if($app['act']=='view') echo "disabled"; ?> cols='50' rows='15' type="text" id="editor1" name="product[description]" placeholder="" class="form-control" value=""><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></textarea>
+						<?php if($app['act']=='view'){ ?>
+							<div class="form-group  row">
+								<label class="control-label col-md-3" for="description">Product descriptipn<span style="color:red;">*</span></label>
+								<div class="controls  col-md-7" >
+									<p style="padding: 10px;background-color: #e9ecef"><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></p>
+								</div>
+								<?php if( isset($this->errors['description'])) { ?>
+									<p class="text-danger"><?=$this->errors['description']; ?></p>
 								<?php } ?>
-								<?php if( isset($this->errors['decription'])) { ?>
+							</div>
+						<?php } ?>	
+						<?php if($app['act']=='add' || $app['act']=='edit'){ ?>
+							<label class="control-label " for="description">Product descriptipn<span style="color:red;">*</span></label>
+							<textarea  cols='50' rows='15' type="text" id="editor1" name="product[description]" placeholder="" class="form-control" value=""><?php if(isset($this->record['description'])) echo(($this->record['description'])); ?></textarea>
+							<?php if( isset($this->errors['decription'])) { ?>
 									<p class="text-danger"><?=$this->errors['decription']; ?></p>
 								<?php } ?>
-							
-						</div>
+						<?php } ?>	
+					
 						<?php if($app['act'] =='view'){ ?>
 							<div class="form-group row">
 								<label class="control-label col-md-3" for="created">Created at</label>
@@ -191,7 +196,7 @@
 						
 						
 						<?php if($app['act'] !='view'){ ?>
-							<div class="text-center form-group">
+							<div class="text-center form-group" style="margin-top: 50px;">
 								<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
 							</div>
 						<?php } ?>

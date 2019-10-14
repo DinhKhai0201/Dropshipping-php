@@ -93,7 +93,7 @@ if(isset($app['prs']['status'])) {
 								</th>
 								<th style="width: 20px;">No. </th>
 								<th style="width: 170px;">Title</th>
-								<th class="tabletShow" style="width: 260px;">Image</th>
+								<th class="tabletShow" style="width: 260px;">Description</th>
 								<th class="tabletShow" style="width: 80px;">Page</th>
 								<th class="tabletShow" style="width: 70px;">Position</th>
 								<th style="width: 170px;">Action</th>
@@ -119,10 +119,10 @@ if(isset($app['prs']['status'])) {
 									<?=$record['title']; ?>	
 								</a>	
 								</td>
-                                <td class="tabletShow" id="<?php echo("image".$record['id']);?>">
-									<a href="<?php echo $record['url']; ?>" id="featured_imageViewUser<?=$record['id'];?>">
-										<img style="width:270px" src="<?=vendor_app_util::getUrlAws(($record['image'])? $record['image']: 'no_picture.png', $app['ctl']); ?>">
-									</a>
+                                <td class="tabletShow" id="<?php echo("description".$record['id']);?>">
+									<?php global $app; echo $record['description'];
+									
+									?> 
 								</td>
 						
 								<td class="tabletShow" id="<?php echo("page".$record['id']);?>">
