@@ -48,7 +48,7 @@ if(isset($app['prs']['status'])) {
 								<option value="active" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='active') echo 'selected' ?>>Active</option>
 								<option value="disable" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='disable') echo 'selected' ?>>Disable</option>
 							</select>
-							<button class="btn btn-apply" id='btn_filter_categories_table'>Filter</button></li>
+							<button class="btn btn-apply" id='btn_filter_categories_table'>Filter</button>
 						</li>
 					</ul>
 				</div>
@@ -80,7 +80,7 @@ if(isset($app['prs']['status'])) {
 								</th>
 								<th style="width: 20px;">ID</th>
 								<th style="width: 250px;">Name</th>
-								<th class="tabletShow" style="width: 200px;">Slug</th>
+								<th class="tabletShow" style="width: 200px;">Parent Categories</th>
 								<th class="tabletShow" style="width: 100px;">Created</th>
 								<th class="tabletShow" style="width: 100px;">Updated</th>
 								<th style="width: 200px;">Action</th>
@@ -107,7 +107,7 @@ if(isset($app['prs']['status'])) {
 								</a>	
 								</td>
                                     <td class="tabletShow" id="<?php echo("slug".$record['id']);?>">
-                                    <?php echo $record['slug']; ?> 
+                                    <?php echo $record['parent_id']; ?> 
 								</td>
 						
 								<td class="tabletShow" id="<?php echo("created".$record['id']);?>">

@@ -113,6 +113,7 @@
 	<script src="<?php echo RootREL; ?>media/admin/js/template.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/js/dashboard.js"></script>
 	<script src="<?php echo RootREL; ?>media/admin/js/demo.js"></script>
+  <script src="<?php echo RootREL; ?>media/admin/js/flexslider.js"></script>
   <script src="<?php echo RootREL; ?>media/admin/js/backtotop.js"></script>
 </body>
 </html>

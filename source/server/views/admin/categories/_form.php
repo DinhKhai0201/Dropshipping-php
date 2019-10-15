@@ -38,6 +38,7 @@
 									<?php } ?>
 								</div>
 							</div>
+							
 							<div class="form-group row">
 								<label class="control-label col-md-3" for="name">Name<span style="color:red;">*</span></label>
 								<div class="controls col-md-7">
@@ -47,6 +48,24 @@
 									<?php } ?>
 								</div>
 							</div>
+							<div class="form-group row">
+								<label class="control-label col-md-3" for="parent_id">category<span style="color:red;">*</span></label>
+								<div class="controls col-md-7">
+										<?php if($app['act'] !='view'){ ?>
+											<select name="category[parent_id]" id="input-parent_id" class="form-control">
+												<?php foreach($this->recordsCategoriesParent as $recordC) { ?>
+													<option value="<?=$recordC['id'];?>" <?=(isset($this->record['parent_id']) && $this->record['parent_id']==$k)? 'selected="selected"':'';?>><?= $recordC['name'];?></option>
+												<?php } ?>
+											</select>
+										<?php } else { ?>
+											<input disabled type="text" id="parent_id" name="category[parent_id]"  class="form-control" value="<?php if(isset($this->record['parent_id'])) echo category_model::$parent_id[$this->record['parent_id']]; ?>">
+										<?php } ?>
+									<?php if( isset($this->errors['parent_id'])) { ?>
+										<p class="text-danger"><?=$this->errors['parent_id']; ?></p>
+									<?php } ?>
+								</div>
+							</div>
+							
 							<div class="form-group row">
 								<label class="control-label col-md-3" for="slug">Slug<span style="color:red;">*</span></label>
 								<div class="controls col-md-7">
@@ -104,4 +123,10 @@
 	$("#name").keyup(function(){
 		$("#slug").val(slugify($(this).val()));
 	});
+	$('.modal').modal({
+			dismissible: false, 
+			inDuration: 500, 
+			outDuration: 500
+			});  
+
 </script>

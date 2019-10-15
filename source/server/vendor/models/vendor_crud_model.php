@@ -179,6 +179,7 @@ class vendor_crud_model extends vendor_main_model {
 			$values .=','.$updatedTime;
 		}
 		$query = "INSERT INTO $this->table($fields) VALUES ($values)";
+		// var_dump($query);
 		if(mysqli_query($this->con,$query)){
 			return $this->con->insert_id;
 		}
@@ -332,7 +333,8 @@ class vendor_crud_model extends vendor_main_model {
 	    			}
 	    		}
 	    	}
-    	}
+		}
+
     	return $rs;
     }
 }
