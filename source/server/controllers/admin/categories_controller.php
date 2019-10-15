@@ -1,7 +1,7 @@
 <?php
 class categories_controller extends vendor_backend_controller
 {
-	public function index() {
+	public function all() {
 		global $app;
 		$conditions = "";
 

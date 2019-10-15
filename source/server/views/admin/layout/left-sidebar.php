@@ -103,7 +103,7 @@
           </a>
           <ul class="treeview-menu">
             <li <?=($app['ctl']=='categories')? 'class="active"':'';?>>
-              <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'index')); ?>">
+              <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'all')); ?>">
                 <i class="fas fa-align-left"></i> Show all
               </a>
               <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'add')); ?>">
