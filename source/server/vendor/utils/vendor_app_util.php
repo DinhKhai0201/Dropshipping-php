@@ -106,7 +106,7 @@ class vendor_app_util {
 	public static function sendMail($title, $content, $nTo, $mTo,$addressCC='', $addressBCC="") {
 		include_once ('libsSMTP/class.smtp.php');
 		include_once ('libsSMTP/class.phpmailer.php');
-		$nFrom = 'Việc làm Đà Nẵng';
+		$nFrom = 'Drop Shipping';
 		$mFrom = PSCDEmail;
 		$mPass = PassEmail;
 		$mail             = new PHPMailer();
@@ -147,7 +147,7 @@ class vendor_app_util {
 		}
 		$mail->Subject    = $title;
 		$mail->MsgHTML($body);
-		$mail->AddReplyTo('noreply@vieclamdanang.vn', 'VIỆC LÀM ĐÀ NẴNG');
+		$mail->AddReplyTo('noreply@dropshipping.com', 'DROPSHIPPING');
 		if(!$mail->Send()) {
 			return 0;
 		} else {
@@ -296,7 +296,7 @@ class vendor_app_util {
 		|| ($flies["image"]["type"] == "image/pjpeg")
 		|| ($flies["image"]["type"] == "image/x-png")
 		|| ($flies["image"]["type"] == "image/png"))
-		&& ($flies["image"]["size"] < 200000000) //?
+		// && ($flies["image"]["size"] < 200000000) //?
 		&& in_array($extension, $allowedExts))
 	{
 		if ($flies["image"]["error"] > 0) {

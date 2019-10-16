@@ -14,6 +14,8 @@
 	<?php 
 		include_once 'views/admin/products/_form.php';
 	?>
+  
 </section>
 </div>
+
 <?php include_once 'views/admin/layout/'.$this->layout.'footer.php'; ?>

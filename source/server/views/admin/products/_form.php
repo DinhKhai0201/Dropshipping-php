@@ -146,7 +146,7 @@
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="image">Image<span style="color:red;">*</span></label>
 							<div class="controls col-md-7">
-								<input  type="file" id="image" name="image[]" multiple accept=".jpg, .png, .gif" placeholder="" class="form-control">
+								<input  type="file" id="image" name="image[]" multiple  placeholder="" class="form-control">
 									<?php if( isset($this->errors['image'])) { ?>
 										<p class="text-danger"><?=$this->errors['image']; ?></p>
 									<?php } ?>
@@ -172,6 +172,32 @@
 						<?php } ?>	
 					
 						<?php if($app['act'] =='view'){ ?>
+							<!-- products -->
+								<!-- <div class="products singleppt">	 
+									<div class="container ">  
+										<div class="single-page">
+											<div class="single-page-row" id="detail-21">
+												<div class="col-md-6 single-top-left">	
+													<div class="flexslider">
+														<ul class="slides">
+															<?php foreach( $this->recordGalleries as $gallery){ ?>
+																<li data-thumb='<?php echo RootREL."media/upload/products/".$gallery['image']?>'>
+																	<div class='thumb-image'> <img id ='gallery-id-<?php echo $gallery['id'];?>' src='<?php echo RootREL."media/upload/products/".$gallery['image'];?>' data-imagezoom='true' class='img-responsive' alt=''> </div>
+																</li>
+																	
+															<?php } ?>
+														
+														</ul>
+													</div>
+												</div>
+											<div class="clearfix"> </div>  
+											</div>
+										</div> 
+										
+									</div>
+								</div> -->
+							<!--//products--> 
+								
 							<div class="form-group row">
 								<label class="control-label col-md-3" for="created">Created at</label>
 								<div class="controls col-md-7">
@@ -221,6 +247,7 @@
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/okzoom.js"></script>
 <script type="text/javascript">
 	CKEDITOR.replace( 'editor1', {} );
 	CKEDITOR.config.baseFloatZIndex = 100001;
@@ -243,4 +270,13 @@
 	$("#image").change(function () {
         readURL(this);
 	});
+	$(function(){
+            $("input[type = 'submit']").click(function(){
+               var $fileUpload = $("input[type='file']");
+               if (parseInt($fileUpload.get(0).files.length) > 5){
+                  alert("You are only allowed to upload a maximum of 5 files");
+               }
+            });
+         });
+	
 </script>

@@ -12,7 +12,7 @@ class brand_model extends vendor_pagination_model
 
 	protected $relationships = [
 		'hasMany'	=>	[
-			['product',	'key'=>'brand_id', 'on_del'=>true],
+			['product',	'key'=>'brand_id', 'on_del'=>false],
 		],
 	];
 }

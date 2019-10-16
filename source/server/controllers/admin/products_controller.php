@@ -57,18 +57,39 @@ class products_controller extends vendor_backend_controller {
   public function add() {
     if(isset($_POST['btn_submit'])) {
       $um = new product_model();
+      $gm = new gallery_model();
+      $imageData = array();
       $productData = $_POST['product'];
+      
+
+      // exit(json_encode($productData));
       // $valid = $um->validator($productData);
       // if($valid['status']) {      
-        if($um->addRecord($productData))
-          header("Location: ".vendor_app_util::url(["ctl"=>"products"]));
-        else {
+        if($id = $um->addRecord($productData)) {
+           if($_FILES['image']['size']>0 )
+          {
+            for($i=0; $i<count($_FILES['image']['name']); $i++)
+                  {
+                     $randChar=md5(rand());
+                      move_uploaded_file($_FILES['image']['tmp_name'][$i], RootURI."media/upload/products/".$randChar.$_FILES['image']['name'][$i]) or die("opps multiple picture not uploaded");
+                      $imageData['product_id'] = $id;
+                      $imageData['image'] = $randChar.$_FILES['image']['name'][$i];
+                      if ($re = $gm->addRecord($imageData)) {
+                          echo "Success";
+                      } else {
+                          $this->errors = ['database' => 'An error occurred when inserting data!'];
+                      }
+                  }
+          }
+          header("Location: " . vendor_app_util::url(["ctl" => "products"]));
+         
+        } else {
           $this->errors = ['database'=>'An error occurred when inserting data!'];
           $this->record = $productData;
         }
       // } else {
-        // $this->errors = $um::convertErrorMessage($valid['message']);
-        // $this->record = $productData;
+      //   $this->errors = $um::convertErrorMessage($valid['message']);
+      //   $this->record = $productData;
       // }
     }
     $brand = new brand_model();
@@ -83,6 +104,8 @@ class products_controller extends vendor_backend_controller {
   public function view($id) {
     $pm = new product_model();
     $this->record = $pm->getRecord($id);
+    $gm = new gallery_model();
+    $this->recordGalleries = $gm->getAllRecords('*',['conditions'=>'product_id ='.$id, 'joins'=>'', 'order'=>'id ASC']);
     $brand = new brand_model();
     $this->recordsBrands = $brand ->getAllRecords('*',['conditions'=>'brands.id ='.$this->record['brand_id'], 'joins'=>'', 'order'=>'id ASC']);
     $stores = new store_model();
@@ -120,6 +143,6 @@ class products_controller extends vendor_backend_controller {
     $record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status',['conditions'=>'', 'joins'=>['category', 'brand', 'store'], 'order'=>'id ASC']);
 		http_response_code(200);
 		echo (($record));
-	}
+  }
 }
 ?>

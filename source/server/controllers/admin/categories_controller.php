@@ -111,6 +111,7 @@ class categories_controller extends vendor_backend_controller
 	}
 
 	public function add() {
+		
 		if(isset($_POST['btn_submit'])) {
 			$um = new category_model();
 			$categoryData = $_POST['category'];
@@ -128,6 +129,9 @@ class categories_controller extends vendor_backend_controller
 				$this->record = $categoryData;
 			}
 		}
+		$categories = new category_model();
+		$this->recordsCategoriesParent = $categories ->getAllRecords('*',['conditions'=>'parent_id is null', 'joins'=>'', 'order'=>'id ASC']);
+		$this->recordsCategoriesChildren = $categories ->getAllRecords('*',['conditions'=>'parent_id is not null', 'joins'=>'', 'order'=>'id ASC']);
 		$this->display();
 	}
 

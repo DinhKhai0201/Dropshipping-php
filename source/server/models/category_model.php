@@ -16,7 +16,7 @@ class category_model extends vendor_pagination_model
 
 	protected $relationships = [
 		'hasMany'	=>	[
-			['product',	'key'=>'category_id', 'on_del'=>true],
+			['product',	'key'=>'category_id'],
 		],
 	];
 

@@ -23,6 +23,7 @@
     <!-- <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/date-range-picker/daterangepicker.css"> -->
 
     <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/style.css">
+     <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/flexslider.css">
     <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/customs.css">
     <script src="<?php echo RootREL; ?>media/admin/libs/js/jquery.min.js"></script>
     <script src="<?php echo RootREL; ?>media/admin/libs/bootstrap/js/bootstrap.min.js"></script>
