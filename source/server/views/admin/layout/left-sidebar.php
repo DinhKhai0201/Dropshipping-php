@@ -103,12 +103,12 @@
           </a>
           <ul class="treeview-menu">
             <li <?=($app['ctl']=='categories')? 'class="active"':'';?>>
-              <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'all')); ?>">
+              <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'index')); ?>">
                 <i class="fas fa-align-left"></i> Show all
               </a>
-              <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'add')); ?>">
+              <!-- <a href="<?=vendor_app_util::url(array('ctl'=>'categories', 'act'=>'add')); ?>">
                 <i class="fas fa-plus"></i> Add category
-              </a>
+              </a> -->
             </li>
           </ul>
         </li>

@@ -1,156 +1,415 @@
-<?php include_once 'views/admin/layout/'.$this->layout.'top.php'; ?>
+<?php include_once 'views/admin/layout/' . $this->layout . 'top.php'; ?>
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/bootstrap/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/libs/bootstrap/css/checkbox-x.min.css">
 <link rel="stylesheet" href="<?php echo RootREL; ?>media/admin/css/table.css">
-<?php 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+<?php
 global $app;
-if(isset($app['prs']['status'])) {
-	if($app['prs']['status'])
-		$checkboxVal = 1;
-	else
-		$checkboxVal = NULL;
-} else 	$checkboxVal = 0;
 ?>
-<script type="text/javascript">	
-	var norecords 	= parseInt(<?php echo $this->records['norecords']; ?>);
-	var nocurp 		= parseInt(<?php echo $this->records['nocurp']; ?>);
-	var curp 		= parseInt(<?php echo $this->records['curp']; ?>);
-	var nopp 		= parseInt(<?php echo $this->records['nopp']; ?>);
+<script type="text/javascript">
+    var norecords = parseInt(<?php echo $this->records['norecords']; ?>);
+    var nocurp = parseInt(<?php echo $this->records['nocurp']; ?>);
+    var curp = parseInt(<?php echo $this->records['curp']; ?>);
+    var nopp = parseInt(<?php echo $this->records['nopp']; ?>);
 
-	var getDisable  = <?=(isset($app['prs']['status']) && ($app['prs']['status']==='0'))? 1:0;?>
 </script>
 
-<?php vendor_html_helper::contentheader('Categories <small>management</small>', [['urlp'=>['ctl'=>$app['ctl'], 'act'=>$app['act']]]]); ?>
+<?php vendor_html_helper::contentheader('Categories <small>management</small>', [['urlp' => ['ctl' => $app['ctl'], 'act' => $app['act']]]]); ?>
 
 <br />
 <section class="content-header">
-	<div class="row">
-		<div class="col-xs-12 col-lg-12">
-			<div class="row" id="records-header">
-				<div class="col-sm-8 col-xs-6">
-				<h2 class="box-title">Categories</h2>
-				</div>
-				<div class="col-sm-4 col-xs-6">
-					<button id="delete-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete categories">
-						<i class="fa fa-remove"></i>
-					</button>
-					<a href="<?php echo vendor_app_util::url(['ctl'=>'categories','act'=>'add']); ?>" id="add-record">
-						<button class="btn btn-primary pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Add category">
-						<i class="fa fa-plus"></i>
-						</button>
-					</a>	
-				</div>
-				<div class="col-sm-8 col-xs-6">
-					<ul class="list-inline list_all">
-						<li>
-							<select id="select_list_categories_status">
-								<option value="all" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='all') echo 'selected' ?>>All status</option>
-								<option value="active" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='active') echo 'selected' ?>>Active</option>
-								<option value="disable" <?php if(isset($app['prs']['status']) && $app['prs']['status']=='disable') echo 'selected' ?>>Disable</option>
-							</select>
-							<button class="btn btn-apply" id='btn_filter_categories_table'>Filter</button></li>
-						</li>
-					</ul>
-				</div>
 
-				<div class="col-sm-4 col-xs-6">
-					<div id="example_filter" class="dataTables_filter text-right">
-						<form id="form-categories-search">
-							<label>Search:
-								<input type="text" class="search" name='search' placeholder="" aria-controls="example" id='search'>
-							</label>
-							<button type="submit" class="btn btn-info">Submit</button>
-						</form>
+    <div class="row categories-management" >
+        <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
+            <ul class="level level-1" level="1">
+            </ul>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
+            <ul class="level level-2" level="2">
+            </ul>
+        </div>
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="box-body">
-		<div id="table_wrapper" class="dataTables_wrapper form-inline dt-boostrap">
-			<div class="col-sm-12">
-				<div class="table-responsive" style='overflow-x:scroll'>
-					<table  controller="categories" class="table table-bordered table-striped no-margin dataTable" style="text-align:center; width:100%;min-width:800px;">
-						<thead>
-							<tr role="row">
-								<th id="checAllTop" class="checkAll" style="width: 10px;">
-									<input type="checkbox" name="" id="cb-all-category" style="display:none;">
-									<label for="cb-all-category"></label>
-								</th>
-								<th style="width: 20px;">ID</th>
-								<th style="width: 250px;">Name</th>
-								<th class="tabletShow" style="width: 200px;">Slug</th>
-								<th class="tabletShow" style="width: 100px;">Created</th>
-								<th class="tabletShow" style="width: 100px;">Updated</th>
-								<th style="width: 200px;">Action</th>
-							</tr>
-						</thead>
-						<tbody id="tbody-categories" class="records">
-						<?php if(count($this->records['data'])) { ?>
-							<?php $i=1+($this->records['curp']-1)*$this->records['nopp']; foreach ($this->records['data'] as $record) { ?>
-							<tr role="row" id="row<?=$record['id'];?>">
+        <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
+            <ul class="level level-3" level="3">
+            </ul>
+        </div>
 
-								<td id="<?php echo("checkbox".$record['id']);?>" class="checkboxRecord">
-									<input type="checkbox" name="" alt="<?=$record['id'];?>" id="cb-category-<?=$record['id'];?>" class='cb-user'>
-									<label for="cb-category-<?=$record['id'];?>"></label>
-								</td>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <ul class="level level-4" level="4">
+            </ul>
+        </div>
+    </div>
+    <div class="row categories-management">
+        <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
+            <ul class="level" level="1">
+                <button type="button" class="btn btn-add btn-block btn-success" level='1' data-toggle="modal" data-target="#myModal">Add category</button>
 
-								<td id="<?php echo("fullname".$record['id']);?>">
-                                    <a href="<?php echo (vendor_app_util::url(["ctl"=>"categories", "act"=>"view/".$record['id']])) ?>" id="viewCategory<?=$record['id'];?>">
-                                        <?php echo $i++; ?>	
-                                    </a>	
-								</td>
-								<td id="<?php echo("id".$record['id']);?>">
-								<a href="<?php echo (vendor_app_util::url(["ctl"=>"categories", "act"=>"view/".$record['id']]));?>" id="viewCategory<?=$record['id'];?>">
-									<?=$record['name']; ?>	
-								</a>	
-								</td>
-                                    <td class="tabletShow" id="<?php echo("slug".$record['id']);?>">
-                                    <?php echo $record['slug']; ?> 
-								</td>
-						
-								<td class="tabletShow" id="<?php echo("created".$record['id']);?>">
-                                    <?php echo $record['created']; ?> 
-								</td>
+            </ul>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
+            <ul class="level level2-btn" level="2">
+            </ul>
+        </div>
 
-								<td class="tabletShow" id="<?php echo("updated".$record['id']);?>">
-                                    <?php echo $record['updated']; ?> 
-								</td>
+        <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
+            <ul class="level level3-btn" level="3">
+            </ul>
+        </div>
 
-							
-								<td  class="btn-act" class="pull-right">
-								<a href="<?php echo (vendor_app_util::url(["ctl"=>"categories", "act"=>"edit/".$record['id']])) ?>" id="<?php echo("edit".$record['id']);?>" >
-									<button data-placement="top" title="Edit category" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
-								</a>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <ul class="level level4-btn" level="4">
+            </ul>
+        </div>
+    </div>
 
-								<button data-placement="right" title="Delete category" id="del<?php echo $record['id']; ?>" type="button" class="btn btn-danger del-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-remove"></i></button>
-								
-								<button data-placement="right" title="<?php echo ($record['status']==1)?'Deactive':'Active'; ?>" id="toggle<?php echo $record['id']; ?>" type="button" class="btn btn-normal toggle-status-record" alt="<?php echo $record['id'].'_'.$record['status']; ?>"><i class="fa fa-toggle-<?php echo ($record['status']==1)?'on':'off'; ?>"></i></button>
-								
-								</td>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-							</tr>
-							<?php } ?>
-						<?php } else { ?>
-							<tr role="row"><td colspan="8"><h3 class="text-danger text-center"> No data </h3></td></tr>
-						<?php } ?>
-						</tbody>
-						<tfoot>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			
-		</div>
-		<div class="row text-right">
-			<?php vendor_html_helper::pagination($this->records['norecords'], $this->records['nocurp'], $this->records['curp'], $this->records['nopp']); ?>
-		</div>
-	</div>
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Category</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="form-group">
+                                <label for="">Level <span class="level-number"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 ">
+                            <div class="form-group">
+                                <label for="">Category name (*): </label>
+                                <input class="form-control" type="text" name="name" placeholder="Name" data-validation="length alphanumeric" data-validation-length="min3" required />
+                            </div>
+                        </div>
+                        <div class="col-sm-12 ">
+                            <div class="form-group">
+                                <label for="">Ranking No (*): </label>
+                                <input class="form-control" type="number" name="ranking" placeholder="" value="0" data-validation="length alphanumeric" data-validation-length="min3" required />
+                            </div>
+                        </div>
+                      
+                        <div class="col-12 ta-center">
+                            <div class="btn-150">
+                                <button id="btn-submit" class="btn btn-block btn-rounded btn-success btn-lg">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 <br />
-
 </div>
 <script src="<?php echo RootREL; ?>media/libs/bootstrap/js/checkbox-x.min.js"></script>
 <script src="<?php echo RootREL; ?>media/admin/js/records_table.js"></script>
-<?php include_once 'views/admin/layout/'.$this->layout.'footer.php'; ?>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+<script>
+    var level1 = <?php echo json_encode($this->level1) ?>;
+    var level2 = <?php echo json_encode($this->level2) ?>;
+    var level3 = <?php echo json_encode($this->level3) ?>;
+    var level4 = <?php echo json_encode($this->level4) ?>;
+    
+    var categoriesData = {
+        'level1' : level1 ? level1 : [],
+        'level2' : level2 ? level2 : [],
+        'level3' : level3 ? level3 : [],
+        'level4' : level4 ? level4 : [],
+    };
+    var idLevel1Active = '';
+    var idLevel2Active = '';
+    var idLevel3Active = '';
+    var isAdd = false;
+
+    var _id = null;
+    var _level = null;
+    var _idParent = null;
+    var _rankingNo = null;
+    var _name = null;
+</script>
+<script>
+    $(document).ready(function() {
+        init();   
+
+        function updateCate (level, _id, categoryName, rankingNo ) {
+            categoriesData[level] && categoriesData[level].map(val => {  
+                if ( val.id == _id) {
+                    val.categoryName = categoryName;
+                    val.rankingNo = rankingNo;
+                }
+            });
+        } 
+
+        function delCate(level, lev, _id, _idParent) {
+            categoriesData[level] && categoriesData[level].map((val, key) => {  
+                if ( val.id == _id) {
+                    categoriesData[level].splice(key, 1);
+                }
+            });
+            $(`.level${Number(lev) + 1}-btn`).empty();
+            let haschild = categoriesData[level] && categoriesData[level].filter(item2 => {
+                if (item2.parentId == _idParent) return true;
+                return false;
+            })[0] ? true : false;
+            
+            if (!haschild && _idParent != '') {
+                $(`#${_idParent}`).removeClass('haschild');
+                $(`#${_idParent}`).append('<span class="delete">X</span>');
+            }
+        }
+
+        function init() {
+            let html = '';
+            categoriesData.level1 && categoriesData.level1.map(item => {
+                let haschild = categoriesData.level2 && categoriesData.level2.filter(item2 => {
+                    if (item2.parentId === item.id) return true;
+                    return false;
+                })[0] ? true : false;
+                html += `
+                    <li class="${haschild?'haschild':''}" id="${item.id}" level='1'>
+                        <span class="cate_name">${item.categoryName}</span>
+                        <span class="edit" id="${item.id}" rankingNo="${item.rankingNo}" level='1' data-toggle="modal" data-target="#myModal">Edit</span>
+                        ${haschild?'':'<span class="delete">X</span>'}
+                    </li>
+                `;
+            })
+            $('.level-1').append(html);
+        }
+        $('.level-1').on('click', 'li', function() {
+            idLevel1Active = $(this).attr('id');
+            $('.level-1 li').removeClass('active');
+            $(this).addClass('active');
+
+            $('.level-2').html('');
+            $('.level-3').html('');
+            $('.level-4').html('');
+            $('.level2-btn').html('');
+            $('.level3-btn').html('');
+            $('.level4-btn').html('');
+            let html = '';
+            categoriesData.level2 && categoriesData.level2.map(item => {
+                if (item.parentId === idLevel1Active) {
+                    let haschild = categoriesData.level3 && categoriesData.level3.filter(item2 => {
+                        if (item2.parentId === item.id) return true;
+                        return false;
+                    })[0] ? true : false;
+                    html += `
+                        <li class="${haschild?'haschild':''}" id="${item.id}" level='2'>
+                            <span class="cate_name">${item.categoryName}</span>
+                            <span class="edit" id="${item.id}" rankingNo="${item.rankingNo}" level='2' data-toggle="modal" data-target="#myModal">Edit</span>
+                            ${haschild?'':'<span class="delete">X</span>'}
+                        </li>
+                    `;
+                }
+
+            })
+            $('.level-2').append(html);
+            $('.level2-btn').append('<button type="button" class="btn btn-add btn-block btn-success"  level="2"  data-toggle="modal" data-target="#myModal">Add category</button>')
+        })
+        $('.level-2').on('click', 'li', function() {
+            idLevel2Active = $(this).attr('id');
+            $('.level-2 li').removeClass('active');
+            $(this).addClass('active');
+
+            $('.level-3').html('');
+            $('.level-4').html('');
+            $('.level3-btn').html('');
+            $('.level4-btn').html('');
+
+            let html = '';
+            categoriesData.level3 && categoriesData.level3.map(item => {
+                if (item.parentId === idLevel2Active) {
+                    let haschild = categoriesData.level4 && categoriesData.level4.filter(item2 => {
+                        if (item2.parentId === item.id) return true;
+                        return false;
+                    })[0] ? true : false;
+                    html += `
+                        <li class="${haschild?'haschild':''}" id="${item.id}" level='3'>
+                            <span class="cate_name">${item.categoryName}</span>
+                            <span class="edit" id="${item.id}" rankingNo="${item.rankingNo}" level='3' data-toggle="modal" data-target="#myModal">Edit</span>
+                            ${haschild?'':'<span class="delete">X</span>'}
+                        </li>
+                    `;
+                }
+
+            })
+            $('.level-3').append(html);
+            $('.level3-btn').append('<button type="button" class="btn btn-add btn-block btn-success"  level="3"  data-toggle="modal" data-target="#myModal">Add category</button>')
+        })
+        $('.level-3').on('click', 'li', function() {
+            idLevel3Active = $(this).attr('id');
+            $('.level-3 li').removeClass('active');
+            $(this).addClass('active');
+            $('.level-4').html('');
+            $('.level4-btn').html('');
+
+            let html = '';
+            categoriesData.level4 && categoriesData.level4.map(item => {
+                if (item.parentId === idLevel3Active) {
+                    html += `
+                        <li class="" id="${item.id}" level='4'>
+                            <span class="cate_name">${item.categoryName}</span>
+                            <span class="edit" id="${item.id}" rankingNo="${item.rankingNo}" level='4' data-toggle="modal" data-target="#myModal">Edit</span>
+                            <span class="delete">X</span>
+                        </li>
+                    `;
+                }
+            })
+            $('.level-4').append(html);
+            $('.level4-btn').append('<button type="button" class="btn btn-add btn-block btn-success"  level="4"  data-toggle="modal" data-target="#myModal">Add category</button>')
+        })
+        $('.level').on('click', '.edit', function() {
+            isAdd = false;
+            _id = $(this).attr('id');
+            _level = parseInt($(this).attr('level'));
+            _idParent = '';
+            _rankingNo = $(this).attr('rankingNo');
+            _name = $(this).parent().find('span').first().html();
+
+            $("input[name=name]").val(_name);
+            $("input[name=ranking]").val(_rankingNo);
+            $('.level-number').html(_level);
+
+        })
+
+        $('.level').on('click', '.btn-add', function() {
+            isAdd = true;
+            _level = parseInt($(this).attr('level'));
+            $('.level-number').html(_level);
+            $("input[name=name]").val('');
+            $("input[name=ranking]").val(0);
+            $('#btn-submit').html("Add");
+            if (_level === 2) _idParent = idLevel1Active;
+            else if (_level === 3) _idParent = idLevel2Active;
+            else if (_level === 4) _idParent = idLevel3Active;
+            else _idParent = '';
+            isAdd = true;
+        })
+
+        $('#btn-submit').on('click', function() {
+            let rankingNo = $("input[name=ranking]").val();
+            let categoryName = $("input[name=name]").val();
+
+            // console.log("222222", _level, _idParent, rankingNo, categoryName );
+            
+            if (isAdd) {
+                $.ajax({
+                    url: rootUrl + 'admin/categories/addCate',
+                    data: {
+                        level: _level,
+                        parentId: _idParent,
+                        rankingNo,
+                        categoryName,
+                        status: 'active'
+                    },
+                    type: "POST",
+                    success: function(data) {
+                        var resObject = JSON.parse(data);
+                        if (resObject.status == 1) {
+                            var datadd = { 
+                                level: _level, 
+                                parentId: _idParent, 
+                                id: resObject.id, 
+                                rankingNo,
+                                categoryName,
+                                status: 'active'
+                            }
+                            let  html = `
+                                    <li class="" id="${resObject.id}" level='${_level}'>
+                                        <span class="cate_name">${categoryName}</span>
+                                        <span class="edit" id="${resObject.id}" rankingNo="${rankingNo}" level='${_level}' data-toggle="modal" data-target="#myModal">Edit</span>
+                                        <span class="delete">X</span>
+                                    </li>
+                                `;
+                            categoriesData[`level${_level}`].push(datadd);
+                            $(`.level-${_level}`).append(html);
+                            $('#myModal').trigger('click');
+                            let haschild = ( _idParent != '' && $(`#${_idParent}`).attr('class') == "haschild active") ? true : false;
+                            if (!haschild && _idParent != '') {
+                                $(`#${_idParent}`).addClass("haschild");
+                                $(`#${_idParent} .delete`).remove();
+                            }
+                            // location.reload();
+                        } else {
+                            confirm(resObject.error);
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: rootUrl + 'admin/categories/editCate',
+                    data: {
+                        id: _id,
+                        level: _level,
+                        rankingNo,
+                        categoryName
+                    },
+                    type: "POST",
+                    success: function(data) {
+                        var resObject = JSON.parse(data);
+                        if (resObject.status == 1) {
+                            let haschild = $(`#${_id}`).attr('class') == "haschild active" ? true : false;
+                            var html = `<span class="cate_name">${categoryName}</span>
+                            <span class="edit" id="${_id}" rankingNo="${rankingNo}" level="${_level}" data-toggle="modal" data-target="#myModal">Edit</span>
+                            ${haschild?'':'<span class="delete">X</span>'}`
+
+                            $(`#${_id}`).empty().append(html);
+                            updateCate( `level${_level}`, _id, categoryName, rankingNo);
+
+                            $('#myModal').trigger('click');
+                            toastr.success("Successfully updated");
+                         
+                        } else {
+                            toastr.error(resObject.error);
+                        }
+                    }
+                });
+            }
+
+        });
+
+        $('.level').on('click', '.delete', function() {
+            let id = $(this).parent().attr('id');
+            let _level = $(this).parent().attr('level');
+            if (_level == 2) _idParent = idLevel1Active;
+            else if (_level == 3) _idParent = idLevel2Active;
+            else if (_level == 4) _idParent = idLevel3Active;
+            else _idParent = '';
+            let isDelete = confirm("Are you sure to delete this category");
+            if (isDelete) {
+                $.ajax({
+                    url: rootUrl + 'admin/categories/deleteCate',
+                    data: {
+                        id
+                    },
+                    type: "POST",
+                    success: function(data) {
+                        var resObject = JSON.parse(data);
+                        if (resObject.status == 1) {
+                            $(`#${id}`).remove();
+                            delCate(`level${_level}`, _level, id, _idParent );
+                        } else {
+                            toastr.error(resObject.error);
+                        }
+                    }
+                });
+            }
+        })
+
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<?php include_once 'views/admin/layout/' . $this->layout . 'footer.php'; ?>

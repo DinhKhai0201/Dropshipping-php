@@ -194,7 +194,7 @@ a#dell.btn.btn-danger {
       overflow: auto;
   }
   .categories-management ul li{
-    height: 42px;
+    /* height: 42px; */
     line-height: 42px;
     position: relative;
     padding-left: 10px;
@@ -232,6 +232,18 @@ a#dell.btn.btn-danger {
     position: absolute;
     right: 10px;
     color: red;
+  }
+
+  .categories-management ul li .cate_name{
+      display: inline-block;
+      line-height: 2;
+      padding-right: 50px;
+  }
+
+  #myModal #btn-submit {
+    width: 140px;
+    margin: 0 auto;
+    padding: 4px;
   }
   
   .categories-management ul li::after{

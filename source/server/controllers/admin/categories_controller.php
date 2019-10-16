@@ -1,26 +1,93 @@
 <?php
 class categories_controller extends vendor_backend_controller
 {
-	public function all() {
+	public function index() {
 		global $app;
-		$conditions = "";
+		$category = new category_type_model();
 
-		if(isset($app['prs']['status'])){
-			$status = $app['prs']['status'];
-			$conditions .= (($conditions)? " AND ":"")." status=".($status=='active'?1:0);
-		}
-		
-		if(isset($app['prs']['search'])){
-			$conditions .= (($conditions)? " AND ":"").
-			" name like '%".$app['prs']['search']."%' OR ".
-			" slug like '%".$app['prs']['search']."%' OR".
-			" id like '%".$app['prs']['search']."%'";
-		}
-
-		$category = new category_model();
-		$this->records = $category->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
+		$this->level1= $category->getAllCategory(1);
+		$this->level2= $category->getAllCategory(2);
+		$this->level3= $category->getAllCategory(3);
+		$this->level4= $category->getAllCategory(4);
 		$this->display();
 	}
+
+	public function GUID() {
+		return strtoupper(bin2hex(openssl_random_pseudo_bytes(16)));
+	}
+
+	public function addCate(){
+		$_POST['id'] = $this->GUID();
+		if ($_POST['rankingNo'] == '') {
+			$_POST['rankingNo'] = 0;
+		}
+		$cate = new category_type_model();
+		// echo "Start <br/>"; echo '<pre>'; print_r($cate->addRecord($_POST));echo '</pre>';exit("End Data");
+		if($cate->addRecord($_POST)){
+			$data = [
+				'status' => 1,
+				'id' => $_POST['id'],
+				'message' => 'Add category successfully!'
+			];
+			http_response_code(200);
+			echo json_encode($data);
+		} else {
+			$data = [
+				'status' => 0,
+				'error' => 'An error occurred when Add data!'
+			];
+			http_response_code(200);
+			echo json_encode($data);
+		}
+	} 
+
+	public function editCate(){
+		if ($_POST['rankingNo'] == '') {
+			$_POST['rankingNo'] = 0;
+		}
+
+		$cate = new category_type_model();
+		if($cate->editRecord($_POST['id'], $_POST)){
+
+			$data = [
+				'status' => 1,
+				'categoryName' => $_POST['categoryName'],
+				'rankingNo' => $_POST['rankingNo'],
+				'message' => 'Edit category successfully!'
+			];
+
+			http_response_code(200);
+			echo json_encode($data);
+		} else {
+			$data = [
+				'status' => 0,
+				'error' => 'An error occurred when Edit data!'
+			];
+			http_response_code(200);
+			echo json_encode($data);
+		}
+	} 
+
+	public function deleteCate(){
+		$cate = new category_type_model();
+		if($cate->delRecord(  "'".$_POST['id']."'" )){
+			$data = [
+				'status' => 1,
+				'message' => 'Delete category successfully!'
+			];
+
+			http_response_code(200);
+			echo json_encode($data);
+		} else {
+			$data = [
+				'status' => 0,
+				'error' => 'An error occurred when Delete data!'
+			];
+			http_response_code(200);
+			echo json_encode($data);
+		}
+	} 
+
 	public function edit($id) {
 		$cm = new category_model();
 		$this->record = $cm->getRecord($id);
