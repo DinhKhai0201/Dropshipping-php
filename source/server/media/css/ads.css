@@ -1,0 +1,144 @@
+.ads1{
+    width:100%;
+    padding: 0 !important;
+    background: transparent;
+}
+
+.ads1-item{
+    width:100%;
+    height:300px;
+}
+
+.ads1-item img{
+    width:100%;
+    height:100%;    
+}
+.iw-job-detail.v2 .content-wrap {
+    padding-top: 0;
+
+}
+
+.iw-parallax-overlay2{
+    /*height: 400px;*/
+}
+
+.container2{
+    position: relative;
+    height: 400px;
+}
+
+.iw-parallax-overlay .ads-wrapper{
+    width: 60%;
+    margin: 0 auto;
+    height: 200px;
+    background: white;
+}
+
+.ads-top-item{
+    text-align: center;
+    height: 270px;
+    margin-top: 7px;
+    margin-bottom: 30px;;
+}
+
+/*.ads-top-item img{
+    height: 270px;
+    width: auto;
+}*/
+.ads-top-item img{
+    /*height: auto;*/
+    /* height: 270px;
+    width: 100%; */
+
+    height: auto;
+    width: auto;
+    max-width: 1170px !important;
+    max-height: 270px !important;
+}
+
+.ads2-item, .ads3-item, .ads4-item{
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.ads2-item img, .ads3-item img, .ads4-item img{
+    width: auto;
+    height: 300px;
+
+}
+
+.ads-right-home{
+    overflow: hidden;
+    border-radius: 7px;
+    max-height: 300px;
+}
+.ads1-item-right-home{
+    height: unset;
+    max-height: 300px;
+}
+.ads1-item-right-home img{
+    height: 300px !important;
+}
+
+.nha-tuyen-dung{
+    border-radius: 7px;
+    background-color: white;
+    margin-top: 10px;
+    height: 250px;
+}
+
+.nha-tuyen-dung h5{
+    padding: 15px;
+    border-bottom: 1px solid burlywood;
+}
+
+.nha-tuyen-dung .company-list{
+    height: 170px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.nha-tuyen-dung .company-list .item{
+    height: 60px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.nha-tuyen-dung .company-list .item a.logo-company{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.nha-tuyen-dung .company-list .item a.logo-company img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.bot_ads #myCarousel-tourtype{
+    background: #fff;
+    padding: 20px 5px;
+    margin-bottom: 20px;
+}
+.bot_ads .item-ads-company, .header_ads .item-ads-company{
+    padding: 0 5px;
+}
+.top_ads{
+    margin-top:-86px;
+}
+
+.header_ads #myCarousel-header{
+    background: #fff;
+    padding: 15px;
+}
+@media only screen and (max-width: 640px){
+    .container2{
+        height: 100px;
+    }
+}

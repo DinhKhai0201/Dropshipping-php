@@ -1,0 +1,214 @@
+.employer-logo-border{
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    vertical-align: middle;
+
+    margin: auto;
+    /* display: flex; */
+    height: 80%;
+    width: 80%;
+    padding: 5px;
+    /* max-width: 140px;
+    max-height: 140px; */
+}
+.employer-logo-border img{
+    margin: auto;  /* Magic! */
+    max-width: 80%;
+    max-height: 80%;
+}
+.item-job-left{
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+.item-job-left:hover{
+    -webkit-box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25);
+    box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25);
+}
+.item-job-left .job-item{
+    padding: 15px 0 5px 25px !important;
+}
+.item-job-left .job-item .job-image{
+    max-width: 80px;
+    margin-right: 10px;
+}
+
+.item-job-left .job-item .job-info{
+    padding-right: 50px;
+}
+.item-job-left .job-item .job-title-narrow{
+    margin-bottom: 0px;
+}
+.item-job-left .info-company-name{
+    width: 55%;
+}
+.item-job-left .info-company-created{
+    /* width: 111%; */
+}
+.item-job-left .info-company-district{
+    width: 30%;
+}
+.item-job-left .info-company-salary{
+    width: 25%;
+}
+.item-job-left .info-company-deadline{
+    /* width: 111%; */
+}
+
+/* right job employers */
+.item-job-right{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.item-job-right .content-bottom{
+    margin-top: -10px;
+}
+.item-job-right .content-bottom .dollar{
+    color: #fc205c;
+    width: 40%;
+    float: left;
+}
+
+.item-job-right .content-bottom .deadline{
+    width: 50%;
+    float: left;
+}
+
+.other-job{
+    margin-bottom: 0 !important;
+}
+
+.job-item-view-same-e{
+    height: 80px;
+    border: 1px solid hsla(0,0%,93%,.8) !important;
+    margin-bottom: 4px;
+}
+.job-item-view-same-e:hover{
+    box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.564);
+}
+.job-item-view-same-e .job-item-view-same-e-logo{
+    width: 70px;
+    float: left;
+    padding: 5px;
+    text-align:center;
+}
+.job-item-view-same-e .job-item-view-same-e-logo img{
+    width: 100%;
+    heigth: auto;
+    max-height: 70px;
+    margin: 0 auto;
+}
+.job-item-view-same-e .job-item-view-same-e-content{
+    width: calc(100% - 70px);
+    float: left;
+    padding: 5px;
+    text-align: left;
+
+}
+.job-item-view-same-e .job-item-view-same-e-content h5{
+    margin: 0;
+    margin-top: 7px;
+    margin-bottom: -3px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+li{
+    list-style: none;
+}
+
+.iwj-employer-detail.v2{
+    padding-top: 120px;
+}
+
+.breadcrumbs-companies .container .breadcrumbs{
+    background: white;
+    border-radius: 4px;
+    min-height: 50px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.breadcrumbs-companies .container .breadcrumbs>li>a, .breadcrumbs-companies .container .breadcrumbs>li, .breadcrumbs-companies .container .breadcrumbs>li>i{
+    color: black !important;
+}
+
+.modal-view-candidate .modal-dialog{
+    width: 70%;
+    min-width: 300px;
+}
+.modal-view-candidate .table-view-candidate tbody tr td{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+/*end right job employers */
+
+@media only screen and (max-width: 640px){
+    .item-job-left .info-company-name{
+        display: none;
+    }
+    .item-job-left .info-company-created{
+        width: 100%;
+    }
+    .item-job-left .info-company-district{
+        width: 100%;
+    }
+    .item-job-left .info-company-salary{
+        width: 100%;
+    }
+    .item-job-left .info-company-deadline{
+        width: 100%;
+    }
+
+    /* start employer view */
+    .employer-container{
+        border: 1px solid red;
+        /* padding-top: 150px !important; */
+    }
+    .employer-container .content-right{
+        text-align: center;
+    }
+    .iwj-employer-detail .employer-detail-v2 .follow-button{
+        margin: 0 auto !important;
+    }
+    .iwj-employerdl-content .bxslider{
+        padding: 0;
+    }
+    .employer-info-top{
+        margin-bottom: 0 !important;
+    }
+    .employer-container .employer-logo-border{
+       max-width: 100px;
+       max-height: 100px;
+       margin: 0 auto !important;
+    }
+    .iwj-employer-detail .employer-detail-v2 h3.title{
+        font-size: 20px;
+    }
+    /* end employer view */
+    .item-job-left .job-item .job-info{
+        padding-left: 90px !important;;
+        padding-right: 0 !important;
+    }
+    .modal-view-candidate .modal-dialog{
+        width: calc(100% - 20px);
+    }
+}
+.ShowApplicant{
+    position: relative;
+}
+.Notify-Cicle{
+    display: block;
+    min-width: 25px;
+    height:25px;
+    position: absolute;
+    top:-14px;
+    border: solid 1px white;
+    border-radius: 50%;
+    right: -10px;
+    background-color: #ff5900;
+    color: white;
+    line-height: 22px;
+    font-size: 15px;
+}

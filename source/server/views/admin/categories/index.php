@@ -11,7 +11,6 @@ global $app;
     var nocurp = parseInt(<?php echo $this->records['nocurp']; ?>);
     var curp = parseInt(<?php echo $this->records['curp']; ?>);
     var nopp = parseInt(<?php echo $this->records['nopp']; ?>);
-
 </script>
 
 <?php vendor_html_helper::contentheader('Categories <small>management</small>', [['urlp' => ['ctl' => $app['ctl'], 'act' => $app['act']]]]); ?>
@@ -19,7 +18,7 @@ global $app;
 <br />
 <section class="content-header">
 
-    <div class="row categories-management" >
+    <div class="row categories-management">
         <div class="col-md-3 col-sm-12 col-xs-12 bd-r">
             <ul class="level level-1" level="1">
             </ul>
@@ -91,7 +90,7 @@ global $app;
                                 <input class="form-control" type="number" name="ranking" placeholder="" value="0" data-validation="length alphanumeric" data-validation-length="min3" required />
                             </div>
                         </div>
-                      
+
                         <div class="col-12 ta-center">
                             <div class="btn-150">
                                 <button id="btn-submit" class="btn btn-block btn-rounded btn-success btn-lg">
@@ -122,12 +121,12 @@ global $app;
     var level2 = <?php echo json_encode($this->level2) ?>;
     var level3 = <?php echo json_encode($this->level3) ?>;
     var level4 = <?php echo json_encode($this->level4) ?>;
-    
+
     var categoriesData = {
-        'level1' : level1 ? level1 : [],
-        'level2' : level2 ? level2 : [],
-        'level3' : level3 ? level3 : [],
-        'level4' : level4 ? level4 : [],
+        'level1': level1 ? level1 : [],
+        'level2': level2 ? level2 : [],
+        'level3': level3 ? level3 : [],
+        'level4': level4 ? level4 : [],
     };
     var idLevel1Active = '';
     var idLevel2Active = '';
@@ -142,20 +141,20 @@ global $app;
 </script>
 <script>
     $(document).ready(function() {
-        init();   
+        init();
 
-        function updateCate (level, _id, categoryName, rankingNo ) {
-            categoriesData[level] && categoriesData[level].map(val => {  
-                if ( val.id == _id) {
+        function updateCate(level, _id, categoryName, rankingNo) {
+            categoriesData[level] && categoriesData[level].map(val => {
+                if (val.id == _id) {
                     val.categoryName = categoryName;
                     val.rankingNo = rankingNo;
                 }
             });
-        } 
+        }
 
         function delCate(level, lev, _id, _idParent) {
-            categoriesData[level] && categoriesData[level].map((val, key) => {  
-                if ( val.id == _id) {
+            categoriesData[level] && categoriesData[level].map((val, key) => {
+                if (val.id == _id) {
                     categoriesData[level].splice(key, 1);
                 }
             });
@@ -164,7 +163,7 @@ global $app;
                 if (item2.parentId == _idParent) return true;
                 return false;
             })[0] ? true : false;
-            
+
             if (!haschild && _idParent != '') {
                 $(`#${_idParent}`).removeClass('haschild');
                 $(`#${_idParent}`).append('<span class="delete">X</span>');
@@ -308,7 +307,7 @@ global $app;
                 return;
             }
             // console.log("222222", _level, _idParent, rankingNo, categoryName );
-            
+
             if (isAdd) {
                 $.ajax({
                     url: rootUrl + 'admin/categories/addCate',
@@ -323,15 +322,15 @@ global $app;
                     success: function(data) {
                         var resObject = JSON.parse(data);
                         if (resObject.status == 1) {
-                            var datadd = { 
-                                level: _level, 
-                                parentId: _idParent, 
-                                id: resObject.id, 
+                            var datadd = {
+                                level: _level,
+                                parentId: _idParent,
+                                id: resObject.id,
                                 rankingNo,
                                 categoryName,
                                 status: 'active'
                             }
-                            let  html = `
+                            let html = `
                                     <li class="" id="${resObject.id}" level='${_level}'>
                                         <span class="cate_name">${categoryName}</span>
                                         <span class="edit" id="${resObject.id}" rankingNo="${rankingNo}" level='${_level}' data-toggle="modal" data-target="#myModal">Edit</span>
@@ -341,7 +340,7 @@ global $app;
                             categoriesData[`level${_level}`].push(datadd);
                             $(`.level-${_level}`).append(html);
                             $('#myModal').trigger('click');
-                            let haschild = ( _idParent != '' && $(`#${_idParent}`).attr('class') == "haschild active") ? true : false;
+                            let haschild = (_idParent != '' && $(`#${_idParent}`).attr('class') == "haschild active") ? true : false;
                             if (!haschild && _idParent != '') {
                                 $(`#${_idParent}`).addClass("haschild");
                                 $(`#${_idParent} .delete`).remove();
@@ -371,11 +370,11 @@ global $app;
                             ${haschild?'':'<span class="delete">X</span>'}`
 
                             $(`#${_id}`).empty().append(html);
-                            updateCate( `level${_level}`, _id, categoryName, rankingNo);
+                            updateCate(`level${_level}`, _id, categoryName, rankingNo);
 
                             $('#myModal').trigger('click');
                             toastr.success("Successfully updated");
-                         
+
                         } else {
                             toastr.error(resObject.error);
                         }
@@ -404,7 +403,7 @@ global $app;
                         var resObject = JSON.parse(data);
                         if (resObject.status == 1) {
                             $(`#${id}`).remove();
-                            delCate(`level${_level}`, _level, id, _idParent );
+                            delCate(`level${_level}`, _level, id, _idParent);
                         } else {
                             toastr.error(resObject.error);
                         }

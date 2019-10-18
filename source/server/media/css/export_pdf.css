@@ -1,0 +1,75 @@
+.header-modal{
+    margin-bottom: 20px;
+    background: rgb(243, 180, 0);
+}
+.crop-modal-content {
+    background-color: #fefefe;
+    margin: 30px auto;
+    border: 1px solid #888;
+}
+.mainDetails{
+    padding: 25px 35px;
+
+}
+#headshot{
+    width: 12.5%;
+    float: left;
+    margin-right: 30px;
+}
+.mainDetails #name{
+    float: left;
+}
+.mainDetails #name h1{
+    font-weight: 700;
+    margin-bottom: -6px;
+    font-size: 34px;
+    color: #fff;
+    margin-top: -14px;
+}
+.mainDetails #name h2{
+    margin-left: 2px;
+    font-size: 16px;
+    margin-top: 3px;
+    color: #fff;
+}
+#mainArea{
+    padding: 0 40px;
+    padding-bottom: 60px;
+}
+#mainArea section{
+    padding: 0px;
+}
+.sectionTitle {
+    float: left;
+    width: 25%;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.sectionContent {
+    float: right;
+    width: 72.5%;
+}
+
+.sectionContent h2 {
+    margin: 0px;
+    margin-bottom: -2px;
+    font-weight: bold;
+    font-size: 16px;
+    display: inline-block;
+}
+.modal-backdrop.fade.in{
+    z-index: -1;
+}
+.exportcv_pdf{
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+}
+.keySkills {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    color: #444;
+}

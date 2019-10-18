@@ -1,0 +1,225 @@
+.form-search-candidate{
+    background: rgb(47, 63, 70) !important;
+    border-radius: 6px;
+}
+#search-form-candidate{
+    margin-top: 50px !important;
+}
+.form-search-candidate.v2{
+    background: rgba(0, 0, 0, 0.38) !important;
+}
+.candidate-loading{
+    position: absolute;
+    z-index: 9998;
+    background: rgba(0,0,0,0);
+    width: 10%;
+    height: 10%;
+    top: 40%;
+    right: 40%;
+    text-align: center;
+}
+.list-candidates{
+    /* border: 1px solid red; */
+}
+.list-candidates .card-candidate{
+    /* border: 1px solid green !important; */
+    padding: 5px;
+}
+.list-candidates .card-candidate .card-candidate-content{
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #eee;
+}
+.list-candidates .card-candidate .card-candidate-content:hover{
+    -webkit-box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25);
+    box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25);
+}
+
+.list-candidates .card-candidate .card-candidate-content img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    float: left;
+    margin: 0 10px;
+}
+.list-candidates .card-candidate .card-candidate-content .content{
+    width: calc( 100% - 90px);
+    float: left;
+
+}
+.list-candidates .card-candidate .card-candidate-content .content .line{
+    line-height: 18px;
+    /*margin-bottom: -5px;*/
+    padding: 0 10px;
+
+}
+.modal-candidate .modal-dialog{
+    top: 10%;
+    width: 80%;
+    min-width: 300px;
+}
+.modal-candidate .modal-dialog .modal-header{
+    background:  rgb(47, 63, 70);
+}
+.modal-candidate .modal-dialog .modal-body{
+
+}
+
+.candidate-css-language .select2-selection--multiple{
+    min-width: 100px;
+}
+
+.candidate-css-language .text{
+    color: white !important;
+}
+
+.candidate-css-language .select2-selection--multiple ::placeholder, .candidate-css-language .select2-selection--multiple ::-ms-input-placeholder, .candidate-css-language .select2-selection--multiple :-ms-input-placeholder{
+    color: black;
+}
+.form-candidate-view{
+    background: rgba(0, 0, 0, 0.38); 
+    position:absolute; 
+    top: 200px; 
+    z-index: 10;
+}
+
+.candidate-item-search .job-item{
+    padding-bottom: 0;
+    font-family: "Arial";
+}
+.candidate-item-search .job-item:hover{
+    -webkit-box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25) !important;
+    -moz-box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25) !important;
+    box-shadow: 0px -1px 6px 1px rgba(0,0,0,0.25) !important;
+}
+
+.item-candidate .left{
+    width: 150px;
+    text-align: center;
+    float: left;
+    height: 80px;
+}
+.item-candidate .left img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #F6F7F9;
+}
+
+.item-candidate .text-detail, .item-candidate .text-detail.title, .item-candidate .center .name, .item-candidate .center .text-detail{
+    font-family: "Arial";
+}
+
+.item-candidate .text-detail{
+    margin: 0;
+    font-size: 14px;
+}
+.item-candidate .center{
+    float: left;
+    width: calc(100% - 400px);
+}
+
+.item-candidate .text-detail.title{
+    color: #0091ce;
+    font-weight: bold;
+}
+.item-candidate .center .name{
+    font-size: 15px;
+    line-height: 1.5;
+    color: #f16e8e;
+}
+
+.item-candidate .center .text-detail{
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.item-candidate .right{
+    width: 250px;
+    float: left;
+}
+.item-candidate .right{
+    text-align: right;
+}
+
+.candidate-top{
+    margin-top: -84px;
+}
+.candidate-top .iwj-find-jobs{
+    margin-top: 88px;
+}
+
+.breadcrumbs-candidate{
+}
+
+.breadcrumbs-candidate .container .breadcrumbs{
+    background: white;
+    border-radius: 4px;
+    min-height: 50px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.breadcrumbs-candidate .container .breadcrumbs>li>a, .breadcrumbs-candidate .container .breadcrumbs>li, .breadcrumbs-candidate .container .breadcrumbs>li>i{
+    color: black !important;
+
+}
+
+ .job-detail-about.cv-admin {
+    padding: 0px !important;
+}
+ .job-detail-about.cv-admin>div {
+    padding: 0px !important;
+    border-bottom: 1px #f6f7f9 solid;
+}
+.job-detail-content.cv-admin {
+    padding: 0px !important;
+}
+
+@media only screen and (max-width: 640px) {
+
+    .item-candidate .left{
+        width: 100px;
+        height: unset;
+    
+    }
+    .item-candidate .center{
+        float: left;
+        width: 100%;
+        height: unset;
+    }
+    .item-candidate .center .name{
+        margin-bottom: 0;
+    }
+
+    
+    .item-candidate .right{
+        width: 100%;
+        height: unset;
+        text-align: left;
+
+    }
+    .hide-on-mobile{
+        display: none;
+    }
+    .relative-in-mobile{
+        position: relative !important;
+    }
+
+    .candidate-top{
+        margin-top: 0 !important;
+    }
+    .candidate-top .iwj-find-jobs{
+        margin-top: 0 !important;
+    }
+    .candidate-wrapper{
+        margin-top: 0 !important;
+    }
+    .candidate-main{
+        margin-top: 100px;
+    }
+    #search-form-candidate{
+        margin-top: 0 !important;
+    }
+}

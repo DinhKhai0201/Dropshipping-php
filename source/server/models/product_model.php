@@ -10,10 +10,10 @@ class product_model extends vendor_pagination_model
 	public function rules() {
 		global $app;
 	    return [
-        	'title' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'quality' => ['required', 'string'],
-        	'price' => ['required', 'int'],
+        	// 'name' => ['required', 'string'],
+            // 'description' => ['required', 'string'],
+            // 'quantity' => ['required', 'string'],
+        	// 'price' => ['required', 'int']
 	    ];
 	}
 	protected $relationships = [
@@ -25,7 +25,7 @@ class product_model extends vendor_pagination_model
 			['order_item',	'key'=>'product_id', 'on_del'=>true]
 		],
 		'belongTo' => [
-			['category','key'=>'category_id'],
+			['category_type','key'=>'category_type_id'],
 			['store','key'=>'store_id'],
 			['brand','key'=>'brand_id']
 		]

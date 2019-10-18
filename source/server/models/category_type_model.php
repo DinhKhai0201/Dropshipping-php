@@ -16,12 +16,13 @@ class category_type_model extends vendor_pagination_model
 
 	protected $relationships = [
 		'hasMany'	=>	[
-			['product',	'key'=>'category_id', 'on_del'=>true],
+			['product',	'key'=>'category_id'],
 		],
 	];
 	
 	public function getAllCategory($level)
 	{
+		$records['data'] = [];
 		$recordsCategories = $this->getAllRecords('*',['conditions'=>'category_types.level='.$level, 'joins'=>'', 'order'=>'id ASC']);
 		if($recordsCategories) {
 			while($row = $recordsCategories->fetch_assoc()) {

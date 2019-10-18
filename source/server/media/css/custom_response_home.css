@@ -1,0 +1,24 @@
+@media (max-width: 1200px){
+    .iwj-find-jobs form{
+        width: 95% !important;
+    }
+    .vc_column_container>.vc_column-inner{
+        padding-right: 0px !important;
+    }
+    .header.header-default.v6 .navbar-default .navbar-nav>li>a{
+        padding-right:5px !important;
+    }
+    h1.iw-logo.float-left {
+    	width: 250px !important;
+    }
+    .tp-forcenotvisible{
+        visibility:hidden !important;
+        display:none !important
+    }
+} 
+
+@media (min-width: 1600px){
+    h1.iw-logo.float-left {
+    	max-width: 250px !important;
+	} 
+}

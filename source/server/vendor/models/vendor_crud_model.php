@@ -212,7 +212,6 @@ class vendor_crud_model extends vendor_main_model {
 		}
 		if($conditions)	$conditions = ' and '.$conditions;
 		$query = "UPDATE $this->table SET $setDatas WHERE id='$id'".$conditions;
-		// exit($query);
 		if(mysqli_query($this->con,$query))
 			return true;
 		else {
@@ -308,29 +307,29 @@ class vendor_crud_model extends vendor_main_model {
     		if(isset($rules[$field])) {
 	    		foreach ($rules[$field] as $rv) {
 	    			if(is_array($rv)) {
-	    				$validName = $rv[0];
+						$validName = $rv[0];
 	    				$rvv = (isset($rv['value']))?	$rv['value']:false;
 	    			} else {
-	    				$validName = $rv;
+						$validName = $rv;
 	    			}
-	    			$validFuncName = $validName.'Field';
+					$validFuncName = $validName.'Field';
 	    			if($validName == 'unique') {
 	    				if($editId===false)
 	    					$vlf = $this->{$validFuncName}($dv, $field);
 	    				else $vlf = $this->{$validFuncName}($dv, $field, $editId);
 	    			} 
 	    			else if($validName == 'matchPassword') {
-	    				$vlf = $this->{$validFuncName}($dv,$data['password']);
+						$vlf = $this->{$validFuncName}($dv,$data['password']);
 	    			}else if(isset($rvv) && $rvv) {
-	    			    $vlf = $this->{$validFuncName}($dv, $rvv);
+						$vlf = $this->{$validFuncName}($dv, $rvv);
 	    			} else {
-	    				$vlf = $this->{$validFuncName}($dv);
+						$vlf = $this->{$validFuncName}($dv);
 	    			}
 	    			if(!$vlf['status']) {
 	    				$rs['status']=false;
 						$errMessages[$field][$validName] = $vlf['message'];
 	    				$rs['message'][$field] = $errMessages[$field];
-	    			}
+					}
 	    		}
 	    	}
 		}

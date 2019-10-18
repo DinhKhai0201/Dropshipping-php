@@ -54,7 +54,7 @@
             </li>
           </ul>
         </li>
-        <!-- <li class="treeview <?=($app['ctl']=='orders')? 'active menu-open':'';?>">
+        <li class="treeview <?=($app['ctl']=='orders')? 'active menu-open':'';?>">
           <a href="#">
           <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> <span>Order</span>
             <span class="pull-right-container">
@@ -73,7 +73,7 @@
               </a>
             </li>
           </ul>
-        </li> -->
+        </li>
         <li class="treeview <?=($app['ctl']=='coupons')? 'active menu-open':'';?>">
           <a href="#">
           <i class="fa fa-check-square-o" aria-hidden="true"></i> <span>Coupons</span>
