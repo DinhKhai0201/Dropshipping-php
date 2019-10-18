@@ -9,7 +9,6 @@ class category_type_model extends vendor_pagination_model
 	public function rules() {
 		global $app;
 	    return [
-        	'id' => ['required', 'unique', 'string', ['max', 'value'=>100]],
         	'categoryName' 	=> ['required', 'unique', 'string', ['max', 'value'=>255]],
 	    ];
 	}

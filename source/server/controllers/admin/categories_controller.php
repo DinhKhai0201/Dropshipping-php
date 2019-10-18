@@ -12,21 +12,18 @@ class categories_controller extends vendor_backend_controller
 		$this->display();
 	}
 
-	public function GUID() {
-		return strtoupper(bin2hex(openssl_random_pseudo_bytes(16)));
-	}
 
 	public function addCate(){
-		$_POST['id'] = $this->GUID();
 		if ($_POST['rankingNo'] == '') {
 			$_POST['rankingNo'] = 0;
 		}
 		$cate = new category_type_model();
 		// echo "Start <br/>"; echo '<pre>'; print_r($cate->addRecord($_POST));echo '</pre>';exit("End Data");
-		if($cate->addRecord($_POST)){
+		$id = $cate->addRecord($_POST);
+		if($id){
 			$data = [
 				'status' => 1,
-				'id' => $_POST['id'],
+				'id' => $id,
 				'message' => 'Add category successfully!'
 			];
 			http_response_code(200);
