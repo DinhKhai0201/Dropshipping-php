@@ -82,6 +82,7 @@ global $app;
                             <div class="form-group">
                                 <label for="">Category name (*): </label>
                                 <input class="form-control" type="text" name="name" placeholder="Name" data-validation="length alphanumeric" data-validation-length="min3" required />
+                                <span style="display:none" class="error_cate">Category name is required!</span>
                             </div>
                         </div>
                         <div class="col-sm-12 ">
@@ -277,7 +278,7 @@ global $app;
             _idParent = '';
             _rankingNo = $(this).attr('rankingNo');
             _name = $(this).parent().find('span').first().html();
-
+            $('.error_cate').removeClass('active');
             $("input[name=name]").val(_name);
             $("input[name=ranking]").val(_rankingNo);
             $('.level-number').html(_level);
@@ -290,6 +291,7 @@ global $app;
             $('.level-number').html(_level);
             $("input[name=name]").val('');
             $("input[name=ranking]").val(0);
+            $('.error_cate').removeClass('active');
             $('#btn-submit').html("Add");
             if (_level === 2) _idParent = idLevel1Active;
             else if (_level === 3) _idParent = idLevel2Active;
@@ -301,7 +303,10 @@ global $app;
         $('#btn-submit').on('click', function() {
             let rankingNo = $("input[name=ranking]").val();
             let categoryName = $("input[name=name]").val();
-
+            if (categoryName == "") {
+                $('.error_cate').addClass('active');
+                return;
+            }
             // console.log("222222", _level, _idParent, rankingNo, categoryName );
             
             if (isAdd) {

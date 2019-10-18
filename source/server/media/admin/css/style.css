@@ -245,6 +245,11 @@ a#dell.btn.btn-danger {
     margin: 0 auto;
     padding: 4px;
   }
+
+  #myModal .error_cate.active {
+    display: block !important;
+    color:red;
+  }
   
   .categories-management ul li::after{
   
