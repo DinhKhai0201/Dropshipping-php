@@ -9,8 +9,7 @@
 --
 
 CREATE TABLE `category_types` (
-  `_id` int(11) NOT NULL,
-  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '1',
   `parentId` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `rankingNo` int(11) DEFAULT '0',
@@ -26,7 +25,7 @@ CREATE TABLE `category_types` (
 -- Chỉ mục cho bảng `category_types`
 --
 ALTER TABLE `category_types`
-  ADD PRIMARY KEY (`_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -36,4 +35,4 @@ ALTER TABLE `category_types`
 -- AUTO_INCREMENT cho bảng `category_types`
 --
 ALTER TABLE `category_types`
-  MODIFY `_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
