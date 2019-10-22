@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Create New Customer Account</title>
+    <meta name="description" content="Default Description" />
+    <meta name="keywords" content="Magento, Varien, E-commerce" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/favicon.ico"
+        type="image/x-icon" />
+    <link rel="shortcut icon" href="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/favicon.ico"
+        type="image/x-icon" />
+
+    <link rel="stylesheet"
+        href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;v1&amp;subset=latin%2Clatin-ext"
+        type="text/css" media="screen" />
+    <link href='//fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css' />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://www.portotheme.com/magento/porto/media/css_secure/f88342096cf89fd57d043d509d14e567.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://www.portotheme.com/magento/porto/media/css_secure/547e84431fe9b42aa18517c8a4ceaaea.css"
+        media="all" />
+    <link rel="stylesheet" type="text/css"
+        href="https://www.portotheme.com/magento/porto/media/css_secure/9c353ad7c3c57ca26c5f27068d2cafe5.css"
+        media="print" />
+    <script type="text/javascript"
+        src="https://www.portotheme.com/magento/porto/media/js/7b9d59d370fed5057a864c205a752a3b.js"></script>
+    <!--[if gt IE 7]>
+<link rel="stylesheet" type="text/css" href="https://www.portotheme.com/magento/porto/media/css_secure/ee45c18d16f53a02d10b1503b98e8963.css" media="all" />
+<![endif]-->
+    <!--[if lt IE 7]>
+<script type="text/javascript" src="https://www.portotheme.com/magento/porto/media/js/d1978c12d96f191206b23bbb1480c58f.js"></script>
+<![endif]-->
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="https://www.portotheme.com/magento/porto/media/js/fd99b9a1302e0a8a7bb0e01e72d4cb1a.js"></script>
+<![endif]-->
+
+    <script type="text/javascript">
+        //<![CDATA[
+        Mage.Cookies.path = '/magento/porto';
+        Mage.Cookies.domain = '.www.portotheme.com';
+//]]>
+    </script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        optionalZipCountries = ["HK", "IE", "MO", "PA"];
+//]]>
+    </script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var scrolled = false;
+            $(window).scroll(function () {
+                if (140 < $(window).scrollTop() && !scrolled) {
+                    if (!$('.header-container .menu-wrapper .mini-cart').length && !$('.header-container .menu-wrapper .sticky-logo').length) {
+                        $('.header-container').addClass("sticky-header");
+                        var minicart = $('.header-container .mini-cart').html();
+                        $('.header-container .menu-wrapper').append('<div class="mini-cart">' + minicart + '</div>');
+                        var logo_image = $('<div>').append($('.header-container .header > .logo').clone()).html();
+                        $('.header-container .menu-wrapper').prepend('<div class="sticky-logo">' + logo_image + '</div>');
+                        $('.header-container .header-wrapper > div').each(function () {
+                            if ($(this).hasClass("container")) {
+                                $(this).addClass("already");
+                            } else {
+                                $(this).addClass("container");
+                            }
+                        });
+                        scrolled = true;
+                    }
+                }
+                if (140 >= $(window).scrollTop() && scrolled) {
+                    $('.header-container').removeClass("sticky-header");
+                    $('.header-container .menu-wrapper .mini-cart').remove();
+                    $('.header-container .menu-wrapper > .sticky-logo').remove();
+                    $('.header-container.type15 .header > .logo img.sticky-logo-image').remove();
+                    $('.header-container.type15 .header > .logo img').removeClass("hide");
+                    scrolled = false;
+                    $('.header-container .header-wrapper > div').each(function () {
+                        if ($(this).hasClass("already")) {
+                            $(this).removeClass("already");
+                        } else {
+                            $(this).removeClass("container");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        if (typeof EM == 'undefined') EM = {};
+        EM.Quickview = {
+            QS_FRM_WIDTH: "1000",
+            QS_FRM_HEIGHT: "730"
+        };
+//]]
+    </script>
+    <script type="text/javascript">//<![CDATA[
+        var Translator = new Translate([]);
+        //]]></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        if (typeof dailydealTimeCountersCategory == 'undefined') {
+            var dailydealTimeCountersCategory = new Array();
+            var i = 0;
+        }
+//]]>
+    </script>
+    <!--Porto Magento Theme: v3.1.1-->
+</head>
+
+<body class=" customer-account-create">
+    <div class="wrapper">
+        <noscript>
+            <div class="global-site-notice noscript">
+                <div class="notice-inner">
+                    <p>
+                        <strong>JavaScript seems to be disabled in your browser.</strong><br />
+                        You must have JavaScript enabled in your browser to utilize the functionality of this website.
+                    </p>
+                </div>
+            </div>
+        </noscript>
+        <div class="page">
+            <div class="header-container type3 header-newskin">
+                <div class="top-links-container">
+                    <div class="top-links container">
+                        <div class="top-links-inner">
+                            <div class="form-currency top-select">
+                                <select id="select-currency" name="currency" title="Select Your Currency"
+                                    onchange="setLocation(this.value)">
+                                    <option
+                                        value="https://www.portotheme.com/magento/porto/index.php/demo4_en/directory/currency/switch/currency/EUR/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzRfZW4vY3VzdG9tZXIvYWNjb3VudC9jcmVhdGUv/">
+                                        EUR </option>
+                                    <option
+                                        value="https://www.portotheme.com/magento/porto/index.php/demo4_en/directory/currency/switch/currency/USD/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzRfZW4vY3VzdG9tZXIvYWNjb3VudC9jcmVhdGUv/"
+                                        selected="selected">
+                                        USD </option>
+                                </select>
+                                <script type="text/javascript">
+                                    (function ($) {
+                                        $("#select-currency").selectbox();
+                                    })(jQuery);
+                                </script>
+                            </div>
+                            <span class="split"></span>
+                            <div class="form-language top-select">
+                                <select id="select-language" title="Your Language"
+                                    onchange="window.location.href=this.value" style="width:auto;">
+                                    <option
+                                        value="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/create/?___from_store=demo4_en"
+                                        data-image="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/images/flags/demo4_en.png"
+                                        selected="selected">English</option>
+                                    <option
+                                        value="https://www.portotheme.com/magento/porto/index.php/demo4_sa/customer/account/create/?___from_store=demo4_en"
+                                        data-image="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/images/flags/demo4_sa.png">
+                                        Arabic</option>
+                                </select>
+                                <script type="text/javascript">
+                                    (function ($) {
+                                        $("#select-language").selectbox();
+                                    })(jQuery);
+                                </script>
+                            </div>
+                            <span class="split"></span>
+                            <div class="compare-link">
+                                <a href="javascript:void(0)"
+                                    onclick="popWin('https://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/index/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzRfZW4vY3VzdG9tZXIvYWNjb3VudC9jcmVhdGUv/','compare','top:0,left:0,width=820,height=600,resizable=yes,scrollbars=yes')"><i
+                                        class="icon-compare-link"></i>Compare (0)</a>
+                                <div class="compare-popup theme-border-color">
+                                    <p class="empty">You have no items to compare.</p>
+                                </div>
+                            </div>
+                            <div class="top-links-area">
+                                <div class="top-links-icon"><a href="javascript:void(0)">links</a></div>
+                                <ul class="links">
+                                    <li class="first"><a
+                                            href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/"
+                                            title="My Account">My Account</a></li>
+                                    <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/"
+                                            title="Daily deal">Daily deal</a></li>
+                                    <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/"
+                                            title="My Wishlist">My Wishlist</a></li>
+                                    <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/blog/"
+                                            title="Blog">Blog</a></li>
+                                    <li class=" last"><a
+                                            href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/login/"
+                                            title="Log In">Log In</a></li>
+                                </ul>
+                            </div>
+                            <p class="welcome-msg">Default welcome msg! </p>
+                            <div class="clearer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header container">
+                    <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/" title="Magento Commerce"
+                        class="logo"><strong>Magento Commerce</strong><img
+                            src="https://www.portotheme.com/magento/porto/skin/frontend/smartwave/porto/images/logo_white_new.png"
+                            alt="Magento Commerce" /></a>
+                    <div class="cart-area">
+                        <div class="custom-block"><i class="icon-phone-1"
+                                style="margin-right: 11px;font-size:30px;color:#40aee5;"></i><span
+                                style="margin-top:-2px;">CALL US NOW<br><b
+                                    style="color:#fff;font-size:18px;font-weight:600;display:block;line-height:27px;">+123
+                                    5678 890</b></span> </div>
+                        <div class="mini-cart">
+                            <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i
+                                    class="icon-mini-cart"></i><span class="cart-info"><span
+                                        class="cart-qty">0</span><span>Item(s)</span></span></a>
+                            <div class="topCartContent block-content theme-border-color">
+                                <div class="inner-wrapper">
+                                    <p class="cart-empty">
+                                        You have no items in your shopping cart. </p>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                jQuery(function ($) {
+                                    $('.mini-cart').mouseover(function (e) {
+                                        $(this).children('.topCartContent').fadeIn(200);
+                                        return false;
+                                    }).mouseleave(function (e) {
+                                        $(this).children('.topCartContent').fadeOut(200);
+                                        return false;
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="search-area">
+                        <a href="javascript:void(0);" class="search-icon"><i class="icon-search"></i></a>
+                        <form id="search_mini_form"
+                            action="//www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/result/"
+                            method="get">
+                            <div class="form-search ">
+                                <label for="search">Search:</label>
+                                <input id="search" type="text" name="q" class="input-text" />
+                                <select id="cat" name="cat">
+                                    <option value="">All Categories</option>
+                                    <option value="196">Fashion</option>
+                                    <option value="200">- Woman</option>
+                                    <option value="201">- Jewellery</option>
+                                    <option value="202">- Men</option>
+                                    <option value="203">- Kids Fashion</option>
+                                    <option value="197">Electronics</option>
+                                    <option value="198">Home & Garden</option>
+                                    <option value="307">Sports</option>
+                                    <option value="199">Motors</option>
+                                    <option value="218">- Cars and Trucks</option>
+                                    <option value="219">- Motorcycles & Powersports</option>
+                                    <option value="220">- Parts & Accessories</option>
+                                    <option value="221">- Auto Tools & Supplies</option>
+                                    <option value="308">Clothes</option>
+                                </select>
+                                <button type="submit" title="Search" class="button"><i class="icon-search"></i></button>
+                                <div id="search_autocomplete" class="search-autocomplete"></div>
+                                <div class="clearer"></div>
+                            </div>
+                        </form>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            var searchForm = new Varien.searchForm('search_mini_form', 'search', 'Search...');
+                            searchForm.initAutocomplete('https://www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/ajax/suggest/', 'search_autocomplete');
+//]]>
+                        </script>
+                    </div>
+                    <div class="menu-icon"><a href="javascript:void(0)" title="Menu"><i class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+                <div class="header-wrapper">
+                    <div class="main-nav">
+                        <div class="container">
+                            <div class="menu-wrapper">
+                                <div class="menu-all-pages-container">
+                                    <ul class="menu">
+
+
+
+
+
+
+
+
+                                        <li class="">
+                                            <a
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/"><span>Home</span></a>
+                                        </li>
+                                        <li class="menu-static-width">
+                                            <a
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/fashion.html/"><span>Categories</span></a>
+                                            <div class="nav-sublist-dropdown"
+                                                style="display: none; list-style: none; width: 610px;">
+                                                <div class="container">
+                                                    <div class="mega-columns row">
+                                                        <div class="block1 col-sm-8">
+                                                            <div class="sw-row">
+                                                                <ul>
+                                                                    <li class="menu-item menu-item-has-children menu-parent-item col-sw-2"
+                                                                        style="list-style: none;">
+                                                                        <a class="level1" href="javascript:void(0)"
+                                                                            style="pointer-events: none;"><span>Variations
+                                                                                1</span></a>
+                                                                        <div class="nav-sublist level1">
+                                                                            <ul>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/electronics.html"><span>Fullwidth
+                                                                                            Banner</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_old_en/fashion.html"><span>Boxed
+                                                                                            Slider Banner</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Boxed
+                                                                                            Image Banner</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Left
+                                                                                            Sidebar</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo11_en/electronics/cameras.html"><span>Right
+                                                                                            Sidebar</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo17_en/fashion.html"><span>Product
+                                                                                            Flex Grid</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/porto-product-list-types/"><span>Product
+                                                                                            List Item Types</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="menu-item menu-item-has-children menu-parent-item col-sw-2"
+                                                                        style="list-style: none;">
+                                                                        <a class="level1" href="javascript:void(0)"
+                                                                            style="pointer-events: none;"><span>Variations
+                                                                                2</span></a>
+                                                                        <div class="nav-sublist level1">
+                                                                            <ul>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Ajax
+                                                                                            Infinite Scroll</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo14_en/fashion.html"><span>3
+                                                                                            Columns Products</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>4
+                                                                                            Columns Products</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo13_en/fashion.html"><span>5
+                                                                                            Columns Products</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo16_en/fashion.html"><span>6
+                                                                                            Columns Products</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo13_old_en/fashion.html"><span>7
+                                                                                            Columns Products</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo13_old_en/electronics.html"><span>8
+                                                                                            Columns Products</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-mega-block col-sm-4">
+                                                            <a href="#"><img
+                                                                    style="max-width:100%; width:100%;float:right;"
+                                                                    src="https://www.portotheme.com/magento/porto/media/wysiwyg/porto/megamenu/menu-banner-static-width2.jpg"
+                                                                    alt=""></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="menu-full-width">
+                                            <a
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-default.html/"><span>Products</span></a>
+                                            <div class="nav-sublist-dropdown" style="display: none; list-style: none;">
+                                                <div class="container">
+                                                    <div class="mega-columns row">
+                                                        <div class="block1 col-sm-8">
+                                                            <div class="sw-row">
+                                                                <ul>
+                                                                    <li class="menu-item menu-item-has-children menu-parent-item col-sw-3"
+                                                                        style="list-style: none;">
+                                                                        <a class="level1" href="javascript:void(0)"
+                                                                            style="pointer-events: none;"><span>Variations</span></a>
+                                                                        <div class="nav-sublist level1">
+                                                                            <ul>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Horizontal
+                                                                                            Thumbnails</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
+                                                                                            Thumbnails</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Inner
+                                                                                            Zoom</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo6_en/reason-logo-snapback.html"><span>Right
+                                                                                            Side Zoom</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo10_en/fashion/matte-browline-sunglasses.html"><span>Addtocart
+                                                                                            Sticky</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
+                                                                                            Tabs</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo9_en/fashion/men-sports-watch-m.html"><span>Accordion
+                                                                                            Tabs</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="menu-item menu-item-has-children menu-parent-item col-sw-3"
+                                                                        style="list-style: none;">
+                                                                        <a class="level1" href="javascript:void(0)"
+                                                                            style="pointer-events: none;"><span>Variations</span></a>
+                                                                        <div class="nav-sublist level1">
+                                                                            <ul>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/porto-evolution-headset-fullwidth.html"><span>Moved
+                                                                                            Tabs</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo8_en/product-type-fullwidth.html"><span>Sticky
+                                                                                            Tabs</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/classic-sunglasses.html/"><span>Simple
+                                                                                            Product</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/faux-leather-high-top-sneakers.html/"><span>Configurable
+                                                                                            Product</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/seiko-bundle.html/"><span>Bundle
+                                                                                            Product</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/women-jewellery.html/"><span>Grouped
+                                                                                            Product</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sample-downloadable.html/"><span>Downloadable
+                                                                                            Product</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="menu-item menu-item-has-children menu-parent-item col-sw-3"
+                                                                        style="list-style: none;">
+                                                                        <a class="level1" href="javascript:void(0)"
+                                                                            style="pointer-events: none;"><span>Page
+                                                                                Layout Types</span></a>
+                                                                        <div class="nav-sublist level1">
+                                                                            <ul>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-default.html/"><span>Default
+                                                                                            Layout</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-carousel.html/"><span>Extended
+                                                                                            Layout</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-fullwidth.html/"><span>Full
+                                                                                            Width Layout</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-grid.html/"><span>Grid
+                                                                                            Images Layout</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-left-right.html/"><span>Sticky
+                                                                                            Both Side Info</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-right.html/"><span>Sticky
+                                                                                            Right Side Info</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                                <li class="menu-item "
+                                                                                    style="list-style: none;">
+                                                                                    <a class="level2"
+                                                                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-wide-grid.html/"><span>Wide
+                                                                                            Grid Layout</span><span
+                                                                                            class="cat-label cat-label-label1">New</span></a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-mega-block col-sm-4">
+                                                            <a href="#"><img
+                                                                    style="max-width:100%; width:100%;padding-right:10px;padding-top:9px;float:right;"
+                                                                    src="https://www.portotheme.com/magento/porto/media/wysiwyg/porto/megamenu/menu-banner.jpg"
+                                                                    alt=""></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children menu-parent-item ">
+                                            <a href="javascript:void(0)"><span>Pages</span></a>
+                                            <div class="nav-sublist-dropdown" style="display: none;">
+                                                <div class="container">
+                                                    <ul>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/about-porto/"><span>About
+                                                                    Us</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/contacts/"><span>Contact
+                                                                    Us</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/blog/"><span>Blog</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/blog/post-format-image-gallery-2/"><span>Post</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/"><span>Shopping
+                                                                    Cart</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/"><span>Checkout</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/"><span>My
+                                                                    Account</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children menu-parent-item ">
+                                            <a href="javascript:void(0)">Features</a>
+                                            <div class="nav-sublist-dropdown" style="display: none;">
+                                                <div class="container">
+                                                    <ul>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/porto-header-types/"><span>Header
+                                                                    Types</span></a>
+                                                        </li>
+                                                        <li class="menu-item" style="list-style: none;">
+                                                            <a class="level1"
+                                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/porto-footer-types/"><span>Footer
+                                                                    Types</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="fl-right">
+                                            <a
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/">Special
+                                                Offer!</a>
+                                        </li>
+                                        <li class="fl-right">
+                                            <a
+                                                href="http://themeforest.net/item/porto-ecommerce-ultimate-magento-theme/9725864?license=regular&amp;open_purchase_for_item_id=9725864&amp;purchasable=source&amp;ref=ilistheme">Buy
+                                                Porto!</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <script type="text/javascript">
+                    var SW_MENU_POPUP_WIDTH = 0;
+                    jQuery(function ($) {
+                        $(document).ready(function () {
+                            $('.main-nav .menu').et_menu({
+                                type: "default",
+                                delayTime: 0
+                            });
+                        });
+                    });
+                </script>
+            </div>
+            <div class="mobile-nav side-block container">
+                <span class="close-sidebar-menu"><i class="icon-cancel"></i></span>
+                <div class="menu-all-pages-container">
+                    <ul class="menu">
+
+
+
+
+
+
+
+
+                        <li class="menu-item">
+                            <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/"><span>Home</span></a>
+                        </li>
+                        <li class="menu-item menu-item-has-children menu-parent-item">
+                            <a
+                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/fashion.html/"><span>Categories</span></a>
+                            <ul>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/electronics.html"><span>Fullwidth
+                                            Banner</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_old_en/fashion.html"><span>Boxed
+                                            Slider Banner</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Boxed
+                                            Image Banner</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Left
+                                            Sidebar</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo11_en/electronics/cameras.html"><span>Right
+                                            Sidebar</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo17_en/fashion.html"><span>Product
+                                            Flex Grid</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/porto-product-list-types/"><span>Product
+                                            List Item Types</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Ajax
+                                            Infinite Scroll</span><span
+                                            class="cat-label cat-label-label1">New</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo14_en/fashion.html"><span>3
+                                            Columns Products</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>4
+                                            Columns Products</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo13_en/fashion.html"><span>5
+                                            Columns Products</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo16_en/fashion.html"><span>6
+                                            Columns Products</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo13_old_en/fashion.html"><span>7
+                                            Columns Products</span></a>
+                                </li>
+                                <li class="menu-item " style="list-style: none;">
+                                    <a class="level2"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo13_old_en/electronics.html"><span>8
+                                            Columns Products</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children menu-parent-item">
+                            <a
+                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-default.html/"><span>Products</span></a>
+                            <ul>
+                                <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
+                                    <a class="level1" href="javascript:void(0)"><span>Variations</span></a>
+                                    <ul>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Horizontal
+                                                    Thumbnails</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
+                                                    Thumbnails</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Inner
+                                                    Zoom</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo6_en/reason-logo-snapback.html"><span>Right
+                                                    Side Zoom</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo10_en/fashion/matte-browline-sunglasses.html"><span>Addtocart
+                                                    Sticky</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
+                                                    Tabs</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo9_en/fashion/men-sports-watch-m.html"><span>Accordion
+                                                    Tabs</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
+                                    <a class="level1" href="javascript:void(0)"><span>Variations</span></a>
+                                    <ul>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo5_en/porto-evolution-headset-fullwidth.html"><span>Moved
+                                                    Tabs</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo8_en/product-type-fullwidth.html"><span>Sticky
+                                                    Tabs</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/classic-sunglasses.html/"><span>Simple
+                                                    Product</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/faux-leather-high-top-sneakers.html/"><span>Configurable
+                                                    Product</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/seiko-bundle.html/"><span>Bundle
+                                                    Product</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/women-jewellery.html/"><span>Grouped
+                                                    Product</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sample-downloadable.html/"><span>Downloadable
+                                                    Product</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
+                                    <a class="level1" href="javascript:void(0)"><span>Product Layout Types</span></a>
+                                    <ul>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-default.html/"><span>Default
+                                                    Layout</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-carousel.html/"><span>Extended
+                                                    Layout</span><span class="cat-label cat-label-label1">New</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-fullwidth.html/"><span>Full
+                                                    Width Layout</span><span
+                                                    class="cat-label cat-label-label1">New</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-grid.html/"><span>Grid
+                                                    Images Layout</span><span
+                                                    class="cat-label cat-label-label1">New</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-left-right.html/"><span>Sticky
+                                                    Both Side Info</span><span
+                                                    class="cat-label cat-label-label1">New</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-right.html/"><span>Sticky
+                                                    Right Side Info</span><span
+                                                    class="cat-label cat-label-label1">New</span></a>
+                                        </li>
+                                        <li class="menu-item " style="list-style: none;">
+                                            <a class="level2"
+                                                href="https://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-wide-grid.html/"><span>Wide
+                                                    Grid Layout</span><span
+                                                    class="cat-label cat-label-label1">New</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children menu-parent-item ">
+                            <a href="javascript:void(0)"><span>Pages</span></a>
+                            <ul>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/about-porto/"><span>About
+                                            Us</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/contacts/"><span>Contact
+                                            Us</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/blog/"><span>Blog</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/blog/post-format-image-gallery-2/"><span>Post</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/"><span>Shopping
+                                            Cart</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/"><span>Checkout</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/"><span>My
+                                            Account</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children menu-parent-item ">
+                            <a href="javascript:void(0)">Features</a>
+                            <ul>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/porto-header-types/"><span>Header
+                                            Types</span></a>
+                                </li>
+                                <li class="menu-item" style="list-style: none;">
+                                    <a class="level1"
+                                        href="https://www.portotheme.com/magento/porto/index.php/demo4_en/porto-footer-types/"><span>Footer
+                                            Types</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/">Special
+                                Offer!</a>
+                        </li>
+                        <li class="menu-item">
+                            <a
+                                href="http://themeforest.net/item/porto-ecommerce-ultimate-magento-theme/9725864?license=regular&amp;open_purchase_for_item_id=9725864&amp;purchasable=source&amp;ref=ilistheme">Buy
+                                Porto!</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="custom-block">
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/" title="Facebook" target="_blank"><i
+                                class="icon-facebook"></i></a>
+                        <a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                        <a href="https://instagram.com/" title="Linkedin" target="_blank"><i
+                                class="icon-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-nav-overlay close-mobile-nav"></div>
+            <script type="text/javascript">
+            </script>
+            <div class="main-container col1-layout">
+                <div class="main container">
+                    <div class="col-main">
+                        <div id="loading-mask">
+                            <div class="background-overlay"></div>
+                            <p id="loading_mask_loader" class="loader">
+                                <i class="ajax-loader large animate-spin"></i>
+                            </p>
+                        </div>
+                        <div id="after-loading-success-message">
+                            <div class="background-overlay"></div>
+                            <div id="success-message-container" class="loader">
+                                <div class="msg-box">Product was successfully added to your shopping cart.</div>
+                                <button type="button" name="finish_and_checkout" id="finish_and_checkout"
+                                    class="button btn-cart"><span><span>
+                                            Shopping Cart </span></span></button>
+                                <button type="button" name="continue_shopping" id="continue_shopping"
+                                    class="button btn-cart">
+                                    <span><span>
+                                            Continue </span></span></button>
+                            </div>
+                        </div>
+                        <script type='text/javascript'>
+                            jQuery('#finish_and_checkout').click(function () {
+                                try {
+                                    parent.location.href = 'https://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/';
+                                } catch (err) {
+                                    location.href = 'https://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/';
+                                }
+                            });
+                            jQuery('#continue_shopping').click(function () {
+                                jQuery('#after-loading-success-message').fadeOut(200);
+                                clearTimeout(ajaxcart_timer);
+                                setTimeout(function () {
+                                    jQuery('#after-loading-success-message .timer').text(ajaxcart_sec);
+                                }, 1000);
+                            });
+                        </script>
+                        <div class="account-create">
+                            <div class="page-title">
+                                <h1>Create an Account</h1>
+                            </div>
+                            <form
+                                action="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/createpost/"
+                                method="post" id="form-validate">
+                                <div class="fieldset">
+                                    <input type="hidden" name="success_url" value="" />
+                                    <input type="hidden" name="error_url" value="" />
+                                    <input type="hidden" name="form_key" value="4GqKe3kJ9P03KQMO" />
+                                    <h2 class="legend">Personal Information</h2>
+                                    <ul class="form-list">
+                                        <li class="fields">
+                                            <div class="customer-name">
+                                                <div class="field name-firstname">
+                                                    <label for="firstname" class="required"><em>*</em>First Name</label>
+                                                    <div class="input-box">
+                                                        <input type="text" id="firstname" name="firstname" value=""
+                                                            title="First Name" maxlength="255"
+                                                            class="input-text required-entry" />
+                                                    </div>
+                                                </div>
+                                                <div class="field name-lastname">
+                                                    <label for="lastname" class="required"><em>*</em>Last Name</label>
+                                                    <div class="input-box">
+                                                        <input type="text" id="lastname" name="lastname" value=""
+                                                            title="Last Name" maxlength="255"
+                                                            class="input-text required-entry" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="email_address" class="required"><em>*</em>Email Address</label>
+                                            <div class="input-box">
+                                                <input type="text" name="email" id="email_address" value=""
+                                                    title="Email Address"
+                                                    class="input-text validate-email required-entry" />
+                                            </div>
+                                        </li>
+                                        <li class="control">
+                                            <div class="input-box">
+                                                <input type="checkbox" name="is_subscribed"
+                                                    title="Sign Up for Newsletter" value="1" id="is_subscribed"
+                                                    class="checkbox" />
+                                            </div>
+                                            <label for="is_subscribed">Sign Up for Newsletter</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="fieldset">
+                                    <h2 class="legend">Login Information</h2>
+                                    <ul class="form-list">
+                                        <li class="fields">
+                                            <div class="field">
+                                                <label for="password" class="required"><em>*</em>Password</label>
+                                                <div class="input-box">
+                                                    <input type="password" name="password" id="password"
+                                                        title="Password"
+                                                        class="input-text required-entry validate-password" />
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <label for="confirmation" class="required"><em>*</em>Confirm
+                                                    Password</label>
+                                                <div class="input-box">
+                                                    <input type="password" name="confirmation" title="Confirm Password"
+                                                        id="confirmation"
+                                                        class="input-text required-entry validate-cpassword" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div id="window-overlay" class="window-overlay" style="display:none;"></div>
+                                    <div id="remember-me-popup" class="remember-me-popup" style="display:none;">
+                                        <div class="remember-me-popup-head">
+                                            <h3>What's this?</h3>
+                                            <a href="#" class="remember-me-popup-close" title="Close">Close</a>
+                                        </div>
+                                        <div class="remember-me-popup-body">
+                                            <p>Checking &quot;Remember Me&quot; will let you access your shopping cart
+                                                on this computer when you are logged out</p>
+                                            <div class="remember-me-popup-close-button a-right">
+                                                <a href="#" class="remember-me-popup-close button"
+                                                    title="Close"><span>Close</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        //<![CDATA[
+                                        function toggleRememberMepopup(event) {
+                                            if ($('remember-me-popup')) {
+                                                var viewportHeight = document.viewport.getHeight(),
+                                                    docHeight = $$('body')[0].getHeight(),
+                                                    height = docHeight > viewportHeight ? docHeight : viewportHeight;
+                                                $('remember-me-popup').toggle();
+                                                $('window-overlay').setStyle({ height: height + 'px' }).toggle();
+                                            }
+                                            Event.stop(event);
+                                        }
+
+                                        document.observe("dom:loaded", function () {
+                                            new Insertion.Bottom($$('body')[0], $('window-overlay'));
+                                            new Insertion.Bottom($$('body')[0], $('remember-me-popup'));
+
+                                            $$('.remember-me-popup-close').each(function (element) {
+                                                Event.observe(element, 'click', toggleRememberMepopup);
+                                            })
+                                            $$('#remember-me-box a').each(function (element) {
+                                                Event.observe(element, 'click', toggleRememberMepopup);
+                                            });
+                                        });
+//]]>
+                                    </script>
+                                </div>
+                                <div class="buttons-set">
+                                    <p class="required">* Required Fields</p>
+                                    <p class="back-link"><a
+                                            href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/login/"
+                                            class="back-link"><small>&laquo; </small>Back</a></p>
+                                    <button type="submit" title="Submit"
+                                        class="button"><span><span>Submit</span></span></button>
+                                </div>
+                            </form>
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                var dataForm = new VarienForm('form-validate', true);
+            //]]>
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-container ">
+                <div class="footer">
+                    <div class="footer-middle">
+                        <div class="container">
+                            <div class="footer-ribbon">
+                                <span>Get in touch</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="block">
+                                        <div class="block-title"><strong><span>Contact Information</span></strong></div>
+                                        <div class="block-content">
+                                            <ul class="contact-info" style="padding-top: 7px;">
+                                                <li>
+                                                    <p><b
+                                                            style="color: #fff;text-transform:uppercase;">Address</b><br />123
+                                                        Street Name, City, England</p>
+                                                </li>
+                                                <li>
+                                                    <p><b
+                                                            style="color: #fff;text-transform:uppercase;">Phone</b><br />(123)
+                                                        456-7890</p>
+                                                </li>
+                                                <li>
+                                                    <p><b
+                                                            style="color: #fff;text-transform:uppercase;">Email</b><br /><a
+                                                            href="mailto:mail@example.com">mail@example.com</a></p>
+                                                </li>
+                                                <li>
+                                                    <p><b style="color: #fff;text-transform:uppercase;">Working
+                                                            Days/Hours</b><br />Mon - Sun / 9:00AM - 8:00PM</p>
+                                                </li>
+                                            </ul>
+                                            <div class="social-icons" style="float:left;margin-top: 15px;">
+                                                <a href="https://www.facebook.com/" title="Facebook" target="_blank"><i
+                                                        class="fa fa-facebook" aria-hidden="true"></i></a>
+                                                <a href="https://twitter.com/" title="Twitter" target="_blank"><i
+                                                        class="fa fa-twitter" aria-hidden="true"></i></a>
+                                                <a href="https://linkedin.com/" title="Linkedin" target="_blank"><i
+                                                        class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="block" style="margin-bottom: 20px;">
+                                                <div class="block-title"><strong><span>BE THE FIRST TO
+                                                            KNOW</span></strong></div>
+                                                <div class="block-content">
+                                                    <p>Get all the latest information on Events, Sales and
+                                                        Offers.<br>Sign up for newsletter today.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="block-content"
+                                                style="margin-top: 33px;margin-bottom: 37px;width:100%;float:right;">
+                                                <form
+                                                    action="https://www.portotheme.com/magento/porto/index.php/demo4_en/newsletter/subscriber/new/"
+                                                    method="post" id="home-footer-newsletter-validate-detail"
+                                                    onsubmit="setNewsletterCookie()">
+                                                    <div class="input-box">
+                                                        <input type="text" name="email" id="newsletter-footer"
+                                                            title="Sign up for our newsletter"
+                                                            class="input-text required-entry validate-email"
+                                                            placeholder="Email Address" />
+                                                        <button type="submit" title="Subscribe"
+                                                            class="button"><span><span>Subscribe</span></span></button>
+                                                        <div class="clearer"></div>
+                                                    </div>
+                                                </form>
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    var homeFooterNewsletterValidateDetail = new VarienForm('home-footer-newsletter-validate-detail');
+    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="block-bottom">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="block">
+                                                            <div class="block-title"><strong><span>MY
+                                                                        ACCOUNT</span></strong></div>
+                                                            <div class="block-content">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul class="links">
+                                                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/about-porto/"
+                                                                                    title="About us">About us</a></li>
+                                                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/contact/"
+                                                                                    title="Contact Us">Contact us</a>
+                                                                            </li>
+                                                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/"
+                                                                                    title="My Account">My Account</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul class="links">
+                                                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/history/"
+                                                                                    title="Order history">Order
+                                                                                    history</a></li>
+                                                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/advanced/"
+                                                                                    title="Contact us">Advanced
+                                                                                    search</a></li>
+                                                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/customer/login/"
+                                                                                    title="Login">Login</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="block">
+                                                            <div class="block-title"><strong><span>Main
+                                                                        Features</span></strong></div>
+                                                            <div class="block-content">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <ul class="features">
+                                                                            <li><a href="#">Super Fast Magento Theme</a>
+                                                                            </li>
+                                                                            <li><a href="#">1st Fully working Ajax
+                                                                                    Theme</a></li>
+                                                                            <li><a href="#">20 Unique Homepage
+                                                                                    Layouts</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <ul class="features">
+                                                                            <li><a href="#">Powerful Admin Panel</a>
+                                                                            </li>
+                                                                            <li><a href="#">Mobile &amp; Retina
+                                                                                    Optimized</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="container">
+                            <div class="custom-block f-right"><img
+                                    src="https://www.portotheme.com/magento/porto/media/wysiwyg/smartwave/footer/payment-icon.png"
+                                    alt="" /></div>
+                            <address>© Porto eCommerce. 2019. All Rights Reserved</address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" id="totop"><i class="icon-up-open"></i></a>
+            <script type="text/javascript">
+                var windowScroll_t;
+                jQuery(window).scroll(function () {
+                    clearTimeout(windowScroll_t);
+                    windowScroll_t = setTimeout(function () {
+                        if (jQuery(this).scrollTop() > 100) {
+                            jQuery('#totop').fadeIn();
+                        } else {
+                            jQuery('#totop').fadeOut();
+                        }
+                    }, 500);
+                });
+                jQuery('#totop').click(function () {
+                    jQuery('html, body').animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+                jQuery(function ($) {
+                    $(".cms-index-index .footer-container.fixed-position .footer-top,.cms-index-index .footer-container.fixed-position .footer-middle").remove();
+                });
+            </script>
+
+
+            <script type="text/javascript">
+                jQuery(function ($) {
+                    $(".col-left.sidebar").css("position", "relative");
+                    $(".col-right.sidebar").css("position", "relative");
+                    var main_area_pos = $(".col-main");
+                    var main_area_height = $(".col-main").outerHeight();
+                    var left_side_top = 0;
+                    var right_side_top = 0;
+                    var cur_Y = pre_Y = 0;
+                    $(document).ready(function () {
+                        stickySidebar();
+                    });
+                    $(window).scroll(function () {
+                        stickySidebar();
+                    });
+                    $(window).resize(function () {
+                        left_side_top = 0;
+                        stickySidebar();
+                    });
+                    function stickySidebar() {
+                        if ($(".col-main").length > 0) {
+                            main_area_pos = $(".col-main").offset().top;
+                            main_area_height = $(".col-main").outerHeight();
+                            margin_top = $(".header-container").hasClass("sticky-header") ? 60 : 10;
+                            margin_bottom = 10;
+                            var fixedSideTop = fixedSideBottom = fixedSideTop_r = fixedSideBottom_r = 0;
+                            cur_Y = $(window).scrollTop();
+                            if ($(".col-left.sidebar").outerHeight() < main_area_height) {
+                                if ($(window).height() < $(".col-left.sidebar").outerHeight() + margin_top + margin_bottom) {
+                                    if (main_area_pos >= cur_Y + margin_top) {
+                                        left_side_top = 0;
+                                    } else if (cur_Y >= main_area_pos + main_area_height - $(window).height()) {
+                                        left_side_top = main_area_height - $(".col-left.sidebar").outerHeight();
+                                    } else {
+                                        if (cur_Y > pre_Y) {
+                                            if (fixedSideTop) {
+                                                fixedSideTop = 0;
+                                                left_side_top = $(".col-left.sidebar").offset().top - main_area_pos;
+                                            } else if (!fixedSideBottom && $(".col-left.sidebar").outerHeight() + $(".col-left.sidebar").offset().top < cur_Y + $(window).height()) {
+                                                fixedSideBottom = 1;
+                                                left_side_top = cur_Y - (main_area_pos + $(".col-left.sidebar").outerHeight() - $(window).height()) - 10
+                                            }
+                                        } else {
+                                            if (fixedSideBottom) {
+                                                fixedSideBottom = 0;
+                                                left_side_top = cur_Y - main_area_pos - $(".col-left.sidebar").outerHeight() + $(window).height() - 10;
+                                            } else if (!fixedSideTop && $(".col-left.sidebar").offset().top >= cur_Y + margin_top) {
+                                                fixedSideTop = 1;
+                                                left_side_top = cur_Y - main_area_pos + margin_top;
+                                            }
+
+                                        }
+                                    }
+                                } else {
+                                    if (cur_Y >= (main_area_pos - margin_top) && cur_Y + $(".col-left.sidebar").outerHeight() + margin_top < main_area_pos + main_area_height) {
+                                        left_side_top = cur_Y - main_area_pos + margin_top;
+                                    } else if (cur_Y + $(".col-left.sidebar").outerHeight() + margin_top > main_area_pos + main_area_height) {
+                                        left_side_top = main_area_height - $(".col-left.sidebar").outerHeight();
+                                    } else {
+                                        left_side_top = 0;
+                                    }
+
+                                    fixedSideTop = fixedSideBottom = 0;
+                                }
+                                $(".col-left.sidebar").css("top", left_side_top + "px");
+                            }
+                            if ($(".col-right.sidebar").outerHeight() < main_area_height) {
+                                if ($(window).height() < $(".col-right.sidebar").outerHeight() + margin_top + margin_bottom) {
+                                    if (main_area_pos >= cur_Y + margin_top) {
+                                        right_side_top = 0;
+                                    } else if (cur_Y >= main_area_pos + main_area_height - $(window).height()) {
+                                        right_side_top = main_area_height - $(".col-right.sidebar").outerHeight();
+                                    } else {
+                                        if (cur_Y > pre_Y) {
+                                            if (fixedSideTop_r) {
+                                                fixedSideTop_r = 0;
+                                                right_side_top = $(".col-right.sidebar").offset().top - main_area_pos;
+                                            } else if (!fixedSideBottom_r && $(".col-right.sidebar").outerHeight() + $(".col-right.sidebar").offset().top < cur_Y + $(window).height()) {
+                                                fixedSideBottom_r = 1;
+                                                right_side_top = cur_Y - (main_area_pos + $(".col-right.sidebar").outerHeight() - $(window).height()) - 10
+                                            }
+                                        } else {
+                                            if (fixedSideBottom_r) {
+                                                fixedSideBottom_r = 0;
+                                                right_side_top = $(".col-right.sidebar").offset().top - main_area_pos;
+                                            } else if (!fixedSideTop_r && $(".col-right.sidebar").offset().top >= cur_Y + margin_top) {
+                                                fixedSideTop_r = 1;
+                                                right_side_top = cur_Y - main_area_pos + margin_top;
+                                            }
+
+                                        }
+                                    }
+                                } else {
+                                    if (cur_Y >= (main_area_pos - margin_top) && cur_Y + $(".col-right.sidebar").outerHeight() + margin_top < main_area_pos + main_area_height) {
+                                        right_side_top = cur_Y - main_area_pos + margin_top;
+                                    } else if (cur_Y + $(".col-right.sidebar").outerHeight() + margin_top > main_area_pos + main_area_height) {
+                                        right_side_top = main_area_height - $(".col-right.sidebar").outerHeight();
+                                    } else {
+                                        right_side_top = 0;
+                                    }
+
+                                    fixedSideTop_r = fixedSideBottom_r = 0;
+                                }
+                                $(".col-right.sidebar").css("top", right_side_top + "px");
+                            }
+                            pre_Y = cur_Y;
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

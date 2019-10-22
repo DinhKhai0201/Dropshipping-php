@@ -5261,7 +5261,7 @@ i.ajax-loader.medium{width:24px;height:24px;border-width:2.5px}
 .header-container.header-newskin .mybag-link .cart-qty{position:absolute;top:-11px;right:17px;width:16px;height:16px;display:block;font-size:10px;color:#fff;background-color:#ed5348;text-align:center;line-height:16px;border-radius:20px}
 .header-container.header-newskin.sticky-header .menu-wrapper .mybag-link .cart-qty{right:2px;font-size:10px}
 .header-container.header-newskin .mybag-link i{font-size:29px}
-.header-container.header-newskin .mybag-link i:before{content:'\e87f'}
+/* .header-container.header-newskin .mybag-link i:before{content:'\e87f'} */
 .header-container.header-newskin.sticky-header .menu-wrapper .mybag-link i{font-size:25px;line-height:30px}
 .header-container.header-newskin .mini-cart .topCartContent{padding:10px 20px}
 .header-container.header-newskin.sticky-header .menu-wrapper .mini-cart .topCartContent{top:52px}
@@ -6550,7 +6550,7 @@ a.right-side-open{visibility:visible;opacity:1}}
 .header-container.type3.header-newskin .header .form-search #cat{border-color:#dbe0e2;color:#8d8d8d;background-color:transparent;right:50px}
 .header-container.type3.header-newskin .header .form-search #cat:after{content: '\e81c';font-family: 'porto';}
 .header-container.type3.header-newskin .header .form-search button.button{color:#606669;font-size:16px;background-color:transparent;width: 50px;}
-.header-container.type3.header-newskin .header .form-search button.button i:before{content:"\e884";}
+/* .header-container.type3.header-newskin .header .form-search button.button i:before{content:"\e884";} */
 .header-container.type3.header-newskin .header .custom-block{margin-right:75px}
 .header-container.type3.header-newskin .header .custom-block>*{display:inline-block;vertical-align:top;font-size: 11px;font-weight: 600;text-align: left;}
 .header-container.type3.header-newskin .header .custom-block span.split{height:14px;width:1px;border-right:1px solid #eee;margin:0 13px}
@@ -8344,4 +8344,15 @@ ul.scene > li.layer{width:100%;height:100%}
   .hidden-lg {
     display: none !important;
   }
+}
+ 
+/* custom css */
+/* page register */
+.button-register {
+  text-align: center;
+}
+.button-register span {
+  background-color: #0088cc;
+  padding: 10px;
+  color: white;
 }

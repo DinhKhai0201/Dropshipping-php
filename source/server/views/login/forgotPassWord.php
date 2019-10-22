@@ -1,69 +1,47 @@
-<?php 
-    global $mediaFiles;
-    array_push($mediaFiles['css'], RootREL."media/css/about_page.css");
+<?php
+global $mediaFiles;
+array_push($mediaFiles['css'], RootREL . "media/css/login.css");
 ?>
-<?php include_once 'views/layout/'.$this->layout.'header.php'; ?>
-    <div class="wrapper">
-        <div class="iw-overlay"></div>
-        <div class="iw-header-version3 iw-header-version6">
-            <div class="header header-default header-style-default v3 v6 header-sticky no-header-sticky-mobile ">
-                <?php include_once 'views/layout/'.$this->layout.'navbar.php'; ?>
+<?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
+<div class="main-container col1-layout">
+    <div class="main container">
+        <div class="col-main">
+
+            <div class="page-title">
+                <h1>Forgot Your Password?</h1>
             </div>
-        </div>   
-        <div class="page-heading default">
-            <div class="container-inner">
-                <div class="container">
-                    <div class="page-title">
-                        <div class="iw-heading-title">
-                            <h1>Reset Password</h1></div>
+            <?php if ($this->errors) { ?>
+                <div class="form-list">
+                    <div class="replay-forgotpassword">
+                        <?php echo $this->errors['message']; ?>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="contents-main" id="contents-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                        <article id="post-143" class="post-143 page type-page status-publish hentry">
-                            <div class="entry-content">
-                                <div class="iwj-login">
-                                    <form  method="post" action="<?php echo vendor_app_util::url(array('ctl'=>'login','act'=>'forgotPassWord' )); ?>" class="iwj-form iwj-login-form">
-                                        <?php if($this->errors) {?>
-                                        <div class="iwj-respon-msg">
-                                            <div class="alert alert-danger">
-                                                <?php echo $this->errors['message']; ?>
-                                            </div>
-                                        </div>
-                                        <?php }?>
-                                        <div class="iwj-field">
-                                            <label>Email</label>
-                                            <div class="iwj-input"> <i class="fa fa-user"></i>
-                                                <input type="email" name="email" placeholder="Nhập vào email." required>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="iwj-button-loader">
-                                            <button type="submit" name="btn_submit" class="iwj-btn iwj-btn-primary iwj-btn-full iwj-btn-large iwj-login-btn">Thay Đổi Mật Khẩu</button>
-                                        </div>
-                                        <div class="login-register-account" style="text-align: center; margin-top:20px;"> 
-                                        <a style="margin-right:10px;" href="<?=vendor_app_util::url(array('ctl'=>'login'));?>">Login </a> 
-                                        <a href="<?=vendor_app_util::url(array('ctl'=>'register'));?>">Register</a>
-                                        </div>
-                                    </form>
-                                </div>
+            <?php } ?>
+            <form action="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login', 'act' => 'forgotPassWord')); ?>" method="post" id="form-validate">
+                <div class="fieldset">
+
+                    <h2 class="legend">Retrieve your password here</h2>
+                    <p>Please enter your email address below. You will receive a link to reset your
+                        password.</p>
+                    <ul class="form-list">
+                        <li>
+                            <label for="email_address" class="required"><em>*</em>Email Address</label>
+                            <div class="input-box">
+                                <input type="text" name="email" alt="email" id="email_address" class="input-text required-entry validate-email" value="" required />
                             </div>
-                        </div>
-                    <div class="clearfix"></div>
-                    <footer class="entry-footer "></footer>
-                </article>
-            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="buttons-set">
+                    <p class="required">* Required Fields</p>
+                    <p class="back-link"><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>"><small>&laquo;
+                            </small>Back to Login</a></p>
+                    <button type="submit" title="Submit" name="btn_submit" class="button"><span><span>Submit</span></span></button>
+                </div>
+
+            </form>
         </div>
     </div>
-</div>    
-<?php
-    array_push($mediaFiles['js'], RootREL."media/js/home.js");
-    array_push($mediaFiles['js'], RootREL."media/libs/select2/select2.min.js");
-
-?>   
-<?php include_once 'views/layout/'.$this->layout.'footer.php'; ?>
-
+</div>
+<?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

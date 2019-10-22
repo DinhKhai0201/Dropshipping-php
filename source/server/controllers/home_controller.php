@@ -78,7 +78,7 @@ class home_controller extends vendor_main_controller {
 			// 	if(isset($_SESSION['user']) && isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == $role)
 			// 	header("Location: ".$link);
 			// }
-
+			// exit(json_encode($_SESSION['user']));
 			$this->display();
 		// } else {
 		// 	global $app;

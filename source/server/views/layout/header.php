@@ -93,5 +93,13 @@
         }
     </script>
 </head>
+<?php
+global $enableOB;
+if ($enableOB) {
+    ob_start("vendor_html_helper::_media");
+    echo "CSSABOVE";
+}
+echo vendor_html_helper::_cssHeader();
+?>
 
 <body class=" cms-index-index cms-porto-home-4">

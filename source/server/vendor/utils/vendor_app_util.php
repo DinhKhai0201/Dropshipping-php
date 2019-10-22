@@ -147,7 +147,7 @@ class vendor_app_util {
 		}
 		$mail->Subject    = $title;
 		$mail->MsgHTML($body);
-		$mail->AddReplyTo('noreply@dropshipping.com', 'DROPSHIPPING');
+		$mail->AddReplyTo('noreply@vieclamdanang.vn', 'VIỆC LÀM ĐÀ NẴNG');
 		if(!$mail->Send()) {
 			return 0;
 		} else {
@@ -160,6 +160,7 @@ class vendor_app_util {
 		$result = preg_match ($pattern, $email);
 		if ( $result ) {
 			return 1;
+
 		} else {
 			return 0;
 		}

@@ -253,7 +253,7 @@ if($noPrs) {
 		$app['areaPath'] = 'admin/';
 		array_shift($prs);
 		$noPrs--;
-	} else if($prs[0]=="api" || $prs[0]=="employer" || $prs[0]=="jobseeker"){
+	} else if($prs[0]=="api" || $prs[0]=="customer" || $prs[0]=="jobseeker"){
 		$app['area'] = $prs[0];
 		$app['areaPath'] = $prs[0].'/';
 		array_shift($prs);

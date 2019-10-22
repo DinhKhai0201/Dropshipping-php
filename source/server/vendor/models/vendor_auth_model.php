@@ -1,9 +1,11 @@
 <?php
 class vendor_auth_model extends vendor_main_model {
 	public function login($user=null, $admin=false, $remember=null) {
+		
 		$result = null;
 		$um = new user_model();
 		if($user){
+			
 			$email = $user['email'];
 			$password = vendor_app_util::generatePassword($user['password']);
 			$result = $um->getRecordWhere([
