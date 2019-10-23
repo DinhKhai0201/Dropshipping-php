@@ -26,7 +26,7 @@ class product_model extends vendor_pagination_model
 		],
 		'belongTo' => [
 			['category_type','key'=>'category_type_id'],
-			['store','key'=>'store_id'],
+			['user','key'=>'user_id'],
 			['brand','key'=>'brand_id']
 		]
 	];

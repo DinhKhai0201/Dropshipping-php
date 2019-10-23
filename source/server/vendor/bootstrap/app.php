@@ -138,6 +138,14 @@ if(isset($_GET["pr"])) {
 						$prs = explode("/","login");
 						$app['linkpage'] = "login";
 						break;
+					case "categories":
+						$prs = explode("/", "categories");
+						$app['linkpage'] = "categories";
+						break;
+					case "product":
+						$prs = explode("/", "product");
+						$app['linkpage'] = "product";
+						break;
 					case "lien-he":
 						$prs = explode("/","contact");
 						$app['linkpage'] = "contact";
@@ -253,7 +261,7 @@ if($noPrs) {
 		$app['areaPath'] = 'admin/';
 		array_shift($prs);
 		$noPrs--;
-	} else if($prs[0]=="api" || $prs[0]=="customer" || $prs[0]=="jobseeker"){
+	} else if($prs[0]=="api" || $prs[0]=="customer" || $prs[0]=="asdasd"){
 		$app['area'] = $prs[0];
 		$app['areaPath'] = $prs[0].'/';
 		array_shift($prs);
@@ -284,7 +292,7 @@ if($noPrs) {
 if($app['area'] == 'admin' && $app['ctl'] == '')
 	header("Location: /admin/login");
 $c = $app['ctl']."_controller";
-
+// exit("asdasd" . ControllerREL . $app['areaPath'] . $c . ".php");
 if(!is_file(ControllerREL.$app['areaPath'].$c.".php")) {
 	if($app['area'] == 'admin' && isset($_SESSION['user']) && ($_SESSION['user']['role']=='2' || $_SESSION['user']['role'] == '3' )){
 		header("Location: /");

@@ -60,14 +60,12 @@
                         <div class="col-lg-12">
                             <div class="side-custom-menu" style="margin-bottom:11px;">
                                 <h2 style="font-size:14px;letter-spacing:0.01em;color:#465157;font-weight:700;">
-                                    TOP CATEGORIES</h2>
+                                    <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"> TOP CATEGORIES<a></h2>
                                 <ul>
-                                    <li><a href="http://newsmartwave.net/magento/porto/index.php/demo4_en/fashion.html"><i class="icon-cat-shirt"></i> Fashion</a></li>
-                                    <li><a href="http://newsmartwave.net/magento/porto/index.php/demo4_en/electronics.html"><i class="icon-cat-computer"></i> Electronics</a></li>
-                                    <li><a href="http://newsmartwave.net/magento/porto/index.php/demo4_en/gifts.html"><i class="icon-cat-gift"></i> Gifts</a></li>
-                                    <li><a href="http://newsmartwave.net/magento/porto/index.php/demo4_en/home-garden.html"><i class="icon-cat-garden"></i> Home & Garden</a></li>
-                                    <li><a href="http://newsmartwave.net/magento/porto/index.php/demo4_en/music.html"><i class="icon-cat-computer"></i> Music</a></li>
-                                    <li><a href="http://newsmartwave.net/magento/porto/index.php/demo4_en/sports.html"><i class="icon-cat-sport"></i> Sports</a></li>
+                                    <?php foreach ($this->categories as $category) { ?>
+                                        <li id="category-<?= $category['id'] ?>"><a href=""> <?= $category['categoryName'] ?></a></li>
+                                    <?php }  ?>
+
                                 </ul>
                                 <div class="action">
                                     <a href="#" class="btn btn-default">HUGE SALE - 70% Off</a>
@@ -259,49 +257,52 @@
                 });
             </script>
             <div class="std">
-                <h2 class="filter-title" style="margin-top:24px;"><span class="content"><strong>Featured
-                            Products</strong></span></h2>
+                <h2 class="filter-title" style="margin-top:24px;"><span class="content"><strong>Best Selling Products</strong></span></h2>
                 <div id="new_product" class="owl-top-narrow">
                     <div class="filter-products category-products">
                         <div class="products products-grid owl-carousel">
-                            <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
+                            <?php foreach ($this->products as $product) { ?>
+                                <div class="item">
+                                    <div class="item-area type3">
+                                        <div class="product-image-area">
+                                            <div class="loader-container">
+                                                <div class="loader">
+                                                    <i class="ajax-loader medium animate-spin"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/429" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1689.html" title="IdeaPad" class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" alt="IdeaPad" />
-                                        </a>
+                                            <a href="" class="quickview-icon quickview" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>"><i class="icon-export"></i><span>Quick
+                                                    View</span></a>
+                                            <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1689.html" title="<?php echo $product['name']; ?>" class="product-image">
+                                                <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/upload/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" />
+                                                <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" alt="IdeaPad" />
+                                            </a>
 
-                                        <div class="product-label" style="right: 10px; "><span class="new-product-icon">New</span></div>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/429/form_key/EnsiPctuwaTCt7HC/','429_3kp')"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/429/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','429');" class="comparelink" title="Add to Compare"><i class="fa fa-copy" aria-hidden="true"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1689.html" title="IdeaPad">IdeaPad</a></h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
+                                            <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
+                                            <div class="actions">
+                                                <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/429/form_key/EnsiPctuwaTCt7HC/','429_3kp')"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                                <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/429/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','429');" class="comparelink" title="Add to Compare"><i class="fa fa-copy" aria-hidden="true"></i></a>
+                                                <div class="clearer"></div>
                                             </div>
                                         </div>
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-429">
-                                                <span class="price">$1,999.00</span> </span>
+                                        <div class="details-area">
+                                            <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1689.html" title="IdeaPad"><?php echo $product['name']; ?></a></h2>
+                                            <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    <div class="rating" style="width:0"></div>
+                                                </div>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="regular-price" id="product-price-429">
+                                                    <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
+
+                            <?php }  ?>
+
+                            <!-- <div class="item">
                                 <div class="item-area type3">
                                     <div class="product-image-area">
                                         <div class="loader-container">
@@ -371,7 +372,7 @@
                                         </div>
                                         <div class="price-box">
                                             <span class="regular-price" id="product-price-417">
-                                               <span class="price">$299.00</span> </span>
+                                                <span class="price">$299.00</span> </span>
                                         </div>
                                     </div>
                                 </div>
@@ -539,7 +540,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

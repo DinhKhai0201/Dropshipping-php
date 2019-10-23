@@ -18,8 +18,14 @@ class vendor_main_controller {
 		if ($detect->isMobile()){
 			$this->isMobile = true;
 		}
+		// echo json_encode($app);
+		// echo '$this, $this->action'.json_encode($this).$this->action;
 		if(method_exists($this, $this->action)) {
+			// exit("aaaaa");
+
 			if(isset($app['prs']) && count($app['prs'])) {
+				// exit("aaaa2a");
+
 				$str = $this->toString($app['prs']);
 				if (preg_match('/[\'\.\"]/', $str)) {
 					include "views/".$app['areaPath']."staticpages/error.php";

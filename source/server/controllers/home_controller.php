@@ -3,17 +3,18 @@ class home_controller extends vendor_main_controller {
 	public function index() 
 	{
 		// if(!vendor_app_util::checkgoogleaccess()) {
-			// global $app;
-			// $category_model = new category_model();
-			// $this->categories = $category_model->allp('*', [
-			// 	'pagination'=> [
-			// 		'page' => 1,
-			// 		'nopp' => 10000000
-			// 	],
-			// 	'order'=>'slug ASC'
-			// ]);
-
-			// $job_model = new job_model();
+			global $app;
+			$category_model = new category_type_model();
+			$this->categories = $category_model->getAllRecords('*', [
+			'conditions' => 'parentId = 0',
+				'order'=>'id ASC'
+			]);
+			$product_model = new product_model();
+			$this->products = $product_model->getAllRecords('*', [
+				'conditions' => 'best_selling = 1',
+				'joins' => ['gallery'],
+				'order' => 'products.id DESC limit 12'
+			]);
 			// $cat = new category_model();
 			// $company_model = new company_model();
 			// $application = new application_model();
@@ -108,8 +109,21 @@ class home_controller extends vendor_main_controller {
 		// 	$this->recentUpdate 		= $job_model->getAllRecords('*,jobs.id as job_id, jobs.slug as job_slug', ['conditions'=>' status = 1 and deadline > now()', 'joins' => ['company'], 'order'=>'jobs.created DESC limit 6']);
 		//  	$this->display(['act'=>'static']);
 		// }
-	} 
+	}
+	public function addtocart()
+	{
 
+	}
+	public function quickview($id)
+	{
+		$product = new product_model();
+        if ($data = $product->getAllRecords('*', ['conditions'=>'id = '.$id, 'joins'=>'', 'order'=>'id ASC'])) {
+            http_response_code(200);
+            echo(($data));
+        } else {
+			echo "error";
+		}
+	}
 	// public function newJobData()
 	// {
 	// 	$page = $_GET['page'];

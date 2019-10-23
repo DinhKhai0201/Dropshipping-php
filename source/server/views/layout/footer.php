@@ -2,9 +2,6 @@
                 <div class="footer">
                     <div class="footer-middle">
                         <div class="container">
-                            <div class="footer-ribbon">
-                                <span>Get in touch</span>
-                            </div>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="block">
@@ -90,7 +87,7 @@
                                                                                     history</a></li>
                                                                             <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/advanced/" title="Contact us">Advanced
                                                                                     search</a></li>
-                                                                            <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/customer/login/" title="Login">Login</a></li>
+                                                                            <li><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" title="Login">Login</a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -385,6 +382,8 @@
             }
             echo vendor_html_helper::_jsFooter();
             ?>
+            
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script> -->
             </body>
 
             </html>
