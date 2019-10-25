@@ -94,7 +94,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-7">
+                                                    <!-- <div class="col-md-7">
                                                         <div class="block">
                                                             <div class="block-title"><strong><span>Main
                                                                         Features</span></strong></div>
@@ -121,7 +121,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
                     <div class="footer-bottom">
                         <div class="container">
                             <div class="custom-block f-right"><img src="http://www.portotheme.com/magento/porto/media/wysiwyg/smartwave/footer/payment-icon.png" alt="" /></div>
-                            <address>© Porto eCommerce. 2019. All Rights Reserved</address>
+                            <address>© PSCD. 2019. All Rights Reserved</address>
                         </div>
                     </div>
                 </div>

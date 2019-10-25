@@ -13,7 +13,7 @@
                                 <h2 style="color: #fff;">Summer Sale</h2>
                                 <p style="font-size:14px;color:#fff;font-weight:300;">Limited items
                                     available at this price.</p>
-                                <a href="http://www.portotheme.com/magento/porto/fashion.html" class="btn btn-default" style="background-color:#010204;color:#fff;font-family:'Oswald';font-size:14px;letter-spacing:0.025em;font-weight:400;">shop
+                                <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => ""])) ?>" class="btn btn-default" style="background-color:#010204;color:#fff;font-family:'Oswald';font-size:14px;letter-spacing:0.025em;font-weight:400;">shop
                                     now</a>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                                 <h2 style="color: #2c373c;">GREAT DEALS</h2>
                                 <p style="font-size:14px;color:#585b5f;font-weight:300;">While they last!
                                 </p>
-                                <a href="http://www.portotheme.com/magento/porto/electronics.html" class="btn btn-default" style="background-color:#010204;color:#fff;font-family:'Oswald';font-size:14px;letter-spacing:0.025em;font-weight:400;">shop
+                                <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => ""])) ?>" class="btn btn-default" style="background-color:#010204;color:#fff;font-family:'Oswald';font-size:14px;letter-spacing:0.025em;font-weight:400;">shop
                                     now</a>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                 <span style="color: #2c373c;font-size:18px;">up to <b style="font-size:26px;font-family:'Oswald';">40%</b> off</span>
                                 <h2 style="color: #2c373c;">NEW ARRIVALS</h2>
                                 <p style="font-size:14px;color:#585b5f;font-weight:300;">Starting at $9</p>
-                                <a href="http://www.portotheme.com/magento/porto/motors.html" class="btn btn-default" style="background-color:#010204;color:#fff;font-family:'Oswald';font-size:14px;letter-spacing:0.025em;font-weight:400;">shop
+                                <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => ""])) ?>" class="btn btn-default" style="background-color:#010204;color:#fff;font-family:'Oswald';font-size:14px;letter-spacing:0.025em;font-weight:400;">shop
                                     now</a>
                             </div>
                         </div>
@@ -272,7 +272,7 @@
                                             </div>
                                             <a href="" class="quickview-icon quickview" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>"><i class="icon-export"></i><span>Quick
                                                     View</span></a>
-                                            <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1689.html" title="<?php echo $product['name']; ?>" class="product-image">
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view", 'params' => array('id' => $product['id'])])) ?>" title="<?php echo $product['name']; ?>" class="product-image">
                                                 <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/upload/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" />
                                                 <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" alt="IdeaPad" />
                                             </a>
@@ -285,7 +285,7 @@
                                             </div>
                                         </div>
                                         <div class="details-area">
-                                            <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1689.html" title="IdeaPad"><?php echo $product['name']; ?></a></h2>
+                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/".$product['slug']."-".$product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
                                             <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                             <div class="ratings">
                                                 <div class="rating-box">

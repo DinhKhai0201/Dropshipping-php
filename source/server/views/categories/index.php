@@ -1,5 +1,4 @@
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
-<a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view", 'params' => array('id' => '81')])) ?>">asdasdasd</a>
 <div class="top-container">
     <div class="breadcrumbs">
         <div class="container">
@@ -176,16 +175,19 @@
                                                 if ($('.block-main-layer')) {
                                                     $('.block-main-layer').empty();
                                                     $('.mobile-layer-overlay').remove();
-                                                    $('.block-main-layer').replaceWith(data.viewpanel)
+                                                    $('.block-main-layer').replaceWith(data
+                                                        .viewpanel)
                                                 }
                                             }
                                             if (data.productlist) {
                                                 $('.col-main .category-products').empty();
-                                                $('.col-main .category-products').replaceWith(data
-                                                    .productlist)
+                                                $('.col-main .category-products')
+                                                    .replaceWith(data.productlist)
                                             }
-                                            if ($(".col-main").has(".category-products").length)
-                                                $(".col-main .category-products").scrollToMe();
+                                            if ($(".col-main").has(".category-products")
+                                                .length)
+                                                $(".col-main .category-products")
+                                                .scrollToMe();
                                             $("img.porto-lazyload:not(.porto-lazyload-loaded)")
                                                 .lazyload({
                                                     effect: "fadeIn"
@@ -195,57 +197,73 @@
                                                     .trigger('appear');
                                             }, 300);
                                             $(".qty_inc").unbind('click').click(function() {
-                                                if ($(this).parent().parent().children(
-                                                        "input.qty").is(':enabled')) {
-                                                    $(this).parent().parent().children(
-                                                        "input.qty").val((+$(this).parent()
-                                                        .parent().children("input.qty")
-                                                        .val() + 1) || 0);
-                                                    $(this).parent().parent().children(
-                                                        "input.qty").focus();
+                                                if ($(this).parent().parent()
+                                                    .children("input.qty").is(
+                                                        ':enabled')) {
+                                                    $(this).parent().parent()
+                                                        .children("input.qty").val((
+                                                            +$(this).parent()
+                                                            .parent().children(
+                                                                "input.qty")
+                                                            .val() + 1) || 0);
+                                                    $(this).parent().parent()
+                                                        .children("input.qty")
+                                                        .focus();
                                                     $(this).focus();
                                                 }
                                             });
                                             $(".qty_dec").unbind('click').click(function() {
-                                                if ($(this).parent().parent().children(
-                                                        "input.qty").is(':enabled')) {
-                                                    $(this).parent().parent().children(
-                                                        "input.qty").val(($(this).parent()
-                                                        .parent().children("input.qty")
-                                                        .val() - 1 > 0) ? ($(this)
-                                                        .parent().parent().children(
-                                                            "input.qty").val() - 1) : 0);
-                                                    $(this).parent().parent().children(
-                                                        "input.qty").focus();
+                                                if ($(this).parent().parent()
+                                                    .children("input.qty").is(
+                                                        ':enabled')) {
+                                                    $(this).parent().parent()
+                                                        .children("input.qty").val((
+                                                            $(this).parent()
+                                                            .parent().children(
+                                                                "input.qty")
+                                                            .val() - 1 > 0) ? (
+                                                            $(this).parent()
+                                                            .parent().children(
+                                                                "input.qty")
+                                                            .val() - 1) : 0);
+                                                    $(this).parent().parent()
+                                                        .children("input.qty")
+                                                        .focus();
                                                     $(this).focus();
                                                 }
                                             });
                                             var hist = url;
                                             if (url.indexOf("p=") > -1) {
                                                 var len = url.length - url.indexOf("p=");
-                                                var str_temp = url.substr(url.indexOf("p="), len);
+                                                var str_temp = url.substr(url.indexOf("p="),
+                                                    len);
                                                 var page_param = "";
                                                 if (str_temp.indexOf("&") == -1) {
                                                     page_param = str_temp;
                                                 } else {
-                                                    page_param = str_temp.substr(0, str_temp.indexOf(
-                                                        "&"));
+                                                    page_param = str_temp.substr(0, str_temp
+                                                        .indexOf("&"));
                                                 }
                                                 hist = url.replace(page_param, "");
                                             }
-                                            if (window.history && window.history.pushState) {
-                                                window.history.pushState('GET', data.title, hist);
+                                            if (window.history && window.history
+                                                .pushState) {
+                                                window.history.pushState('GET', data.title,
+                                                    hist);
                                             }
-                                            $('body').find('.toolbar select').removeAttr('onchange');
+                                            $('body').find('.toolbar select').removeAttr(
+                                                'onchange');
                                             $('#resultLoading .bg').height('100%');
                                             $('#resultLoading').fadeOut(300);
                                             $('body').css('cursor', 'default');
 
-                                            $('.block-layered-nav #narrow-by-list a').on('click',
+                                            $('.block-layered-nav #narrow-by-list a').on(
+                                                'click',
                                                 function(e) {
                                                     if (!$(this).parent().hasClass(
                                                             'slider-range')) {
-                                                        sliderAjax($(this).attr('href'));
+                                                        sliderAjax($(this).attr(
+                                                            'href'));
                                                     }
                                                     e.preventDefault();
                                                 });
@@ -269,32 +287,43 @@
                                                 sliderAjax(url);
                                                 e.preventDefault();
                                             });
-                                            $("a.product-image img.defaultImage").each(function() {
-                                                var default_img = $(this).attr("data-src");
-                                                if (!default_img)
-                                                    default_img = $(this).attr("src");
-                                                var thumbnail_img = $(this).parent().children(
-                                                    "img.hoverImage").attr("data-src");
-                                                if (!thumbnail_img)
-                                                    thumbnail_img = $(this).parent().children(
-                                                        "img.hoverImage").attr("src");
-                                                if (default_img) {
-                                                    if (default_img.replace("/small_image/",
-                                                            "/thumbnail/") == thumbnail_img) {
-                                                        $(this).parent().children(
-                                                            "img.hoverImage").remove();
-                                                        $(this).removeClass("defaultImage");
-                                                    }
-                                                }
-                                            });
-                                            /* moving action links into product image area */
-                                            $(".move-action .item .details-area .actions").each(
+                                            $("a.product-image img.defaultImage").each(
                                                 function() {
+                                                    var default_img = $(this).attr(
+                                                        "data-src");
+                                                    if (!default_img)
+                                                        default_img = $(this).attr(
+                                                            "src");
+                                                    var thumbnail_img = $(this).parent()
+                                                        .children("img.hoverImage")
+                                                        .attr("data-src");
+                                                    if (!thumbnail_img)
+                                                        thumbnail_img = $(this).parent()
+                                                        .children("img.hoverImage")
+                                                        .attr("src");
+                                                    if (default_img) {
+                                                        if (default_img.replace(
+                                                                "/small_image/",
+                                                                "/thumbnail/") ==
+                                                            thumbnail_img) {
+                                                            $(this).parent().children(
+                                                                    "img.hoverImage")
+                                                                .remove();
+                                                            $(this).removeClass(
+                                                                "defaultImage");
+                                                        }
+                                                    }
+                                                });
+                                            /* moving action links into product image area */
+                                            $(".move-action .item .details-area .actions")
+                                                .each(function() {
                                                     $(this).parent().parent().children(
-                                                        ".product-image-area").append($(this));
+                                                            ".product-image-area")
+                                                        .append($(this));
                                                 });
                                             if (old_class)
-                                                $(".col-main .products-grid").attr("class", old_class);
+                                                $(".col-main .products-grid").attr("class",
+                                                    old_class);
                                         }
                                     })
                                 } catch (e) {}
@@ -364,7 +393,7 @@
 
                                         <li>
                                             <a class="next i-next" href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?p=2" title="Next">
-                                                <span>></span>
+                                                <i class="icon-right-dir"></i>
                                             </a>
                                         </li>
                                     </ol>
@@ -447,7 +476,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/310/form_key/4sVxQJHeRKehYAlh/','310');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/310/form_key/5zGu6zv3q1FRWZUJ/','310');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                         <a href="javascript:showOptions('310')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
                                                 Cart</span></a>
                                         <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/310/' class='fancybox' id='fancybox310' style='display:none'>Options</a>
@@ -495,8 +524,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/355/form_key/4sVxQJHeRKehYAlh/','355');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/355/form_key/4sVxQJHeRKehYAlh/','355')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/355/form_key/5zGu6zv3q1FRWZUJ/','355');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/355/form_key/5zGu6zv3q1FRWZUJ/','355')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -559,7 +588,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/353/form_key/4sVxQJHeRKehYAlh/','353');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/353/form_key/5zGu6zv3q1FRWZUJ/','353');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                         <a href="javascript:showOptions('353')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
                                                 Cart</span></a>
                                         <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/353/' class='fancybox' id='fancybox353' style='display:none'>Options</a>
@@ -607,8 +636,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/352/form_key/4sVxQJHeRKehYAlh/','352');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/352/form_key/4sVxQJHeRKehYAlh/','352')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/352/form_key/5zGu6zv3q1FRWZUJ/','352');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/352/form_key/5zGu6zv3q1FRWZUJ/','352')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -641,8 +670,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/351/form_key/4sVxQJHeRKehYAlh/','351');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/351/form_key/4sVxQJHeRKehYAlh/','351')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/351/form_key/5zGu6zv3q1FRWZUJ/','351');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/351/form_key/5zGu6zv3q1FRWZUJ/','351')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -675,7 +704,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/350/form_key/4sVxQJHeRKehYAlh/','350');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/350/form_key/5zGu6zv3q1FRWZUJ/','350');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                         <a href="javascript:void(0);" class="addtocart outofstock" title="Out of stock">Out of stock</span></a>
                                         <div class="clearer"></div>
                                     </div>
@@ -709,8 +738,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/349/form_key/4sVxQJHeRKehYAlh/','349');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/349/form_key/4sVxQJHeRKehYAlh/','349')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/349/form_key/5zGu6zv3q1FRWZUJ/','349');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/349/form_key/5zGu6zv3q1FRWZUJ/','349')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -744,8 +773,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/345/form_key/4sVxQJHeRKehYAlh/','345');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/345/form_key/4sVxQJHeRKehYAlh/','345')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/345/form_key/5zGu6zv3q1FRWZUJ/','345');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/345/form_key/5zGu6zv3q1FRWZUJ/','345')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -778,7 +807,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/344/form_key/4sVxQJHeRKehYAlh/','344');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/344/form_key/5zGu6zv3q1FRWZUJ/','344');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                         <a href="javascript:void(0);" class="addtocart outofstock" title="Out of stock">Out of stock</span></a>
                                         <div class="clearer"></div>
                                     </div>
@@ -825,8 +854,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/343/form_key/4sVxQJHeRKehYAlh/','343');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/343/form_key/4sVxQJHeRKehYAlh/','343')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/343/form_key/5zGu6zv3q1FRWZUJ/','343');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/343/form_key/5zGu6zv3q1FRWZUJ/','343')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -889,7 +918,7 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/338/form_key/4sVxQJHeRKehYAlh/','338');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/338/form_key/5zGu6zv3q1FRWZUJ/','338');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                         <a href="javascript:showOptions('338')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
                                                 Cart</span></a>
                                         <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/338/' class='fancybox' id='fancybox338' style='display:none'>Options</a>
@@ -925,8 +954,8 @@
                                     </div>
 
                                     <div class="actions">
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/336/form_key/4sVxQJHeRKehYAlh/','336');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/336/form_key/4sVxQJHeRKehYAlh/','336')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/336/form_key/5zGu6zv3q1FRWZUJ/','336');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                        <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy5odG1s/product/336/form_key/5zGu6zv3q1FRWZUJ/','336')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
                                         <div class="clearer"></div>
                                     </div>
                                 </div>
@@ -990,7 +1019,7 @@
 
                                             <li>
                                                 <a class="next i-next" href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?p=2" title="Next">
-                                                    <span>></span>
+                                                    <i class="icon-right-dir"></i>
                                                 </a>
                                             </li>
                                         </ol>
@@ -1015,49 +1044,6 @@
                     </div>
                 </div>
                 <div class="swatches-js">
-
-                    <script type="text/javascript">
-                        jQuery(document).ready(function() {
-                            ConfigurableMediaImages.init('small_image');
-                            ConfigurableMediaImages.setImageFallback(310, jQuery.parseJSON(
-                                '{"option_labels":{"blue":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_4_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_4_1.jpg"},"products":["318","323"]},"black":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_1_2.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_1_2.jpg"},"products":["320"]},"grey":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_3_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_3_1.jpg"},"products":["321"]},"green":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_2_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_2_1.jpg"},"products":["322"]}},"small_image":{"310":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/1\/01_1_2.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(355, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"355":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/9\/19_1_3.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(353, jQuery.parseJSON(
-                                '{"option_labels":{"black":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_4_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_4_1.jpg"},"products":["354"]},"blue":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_2_2.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_2_2.jpg"},"products":["356"]},"brown":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_1_2.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_1_2.jpg"},"products":["357"]},"grey":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_3_2.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_3_2.jpg"},"products":["358"]}},"small_image":{"353":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/7\/17_2_2.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(352, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"352":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/8\/18_3_2.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(351, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"351":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/6\/16_1_2.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(350, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"350":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/5\/15_1_2.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(349, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"349":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/4\/14_1_1.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(345, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"345":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/1\/11_1_1_1.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(344, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"344":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/1\/0\/10_1_1.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(343, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"343":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/9\/09_1_3.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(338, jQuery.parseJSON(
-                                '{"option_labels":{"black":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_4_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_4_1.jpg"},"products":["339"]},"blue":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_1_2.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_1_2.jpg"},"products":["340"]},"grey":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_2_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_2_1.jpg"},"products":["341"]},"green":{"configurable_product":{"small_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_3_1.jpg","base_image":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_3_1.jpg"},"products":["342"]}},"small_image":{"338":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/8\/08_4_1.jpg"},"base_image":[]}'
-                            ));
-                            ConfigurableMediaImages.setImageFallback(336, jQuery.parseJSON(
-                                '{"option_labels":[],"small_image":{"336":"https:\/\/www.portotheme.com\/magento\/porto\/media\/catalog\/product\/cache\/1\/small_image\/300x\/17f82f742ffe127f42dca9de82fb58b1\/0\/7\/07_1_3.jpg"},"base_image":[]}'
-                            ));
-                            jQuery(document).trigger('configurable-media-images-init', ConfigurableMediaImages);
-                        });
-                    </script>
                 </div>
             </div>
             <div class="col-left sidebar f-left col-lg-3">
@@ -1071,103 +1057,27 @@
                         </div>
                         <div class="block-content">
                             <ul class="category-list">
-                                <li class="has-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/women.html">Women</a><a href="javascript:void(0)" class="plus"><i class="icon-plus-squared"></i></a>
-                                    <ul>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/women/top-blouses.html">Top
-                                                & Blouses</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/women/accessories.html">Accessories</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/women/dresses-skirts.html">Dresses
-                                                & Skirts</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/women/shoes-boots.html">Shoes
-                                                & Boots</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/men.html">Men</a><a href="javascript:void(0)" class="plus"><i class="icon-plus-squared"></i></a>
-                                    <ul>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/men/accessories.html">Accessories</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/men/watch-fashion.html">Watch
-                                                Fashion</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/men/tees-knits-polos.html">Tees,
-                                                Knits & Polos</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/men/pants-denim.html">Pants
-                                                & Denim</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/kids.html">Kids</a><a href="javascript:void(0)" class="plus"><i class="icon-plus-squared"></i></a>
-                                    <ul>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/kids/casual-shoes.html">Casual
-                                                Shoes</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/kids/spring-autumn.html">Spring
-                                                & Autumn</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/kids/winter-sneakers.html">Winter
-                                                Sneakers</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery.html">Jewellery</a><a href="javascript:void(0)" class="plus"><i class="icon-plus-squared"></i></a>
-                                    <ul>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery/necklaces.html">Necklaces</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery/bracelets.html">Bracelets</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery/earrings.html">Earrings</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery/rings.html">Rings</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery/accessories.html">Accessories</a>
-                                        </li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/jewellery/occasions-gifts.html">Occasions
-                                                & Gifts</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics.html">Electronics</a><a href="javascript:void(0)" class="plus"><i class="icon-plus-squared"></i></a>
-                                    <ul>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/tv-audio.html">TV,
-                                                Audio</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/computers-tablets.html">Computers
-                                                & Tablets</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/home-office-equipments.html">Home
-                                                Office Equipments</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/gps-navigation.html">GPS
-                                                Navigation</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/car-audio-video-gps.html">Car
-                                                Audio, Video & GPS</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/radios-clock-radios.html">Radios
-                                                & Clock Radios</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/cell-phones-accessories.html">Cell
-                                                Phones & Accessories</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/cameras-photo.html">Cameras
-                                                & Photo</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/photo-accessories.html">Photo
-                                                Accessories</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/ip-phones.html">IP
-                                                Phones</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/samsung-galaxy-phones.html">Samsung
-                                                Galaxy Phones</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/ipad-android-tablets.html">iPad
-                                                & Android Tablets</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/e-book-readers.html">e-Book
-                                                Readers</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/video-games-consolers.html">Video
-                                                Games & Consolers</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/printers-scanners.html">Printers
-                                                & Scanners</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/digital-picture-frames.html">Digital
-                                                Picture Frames</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/3d-fashion-games.html">3D
-                                                Fashion Games</a></li>
-                                        <li class="has-no-children"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories/electronics/game-machine-devices.html">Game
-                                                Machine & Devices</a></li>
-                                    </ul>
-                                </li>
+                                <?php foreach ($this->ctgr as $category) { ?>
+                                    <li class="has-children"><a href="#"><?php echo $category['SuperVisor'];?></a><a href="javascript:void(0)" class="plus"><i class="icon-plus-squared"></i></a>
+                                        <?php if ($category['countChild'] > 0) {?>
+                                        <?php $SuperVisee = explode(",", $category['SuperVisee']); 
+                                        ?>    
+                                        <ul>
+                                             <?php foreach ($SuperVisee as $SuperViseeChild) { ?>
+                                            <li class="has-no-children"><a href=""><?php echo ($SuperViseeChild);?></a></li>
+                                            <?php }   ?>
+                                         
+                                        </ul>
+                                    </li>
+                                <?php } }  ?>
                             </ul>
                         </div>
                         <script type="text/javascript">
                             jQuery(function($) {
                                 $(".block.block-category-nav .block-title").click(function() {
                                     if ($(this).hasClass("closed")) {
-                                        $(".block.block-category-nav .block-content").slideDown();
+                                        $(".block.block-category-nav .block-content")
+                                            .slideDown();
                                         $(this).removeClass("closed");
                                     } else {
                                         $(".block.block-category-nav .block-content").slideUp();
@@ -1179,12 +1089,14 @@
                                         $(this).parent().children("ul").slideUp();
                                         $(this).parent().removeClass("opened");
                                         $(this).children("i.icon-minus-squared").removeClass(
-                                            "icon-minus-squared").addClass("icon-plus-squared");
+                                            "icon-minus-squared").addClass(
+                                            "icon-plus-squared");
                                     } else {
                                         $(this).parent().children("ul").slideDown();
                                         $(this).parent().addClass("opened");
                                         $(this).children("i.icon-plus-squared").removeClass(
-                                            "icon-plus-squared").addClass("icon-minus-squared");
+                                            "icon-plus-squared").addClass(
+                                            "icon-minus-squared");
                                     }
                                 });
                             });
@@ -1369,7 +1281,7 @@
                                 </dd>
                             </dl>
                             <script type="text/javascript">
-                                decorateDataList('narrow-by-list')
+                                decorateDataList('narrow-by-list');
                             </script>
                             <script type="text/javascript">
                                 jQuery(function($) {
@@ -1389,18 +1301,22 @@
                 </div>
                 <script type="text/javascript">
                     jQuery(function($) {
-                        $('.layer-filter-icon, .close-mobile-layer, .close-layer').click(function(event) {
+                        $('.layer-filter-icon, .close-mobile-layer, .close-layer').click(function(
+                            event) {
                             if (!$('body').hasClass('mobile-layer-shown')) {
                                 $('body').addClass('mobile-layer-shown', function() {
                                     setTimeout(function() {
                                         $(document).one("click", function(e) {
                                             var target = e.target;
                                             if (!$(target).is(
-                                                    '.block-main-layer .block') && !
-                                                $(target).parents().is(
-                                                    '.block-main-layer .block')) {
+                                                    '.block-main-layer .block'
+                                                ) && !$(target)
+                                                .parents().is(
+                                                    '.block-main-layer .block'
+                                                )) {
                                                 $('body').removeClass(
-                                                    'mobile-layer-shown');
+                                                    'mobile-layer-shown'
+                                                );
                                             }
                                         });
                                     }, 111);
@@ -1418,18 +1334,19 @@
                             <div class="item">
                                 <div class="item-area">
                                     <div class="product-image-area">
-                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/men-s-sunglass-silver.html" title="Men's Sunglass-Silver" class="product-image">
-                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/s/0/s01_5.jpg" width="82" height="82" />
+                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/men-sports-watch-brown-2xl.html" title="Men Sports Watch-Brown-2XL" class="product-image">
+                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/2/0/20_1_1.jpg" width="82" height="82" />
                                         </a>
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/men-s-sunglass-silver.html" title="Men's Sunglass-Silver">Men's Sunglass-Silver</a></h2>
+                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/men-sports-watch-brown-2xl.html" title="Men Sports Watch-Brown-2XL">Men Sports
+                                                Watch-Brown-2XL</a></h2>
 
 
 
                                         <div class="price-box">
-                                            <span class="regular-price" id="product-price-225">
-                                                <span class="price">$80.00</span> </span>
+                                            <span class="regular-price" id="product-price-140">
+                                                <span class="price">$120.00</span> </span>
 
                                         </div>
 
@@ -1438,18 +1355,18 @@
                                 </div>
                                 <div class="item-area">
                                     <div class="product-image-area">
-                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/diamond-rings-2xl-188.html" title="Diamond Rings-2XL" class="product-image">
-                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/1/_/1_4.jpg" width="82" height="82" />
+                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/candle-company-smell.html" title="Candle Company Smell" class="product-image">
+                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/g/i/gift_03.jpg" width="82" height="82" />
                                         </a>
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/diamond-rings-2xl-188.html" title="Diamond Rings-2XL">Diamond Rings-2XL</a></h2>
+                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/candle-company-smell.html" title="Candle Company Smell">Candle Company Smell</a></h2>
 
 
 
                                         <div class="price-box">
-                                            <span class="regular-price" id="product-price-118">
-                                                <span class="price">$220.00</span> </span>
+                                            <span class="regular-price" id="product-price-286">
+                                                <span class="price">$19.00</span> </span>
 
                                         </div>
 
@@ -1458,18 +1375,19 @@
                                 </div>
                                 <div class="item-area">
                                     <div class="product-image-area">
-                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/men-fashion-watch-black-sony.html" title="Men Watch-Black-Sony" class="product-image">
-                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/1/6/16_10.jpg" width="82" height="82" />
+                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/bar-stool-with-backrest-brown-black.html" title="Bar stool with backrest, brown-black" class="product-image">
+                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/d/f/df_03.jpg" width="82" height="82" />
                                         </a>
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/men-fashion-watch-black-sony.html" title="Men Watch-Black-Sony">Men Watch-Black-Sony</a></h2>
+                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/bar-stool-with-backrest-brown-black.html" title="Bar stool with backrest, brown-black">Bar stool with
+                                                backrest, brown-black</a></h2>
 
 
 
                                         <div class="price-box">
-                                            <span class="regular-price" id="product-price-149">
-                                                <span class="price">$204.00</span> </span>
+                                            <span class="regular-price" id="product-price-276">
+                                                <span class="price">$129.00</span> </span>
 
                                         </div>
 
@@ -1480,19 +1398,18 @@
                             <div class="item">
                                 <div class="item-area">
                                     <div class="product-image-area">
-                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/kotobukiya-marvel-spider-woman.html" title="Kotobukiya Marvel Spider Woman" class="product-image">
-                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/t/h/th_03.jpg" width="82" height="82" />
+                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/camera-bag.html" title="Camera Bag" class="product-image">
+                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/h/o/home-9-product7_3.jpg" width="82" height="82" />
                                         </a>
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/kotobukiya-marvel-spider-woman.html" title="Kotobukiya Marvel Spider Woman">Kotobukiya Marvel
-                                                Spider Woman</a></h2>
+                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/camera-bag.html" title="Camera Bag">Camera Bag</a></h2>
 
 
 
                                         <div class="price-box">
-                                            <span class="regular-price" id="product-price-266">
-                                                <span class="price">$142.00</span> </span>
+                                            <span class="regular-price" id="product-price-213">
+                                                <span class="price">$40.00</span> </span>
 
                                         </div>
 
@@ -1501,18 +1418,18 @@
                                 </div>
                                 <div class="item-area">
                                     <div class="product-image-area">
-                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/camera-lens.html" title="Camera Lens" class="product-image">
-                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/h/o/home-9-product1.jpg" width="82" height="82" />
+                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/jewellery-bracelets-2xl.html" title="Jewellery Bracelets" class="product-image">
+                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/4/_/4_1_2.jpg" width="82" height="82" />
                                         </a>
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/camera-lens.html" title="Camera Lens">Camera Lens</a></h2>
+                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/jewellery-bracelets-2xl.html" title="Jewellery Bracelets">Jewellery Bracelets</a></h2>
 
 
 
                                         <div class="price-box">
-                                            <span class="regular-price" id="product-price-207">
-                                                <span class="price">$699.00</span> </span>
+                                            <span class="regular-price" id="product-price-111">
+                                                <span class="price">$189.00</span> </span>
 
                                         </div>
 
@@ -1521,19 +1438,18 @@
                                 </div>
                                 <div class="item-area">
                                     <div class="product-image-area">
-                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/women-s-running-tights.html" title="Women's running tights" class="product-image">
-                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/s/f/sf_05.jpg" width="82" height="82" />
+                                        <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/pink-fashion-dress.html" title="Pink Fashion Dress" class="product-image">
+                                            <img class="porto-lazyload" data-src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/small_image/82x/17f82f742ffe127f42dca9de82fb58b1/p/r/product_35__3.jpg" width="82" height="82" />
                                         </a>
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/women-s-running-tights.html" title="Women's running tights">Women's running tights</a>
-                                        </h2>
+                                        <h2 class="product-name"><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/pink-fashion-dress.html" title="Pink Fashion Dress">Pink Fashion Dress</a></h2>
 
 
 
                                         <div class="price-box">
-                                            <span class="regular-price" id="product-price-283">
-                                                <span class="price">$110.00</span> </span>
+                                            <span class="regular-price" id="product-price-168">
+                                                <span class="price">$90.00</span> </span>
 
                                         </div>
 

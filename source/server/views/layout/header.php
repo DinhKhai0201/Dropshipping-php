@@ -20,7 +20,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/ed4137a989c52609c4613d6c0bcacd3a.css" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/9c353ad7c3c57ca26c5f27068d2cafe5.css" media="print" />
     <script type="text/javascript" src="<?php echo RootREL; ?>media/js/4190df6d2f2903545088c80753c55f73.js"></script>
-    <script type="text/javascript" src="<?php echo RootREL; ?>media/js/31efaf116e677e16e0a45f0ebb552651.js"></script>
     <script type="text/javascript" src="<?php echo RootREL; ?>media/js/addthis_widget.js"></script>
     <script type="text/javascript">
         jQuery(function($) {

@@ -111,7 +111,8 @@ class vendor_main_model {
 			$order .= $this->table.".created DESC";
 
 		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$conditions.$group.$order;
-		exit($sql);
+		// exit($sql);
+
 		return $this->con->query($sql);
 	}
 	public function getAllRecordsExport($fields = '*', $options = null) {
@@ -166,6 +167,7 @@ class vendor_main_model {
 		} else
 			$order .= $this->table.".created DESC";
 		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$conditions.$group.$order;
+
 		$result = $this->con->query($sql);
 		$records = [];
 		foreach ($result as $key => $value) {

@@ -46,7 +46,6 @@
                          <li class="first"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/" title="My Account">My Account</a></li>
                          <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/" title="Daily deal">Daily deal</a></li>
                          <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/" title="My Wishlist">My Wishlist</a></li>
-                         <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/blog/" title="Blog">Blog</a></li>
                          <?php if (isset($_SESSION['user'])) { ?>
                              <li class=" last"><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login', 'act' => 'logout')); ?>" title="Log In">Log out</a></li>
                          <?php } else { ?>
@@ -386,23 +385,7 @@
                                      </div>
                                  </div>
                              </li>
-                             <li class="menu-item menu-item-has-children menu-parent-item ">
-                                 <a href="javascript:void(0)">Features</a>
-                                 <div class="nav-sublist-dropdown" style="display: none;">
-                                     <div class="container">
-                                         <ul>
-                                             <li class="menu-item" style="list-style: none;">
-                                                 <a class="level1" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/porto-header-types/"><span>Header
-                                                         Types</span></a>
-                                             </li>
-                                             <li class="menu-item" style="list-style: none;">
-                                                 <a class="level1" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/porto-footer-types/"><span>Footer
-                                                         Types</span></a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                             </li>
+
                              <li class="fl-right">
                                  <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/">Special
                                      Offer!</a>
@@ -613,9 +596,6 @@
                      <li class="menu-item" style="list-style: none;">
                          <a class="level1" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/contacts/"><span>Contact
                                  Us</span></a>
-                     </li>
-                     <li class="menu-item" style="list-style: none;">
-                         <a class="level1" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/blog/"><span>Blog</span></a>
                      </li>
                      <li class="menu-item" style="list-style: none;">
                          <a class="level1" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/blog/post-format-image-gallery-2/"><span>Post</span></a>

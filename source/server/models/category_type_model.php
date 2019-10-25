@@ -30,6 +30,17 @@ class category_type_model extends vendor_pagination_model
 		}
 		return $records['data'];
 	}
+	public function getCategories()
+	{
+		$sql = "SELECT SUPERVISOR.categoryName AS SuperVisor,
+				GROUP_CONCAT(SUPERVISEE.categoryName ORDER BY SUPERVISEE.categoryName ) AS SuperVisee,
+				COUNT(*) as countChild
+				FROM category_types AS SUPERVISOR
+				INNER JOIN category_types SUPERVISEE ON SUPERVISOR.id = SUPERVISEE.parentId
+				GROUP BY SuperVisor";
+		$value = $this->con->query($sql);
+		return $value;
+	}
     	
 }
 ?>

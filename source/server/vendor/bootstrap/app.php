@@ -63,11 +63,18 @@ if(isset($_GET["pr"])) {
 		else{
 
 			$link_url = $_SERVER['REQUEST_URI'];
-			if(preg_match('/moi-nhat-hot-nhat\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-				$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
-				$app['linkpage'] = "moi-nhat-hot-nhat";
-				$app['page-current'] = $matches[1];
-				$app['page-type'] = 'moi-nhat-hot-nhat';
+            if (preg_match('/moi-nhat-hot-nhat\/trang-(\d+).html?(.*)/', $link_url, $matches)) {
+                $prs = explode("/", "jobs/index?page=".$matches[1]."&".$matches[2]);
+                $app['linkpage'] = "moi-nhat-hot-nhat";
+                $app['page-current'] = $matches[1];
+                $app['page-type'] = 'moi-nhat-hot-nhat';
+            }else if(preg_match('/.*\/(.*)-(\d+)/', $link_url, $matches)){
+				$prs = explode("/", "product/view/" . $matches[1] . "-" . $matches[2]);
+				$app['linkpage'] = "product-view";
+				$app['slug'] = $matches[1];
+				$app['id'] = $matches[2];
+				$app['page-type'] = 'product-view';
+
 			}else if(preg_match('/viec-lam-tuyen-gap\/trang-(\d+).html?(.*)/', $link_url, $matches)){
 				$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
 				$app['linkpage'] = "viec-lam-tuyen-gap";

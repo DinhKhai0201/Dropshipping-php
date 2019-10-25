@@ -7,15 +7,15 @@
                     <div class="col-md-12 a-left">
                         <ul>
                             <li class="home">
-                                <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/" title="Go to Home Page">Home</a>
-                                <span class="breadcrumbs-split"><i class="icon-right-open"></i></span>
+                                <a href="<?php echo (vendor_app_util::url(["ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                <span class="breadcrumbs-split">></span>
                             </li>
                             <li class="category142">
-                                <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => ""])) ?>" title="">Categories</a>
-                                <span class="breadcrumbs-split"><i class="icon-right-open"></i></span>
+                                <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => ""])) ?>" title="Categories Dropshipping">Categories</a>
+                                <span class="breadcrumbs-split">></span>
                             </li>
                             <li class="product">
-                                <strong> Product: <?php echo $product['name'] ?></strong>
+                                <strong> Product: <?php echo "<b>" . $product['name'] . "</b>"; ?></strong>
                             </li>
                         </ul>
                     </div>
@@ -100,37 +100,24 @@
                         <form action="https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/product/319/form_key/gRxWBEl2ZMe5EQyi/" method="post" id="product_addtocart_form">
                             <input name="form_key" type="hidden" value="gRxWBEl2ZMe5EQyi" />
                             <div class="no-display">
-                                <input type="hidden" name="product" value="319" />
+                                <input type="hidden" name="product" value="<?php echo $product['id']; ?>" />
                                 <input type="hidden" name="related_product" id="related-products-field" value="" />
                             </div>
                             <div class="row">
                                 <div class="product-img-box col-md-6 ">
                                     <ul id="etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM">
-                                        <li>
-                                            <a rel="gallery" class="fancy-images fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM" href="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_3_2.jpg"><span class="glyphicon glyphicon-search"></span></a>
-                                            <img class="etalage_thumb_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_3_2.jpg" alt="" />
-                                            <img class="etalage_source_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/100x100/9df78eab33525d08d6e5fb8d27136e95/0/3/03_3_2.jpg" alt="" />
-                                        </li>
-                                        <li>
-                                            <a rel="gallery" class="fancy-images fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM" href="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_2_2.jpg"><span class="glyphicon glyphicon-search"></span></a>
-                                            <img class="etalage_thumb_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_2_2.jpg" alt="" />
-                                            <img class="etalage_source_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/100x100/9df78eab33525d08d6e5fb8d27136e95/0/3/03_2_2.jpg" alt="" />
-                                        </li>
-                                        <li>
-                                            <a rel="gallery" class="fancy-images fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM" href="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_1_3.jpg"><span class="glyphicon glyphicon-search"></span></a>
-                                            <img class="etalage_thumb_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_1_3.jpg" alt="" />
-                                            <img class="etalage_source_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/100x100/9df78eab33525d08d6e5fb8d27136e95/0/3/03_1_3.jpg" alt="" />
-                                        </li>
-                                        <li>
-                                            <a rel="gallery" class="fancy-images fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM" href="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_4_2.jpg"><span class="glyphicon glyphicon-search"></span></a>
-                                            <img class="etalage_thumb_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/600x/17f82f742ffe127f42dca9de82fb58b1/0/3/03_4_2.jpg" alt="" />
-                                            <img class="etalage_source_image" src="https://www.portotheme.com/magento/porto/media/catalog/product/cache/1/thumbnail/100x100/9df78eab33525d08d6e5fb8d27136e95/0/3/03_4_2.jpg" alt="" />
-                                        </li>
+                                        <?php foreach ($this->galleries as $gallery) { ?>
+                                            <li>
+                                                <a rel="gallery" class="fancy-images fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM" href="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>"><span class="glyphicon glyphicon-search"></span></a>
+                                                <img class="etalage_thumb_image" src="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>" alt="" />
+                                                <img class="etalage_source_image" src="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>" alt="" />
+                                            </li>
+                                        <?php } ?>
                                     </ul>
 
                                     <div class="etalage-control">
-                                        <a href="javascript:void(0)" class="etalage-prev"><i class="icon-angle-left"></i></a>
-                                        <a href="javascript:void(0)" class="etalage-next"><i class="icon-angle-right"></i></a>
+                                        <a href="javascript:void(0)" class="etalage-prev"><i class="fas fa-chevron-left"></i></a>
+                                        <a href="javascript:void(0)" class="etalage-next"><i class="fas fa-chevron-right"></i></a>
                                     </div>
                                     <div class="product-view-zoom-area">
                                     </div>
@@ -151,16 +138,13 @@
                                                 var width = jQuery(this).width();
                                             });
                                             jQuery('.etalage-prev').on('click', function() {
-                                                etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM_previous
-                                                    ();
+                                                etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM_previous();
                                             });
                                             jQuery('.etalage-next').on('click', function() {
-                                                etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM_next
-                                                    ();
+                                                etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM_next();
                                             });
                                             jQuery(
-                                                    "a.fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM")
-                                                .fancybox();
+                                                    "a.fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM").fancybox();
 
                                             function reloadEtalage() {
                                                 var src_img_width = 600;
@@ -263,7 +247,7 @@
                                         </div>
                                     </div>
                                     <div class="product-name">
-                                        <h1>Stripe-Trim Athletic</h1>
+                                        <h1><?php echo $product['name']; ?></h1>
                                     </div>
 
                                     <div class="ratings">
@@ -276,10 +260,7 @@
                                     </div>
                                     <div class="short-description ">
                                         <h2>Quick Overview</h2>
-                                        <div class="std">Duis aute irure dolor in reprehenderit in voluptate
-                                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                            occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                            mollit anim id est laborum.</div>
+                                        <div class="std"><?php echo $product['description']; ?></div>
                                     </div>
                                     <div class="product-info">
                                         <div>
@@ -291,17 +272,15 @@
 
                                             <div class="price-box">
                                                 <span class="regular-price" id="product-price-319">
-                                                    <span class="price">$15.00</span> </span>
+                                                    <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
 
                                             </div>
 
 
                                         </div>
                                         <script type="text/javascript">
-                                            //<![CDATA[
                                             var dailydealTimeCounters = new Array();
                                             var i = 0;
-                                            //]]>
                                         </script>
                                     </div>
 
@@ -391,7 +370,7 @@
                                                 </div>
                                             </dd>
                                         </dl>
-                                        <script type="text/javascript">
+                                        <!-- <script type="text/javascript">
                                             var spConfig = new Product.Config({
                                                 "attributes": {
                                                     "92": {
@@ -463,8 +442,8 @@
                                                     "inclTaxTitle": "Incl. Tax"
                                                 }
                                             });
-                                        </script>
-                                        <script type="text/javascript">
+                                        </script> -->
+                                        <!-- <script type="text/javascript">
                                             jQuery(document).ready(function() {
                                                 var swatchesConfig = new Product.ConfigurableSwatches(
                                                     spConfig);
@@ -615,7 +594,7 @@
                                             Calendar._TT["WK"] = "Week";
                                             Calendar._TT["TIME"] = 'Time:';
                                             //]]>
-                                        </script>
+                                        </script> -->
                                         <p class="required">* Required Fields</p>
                                     </div>
                                     <div class="clearer"></div>
@@ -871,25 +850,7 @@
                                         <div class="tab-content" id="tab_description_tabbed_contents">
                                             <h2>Details</h2>
                                             <div class="std">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                                    do eiusmod tempor incididunt ut labore et dolore magna
-                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                                    Duis aute irure dolor in reprehenderit in voluptate velit
-                                                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                                    occaecat.</p>
-                                                <ul>
-                                                    <li><i class="icon-ok"></i>Any Product types that You want -
-                                                        Simple, Configurable</li>
-                                                    <li><i class="icon-ok"></i>Downloadable/Digital Products,
-                                                        Virtual Products</li>
-                                                    <li><i class="icon-ok"></i>Inventory Management with
-                                                        Backordered items</li>
-                                                </ul>
-                                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                    aliqua. Ut enim ad minim veniam, <br />quis nostrud
-                                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                    consequat. </p>
+                                                <?php echo $product['description'];?>
                                             </div>
                                         </div>
                                         <div class="tab-content" id="tab_tags_tabbed_contents">
@@ -984,7 +945,7 @@
                                                                 </table>
                                                                 <input type="hidden" name="validate_rating" class="validate-rating" value="" />
                                                                 <script type="text/javascript">
-                                                                    decorateTable('product-review-table')
+                                                                    decorateTable('product-review-table');
                                                                 </script>
                                                                 <ul class="form-list">
                                                                     <li>
@@ -1014,7 +975,6 @@
                                                             </div>
                                                         </form>
                                                         <script type="text/javascript">
-                                                            //<![CDATA[
                                                             var dataForm = new VarienForm('review-form');
                                                             Validation.addAllThese(
                                                                 [
