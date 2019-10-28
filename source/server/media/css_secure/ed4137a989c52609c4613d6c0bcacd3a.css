@@ -7219,13 +7219,15 @@ div.filter-title .content, h2.filter-title .content {
     color: inherit;
 }
 .block-category-nav .category-list a,
-.block-layered-nav dd a {
+.block-layered-nav dd p {
     font-size: 14px;
     line-height: 33px;
     letter-spacing: 0.01em;
     color: #7a7d82;
     font-weight: 600;
+    cursor: pointer;
 }
+
 .price-filter-slider .text-box input.go {
     border-radius: 0;
 }

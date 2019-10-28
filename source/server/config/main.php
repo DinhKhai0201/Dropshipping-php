@@ -72,6 +72,30 @@ $app['recordTime'] = [
 	'created'		=>	'created',
 	'updated'		=>	'updated'
 ];
+$app['color'] =[
+	'black',
+	'blue',
+	'brown',
+	'green',
+	'grey',
+	'pink',
+	'yellow',
+	'white',
+	'red'
+];
+
+$app['size'] = [
+	'S',
+	'M',
+	'L',
+	'XL',
+	'2XL',
+	'55',
+	'56',
+	'57',
+	'30',
+	'31'
+];
 
 $app['months'] = [
 	'01',
@@ -87,7 +111,13 @@ $app['months'] = [
 	'11',
 	'12',
 ];
-
+$app['filter-price'] = [
+	'0-10',
+	'10-20',
+	'20-30',
+	'40-50',
+	'50'
+];
 $app['weekdays'] = [
 	'Monday',
 	'Tuesday',

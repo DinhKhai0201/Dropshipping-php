@@ -3,7 +3,7 @@
 		<div class="box">
 			<div class="box-body">
 
-							
+
 				<!-- <div class="col-md-6"> -->
 				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
 					<legend class=""><?php echo ucwords($app['act'] . ' ' . $app['ctl']); ?></legend>
@@ -46,27 +46,29 @@
 							<?php } ?>
 						</div>
 					</div>
+
 					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="categories_name">Category name</label>
 							<div class="controls col-md-7">
 								<input required <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="brands_name" name="product[category_type_id]" placeholder="" class="form-control" value="<?php foreach ($this->recordsCategories as $category) {
-																																																					echo (isset($this->record['category_type_id']) && $this->record['category_type_id'] == $category['id']) ? $category['categoryName'] : '';
-																																																				} ?>">
+																																																						echo (isset($this->record['category_type_id']) && $this->record['category_type_id'] == $category['id']) ? $category['categoryName'] : '';
+																																																					} ?>">
 							</div>
 						</div>
 					<?php } else { ?>
 						<div class="form-group row">
-							<label class="control-label col-md-3" for="categories_name">Category name</label>
+							<label class="control-label col-md-3" for="categories_name">Category level 1</label>
 							<div class="controls col-md-7">
 								<select name="product[category_type_id]" id="" class="form-control select2 w-p100">
-									<?php foreach ($this->recordsCategories as $category) { ?>
+									<?php foreach ($this->level1 as $category) { ?>
 										<option value="<?= $category['id'] ?>" <?= (isset($this->record['category_type_id']) && $this->record['category_type_id'] == $category['id']) ? 'selected="selected"' : ''; ?>><?= $category['categoryName'] ?></option>
 									<?php }  ?>
 								</select>
 							</div>
 						</div>
 					<?php } ?>
+
 					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="brands_name">Brands name</label>
@@ -88,27 +90,7 @@
 							</div>
 						</div>
 					<?php } ?>
-					<?php if ($app['act'] == 'view') { ?>
-						<div class="form-group row">
-							<label class="control-label col-md-3" for="Stores_name">Stores name</label>
-							<div class="controls col-md-7">
-								<input required <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="stores_name" name="product[store_id]" placeholder="" class="form-control" value="<?php foreach ($this->recordsStores as $store) {
-																																																				echo ($store['name']);
-																																																			} ?>">
-							</div>
-						</div>
-					<?php } else { ?>
-						<div class="form-group row">
-							<label class="control-label col-md-3" for="brands_name">Stores name</label>
-							<div class="controls col-md-7">
-								<select name="product[store_id]" id="" class="form-control select2 w-p100">
-									<?php foreach ($this->recordsStores as $store) { ?>
-										<option value="<?= $store['id'] ?>" <?= (isset($this->record['store_id']) && $this->record['store_id'] == $store['id']) ? 'selected="selected"' : ''; ?>><?= $store['name'] ?></option>
-									<?php } ?>
-								</select>
-							</div>
-						</div>
-					<?php } ?>
+
 					<div class="form-group row">
 						<label class="control-label col-md-3" for="status">Status<span style="color:red;">*</span></label>
 						<div class="controls col-md-7">
@@ -187,7 +169,7 @@
 					<?php } ?>
 
 					<?php if ($app['act'] == 'view') { ?>
-						<!-- products -->
+					
 						<!-- <div class="products singleppt">	 
 									<div class="container ">  
 										<div class="single-page">
@@ -294,4 +276,27 @@
 			}
 		});
 	});
+</script>
+<script>
+	var level1 = <?php echo json_encode($this->level1) ?>;
+	var level2 = <?php echo json_encode($this->level2) ?>;
+	var level3 = <?php echo json_encode($this->level3) ?>;
+	var level4 = <?php echo json_encode($this->level4) ?>;
+
+	var categoriesData = {
+		'level1': level1 ? level1 : [],
+		'level2': level2 ? level2 : [],
+		'level3': level3 ? level3 : [],
+		'level4': level4 ? level4 : [],
+	};
+	var idLevel1Active = '';
+	var idLevel2Active = '';
+	var idLevel3Active = '';
+	var isAdd = false;
+
+	var _id = null;
+	var _level = null;
+	var _idParent = null;
+	var _rankingNo = null;
+	var _name = null;
 </script>

@@ -23,7 +23,7 @@ class products_controller extends vendor_backend_controller {
     }
 
     $product = new product_model();
-    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category_type', 'brand', 'store'], 'order'=>'id ASC']);
+    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category_type', 'brand', 'user'], 'order'=>'id ASC']);
     // exit(json_encode($this->records));
     $this->display();
   }
@@ -62,8 +62,7 @@ class products_controller extends vendor_backend_controller {
       $gm = new gallery_model();
       $imageData = array();
       $productData = $_POST['product'];
-
-
+      $productData['user_id'] = $_SESSION['user']['id'];
       // exit(json_encode($productData));
       // $valid = $um->validator($productData);
       // if($valid['status']) {      
@@ -98,8 +97,11 @@ class products_controller extends vendor_backend_controller {
     $this->recordsBrands = $brand ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
     $stores = new store_model();
     $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
-    $categories = new category_type_model();
-    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
+    $category = new category_type_model();
+    $this->level1 = $category->getAllCategory(1);
+    $this->level2 = $category->getAllCategory(2);
+    $this->level3 = $category->getAllCategory(3);
+    $this->level4 = $category->getAllCategory(4);
     $this->display();
   }
 
@@ -108,12 +110,13 @@ class products_controller extends vendor_backend_controller {
     $this->record = $pm->getRecord($id);
     $gm = new gallery_model();
     $this->recordGalleries = $gm->getAllRecords('*',['conditions'=>'product_id ='.$id, 'joins'=>'', 'order'=>'id ASC']);
+
     $brand = new brand_model();
     $this->recordsBrands = $brand ->getAllRecords('*',['conditions'=>'brands.id ='.$this->record['brand_id'], 'joins'=>'', 'order'=>'id ASC']);
-    $stores = new store_model();
-    $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'stores.id='.$this->record['store_id'], 'joins'=>'', 'order'=>'id ASC']);
+    $user = new user_model();
+    $this->recordsuser = $user ->getAllRecords('*',['conditions'=>'users.id='.$this->record['user_id'], 'joins'=>'', 'order'=>'id ASC']);
     $categories = new category_type_model();
-    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'categories.id='.$this->record['category_id'], 'joins'=>'', 'order'=>'id ASC']);
+    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'category_types.id='.$this->record['category_type_id'], 'joins'=>'', 'order'=>'id ASC']);
     $this->display();
   }
 

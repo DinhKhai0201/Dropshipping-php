@@ -74,7 +74,19 @@ if(isset($_GET["pr"])) {
 				$app['slug'] = $matches[1];
 				$app['id'] = $matches[2];
 				$app['page-type'] = 'product-view';
-
+			}else if(preg_match('/.*\=(\d+)-(\d+)/', $link_url, $matches)){
+				$prs = explode("=", "categories/index?price=" . $matches[1] . "-" . $matches[2]);
+				$app['linkpage'] = "categories-index";
+				
+				$app['from'] = $matches[1];
+				$app['to'] = $matches[2];
+				exit($app['from']);
+				$app['page-type'] = 'categories-index';
+			} else if (preg_match('/.*\=(.*)$/', $link_url, $matches)) {
+				$prs = explode("=", "/categories/cat=" . $matches[1]);
+				$app['linkpage'] = "categories-index";
+				$app['category-slug'] = $matches[1];
+				$app['page-type'] = 'categories-index';
 			}else if(preg_match('/viec-lam-tuyen-gap\/trang-(\d+).html?(.*)/', $link_url, $matches)){
 				$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
 				$app['linkpage'] = "viec-lam-tuyen-gap";
@@ -147,6 +159,10 @@ if(isset($_GET["pr"])) {
 						break;
 					case "categories":
 						$prs = explode("/", "categories");
+						$app['linkpage'] = "categories";
+						break;
+					case "categories/index":
+						$prs = explode("/", "categories/index");
 						$app['linkpage'] = "categories";
 						break;
 					case "product":

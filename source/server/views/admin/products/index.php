@@ -121,8 +121,8 @@ if(isset($app['prs']['status'])) {
 								<td class="tabletShow" id="<?php echo("categories_name".$record['id']);?>">
                                     <?php echo $record['category_types_categoryName']; ?> 
 								</td>
-								<td class="tabletShow" id="<?php echo("stores_name".$record['id']);?>">
-                                    <?php echo $record['stores_name']; ?> 
+								<td class="tabletShow" id="<?php echo("users_lastname".$record['id']);?>">
+                                    <?php echo $record['users_lastname']; ?> 
 								</td>
 								<td class="tabletShow" id="<?php echo("brands_name".$record['id']);?>">
                                     <?php echo $record['brands_name']; ?> 

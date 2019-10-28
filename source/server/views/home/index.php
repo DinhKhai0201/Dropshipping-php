@@ -272,20 +272,20 @@
                                             </div>
                                             <a href="" class="quickview-icon quickview" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>"><i class="icon-export"></i><span>Quick
                                                     View</span></a>
-                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view", 'params' => array('id' => $product['id'])])) ?>" title="<?php echo $product['name']; ?>" class="product-image">
-                                                <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/upload/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" />
-                                                <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_4_4.jpg" width="250" height="250" alt="IdeaPad" />
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>" class="product-image">
+                                                <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" />
+                                                <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" alt="IdeaPad" />
                                             </a>
 
                                             <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
                                             <div class="actions">
-                                                <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/429/form_key/EnsiPctuwaTCt7HC/','429_3kp')"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                                <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="addtocart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
                                                 <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/429/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','429');" class="comparelink" title="Add to Compare"><i class="fa fa-copy" aria-hidden="true"></i></a>
                                                 <div class="clearer"></div>
                                             </div>
                                         </div>
                                         <div class="details-area">
-                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/".$product['slug']."-".$product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
+                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
                                             <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
                                             <div class="ratings">
                                                 <div class="rating-box">
@@ -301,252 +301,27 @@
                                 </div>
 
                             <?php }  ?>
-
-                            <!-- <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/421" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-709.html" title="NTX01 - Headphone" class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/7_/7_11.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/7_/7_11.jpg" width="250" height="250" alt="NTX01 - Headphone" />
-                                        </a>
-
-                                        <div class="product-label" style="right: 10px; "><span class="new-product-icon">New</span></div>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/421/form_key/EnsiPctuwaTCt7HC/','421_84p')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/421/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','421');" class="comparelink" title="Add to Compare"><i class="icon-compare"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-709.html" title="NTX01 - Headphone">NTX01 - Headphone</a></h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/421/form_key/EnsiPctuwaTCt7HC/','421');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
-                                            </div>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-421">
-                                                <span class="price">$299.00</span> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/417" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-705.html" title=" DT-880 Pro Headphones" class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/3_/3_16_2.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/3_/3_16_2.jpg" width="250" height="250" alt=" DT-880 Pro Headphones" />
-                                        </a>
-
-                                        <div class="product-label" style="right: 10px; "><span class="new-product-icon">New</span></div>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/417/form_key/EnsiPctuwaTCt7HC/','417_5zq')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/417/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','417');" class="comparelink" title="Add to Compare"><i class="icon-compare"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-705.html" title=" DT-880 Pro Headphones"> DT-880 Pro Headphones</a>
-                                        </h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/417/form_key/EnsiPctuwaTCt7HC/','417');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
-                                            </div>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-417">
-                                                <span class="price">$299.00</span> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/431" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1690.html" title="Computer Mouse" class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_5.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_5.jpg" width="250" height="250" alt="Computer Mouse" />
-                                        </a>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/431/form_key/EnsiPctuwaTCt7HC/','431_97x')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/431/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','431');" class="comparelink" title="Add to Compare"><i class="icon-compare"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1690.html" title="Computer Mouse">Computer Mouse</a></h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/431/form_key/EnsiPctuwaTCt7HC/','431');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-431">
-                                                <span class="price">$55.00</span> </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/415" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj.html" title="Headphone SJ" class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_3.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/1_/1_1_3.jpg" width="250" height="250" alt="Headphone SJ" />
-                                        </a>
-
-                                        <div class="product-label" style="right: 10px; "><span class="new-product-icon">New</span></div>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/415/form_key/EnsiPctuwaTCt7HC/','415_jh0')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/415/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','415');" class="comparelink" title="Add to Compare"><i class="icon-compare"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj.html" title="Headphone SJ">Headphone SJ</a></h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/415/form_key/EnsiPctuwaTCt7HC/','415');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-415">
-                                                <span class="price">$299.00</span> </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/427" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1687.html" title="Vostro" class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/2_/2_14_2.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/2_/2_14_2.jpg" width="250" height="250" alt="Vostro" />
-                                        </a>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/427/form_key/EnsiPctuwaTCt7HC/','427_8np')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/427/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','427');" class="comparelink" title="Add to Compare"><i class="icon-compare"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/men-sports-watch-m-1687.html" title="Vostro">Vostro</a></h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/427/form_key/EnsiPctuwaTCt7HC/','427');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-427">
-                                                <span class="price">$999.00</span> </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item-area type3">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/quickview/index/view/id/422" class="quickview-icon"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-710.html" title=" 25 Acoustic Noise " class="product-image">
-                                            <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL; ?>media/catalog/product/cache/7/small_image/250x250/9df78eab33525d08d6e5fb8d27136e95/6_/6_2_1.jpg" width="250" height="250" />
-                                            <img class="hoverImage" src="<?php echo RootREL; ?>media/catalog/product/cache/7/thumbnail/250x250/9df78eab33525d08d6e5fb8d27136e95/6_/6_2_1.jpg" width="250" height="250" alt=" 25 Acoustic Noise " />
-                                        </a>
-
-                                        <div class="product-label" style="right: 10px; "><span class="new-product-icon">New</span></div>
-                                        <div class="actions">
-                                            <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="setLocationAjax(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/add/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/product/422/form_key/EnsiPctuwaTCt7HC/','422_hyn')"><i class="icon-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                            <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/422/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','422');" class="comparelink" title="Add to Compare"><i class="icon-compare"></i></a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-710.html" title=" 25 Acoustic Noise "> 25 Acoustic Noise </a></h2>
-                                        <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/422/form_key/EnsiPctuwaTCt7HC/','422');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
-                                        <div class="ratings">
-                                            <div class="rating-box">
-                                                <div class="rating" style="width:0"></div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-422">
-                                                <span class="price">$299.00</span> </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
 
                 </div>
                 <script type="text/javascript">
+
+                </script>
+
+                <script type="text/javascript">
                     jQuery(function($) {
+                        function addtocart(id) {
+                            $.ajax({
+                                url: "<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "addtocart"])) ?>",
+                                dataType: 'json',
+                                type: 'post',
+                                data: id,
+                                function(data, success) {
+                                    console.log(data);
+                                }
+                            })
+                        }
                         $("#new_product .filter-products .owl-carousel").owlCarousel({
                             lazyLoad: true,
                             itemsCustom: [

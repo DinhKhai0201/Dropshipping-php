@@ -34,4 +34,9 @@ class product_controller extends vendor_main_controller
         }
         
     }
+    public function addtocart() {
+        if (!empty($_POST["id"])) {	
+            exit("asdasdasd");
+        }
+    }
 }

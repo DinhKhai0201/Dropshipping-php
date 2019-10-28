@@ -10,9 +10,9 @@ class home_controller extends vendor_main_controller {
 				'order'=>'id ASC'
 			]);
 			$product_model = new product_model();
-			$this->products = $product_model->getAllRecords('*', [
+			$this->products = $product_model->getAllRecords('products.*,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
 				'conditions' => 'best_selling = 1',
-				'joins' => ['gallery'],
+				'joins' => '',
 				'order' => 'products.id DESC limit 12'
 			]);
 			// $cat = new category_model();
