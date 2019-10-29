@@ -51,8 +51,11 @@ class products_controller extends vendor_backend_controller {
     $this->recordsBrands = $brands ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
     $stores = new store_model();
     $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
-    $categories = new category_type_model();
-    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
+    $category = new category_type_model();
+    $this->level1 = $category->getAllCategory(1);
+    $this->level2 = $category->getAllCategory(2);
+    $this->level3 = $category->getAllCategory(3);
+    $this->level4 = $category->getAllCategory(4);
     $this->display();
   }
 
@@ -98,6 +101,7 @@ class products_controller extends vendor_backend_controller {
     $stores = new store_model();
     $this->recordsStores = $stores ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
     $category = new category_type_model();
+    $this->recordsCategories = $category->getCategories();
     $this->level1 = $category->getAllCategory(1);
     $this->level2 = $category->getAllCategory(2);
     $this->level3 = $category->getAllCategory(3);
@@ -148,6 +152,16 @@ class products_controller extends vendor_backend_controller {
     $record = $pm->getAllRecordsExport('products.id, products.sku, products.name, products.description, products.price, products.quantity, products.num_of_brought, products.best_selling, products.status',['conditions'=>'', 'joins'=>['category', 'brand', 'store'], 'order'=>'id ASC']);
 		http_response_code(200);
 		echo (($record));
+  }
+  public function getCatAjax () {
+
+    $category = new category_type_model();
+    if (isset($_POST['level1'])) {
+      $id1 = ($_POST['level1']);
+     
+    }
+    http_response_code(200);
+    echo (($id1));
   }
 }
 ?>

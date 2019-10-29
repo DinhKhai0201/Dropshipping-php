@@ -2,12 +2,64 @@
 	<div class="row">
 		<div class="box">
 			<div class="box-body">
-
-
 				<!-- <div class="col-md-6"> -->
 				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
 					<legend class=""><?php echo ucwords($app['act'] . ' ' . $app['ctl']); ?></legend>
 				</div>
+				<button class="btn btn-default btn-lg col-xs-5  trigger"><span itemprop="name">Tất cả danh mục</span><span class="caret _2UAALXHJVap4y2kAfwkH6_"></span></button>
+				<div class="modaly">
+					<div class="modal-contenty">
+						<span class="close-button">&times;</span>
+						<h1>Hello, I am a modal!</h1>
+					</div>
+				</div>
+				<style>
+					.modaly {
+						position: fixed;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						background-color: rgba(0, 0, 0, 0.5);
+						opacity: 0;
+						z-index: 9999;
+						visibility: hidden;
+						transform: scale(1.1);
+						transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+					}
+
+					.modal-contenty {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						background-color: white;
+						padding: 1rem 1.5rem;
+						width: 24rem;
+						border-radius: 0.5rem;
+					}
+
+					.close-button {
+						float: right;
+						width: 1.5rem;
+						line-height: 1.5rem;
+						text-align: center;
+						cursor: pointer;
+						border-radius: 0.25rem;
+						background-color: lightgray;
+					}
+
+					.close-button:hover {
+						background-color: darkgray;
+					}
+
+					.show-modaly {
+						opacity: 1;
+						visibility: visible;
+						transform: scale(1.0);
+						transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+					}
+				</style>
 				<?php if ($app['act'] != 'view') { ?>
 					<form id="form-addproduct" action="<?php echo vendor_app_util::url(["ctl" => "products", "act" => $app['act'] == 'edit' ? $app['act'] . "/" . $this->record['id'] : $app['act']]); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 					<?php } ?>
@@ -40,7 +92,7 @@
 					<div class="form-group row">
 						<label class="control-label col-md-3" for="slug">Slug<span style="color:red;">*</span></label>
 						<div class="controls col-md-7">
-							<input <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="slug" name="product[slug]" placeholder="" class="form-control" value="<?php if (isset($this->record['name'])) echo $this->record['name']; ?>">
+							<input <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="slug" name="product[slug]" placeholder="" class="form-control" value="<?php if (isset($this->record['slug'])) echo $this->record['slug']; ?>">
 							<?php if (isset($this->errors['slug'])) { ?>
 								<p class="text-danger"><?= $this->errors['slug']; ?></p>
 							<?php } ?>
@@ -60,12 +112,19 @@
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="categories_name">Category level 1</label>
 							<div class="controls col-md-7">
-								<select name="product[category_type_id]" id="" class="form-control select2 w-p100">
-									<?php foreach ($this->level1 as $category) { ?>
-										<option value="<?= $category['id'] ?>" <?= (isset($this->record['category_type_id']) && $this->record['category_type_id'] == $category['id']) ? 'selected="selected"' : ''; ?>><?= $category['categoryName'] ?></option>
+								<select name="category1" id="category1" class="form-control select2 w-p100">
+									<option value="0">None</option>
+									<?php foreach ($this->level1 as $category1) { ?>
+										<option value="<?= $category1['id'] ?>" <?= (isset($this->record['category_type_id']) && $this->record['category_type_id'] == $category1['id']) ? 'selected="selected"' : ''; ?>><?= $category1['categoryName'] ?></option>
 									<?php }  ?>
 								</select>
 							</div>
+						</div>
+						<div id='appendCat1'>
+						</div>
+						<div id='appendCat2'>
+						</div>
+						<div id='appendCat3'>
 						</div>
 					<?php } ?>
 
@@ -148,7 +207,7 @@
 					<?php } ?>
 					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group  row">
-							<label class="control-label col-md-3" for="description">Product descriptipn<span style="color:red;">*</span></label>
+							<label class="control-label col-md-3" for="description">Product descriptipn</label>
 							<div class="controls  col-md-7">
 								<div style="padding: 10px;background-color: #e9ecef">
 									<?php if (isset($this->record['description'])) echo (($this->record['description'])); ?>
@@ -161,38 +220,36 @@
 						</div>
 					<?php } ?>
 					<?php if ($app['act'] == 'add' || $app['act'] == 'edit') { ?>
-						<label class="control-label " for="description">Product descriptipn<span style="color:red;">*</span></label>
-						<textarea cols='50' rows='15' type="text" id="editor1" name="product[description]" placeholder="" class="form-control" value=""><?php if (isset($this->record['description'])) echo (($this->record['description'])); ?></textarea>
-						<?php if (isset($this->errors['decription'])) { ?>
-							<p class="text-danger"><?= $this->errors['decription']; ?></p>
-						<?php } ?>
+						<div class="form-group  row">
+							<label class="control-label  col-md-3 " for="description">Product descriptipn<span style="color:red;">*</span></label>
+							<div class="controls  col-md-7">
+								<textarea cols='50' rows='15' type="text" id="editor1" name="product[description]" placeholder="" class="form-control" value=""><?php if (isset($this->record['description'])) echo (($this->record['description'])); ?></textarea>
+								<?php if (isset($this->errors['decription'])) { ?>
+									<p class="text-danger"><?= $this->errors['decription']; ?></p>
+								<?php } ?>
+							</div>
+						</div>
 					<?php } ?>
 
 					<?php if ($app['act'] == 'view') { ?>
-					
-						<!-- <div class="products singleppt">	 
-									<div class="container ">  
-										<div class="single-page">
-											<div class="single-page-row" id="detail-21">
-												<div class="col-md-6 single-top-left">	
-													<div class="flexslider">
-														<ul class="slides">
-															<?php foreach ($this->recordGalleries as $gallery) { ?>
-																<li data-thumb='<?php echo RootREL . "media/upload/products/" . $gallery['image'] ?>'>
-																	<div class='thumb-image'> <img id ='gallery-id-<?php echo $gallery['id']; ?>' src='<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>' data-imagezoom='true' class='img-responsive' alt=''> </div>
-																</li>
-																	
-															<?php } ?>
-														
-														</ul>
-													</div>
-												</div>
-											<div class="clearfix"> </div>  
-											</div>
-										</div> 
-										
-									</div>
-								</div> -->
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="image">Image<span style="color:red;">*</span></label>
+							<div class="controls col-md-7">
+								<div class="flexslider">
+									<ul class="slides carousel">
+										<?php foreach ($this->recordGalleries as $gallery) { ?>
+											<li data-thumb='<?php echo RootREL . "media/upload/products/" . $gallery['image'] ?>'>
+												<img id='gallery-id-<?php echo $gallery['id']; ?>' src='<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>' data-imagezoom='true' class='img-responsive' alt=''>
+											</li>
+
+										<?php } ?>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+
+
 						<!--//products-->
 
 						<div class="form-group row">
@@ -213,11 +270,6 @@
 							</a>
 						</div>
 					<?php } ?>
-
-
-
-
-
 					<?php if ($app['act'] != 'view') { ?>
 						<div class="text-center form-group" style="margin-top: 50px;">
 							<input class="btn btn-success" type="submit" name="btn_submit" value="<?php echo ucfirst($app['act']) ?>">
@@ -240,16 +292,109 @@
 		</div>
 		<!-- </div> -->
 	</div>
+
 </section>
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/okzoom.js"></script>
-<script type="text/javascript">
-	CKEDITOR.replace('editor1', {});
-	CKEDITOR.config.baseFloatZIndex = 100001;
+<script>
+	function templ(name, html) {
+		temp = '';
+		temp += `
+			<div class="form-group row ${name}">
+							<label class="control-label col-md-3" for="categories_name">Category child</label>
+							<div class="controls col-md-7">
+								<select name="${name}" id="${name}" class="form-control select2 w-p100"> <option value ='0'>None</option> >`;
+		temp += html;
+		temp += `				</select>
+							</div>
+						</div>
+		`;
+		return temp;
+	}
+	$(document).ready(function() {
+		let dataCat = <?php echo $this->recordsCategories; ?>;
+		console.log((dataCat));
+		let html2 = html3 = html4 = tmp = '';
+		let level1 = $("#category1").val();
+
+		$('#category1').on('change', function() {
+			$('.category2').remove();
+			$('.category3').remove();
+			$('.category4').remove();
+			let html2 = '';
+			let level1 = $(this).val();
+			dataCat.map((value, key) => {
+				if (parseInt(value['parentId']) == parseInt(level1)) {
+					html2 += `<option value="${value['id']}" >${value['categoryName']}</option>`;
+				} else {
+
+				}
+			});
+			tmp = templ('category2', html2);
+			$('#appendCat1').append(tmp);
+		})
+		$(document).on('change', '#category2', function() {
+			$('.category3').remove();
+			$('.category4').remove();
+			let html3 = '';
+			let level2 = $(this).val();
+			if (parseInt(level2) == 0) {
+				$('.category3').remove();
+				$('.category4').remove();
+			}
+			dataCat.map((value, key) => {
+				if (parseInt(value['parentId']) == parseInt(level2)) {
+					html3 += `<option value="${value['id']}" >${value['categoryName']}</option>`;
+				} else {
+
+				}
+			});
+			tmp = templ('category3', html3);
+			$('#appendCat2').append(tmp);
+
+		})
+		$(document).on('change', '#category3', function() {
+			$('.category4').remove();
+			let html4 = '';
+			let level3 = $(this).val();
+			if (parseInt(level3) == 0) {
+				$('.category4').remove();
+			}
+			dataCat.map((value, key) => {
+
+				if (parseInt(value['parentId']) == parseInt(level3)) {
+
+					html4 += `<option value="${value['id']}" >${value['categoryName']}</option>`;
+				} else {
+
+				}
+			});
+			tmp = templ('category4', html4);
+			$('#appendCat3').append(tmp);
+
+		})
+	});
 </script>
 <script>
+	var modal = document.querySelector(".modaly");
+	var trigger = document.querySelector(".trigger");
+	var closeButton = document.querySelector(".close-button");
+
+	function toggleModal() {
+		modal.classList.toggle("show-modaly");
+	}
+
+	function windowOnClick(event) {
+		if (event.target === modal) {
+			toggleModal();
+		}
+	}
+
+	trigger.addEventListener("click", toggleModal);
+	closeButton.addEventListener("click", toggleModal);
+	window.addEventListener("click", windowOnClick);
 	$("#name").keyup(function() {
 		$("#slug").val(slugify($(this).val()));
 	});
@@ -276,27 +421,13 @@
 			}
 		});
 	});
-</script>
-<script>
-	var level1 = <?php echo json_encode($this->level1) ?>;
-	var level2 = <?php echo json_encode($this->level2) ?>;
-	var level3 = <?php echo json_encode($this->level3) ?>;
-	var level4 = <?php echo json_encode($this->level4) ?>;
+	$(document).ready(function() {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			animationLoop: true,
+			prevText: "Previous",
+			nextText: "Next",
+		});
 
-	var categoriesData = {
-		'level1': level1 ? level1 : [],
-		'level2': level2 ? level2 : [],
-		'level3': level3 ? level3 : [],
-		'level4': level4 ? level4 : [],
-	};
-	var idLevel1Active = '';
-	var idLevel2Active = '';
-	var idLevel3Active = '';
-	var isAdd = false;
-
-	var _id = null;
-	var _level = null;
-	var _idParent = null;
-	var _rankingNo = null;
-	var _name = null;
+	});
 </script>

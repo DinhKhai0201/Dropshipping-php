@@ -270,7 +270,7 @@
                                                     <i class="ajax-loader medium animate-spin"></i>
                                                 </div>
                                             </div>
-                                            <a href="" class="quickview-icon quickview" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>"><i class="icon-export"></i><span>Quick
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "quickview/" . $product['slug'] . "-" . $product['id']])) ?>" class="quickview-icon  quickview" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>"><i class="icon-export"></i><span>Quick
                                                     View</span></a>
                                             <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>" class="product-image">
                                                 <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" />
@@ -286,7 +286,7 @@
                                         </div>
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
-                                            <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="icon-wishlist"></i></a>
+                                            <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="fas fa-heart" style ></i></a>
                                             <div class="ratings">
                                                 <div class="rating-box">
                                                     <div class="rating" style="width:0"></div>

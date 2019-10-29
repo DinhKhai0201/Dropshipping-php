@@ -1,6 +1,6 @@
-<?php include_once 'views/admin/layout/'.$this->layout.'top.php'; ?>
-<?php  
-	
+<?php include_once 'views/admin/layout/' . $this->layout . 'top.php'; ?>
+<?php
+
 ?>
 <section class="content-header">
   <h1>
@@ -14,11 +14,15 @@
 </section>
 
 <section class="content">
-	<?php 
-		include_once 'views/admin/products/_form.php';
-	?>
+  <?php
+  include_once 'views/admin/products/_form.php';
+  ?>
+  <script type="text/javascript">
+    CKEDITOR.replace('editor1', {});
+    CKEDITOR.config.baseFloatZIndex = 100001;
+  </script>
 </section>
 
 </div>
-  <!-- /.box -->
-<?php include_once 'views/admin/layout/'.$this->layout.'footer.php'; ?>
+<!-- /.box -->
+<?php include_once 'views/admin/layout/' . $this->layout . 'footer.php'; ?>

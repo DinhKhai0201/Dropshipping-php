@@ -21,8 +21,9 @@ class category_type_model extends vendor_pagination_model
 	
 	public function getAllCategory($level)
 	{
+		$conditions = 'category_types.level=' . $level;
 		$records['data'] = [];
-		$recordsCategories = $this->getAllRecords('*',['conditions'=>'category_types.level='.$level, 'joins'=>'', 'order'=>'id ASC']);
+		$recordsCategories = $this->getAllRecords('*',['conditions'=> $conditions, 'joins'=>'', 'order'=>'id ASC']);
 		if($recordsCategories) {
 			while($row = $recordsCategories->fetch_assoc()) {
 	    		$records['data'][] = $row;
@@ -32,8 +33,13 @@ class category_type_model extends vendor_pagination_model
 	}
 	public function getCategories()
 	{
-		$data = $this->allp('*', ['conditions' => '', 'joins' => '', 'order' => 'id ASC']);
-		return $data;
+		$data = $this->getAllRecords('*', ['conditions' => '', 'joins' => '', 'order' => 'id ASC']);
+		if ($data) {
+			while ($row = $data->fetch_assoc()) {
+				$records['data'][] = $row;
+			}
+		}
+		return json_encode($records['data']);
 	}
     	
 }

@@ -30,7 +30,7 @@ class users_controller extends vendor_backend_controller {
 			" id like '%".$app['prs']['search']."%' OR".
 			" email like '%".$app['prs']['search']."%'";
 		}
-
+		// exit($app['prs']);
 		$user = new user_model();
 		$this->records = $user->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
 		$this->display();

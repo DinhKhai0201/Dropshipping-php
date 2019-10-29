@@ -414,7 +414,7 @@
      </script>
  </div>
  <div class="mobile-nav side-block container">
-     <span class="close-sidebar-menu"><i class="icon-cancel"></i></span>
+     <span class="close-sidebar-menu"><i class="fas fa-times"></i></span>
      <div class="menu-all-pages-container">
          <ul class="menu">
 
@@ -630,9 +630,11 @@
      </div>
      <div class="custom-block">
          <div class="social-icons">
-             <a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>
-             <a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-             <a href="https://instagram.com/" title="Linkedin" target="_blank"><i class="icon-instagram"></i></a>
+             <a href="https://www.facebook.com/" title="Facebook" target="_blank">
+                 <i class="fab fa-facebook"></i>
+             </a>
+             <a href="https://twitter.com/" title="Twitter" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+             <a href="https://instagram.com/" title="Linkedin" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a>
          </div>
      </div>
  </div>

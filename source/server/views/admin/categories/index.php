@@ -80,8 +80,14 @@ global $app;
                         <div class="col-sm-12 ">
                             <div class="form-group">
                                 <label for="">Category name (*): </label>
-                                <input class="form-control" type="text" name="name" placeholder="Name" data-validation="length alphanumeric" data-validation-length="min3" required />
+                                <input class="form-control" type="text" id="nameC" name="name" placeholder="Name" data-validation="length alphanumeric" data-validation-length="min3" required />
                                 <span style="display:none" class="error_cate">Category name is required!</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 ">
+                            <div class="form-group">
+                                <label for="">Slug : </label>
+                                <input class="form-control" type="slug" id="slugC" name="slug" placeholder="" value="" data-validation="length alphanumeric" data-validation-length="min3" required />
                             </div>
                         </div>
                         <div class="col-sm-12 ">
@@ -302,6 +308,7 @@ global $app;
         $('#btn-submit').on('click', function() {
             let rankingNo = $("input[name=ranking]").val();
             let categoryName = $("input[name=name]").val();
+            let slug = $("input[name=slug]").val();
             if (categoryName == "") {
                 $('.error_cate').addClass('active');
                 return;
@@ -316,6 +323,7 @@ global $app;
                         parentId: _idParent,
                         rankingNo,
                         categoryName,
+                        slug,
                         status: 'active'
                     },
                     type: "POST",
@@ -415,5 +423,10 @@ global $app;
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+<script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
+<script>
+    $("#nameC").keyup(function() {
+        $("#slugC").val(slugify($(this).val()));
+    });
+</script>
 <?php include_once 'views/admin/layout/' . $this->layout . 'footer.php'; ?>
