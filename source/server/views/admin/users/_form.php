@@ -167,7 +167,7 @@
 
 				<?php if($app['act'] === 'view') { ?>
 					<hr>
-					<div id="legend">
+					<!-- <div id="legend">
 						<?php if($this->record['role'] == 2) {?>
 							<legend class="">List order</legend>
 							<div class="box-body">
@@ -219,7 +219,6 @@
 									
 								</div>
 								<div class="row text-right">
-									<?php vendor_html_helper::pagination($this->records['norecords'], $this->records['nocurp'], $this->records['curp'], $this->records['nopp']); ?>
 								</div>
 							</div>
 						<?php } if($this->record['role'] == 3) { ?> 
@@ -264,7 +263,7 @@
 					      <?php }?>
 					    </div>
 						<?php } ?>
-					</div>
+					</div> -->
 				<?php } ?>
 		</fieldset>
 		</div>

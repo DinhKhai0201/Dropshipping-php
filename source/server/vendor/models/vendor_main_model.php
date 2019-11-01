@@ -111,7 +111,7 @@ class vendor_main_model {
 			$order .= $this->table.".created DESC";
 
 		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$conditions.$group.$order;
-		// exit($sql);
+		// var_dump($sql);
 
 		return $this->con->query($sql);
 	}

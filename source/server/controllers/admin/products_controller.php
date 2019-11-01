@@ -21,10 +21,12 @@ class products_controller extends vendor_backend_controller {
       " brands.name	like '%".$app['prs']['search']."%' OR ".
       " products.id like '%".$app['prs']['search']."%'";
     }
-
+   
+    $category = new category_type_model();
+    $this->recordsCategory = $category->getAllRecords('*', ['conditions' => '', 'joins' => '', 'order' => 'id ASC']);
+    
     $product = new product_model();
-    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>['category_type', 'brand', 'user'], 'order'=>'id ASC']);
-    // exit(json_encode($this->records));
+    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>[ 'brand', 'user'], 'order'=>'id ASC']);
     $this->display();
   }
   public function edit($id) {
@@ -60,13 +62,27 @@ class products_controller extends vendor_backend_controller {
   }
 
   public function add() {
-    if(isset($_POST['btn_submit'])) {
+    
+    if(isset($_POST['btn_submit'])) { 
       $um = new product_model();
       $gm = new gallery_model();
       $imageData = array();
       $productData = $_POST['product'];
+      $productData['category_type_id'] = [];
+      if (isset($_POST['category1']) && (int) $_POST['category1'] != 0) {
+        array_push($productData['category_type_id'], (string) ($_POST['category1']) );
+      }
+      if (isset($_POST['category2']) && (int) $_POST['category2'] != 0) {
+        array_push($productData['category_type_id'], (string) ($_POST['category2']) );
+      }
+      if (isset($_POST['category3']) && (int) $_POST['category3'] != 0) {
+        array_push($productData['category_type_id'], (string) ($_POST['category3']) );
+      }
+      if (isset($_POST['category4']) && (int) $_POST['category4'] != 0) {
+        array_push($productData['category_type_id'], (string) ($_POST['category4']) );
+      }
+      $productData['category_type_id'] = implode(",", $productData['category_type_id']);
       $productData['user_id'] = $_SESSION['user']['id'];
-      // exit(json_encode($productData));
       // $valid = $um->validator($productData);
       // if($valid['status']) {      
         if($id = $um->addRecord($productData)) {
@@ -112,6 +128,7 @@ class products_controller extends vendor_backend_controller {
   public function view($id) {
     $pm = new product_model();
     $this->record = $pm->getRecord($id);
+    // exit(json_encode($this->record));
     $gm = new gallery_model();
     $this->recordGalleries = $gm->getAllRecords('*',['conditions'=>'product_id ='.$id, 'joins'=>'', 'order'=>'id ASC']);
 
@@ -120,7 +137,7 @@ class products_controller extends vendor_backend_controller {
     $user = new user_model();
     $this->recordsuser = $user ->getAllRecords('*',['conditions'=>'users.id='.$this->record['user_id'], 'joins'=>'', 'order'=>'id ASC']);
     $categories = new category_type_model();
-    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'category_types.id='.$this->record['category_type_id'], 'joins'=>'', 'order'=>'id ASC']);
+    $this->recordsCategories = $categories ->getAllRecords('*',['conditions'=>'', 'joins'=>'', 'order'=>'id ASC']);
     $this->display();
   }
 

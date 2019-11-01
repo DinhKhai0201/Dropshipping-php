@@ -6,14 +6,14 @@
 				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
 					<legend class=""><?php echo ucwords($app['act'] . ' ' . $app['ctl']); ?></legend>
 				</div>
-				<button class="btn btn-default btn-lg col-xs-5  trigger"><span itemprop="name">Tất cả danh mục</span><span class="caret _2UAALXHJVap4y2kAfwkH6_"></span></button>
+				<!-- <button class="btn btn-default btn-lg col-xs-5  trigger"><span itemprop="name">Tất cả danh mục</span><span class="caret _2UAALXHJVap4y2kAfwkH6_"></span></button>
 				<div class="modaly">
 					<div class="modal-contenty">
 						<span class="close-button">&times;</span>
 						<h1>Hello, I am a modal!</h1>
 					</div>
-				</div>
-				<style>
+				</div> -->
+				<!-- <style>
 					.modaly {
 						position: fixed;
 						left: 0;
@@ -59,7 +59,7 @@
 						transform: scale(1.0);
 						transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 					}
-				</style>
+				</style> -->
 				<?php if ($app['act'] != 'view') { ?>
 					<form id="form-addproduct" action="<?php echo vendor_app_util::url(["ctl" => "products", "act" => $app['act'] == 'edit' ? $app['act'] . "/" . $this->record['id'] : $app['act']]); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 					<?php } ?>
@@ -103,9 +103,18 @@
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="categories_name">Category name</label>
 							<div class="controls col-md-7">
-								<input required <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="brands_name" name="product[category_type_id]" placeholder="" class="form-control" value="<?php foreach ($this->recordsCategories as $category) {
-																																																						echo (isset($this->record['category_type_id']) && $this->record['category_type_id'] == $category['id']) ? $category['categoryName'] : '';
-																																																					} ?>">
+								<input required <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="brands_name" name="product[category_type_id]" placeholder="" class="form-control" value="<?php
+								$record['category_type_id'] = explode(",", $this->record['category_type_id']);
+										foreach ($record['category_type_id']  as $categoryname) {
+											// echo ($categoryname)." /";
+											foreach ($this->recordsCategories as $category) {
+											if ($categoryname == $category['id']) {
+												echo ($category['categoryName']) . " / ";
+											}
+									}
+								} 
+							?>
+							">
 							</div>
 						</div>
 					<?php } else { ?>
@@ -248,10 +257,6 @@
 								</div>
 							</div>
 						</div>
-
-
-						<!--//products-->
-
 						<div class="form-group row">
 							<label class="control-label col-md-3" for="created">Created at</label>
 							<div class="controls col-md-7">
@@ -298,103 +303,25 @@
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/slugify.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/libs/ckeditor_v4_full/ckeditor.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/okzoom.js"></script>
+
 <script>
-	function templ(name, html) {
-		temp = '';
-		temp += `
-			<div class="form-group row ${name}">
-							<label class="control-label col-md-3" for="categories_name">Category child</label>
-							<div class="controls col-md-7">
-								<select name="${name}" id="${name}" class="form-control select2 w-p100"> <option value ='0'>None</option> >`;
-		temp += html;
-		temp += `				</select>
-							</div>
-						</div>
-		`;
-		return temp;
-	}
-	$(document).ready(function() {
-		let dataCat = <?php echo $this->recordsCategories; ?>;
-		console.log((dataCat));
-		let html2 = html3 = html4 = tmp = '';
-		let level1 = $("#category1").val();
+	// var modal = document.querySelector(".modaly");
+	// var trigger = document.querySelector(".trigger");
+	// var closeButton = document.querySelector(".close-button");
 
-		$('#category1').on('change', function() {
-			$('.category2').remove();
-			$('.category3').remove();
-			$('.category4').remove();
-			let html2 = '';
-			let level1 = $(this).val();
-			dataCat.map((value, key) => {
-				if (parseInt(value['parentId']) == parseInt(level1)) {
-					html2 += `<option value="${value['id']}" >${value['categoryName']}</option>`;
-				} else {
+	// function toggleModal() {
+	// 	modal.classList.toggle("show-modaly");
+	// }
 
-				}
-			});
-			tmp = templ('category2', html2);
-			$('#appendCat1').append(tmp);
-		})
-		$(document).on('change', '#category2', function() {
-			$('.category3').remove();
-			$('.category4').remove();
-			let html3 = '';
-			let level2 = $(this).val();
-			if (parseInt(level2) == 0) {
-				$('.category3').remove();
-				$('.category4').remove();
-			}
-			dataCat.map((value, key) => {
-				if (parseInt(value['parentId']) == parseInt(level2)) {
-					html3 += `<option value="${value['id']}" >${value['categoryName']}</option>`;
-				} else {
+	// function windowOnClick(event) {
+	// 	if (event.target === modal) {
+	// 		toggleModal();
+	// 	}
+	// }
 
-				}
-			});
-			tmp = templ('category3', html3);
-			$('#appendCat2').append(tmp);
-
-		})
-		$(document).on('change', '#category3', function() {
-			$('.category4').remove();
-			let html4 = '';
-			let level3 = $(this).val();
-			if (parseInt(level3) == 0) {
-				$('.category4').remove();
-			}
-			dataCat.map((value, key) => {
-
-				if (parseInt(value['parentId']) == parseInt(level3)) {
-
-					html4 += `<option value="${value['id']}" >${value['categoryName']}</option>`;
-				} else {
-
-				}
-			});
-			tmp = templ('category4', html4);
-			$('#appendCat3').append(tmp);
-
-		})
-	});
-</script>
-<script>
-	var modal = document.querySelector(".modaly");
-	var trigger = document.querySelector(".trigger");
-	var closeButton = document.querySelector(".close-button");
-
-	function toggleModal() {
-		modal.classList.toggle("show-modaly");
-	}
-
-	function windowOnClick(event) {
-		if (event.target === modal) {
-			toggleModal();
-		}
-	}
-
-	trigger.addEventListener("click", toggleModal);
-	closeButton.addEventListener("click", toggleModal);
-	window.addEventListener("click", windowOnClick);
+	// trigger.addEventListener("click", toggleModal);
+	// closeButton.addEventListener("click", toggleModal);
+	// window.addEventListener("click", windowOnClick);
 	$("#name").keyup(function() {
 		$("#slug").val(slugify($(this).val()));
 	});
