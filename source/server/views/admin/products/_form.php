@@ -104,16 +104,16 @@
 							<label class="control-label col-md-3" for="categories_name">Category name</label>
 							<div class="controls col-md-7">
 								<input required <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="brands_name" name="product[category_type_id]" placeholder="" class="form-control" value="<?php
-								$record['category_type_id'] = explode(",", $this->record['category_type_id']);
-										foreach ($record['category_type_id']  as $categoryname) {
-											// echo ($categoryname)." /";
-											foreach ($this->recordsCategories as $category) {
-											if ($categoryname == $category['id']) {
-												echo ($category['categoryName']) . " / ";
-											}
-									}
-								} 
-							?>
+																																																					$record['category_type_id'] = explode(",", $this->record['category_type_id']);
+																																																					foreach ($record['category_type_id']  as $categoryname) {
+																																																						// echo ($categoryname)." /";
+																																																						foreach ($this->recordsCategories as $category) {
+																																																							if ($categoryname == $category['id']) {
+																																																								echo ($category['categoryName']) . " / ";
+																																																							}
+																																																						}
+																																																					}
+																																																					?>
 							">
 							</div>
 						</div>
@@ -214,6 +214,51 @@
 							</div>
 						</div>
 					<?php } ?>
+					<!-- <?php if ($app['act'] == 'view') { ?>
+						<div class="form-group row">
+							<label class="control-label col-md-2" for="color_name">Color</label>
+							<div class="controls col-md-8">
+								<input <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="colors_name" name="product[color]" placeholder="" class="form-control" value="">
+							</div>
+						</div>
+					<?php } else if ($app['act'] == 'add') { ?>
+						<?php
+							$array_select = [];
+							if (isset($this->record['categories_arr'])) {
+								$list_str = $this->record['categories_arr'];
+								$list_str = rtrim($list_str, ",");
+								$list_str = ltrim($list_str, ",");
+								$array_select = explode(',', $list_str);
+							}
+							?>
+						<div class="form-group row">
+							<label class="control-label col-md-2" for="color_name">Color</label>
+							<div class="controls col-md-8">
+								<select name="colors[]" id="" class="form-control select2 w-p100" multiple="multiple" data-placeholder="Select colors">
+									<?php foreach ($app['color'] as $color) { ?>
+										<?php if (in_array($color, $array_select)) { ?>
+											<option value="<?php echo $color ?>" selected='selected'>
+												<?php echo $color ?>
+											</option>
+										<?php } else { ?>
+											<option value="<?php echo $color ?>">
+												<?php echo $color ?>
+											</option>
+									<?php }
+										} ?>
+								</select>
+							</div>
+						</div>
+					<?php } else { ?>
+						<div class="form-group row">
+							<label class="control-label col-md-2" for="categories_name">Category</label>
+							<div class="controls col-md-8">
+								<select name="categories_arr[]" id="" class="form-control select2 w-p100" multiple="multiple" data-placeholder="None">
+									<?php echo vendor_app_util::displayCategory($this->categories, $this->category); ?>
+								</select>
+							</div>
+						</div>
+					<?php } ?> -->
 					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group  row">
 							<label class="control-label col-md-3" for="description">Product descriptipn</label>

@@ -5,8 +5,6 @@ class product_controller extends vendor_main_controller
     {
         global $app;
         $conditions = "";
-
-        // exit($app['slug']);
         if (isset($app['slug']) && isset($app['id'])) {
             $id = $app['id'];
             $slug = $app['slug'];
@@ -35,8 +33,8 @@ class product_controller extends vendor_main_controller
             include "views/" . $app['areaPath'] . "staticpages/error.php";
             exit();
         }
-        
     }
+
     public function quickview()
     {
         global $app;
@@ -51,11 +49,13 @@ class product_controller extends vendor_main_controller
                 'conditions' => $conditions,
                 'order' => 'id ASC',
             ]);
+
             $gallery_model = new gallery_model();
             $this->galleries = $gallery_model->getAllRecords('*', [
-                'conditions' => $id,
+                'conditions' => 'product_id =' . $id,
                 'order' => 'id ASC',
             ]);
+            
             $this->display();
         } else {
             include "views/" . $app['areaPath'] . "staticpages/error.php";

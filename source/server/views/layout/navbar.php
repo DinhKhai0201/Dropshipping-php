@@ -87,45 +87,35 @@
                  </script>
              </div>
          </div>
-         <div class="search-area">
+         <div class="search-area-c">
              <a href="javascript:void(0);" class="fa search-icon"><i class="fas fa-search"></i></a>
-             <form id="search_mini_form" action="//www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/result/" method="get">
+             <form id="search_mini_form_c">
                  <div class="form-search ">
                      <label for="search">Search:</label>
-                     <input id="search" type="text" name="q" class="input-text" />
-                     <select id="cat" name="cat">
-                         <option value="">All Categories</option>
-                         <option value="196">Fashion</option>
-                         <option value="200">- Woman</option>
-                         <option value="201">- Jewellery</option>
-                         <option value="202">- Men</option>
-                         <option value="203">- Kids Fashion</option>
-                         <option value="197">Electronics</option>
-                         <option value="198">Home & Garden</option>
-                         <option value="307">Sports</option>
-                         <option value="199">Motors</option>
-                         <option value="218">- Cars and Trucks</option>
-                         <option value="219">- Motorcycles & Powersports</option>
-                         <option value="220">- Parts & Accessories</option>
-                         <option value="221">- Auto Tools & Supplies</option>
-                         <option value="308">Clothes</option>
-                     </select>
-                     <button type="submit" title="Search" class="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                     <div id="search_autocomplete" class="search-autocomplete"></div>
+                     <input id="search" type="text" name="s" class="input-text" />
+                     <button type="submit" title="Search" class="button bt-search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                     <div id="search_autocomplete_c" class="search-autocomplete_c"></div>
                      <div class="clearer"></div>
                  </div>
-             </form>
-             <script type="text/javascript">
-                 //<![CDATA[
-                 var searchForm = new Varien.searchForm('search_mini_form', 'search', 'Search...');
-                 searchForm.initAutocomplete(
-                     'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/ajax/suggest/',
-                     'search_autocomplete');
-                 //]]>
-             </script>
+                    </form>
          </div>
          <div class="menu-icon"><a href="javascript:void(0)" title="Menu"><i class="fa fa-bars"></i></a>
          </div>
+         <script>
+             jQuery('.bt-search').click(function() {
+                      try {
+                          window.history.pushState('', '', rootUrl +
+                              'categories/page-1.html' 
+                          );
+
+                      } catch (err) {
+                          window.history.pushState('', '', rootUrl +
+                              'categories/page-1.html' 
+                          );
+
+                      }
+             });
+         </script>
      </div>
      <div class="header-wrapper">
          <div class="main-nav">
@@ -138,7 +128,7 @@
                                  <a href="<?php echo vendor_app_util::url(array('ctl' => '')); ?>"><span>Home</span></a>
                              </li>
                              <li class="menu-static-width">
-                                 <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/fashion.html/"><span>Categories</span></a>
+                                 <a href=""><span>Categories</span></a>
                                  <div class="nav-sublist-dropdown" style="display: none; list-style: none; width: 610px;">
                                      <div class="container">
                                          <div class="mega-columns row">
@@ -228,7 +218,7 @@
                                  </div>
                              </li>
                              <li class="menu-full-width">
-                                 <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-default.html/"><span>Products</span></a>
+                                 <a href=""><span>Products</span></a>
                                  <div class="nav-sublist-dropdown" style="display: none; list-style: none;">
                                      <div class="container">
                                          <div class="mega-columns row">
@@ -385,14 +375,14 @@
                                      </div>
                                  </div>
                              </li>
-
+<!-- 
                              <li class="fl-right">
-                                 <a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/">Special
+                                 <a href="">Special
                                      Offer!</a>
                              </li>
                              <li class="fl-right">
                                  <a href="https://1.envato.market/j61Ob">Buy Porto!</a>
-                             </li>
+                             </li> -->
                          </ul>
                      </div>
                  </div>

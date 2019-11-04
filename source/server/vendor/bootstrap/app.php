@@ -12,10 +12,10 @@ $app['linkpage'] = 'home';
 
 if(isset($_GET["pr"])) {
 	$str_url = $_SERVER['REQUEST_URI'];
+	
 	if(strpos($str_url, "index.php?pr")){
 		$app['linkpage'] = "null";
 		$prs = explode("/","404/index");
-
 	}else if(strpos($str_url, "employers/view")){
 		$app['linkpage'] = "null";
 		$prs = explode("/","404/index");
@@ -51,6 +51,7 @@ if(isset($_GET["pr"])) {
 		$prs = explode("/","404/index");
 		
 	}else{
+		
 		$prs = explode("/",$_GET["pr"]);
 		$par = $_GET["pr"];
 		if(preg_match('/\/$/', $par) && !preg_match('/\/\/$/', $_SERVER['REQUEST_URI'])){
@@ -61,8 +62,9 @@ if(isset($_GET["pr"])) {
 			$prs = explode("/","404/index");
 		}
 		else{
-
 			$link_url = $_SERVER['REQUEST_URI'];
+			// exit($link_url);
+
             if (preg_match('/moi-nhat-hot-nhat\/trang-(\d+).html?(.*)/', $link_url, $matches)) {
                 $prs = explode("/", "jobs/index?page=".$matches[1]."&".$matches[2]);
                 $app['linkpage'] = "moi-nhat-hot-nhat";
@@ -80,24 +82,31 @@ if(isset($_GET["pr"])) {
 				$app['slug'] = $matches[1];
 				$app['id'] = $matches[2];
 				$app['page-type'] = 'product-quickview';
-			// }else if(preg_match('/.*\=(\d+)-(\d+)/', $link_url, $matches)){
-			// 	$prs = explode("=", "categories/index?price=" . $matches[1] . "-" . $matches[2]);
-			// 	$app['linkpage'] = "categories-index";
-				
+			// }else if(preg_match('/categories\/index\.html\?price\=(\d+)-(\d+)/', $link_url, $matches)){
+			// 	$prs = explode("/", "categories/index.html?price=" . $matches[1] . "-" . $matches[2]);
+			// 	$app['linkpage'] = "categories-index";				
 			// 	$app['from'] = $matches[1];
 			// 	$app['to'] = $matches[2];
-			// 	exit($app['from']);
 			// 	$app['page-type'] = 'categories-index';
-			// } else if (preg_match('/.*\=(.*)$/', $link_url, $matches)) {
-			// 	$prs = explode("=", "/categories/cat=" . $matches[1]);
+			} else if (preg_match('/categories\/index\.html\?s\=(.*) /', $link_url, $matches)) {
+				echo ('4');
+				$prs = explode("/", "categories/index.html?s=" . $matches[1]);
+				$app['linkpage'] = "categories-index";
+				$app['search'] = $matches[1];
+				$app['page-type'] = 'categories-index';
+				// exit(json_encode($app['to']));
+			// } else if (preg_match('/categories\/index\.html\?cat\=(.*)-(\d+)/', $link_url, $matches)) {
+			// 	$prs = explode("/", "/categories/index.html?cat=" . $matches[1]."-". $matches[2]);
 			// 	$app['linkpage'] = "categories-index";
-			// 	$app['category-slug'] = $matches[1];
+			// 	$app['slugC'] = $matches[1];
+			// 	$app['idC'] = $matches[2];
+			// 	// exit(json_encode($app['idC']));
 			// 	$app['page-type'] = 'categories-index';
-			}else if(preg_match('/viec-lam-tuyen-gap\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-				$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
-				$app['linkpage'] = "viec-lam-tuyen-gap";
-				$app['page-current'] = $matches[1];
-				$app['page-type'] = 'viec-lam-tuyen-gap';
+			// }else if(preg_match('/categories\/trang-(\d+).html?(.*)/', $link_url, $matches)){
+			// 	$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
+			// 	$app['linkpage'] = "categories";
+			// 	$app['page-current'] = $matches[1];
+			// 	$app['page-type'] = 'categories';
 			}else if(preg_match('/viec-lam-hap-dan\/trang-(\d+).html?(.*)/', $link_url, $matches)){
 				$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
 				$app['linkpage'] = "viec-lam-hap-dan";
@@ -121,6 +130,7 @@ if(isset($_GET["pr"])) {
 				$app['linkpage'] = "tuyen-dung-location";
 				$app['linkpage-id-diadiem'] = $matches[1];
 			}else{
+
 				switch($par){
 
 					// case "bao-gia-dich-vu-dang-tin":
@@ -158,6 +168,11 @@ if(isset($_GET["pr"])) {
 					case "categories":
 						$prs = explode("/", "categories");
 						$app['linkpage'] = "categories";
+						break;
+					case "categories/indedx.html":
+						echo ("7");
+						$prs = explode("/", "categories/index.html");
+						$app['linkpage'] = "categories-index";
 						break;
 					case "product":
 						$prs = explode("/", "product");
@@ -201,7 +216,15 @@ if(isset($_GET["pr"])) {
 							$app['linkpage'] = "tuyen-dung-viec-lam";
 							break;
 						}
-
+						if (preg_match('/categories\/page-(.*).html\?s=(.*)/', $link_url, $matches)) {
+								// echo ('4');
+							$prs = explode("/", "categories/page-".$matches[1].".html?s=" . $matches[2]);
+							$app['linkpage'] = "categories-index";
+							$app['page'] = $matches[1];
+							$app['search'] = $matches[2];
+							$app['page-type'] = 'categories-index';
+								break;
+						}
 						if(preg_match('/viec-lam\/(.*)-(\d+).amp.html/', $link_url, $matches)){
 							$prs = explode("/","jobs/viewAmp/".$matches[1].'/'.$matches[2]);
 							$app['linkpage'] = "tuyen-dung-viec-lam";
@@ -225,27 +248,27 @@ if(isset($_GET["pr"])) {
 						// 	}
 						// }
 						
-						if(isset($arr[0]) && $arr[0] == 'ung-tuyen' && isset($arr[1])){
-							$name = explode(".", $arr[1]);
-							if(isset($name) && isset($name[1]) && $name[1] == 'html'){
-								$_arr = explode("-", $name[0]);
-								if(is_numeric($_arr[count($_arr)-1])){
-									$_id = array_pop($_arr);
-									$_arr=implode("-",$_arr);
+						// if(isset($arr[0]) && $arr[0] == 'ung-tuyen' && isset($arr[1])){
+						// 	$name = explode(".", $arr[1]);
+						// 	if(isset($name) && isset($name[1]) && $name[1] == 'html'){
+						// 		$_arr = explode("-", $name[0]);
+						// 		if(is_numeric($_arr[count($_arr)-1])){
+						// 			$_id = array_pop($_arr);
+						// 			$_arr=implode("-",$_arr);
 
-									$prs = explode("/","candidates/view/".$_arr.'/'.$_id);
-									$app['linkpage'] = "ung-tuyen";
-									break;
-								}
-							}
-						}
+						// 			$prs = explode("/","candidates/view/".$_arr.'/'.$_id);
+						// 			$app['linkpage'] = "ung-tuyen";
+						// 			break;
+						// 		}
+						// 	}
+						// }
 					
-						$arr = explode(".",$_GET["pr"]);
-						if(isset($arr[1]) && $arr[1] == 'html'){
-							$prs = explode("/","employers/view/".$arr[0]);
-							$app['linkpage'] = "nha-tuyen-dung";
-							break;
-						}
+						// $arr = explode(".",$_GET["pr"]);
+						// if(isset($arr[1]) && $arr[1] == 'html'){
+						// 	$prs = explode("/","employers/view/".$arr[0]);
+						// 	$app['linkpage'] = "nha-tuyen-dung";
+						// 	break;
+						// }
 
 						$static_page = $_GET["pr"];
 						if(!preg_match('/admin/', $static_page) && !preg_match('/employer/', $static_page) && !preg_match('/jobseeker/', $static_page) && !preg_match('/\//', $static_page) ){
@@ -253,8 +276,6 @@ if(isset($_GET["pr"])) {
 							$app['linkpage'] = $static_page;
 							break;
 						}
-					
-
 						$app['linkpage'] = "null";
 
 					}
@@ -316,6 +337,7 @@ if(!is_file(ControllerREL.$app['areaPath'].$c.".php")) {
 	}else if($app['area'] == 'admin' && !isset($_SESSION['user'])){
 		header("Location: /admin/login");
 	}else{
+		// echo ('4');
 		$c = "staticpages_controller";
 		$app['ctl'] = "staticpages";	
 		$app['act'] = "error";

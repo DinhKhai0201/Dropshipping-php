@@ -10,10 +10,12 @@ class vendor_frap_model extends vendor_fra_model {
 	    		$pagination['data'][] = $row;
 	    	}
 		}
+
 		$pagination['norecords']= parent::getCountRecords($options);
 		$pagination['nocurp'] 	= count($pagination['data']);
 		$pagination['curp'] 	= $this->curp;
 		$pagination['nopp'] 	= $this->nopp;
+		// exit(json_encode($pagination));
 		return $pagination;
 	}
 

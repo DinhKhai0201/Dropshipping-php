@@ -62,7 +62,7 @@ class products_controller extends vendor_backend_controller {
   }
 
   public function add() {
-    
+    global $app;
     if(isset($_POST['btn_submit'])) { 
       $um = new product_model();
       $gm = new gallery_model();

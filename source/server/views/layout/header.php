@@ -17,10 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/f88342096cf89fd57d043d509d14e567.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/ed4137a989c52609c4613d6c0bcacd3a.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/style.css" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/9c353ad7c3c57ca26c5f27068d2cafe5.css" media="print" />
     <script type="text/javascript" src="<?php echo RootREL; ?>media/js/4190df6d2f2903545088c80753c55f73.js"></script>
-    <script type="text/javascript" src="<?php echo RootREL; ?>media/js/addthis_widget.js"></script>
     <script type="text/javascript">
         jQuery(function($) {
             var scrolled = false;
@@ -66,13 +65,11 @@
     </script>
     <!-- slide -->
     <script type="text/javascript">
-        //<![CDATA[
         if (typeof EM == 'undefined') EM = {};
         EM.Quickview = {
             QS_FRM_WIDTH: "1000",
             QS_FRM_HEIGHT: "730"
         };
-        //]]	
     </script>
     <style type="text/css">
         .header-wrapper {
@@ -83,15 +80,15 @@
             margin-bottom: 0;
         }
     </style>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var Translator = new Translate([]);
-    </script>
-    <script type="text/javascript">
+    </script> -->
+    <!-- <script type="text/javascript">
         if (typeof dailydealTimeCountersCategory == 'undefined') {
             var dailydealTimeCountersCategory = new Array();
             var i = 0;
         }
-    </script>
+    </script> -->
 </head>
 <?php
 global $enableOB;
@@ -103,3 +100,7 @@ echo vendor_html_helper::_cssHeader();
 ?>
 
 <body class=" cms-index-index cms-porto-home-4">
+    <script type="text/javascript">
+        var rootUrl = "<?= RootURL; ?>";
+        var RootREL = "<?= RootREL; ?>";
+    </script>

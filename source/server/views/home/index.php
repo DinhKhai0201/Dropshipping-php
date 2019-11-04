@@ -286,7 +286,7 @@
                                         </div>
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
-                                            <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="fas fa-heart" style ></i></a>
+                                            <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="fas fa-heart" style></i></a>
                                             <div class="ratings">
                                                 <div class="rating-box">
                                                     <div class="rating" style="width:0"></div>
@@ -313,7 +313,7 @@
                     jQuery(function($) {
                         function addtocart(id) {
                             $.ajax({
-                                url: "<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "addtocart"])) ?>",
+                                url: rootUrl +"product/addtocart",
                                 dataType: 'json',
                                 type: 'post',
                                 data: id,

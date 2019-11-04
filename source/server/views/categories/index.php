@@ -1,6 +1,11 @@
 <?php
 global $mediaFiles;
-// array_push($mediaFiles['css'], RootREL . "media/css/plusminustoggle.css");
+array_push($mediaFiles['css'], RootREL . "media/css/filterproduct.css");
+array_push($mediaFiles['css'], RootREL . "media/css/textproductresult.css");
+array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
+
+
+
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <div class="top-container">
@@ -61,299 +66,13 @@ global $mediaFiles;
                         }, 1000);
                     });
                 </script>
-                <script type="text/javascript">
-                    var data = "";
-                    var active = false;
-                    var next_page = "";
-                    var loading = false;
-                    var infinite_loaded_count = 0;
-                    jQuery(function($) {
-                        if ($('body').find('#resultLoading').attr('id') != 'resultLoading') {
-                            $('.main').append(
-                                '<div id="resultLoading" style="display:none"><div><i class="ajax-loader large animate-spin"></i><div></div></div><div class="bg"></div></div>'
-                            );
-                        }
-                        var height = $('.main').outerHeight();
-                        var width = $('.main').outerWidth();
-                        $('.ui-slider-handle').css('cursor', 'pointer');
-
-                        $('#resultLoading').css({
-                            'width': '100%',
-                            'height': '100%',
-                            'position': 'fixed',
-                            'z-index': '10000000',
-                            'top': '0',
-                            'left': '0'
-                        });
-                        $('#resultLoading .bg').css({
-                            'background': '#ffffff',
-                            'opacity': '0.5',
-                            'width': '100%',
-                            'height': '100%',
-                            'position': 'absolute',
-                            'top': '0'
-                        });
-                        $('#resultLoading>div:first').css({
-                            'width': '100%',
-                            'text-align': 'center',
-                            'position': 'absolute',
-                            'left': '0',
-                            'top': '50%',
-                            'margin-top': '-16px',
-                            'font-size': '16px',
-                            'z-index': '10',
-                            'color': '#ffffff'
-
-                        });
-
-
-                        $('.block-layered-nav #narrow-by-list a').on('click', function(e) {
-                            if (!$(this).parent().hasClass('slider-range')) {
-                                sliderAjax($(this).attr('href'));
-                            }
-                            e.preventDefault();
-                        });
-
-                        next_page = "";
-                        $(".pager li > a.next").each(function() {
-                            next_page = $(this).attr("href");
-                        });
-                        if (!next_page) {
-                            $('.infinite-loader .btn-load-more').hide();
-                        }
-                        $('.toolbar a').on('click', function(e) {
-                            if ($(this).attr('href')) {
-                                var url = $(this).attr('href');
-                                sliderAjax(url);
-                            }
-                            e.preventDefault();
-                        });
-
-                        $('.toolbar select').removeAttr('onchange');
-                        $('.toolbar select').on('change', function(e) {
-                            var url = $(this).val();
-                            sliderAjax(url);
-                            e.preventDefault();
-                        });
-
-
-                    });
-
-                    /*DONOT EDIT THIS CODE*/
-                    var old_class;
-
-                    function sliderAjax(url) {
-                        if (!active) {
-                            active = true;
-                            jQuery(function($) {
-                                if ($(".col-main .products-grid").attr("class"))
-                                    old_class = $(".col-main .products-grid").attr("class");
-                                oldUrl = url;
-                                $('#resultLoading .bg').height('100%');
-                                $('#resultLoading').fadeIn(300);
-                                infinite_loaded_count = 0;
-                                url = url.replace("&infinite=true", "");
-                                url = url.replace("?infinite=true&", "?");
-                                url = url.replace("?infinite=true", "");
-                                var param = "";
-                                if (url.indexOf("ajaxcatalog") == -1) {
-                                    param = "ajaxcatalog=true";
-                                    if (url.indexOf("?") == -1 && url.indexOf("&") > -1)
-                                        url = url.replace("&", "?");
-                                    if (url.indexOf("?") == -1)
-                                        param = "?" + param;
-                                    else
-                                        param = "&" + param;
-                                }
-
-                                try {
-                                    $('body').css('cursor', 'wait');
-                                    $.ajax({
-                                        url: url + param,
-                                        dataType: 'json',
-                                        type: 'post',
-                                        data: data,
-                                        success: function(data) {
-                                            callback();
-                                            if (data.viewpanel) {
-                                                if ($('.block-main-layer')) {
-                                                    $('.block-main-layer').empty();
-                                                    $('.mobile-layer-overlay').remove();
-                                                    $('.block-main-layer').replaceWith(data
-                                                        .viewpanel)
-                                                }
-                                            }
-                                            if (data.productlist) {
-                                                $('.col-main .category-products').empty();
-                                                $('.col-main .category-products')
-                                                    .replaceWith(data.productlist)
-                                            }
-                                            if ($(".col-main").has(".category-products")
-                                                .length)
-                                                $(".col-main .category-products")
-                                                .scrollToMe();
-                                            $("img.porto-lazyload:not(.porto-lazyload-loaded)")
-                                                .lazyload({
-                                                    effect: "fadeIn"
-                                                });
-                                            setTimeout(function() {
-                                                $('.porto-lazyload:not(.porto-lazyload-loaded)')
-                                                    .trigger('appear');
-                                            }, 300);
-                                            $(".qty_inc").unbind('click').click(function() {
-                                                if ($(this).parent().parent()
-                                                    .children("input.qty").is(
-                                                        ':enabled')) {
-                                                    $(this).parent().parent()
-                                                        .children("input.qty").val((
-                                                            +$(this).parent()
-                                                            .parent().children(
-                                                                "input.qty")
-                                                            .val() + 1) || 0);
-                                                    $(this).parent().parent()
-                                                        .children("input.qty")
-                                                        .focus();
-                                                    $(this).focus();
-                                                }
-                                            });
-                                            $(".qty_dec").unbind('click').click(function() {
-                                                if ($(this).parent().parent()
-                                                    .children("input.qty").is(
-                                                        ':enabled')) {
-                                                    $(this).parent().parent()
-                                                        .children("input.qty").val((
-                                                            $(this).parent()
-                                                            .parent().children(
-                                                                "input.qty")
-                                                            .val() - 1 > 0) ? (
-                                                            $(this).parent()
-                                                            .parent().children(
-                                                                "input.qty")
-                                                            .val() - 1) : 0);
-                                                    $(this).parent().parent()
-                                                        .children("input.qty")
-                                                        .focus();
-                                                    $(this).focus();
-                                                }
-                                            });
-                                            var hist = url;
-                                            if (url.indexOf("p=") > -1) {
-                                                var len = url.length - url.indexOf("p=");
-                                                var str_temp = url.substr(url.indexOf("p="),
-                                                    len);
-                                                var page_param = "";
-                                                if (str_temp.indexOf("&") == -1) {
-                                                    page_param = str_temp;
-                                                } else {
-                                                    page_param = str_temp.substr(0, str_temp
-                                                        .indexOf("&"));
-                                                }
-                                                hist = url.replace(page_param, "");
-                                            }
-                                            if (window.history && window.history
-                                                .pushState) {
-                                                window.history.pushState('GET', data.title,
-                                                    hist);
-                                            }
-                                            $('body').find('.toolbar select').removeAttr(
-                                                'onchange');
-                                            $('#resultLoading .bg').height('100%');
-                                            $('#resultLoading').fadeOut(300);
-                                            $('body').css('cursor', 'default');
-
-                                            $('.block-layered-nav #narrow-by-list a').on(
-                                                'click',
-                                                function(e) {
-                                                    if (!$(this).parent().hasClass(
-                                                            'slider-range')) {
-                                                        sliderAjax($(this).attr(
-                                                            'href'));
-                                                    }
-                                                    e.preventDefault();
-                                                });
-
-                                            next_page = "";
-                                            $(".pager li > a.next").each(function() {
-                                                next_page = $(this).attr("href");
-                                            });
-
-                                            $('.toolbar a').on('click', function(e) {
-                                                if ($(this).attr('href')) {
-                                                    var url = $(this).attr('href');
-                                                    sliderAjax(url);
-                                                }
-                                                e.preventDefault();
-                                            });
-
-                                            $('.toolbar select').removeAttr('onchange');
-                                            $('.toolbar select').on('change', function(e) {
-                                                var url = $(this).val();
-                                                sliderAjax(url);
-                                                e.preventDefault();
-                                            });
-                                            $("a.product-image img.defaultImage").each(
-                                                function() {
-                                                    var default_img = $(this).attr(
-                                                        "data-src");
-                                                    if (!default_img)
-                                                        default_img = $(this).attr(
-                                                            "src");
-                                                    var thumbnail_img = $(this).parent()
-                                                        .children("img.hoverImage")
-                                                        .attr("data-src");
-                                                    if (!thumbnail_img)
-                                                        thumbnail_img = $(this).parent()
-                                                        .children("img.hoverImage")
-                                                        .attr("src");
-                                                    if (default_img) {
-                                                        if (default_img.replace(
-                                                                "/small_image/",
-                                                                "/thumbnail/") ==
-                                                            thumbnail_img) {
-                                                            $(this).parent().children(
-                                                                    "img.hoverImage")
-                                                                .remove();
-                                                            $(this).removeClass(
-                                                                "defaultImage");
-                                                        }
-                                                    }
-                                                });
-                                            /* moving action links into product image area */
-                                            $(".move-action .item .details-area .actions")
-                                                .each(function() {
-                                                    $(this).parent().parent().children(
-                                                            ".product-image-area")
-                                                        .append($(this));
-                                                });
-                                            if (old_class)
-                                                $(".col-main .products-grid").attr("class",
-                                                    old_class);
-                                        }
-                                    })
-                                } catch (e) {}
-                            });
-                            active = false
-                        }
-                        return false
-                    }
-
-
-                    function callback() {
-
-                    }
-                </script>
-
                 <p class="category-image"><img src="https://www.portotheme.com/magento/porto/media/catalog/category/men_category_banner.jpg" alt="Categories" title="Categories" /></p>
                 <div class="page-title category-title">
                     <h1>Categories</h1>
                 </div>
-
-
                 <script type="text/javascript">
-                    //<![CDATA[
                     var dailydealTimeCountersCategory = new Array();
                     var i = 0;
-                    //]]>
                 </script>
 
                 <div class="category-products">
@@ -361,107 +80,90 @@ global $mediaFiles;
                         <div class="sorter">
                             <div class="sort-by">
                                 <label>Sort By:</label>
-                                <select onchange="setLocation(this.value)">
-                                    <option value="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=asc&amp;order=position" selected="selected">
+                                <select class="filter_all sort">
+                                    <option value="id" selected="selected">
                                         Position </option>
-                                    <option value="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=asc&amp;order=name">
+                                    <option value="name">
                                         Name </option>
-                                    <option value="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=asc&amp;order=price">
+                                    <option value="price">
                                         Price </option>
                                 </select>
-                                <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=desc&amp;order=position" title="Set Descending Direction"><i class="icon-up"></i></a>
                             </div>
-                            <p class="view-mode">
+                            <div class="sort-by">
+                                <label>Type By:</label>
+                                <select class="filter_all type">
+                                    <option value="asc" selected="selected">
+                                        Top to Bottom </option>
+                                    <option value="desc">
+                                        Bottom to Top </option>
+                                </select>
+                            </div>
+                            <!-- <p class="view-mode">
                                 <strong title="Grid" class="grid"><i class="fas fa-th"></i></strong>&nbsp;
                                 <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?mode=list" title="List" class="list"><i class="fas fa-list-ul"></i></a>&nbsp;
-                            </p>
-                            <div class="pager">
-                                <p class="amount">
-                                    Items 1 to 12 of 18 total </p>
-                                <div class="pages">
-                                    <ol>
-                                        <li class="current">1</li>
-                                        <li><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?p=2">2</a>
-                                        </li>
-                                        <li>
-                                            <a class="next i-next" href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?p=2" title="Next">
-                                                <i class="icon-right-dir"></i>
-                                            </a>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
+                            </p> -->
                         </div>
                     </div>
-                    <ul class="products-grid  columns4 hide-addtocart move-action">
-                        <?php foreach ($this->products['data'] as $products) { ?>
-                            <li class="item">
-                                <div class="item-area product-image-hover">
-                                    <div class="product-image-area">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
+                    <ul class="products-grid  columns4 hide-addtocart move-action filter_data">
+                        <div class="message-result">
+                            <p>Result Products</p>
+                            <span>Has <span class="number"><?php echo $this->products['norecords']; ?></span> products found. </span>
+                        </div>
+                        <div class="products-display">
+                            <?php foreach ($this->products['data'] as $products) { ?>
+                                <li class="item">
+                                    <div class="item-area product-image-hover">
+                                        <div class="product-image-area ">
+                                            <div class="loader-container">
+                                                <div class="loader">
+                                                    <i class="ajax-loader medium animate-spin"></i>
+                                                </div>
+                                            </div>
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "quickview/" . $products['slug'] . "-" . $products['id']])) ?>" class="quickview-icon quickview-icon-custom"><i class="icon-export"></i><span>Quick
+                                                    View</span></a>
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $products['slug'] . "-" . $products['id']])) ?>" title="<?php echo $products['name']; ?>" class="product-image">
+                                                <img id="product-collection-image-<?php echo $products['id']; ?>" class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $products['oneImage']; ?>" width="300" height="300" />
+                                                <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $products['oneImage']; ?>" width="300" alt="Black" />
+                                            </a>
+                                            <?php if ($products['best_selling'] == 1) { ?>
+                                                <div class="product-label" style="right: 10px; "><span class="new-product-icon">HOT</span></div>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="details-area">
+                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $products['slug'] . "-" . $products['id']])) ?>" title="<?php echo $products['name']; ?>"><?php echo $products['name'] ?></a>
+                                            </h2>
+                                            <ul class="configurable-swatch-list configurable-swatch-color">
+                                                <?php $products['color'] = explode(",", $products['color']);
+                                                    ?>
+                                                <?php foreach ($products['color'] as $color) { ?>
+                                                    <li class="option-grey is-media" data-product-id="310" data-option-label="<?php echo $color ?>">
+                                                        <a href="javascript:void(0)" name="<?php echo $color ?>" class="swatch-link swatch-link-92 has-image" title="<?php echo $color ?>" style="height: 17px; width: 17px;">
+                                                            <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
+                                                                <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?php echo $color ?>" width="15" height="15" />
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                <?php } ?>
+
+
+                                            </ul>
+                                            <div class="price-box">
+                                                <span class="regular-price" id="product-price-<?php echo $products['id']; ?>">
+                                                    <span class="price"><?php echo "$" . $products['price']; ?></span> </span>
+                                            </div>
+                                            <div class="actions">
+                                                <a href="javascript:showOptions('310')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
+                                                        Cart</span></a>
+                                                <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/310/' class='fancybox' id='fancybox310' style='display:none'>Options</a>
+                                                <div class="clearer"></div>
                                             </div>
                                         </div>
-                                        <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "quickview/" . $products['slug'] . "-" . $products['id']])) ?>" class="quickview-icon quickview-icon-custom"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $products['slug'] . "-" . $products['id']])) ?>" title="<?php echo $products['name']; ?>" class="product-image">
-                                            <img id="product-collection-image-310" class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $products['oneImage']; ?>" width="300" height="300" />
-                                            <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $products['oneImage']; ?>" width="300" alt="Black" />
-                                        </a>
-                                        <?php if ($products['best_selling'] == 1) { ?>
-                                            <div class="product-label" style="right: 10px; "><span class="new-product-icon">HOT</span></div>
-                                        <?php } ?>
                                     </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $products['slug'] . "-" . $products['id']])) ?>" title="<?php echo $products['name']; ?>"><?php echo $products['name']; ?></a>
-                                        </h2>
-                                        <ul class="configurable-swatch-list configurable-swatch-color">
-                                            <li class="option-grey is-media" data-product-id="310" data-option-label="grey">
-                                                <a href="javascript:void(0)" name="grey" class="swatch-link swatch-link-92 has-image" title="grey" style="height: 17px; width: 17px;">
-                                                    <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
-                                                        <img src="https://www.portotheme.com/magento/porto/media/catalog/swatches/1/15x15/media/grey.png" alt="grey" width="15" height="15" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="option-green is-media" data-product-id="310" data-option-label="green">
-                                                <a href="javascript:void(0)" name="green" class="swatch-link swatch-link-92 has-image" title="green" style="height: 17px; width: 17px;">
-                                                    <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
-                                                        <img src="https://www.portotheme.com/magento/porto/media/catalog/swatches/1/15x15/media/green.png" alt="green" width="15" height="15" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="option-blue is-media" data-product-id="310" data-option-label="blue">
-                                                <a href="javascript:void(0)" name="blue" class="swatch-link swatch-link-92 has-image" title="blue" style="height: 17px; width: 17px;">
-                                                    <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
-                                                        <img src="https://www.portotheme.com/magento/porto/media/catalog/swatches/1/15x15/media/blue.png" alt="blue" width="15" height="15" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li class="option-black is-media" data-product-id="310" data-option-label="black">
-                                                <a href="javascript:void(0)" name="black" class="swatch-link swatch-link-92 has-image" title="black" style="height: 17px; width: 17px;">
-                                                    <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
-                                                        <img src="https://www.portotheme.com/magento/porto/media/catalog/swatches/1/15x15/media/black.png" alt="black" width="15" height="15" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-<?php echo $products['id']; ?>">
-                                                <span class="price"><?php echo "$" . $products['price']; ?></span> </span>
-                                        </div>
-                                        <div class="actions">
-                                            <a href="javascript:showOptions('310')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
-                                                    Cart</span></a>
-                                            <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/310/' class='fancybox' id='fancybox310' style='display:none'>Options</a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        <?php } ?>
+                                </li>
+                            <?php } ?>
+                        </div>
                     </ul>
-                    <script type="text/javascript">
+                    <!-- <script type="text/javascript">
                         jQuery('.col-main .products-grid li:nth-child(2n)').addClass('nth-child-2n');
                         jQuery('.col-main .products-grid li:nth-child(2n+1)').addClass('nth-child-2np1');
                         jQuery('.col-main .products-grid li:nth-child(3n)').addClass('nth-child-3n');
@@ -476,39 +178,48 @@ global $mediaFiles;
                         jQuery('.col-main .products-grid li:nth-child(7n+1)').addClass('nth-child-7np1');
                         jQuery('.col-main .products-grid li:nth-child(8n)').addClass('nth-child-8n');
                         jQuery('.col-main .products-grid li:nth-child(8n+1)').addClass('nth-child-8np1');
-                    </script>
+                    </script> -->
                     <div class="toolbar-bottom">
                         <div class="toolbar">
                             <div class="sorter">
                                 <div class="sort-by">
                                     <label>Sort By:</label>
-                                    <select onchange="setLocation(this.value)">
-                                        <option value="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=asc&amp;order=position" selected="selected">
+                                    <select class="filter_all sort">
+                                        <option value="id" selected="selected">
                                             Position </option>
-                                        <option value="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=asc&amp;order=name">
+                                        <option value="name">
                                             Name </option>
-                                        <option value="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=asc&amp;order=price">
+                                        <option value="price">
                                             Price </option>
                                     </select>
-                                    <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?dir=desc&amp;order=position" title="Set Descending Direction"><i class="icon-up"></i></a>
+                                    <a href="" title="Set Descending Direction"><i class="icon-up"></i></a>
                                 </div>
 
-                                <p class="view-mode">
-                                    <strong title="Grid" class="grid"><i class="icon-mode-grid"></i></strong>&nbsp;
-                                    <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?mode=list" title="List" class="list"><i class="icon-mode-list"></i></a>&nbsp;
-                                </p>
                                 <div class="pager">
                                     <p class="amount">
-                                        Items 1 to 12 of 18 total </p>
+                                        Items <?php echo ($this->products['nopp']*($this->products['curp'] - 1 )+1); ?> to <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + $this->products['nocurp']); ?> of <?php echo $this->products['norecords']; ?> total </p>
                                     <div class="pages">
                                         <ol>
-                                            <li class="current">1</li>
-                                            <li><a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?p=2">2</a>
-                                            </li>
                                             <li>
-                                                <a class="next i-next" href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?p=2" title="Next">
-                                                    <i class="icon-right-dir"></i>
-                                                </a>
+                                                <span class="precious i-precious" href="" title="Precious">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                            </li>
+                                            <?php for ($i = 1; $i <= ceil($this->products['norecords'] / $this->products['nopp']); $i++) {  ?>
+                                                <?php if ($this->products['curp'] == $i) { ?>
+                                                    <li class="current"><?php echo $this->products['curp']; ?></li>
+                                                <?php } else { ?>
+                                                    <li value="<?php echo $i; ?>" class="page page-<?php echo $i ?>"><?php echo $i; ?>
+                                                    </li>
+                                            <?php }
+                                            } ?>
+                                            <!-- <li class="current">1</li>
+                                            <li><a href="">2</a>
+                                            </li> -->
+                                            <li>
+                                                <span class="next i-next" href="" title="Next">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </span>
                                             </li>
                                         </ol>
                                     </div>
@@ -524,28 +235,26 @@ global $mediaFiles;
                 <div class="mobile-layer-overlay close-mobile-layer"></div>
                 <div class="block-main-layer">
                     <div class="layer-filter-icon visible-sm visible-xs"><a href="javascript:void(0)"><i class="fas fa-stream"></i></a></div>
-                    <h3 class="title-filter visible-sm visible-xs">Filter Your Selection<span class="close-layer"><i class="icon-cancel"></i></span></h3>
+                    <h3 class="title-filter visible-sm visible-xs">Filter Your Selection<span class="close-layer"><i class="fas fa-times"></i></span></h3>
                     <div class="block block-category-nav">
                         <div class="block-title">
                             <strong><span>Categories</span></strong>
                         </div>
                         <div class="block-content">
                             <ul class="category-list">
-
-
                                 <?php foreach ($this->level1 as $category1) { ?>
-
                                     <?php
                                         $haschild1 = false;
-
                                         foreach ($this->level2 as $category2) {
                                             if ($category2['parentId'] == $category1['id']) {
                                                 $haschild1 = true;
                                             }
                                         } ?>
+
                                     <li class="<?php echo ($haschild1) ? 'has-children' : 'has-no-children'; ?>">
-                                        <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category1['slug'] . "-" . $category1['id']])) ?>">
-                                            <?php echo $category1['categoryName']; ?></a><?php if ($haschild1) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?>
+                                        <input type="checkbox" class="filter_all cat" value="<?php echo $category1['id']; ?>"><span>
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category1['slug'] . "-" . $category1['id']])) ?>">
+                                                <?php echo $category1['categoryName']; ?></a><?php if ($haschild1) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?></span>
                                         <ul>
                                             <?php foreach ($this->level2 as $category2) { ?>
                                                 <?php if ($category2['parentId'] == $category1['id']) { ?>
@@ -558,8 +267,9 @@ global $mediaFiles;
                                                                     }
                                                                 } ?>
                                                     <li class="<?php echo ($haschild2) ? 'has-children' : 'has-no-children'; ?>">
-                                                        <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category2['slug'] . "-" . $category2['id']])) ?>">
-                                                            <?php echo $category2['categoryName']; ?></a><?php if ($haschild2) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?>
+                                                        <input type="checkbox" class="filter_all  cat" value="<?php echo $category2['id']; ?>"><span>
+                                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category2['slug'] . "-" . $category2['id']])) ?>">
+                                                                <?php echo $category2['categoryName']; ?></a><?php if ($haschild2) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?></span>
                                                         <ul>
                                                             <?php foreach ($this->level3 as $category3) { ?>
 
@@ -572,41 +282,30 @@ global $mediaFiles;
                                                                                     }
                                                                                 } ?>
                                                                 <li class="<?php echo ($haschild3) ? 'has-children' : 'has-no-children'; ?>">
-                                                                    <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category3['slug'] . "-" . $category3['id']])) ?>">
-                                                                        <?php echo $category3['categoryName']; ?></a><?php if ($haschild3) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?>
+                                                                    <input type="checkbox" class="filter_all  cat" value="<?php echo $category3['id']; ?>"><span>
+                                                                        <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category3['slug'] . "-" . $category3['id']])) ?>">
+                                                                            <?php echo $category3['categoryName']; ?></a><?php if ($haschild3) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?></span>
                                                                     <ul>
                                                                         <?php foreach ($this->level4 as $category4) { ?>
                                                                             <?php if ($category4['parentId'] == $category3['id']) { ?>
                                                                                 <li class="has-no-children">
-                                                                                    <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category4['slug'] . "-" . $category4['id']])) ?>">
-                                                                                        <?php echo $category4['categoryName']; ?></a>
-
+                                                                                    <input type="checkbox" class="filter_all  cat" value="<?php echo $category4['id']; ?>"><span>
+                                                                                        <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category4['slug'] . "-" . $category4['id']])) ?>">
+                                                                                            <?php echo $category4['categoryName']; ?></a></span>
                                                                                 </li>
-
                                                                         <?php }
                                                                                         } ?>
                                                                     </ul>
                                                                 </li>
-
-
                                                             <?php } ?>
                                                         </ul>
                                                     </li>
-
-
                                             <?php }
                                                 } ?>
                                         </ul>
                                     </li>
 
-
                                 <?php } ?>
-
-
-
-
-
-
                             </ul>
                         </div>
                         <script type="text/javascript">
@@ -622,22 +321,30 @@ global $mediaFiles;
                                     }
                                 });
                                 $(".block.block-category-nav .category-list a.plus").click(function() {
+                                    // console.log($(this).parent().parent().children("ul"));
                                     if ($(this).parent().hasClass("opened")) {
-                                        $(this).parent().children("ul").slideUp();
+                                        $(this).parent().parent().children("ul").slideUp();
                                         $(this).parent().removeClass("opened");
-                                        $(this).children("fas fa-minus").removeClass(
+                                        $(this).parent().children("fas fa-minus").removeClass(
                                             "fas fa-minus").addClass(
                                             "fas fa-plus");
                                     } else {
-                                        $(this).parent().children("ul").slideDown();
+                                        $(this).parent().parent().children("ul").slideDown();
                                         $(this).parent().addClass("opened");
-                                        $(this).children("fas fa-plus").removeClass(
+                                        $(this).parent().children("fas fa-plus").removeClass(
                                             "fas fa-plus").addClass(
                                             "fas fa-minus");
                                     }
                                 });
+                                $("input[type='checkbox']").change(function() {
+                                    $(this).siblings('ul')
+                                        .find("input[type='checkbox']")
+                                        .prop('checked', this.checked);
+                                });
+
                             });
                         </script>
+
                     </div>
                     <div class="block block-layered-nav">
                         <div class="block-content">
@@ -645,20 +352,13 @@ global $mediaFiles;
                                 <dt>Price</dt>
                                 <dd>
                                     <ol>
-                                        <li id="price-1">
-                                            <p><span class="price">$0.00</span> - <span class="price">$9.99</span></p>
-                                        </li>
-                                        <li id="price-2">
-                                            <p><span class="price">$10.00</span> - <span class="price">$19.99</span></p>
-                                        </li>
-                                        <li id="price-3">
-                                            <p><span class="price">$20.00</span> - <span class="price">$29.99</span></p>
-                                        </li>
-                                        <li id="price-4">
-                                            <p><span class="price">$30.00</span> - <span class="price">$39.99</span></p>
-                                        </li>
-                                        <li id="price-5">
-                                            <p><span class="price">$50.00</span> and above</p>
+                                        <li>
+                                            <div class="list-group">
+                                                <input type="hidden" id="min_price_hide" value="0" />
+                                                <input type="hidden" id="max_price_hide" value="300" />
+                                                <p id="price_show">$1 - $300</p>
+                                                <div id="price_range"></div>
+                                            </div>
                                         </li>
                                     </ol>
                                 </dd>
@@ -666,13 +366,19 @@ global $mediaFiles;
                                 <dd>
                                     <ol class="configurable-swatch-list no-count">
                                         <?php foreach ($app['color'] as $key => $value) { ?>
-                                            <li style="line-height: 28px;">
-                                                <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?color=27" class="swatch-link has-image">
-                                                    <span class="swatch-label" style="height:26px; width:26px; line-height: 28px;">
-                                                        <img src="<?php echo RootREL . 'media/img/colors/' . $value . '.png'; ?>" alt="<?php echo $value ?>" title="<?php echo $value ?>" width="24" height="24" />
-                                                    </span>
-                                                </a>
-                                            </li>
+                                            <label for="id-color-<?php echo $value; ?>">
+                                                <li style=" line-height: 28px;">
+
+                                                    <div class=" swatch-link has-image choose-color" value="<?php echo $value ?>">
+                                                        <span class="swatch-label" style="height:26px; width:26px; line-height: 28px;">
+                                                            <img src="<?php echo RootREL . 'media/img/colors/' . $value . '.png'; ?>" alt="<?php echo $value ?>" title="<?php echo $value ?>" width="24" height="24" />
+                                                        </span>
+                                                    </div>
+
+                                                    <input type="checkbox" class="filter_all color" id="id-color-<?php echo $value; ?>" value="<?php echo $value; ?>" hidden>
+
+                                                </li>
+                                            </label>
                                         <?php } ?>
                                     </ol>
                                 </dd>
@@ -769,8 +475,8 @@ global $mediaFiles;
                                 <dd>
                                     <ol>
                                         <?php foreach ($this->brands as $key => $value) { ?>
-                                            <li>
-                                                <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?brand=" . $value['id']])) ?>"><?php echo $value['name']; ?></a>
+                                            <li> <input type="checkbox" class="filter_all brand" value="<?php echo $value['id']; ?>"><span>
+                                                    <label><?php echo $value['name']; ?></label></span>
                                             </li>
                                         <?php } ?>
                                     </ol>
@@ -781,71 +487,7 @@ global $mediaFiles;
                             </script>
                             <script type="text/javascript">
                                 jQuery(function($) {
-                                    jQuery('#price-2').click(function() {
-                                        try {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=10-20"])) ?>'
-                                            );
 
-                                        } catch (err) {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=10-20"])) ?>'
-                                            );
-
-                                        }
-                                    });
-                                    jQuery('#price-1').click(function() {
-                                        try {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=0-10"])) ?>'
-                                            );
-
-                                        } catch (err) {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=0-10"])) ?>'
-                                            );
-
-                                        }
-                                    });
-                                    jQuery('#price-3').click(function() {
-                                        try {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=20-30"])) ?>'
-                                            );
-
-                                        } catch (err) {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=20-30"])) ?>'
-                                            );
-
-                                        }
-                                    });
-                                    jQuery('#price-4').click(function() {
-                                        try {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=30-40"])) ?>'
-                                            );
-
-                                        } catch (err) {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=30-40"])) ?>'
-                                            );
-
-                                        }
-                                    });
-                                    jQuery('#price-5').click(function() {
-                                        try {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=50"])) ?>'
-                                            );
-
-                                        } catch (err) {
-                                            window.history.pushState('', '',
-                                                '<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?price=50"])) ?>'
-                                            );
-
-                                        }
-                                    });
                                     $(".block-layered-nav dt").click(function() {
                                         if ($(this).next("dd").css("display") == "none") {
                                             $(this).next("dd").slideDown(200);
@@ -1054,5 +696,185 @@ global $mediaFiles;
         </div>
     </div>
 </div>
-<!-- <script type="text/javascript" src="<?php echo RootREL; ?>media/js/product_filter.js"></script> -->
+<script type="text/javascript" src="<?php echo RootREL; ?>media/js/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="<?php echo RootREL; ?>media/js/jquery-ui.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".pages ol").on("click", ".page", function() {
+            let page = $(this).val();
+            let url = window.location.href;
+            if ((/categories\/page-(.*).html\?s=(.*)/g).test(url)) {
+                var searchold = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(url))[2];
+            }
+            window.history.pushState('', '', rootUrl +
+                'categories/page-' + page + '.html?s=' + searchold
+            );
+            location.reload();
+        });
+    });
+</script>
+<script>
+    function tmp_product(product, RootREL, rootUrl) {
+        let tmp = '';
+        tmp += ` 
+                 <li class="item">
+                                <div class="item-area product-image-hover">
+                                    <div class="product-image-area " style="width: 100%;height: 100%;">
+                                        <div class="loader-container">
+                                            <div class="loader">
+                                                <i class="ajax-loader medium animate-spin"></i>
+                                            </div>
+                                        </div>
+                                        <a href="${rootUrl}product/quickview/${product.slug}-${product.id}" class="quickview-icon quickview-icon-custom"><i class="icon-export"></i><span>Quick
+                                                View</span></a>
+                                        <a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}" class="product-image">
+                                            <img id="product-collection-image-${product.id}" class="defaultImage porto-lazyload" data-src="${RootREL}media/upload/products/${product.oneImage}" width="300" height="300" src="${RootREL}media/upload/products/${product.oneImage}" />
+                                            <img class="hoverImage" src="${RootREL}media/upload/products/${product.oneImage}" width="300" alt="Black" />
+                                        </a>`;
+        if (product.best_selling == 1) {
+            tmp += `<div class="product-label " style="right: 10px;"><span class="new-product-icon">HOT</span></div>`;
+        }
+        tmp += `                           
+                                    </div>
+                                    <div class="details-area">
+                                        <h2 class="product-name"><a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}">${product.name}</a>
+                                        </h2>
+                                        <ul class="configurable-swatch-list configurable-swatch-color">`;
+        let colors = product.color.split(",");
+        colors.forEach(color => {
+            tmp += `                  <li class="option-${color} is-media" data-product-id="${product.id}" data-option-label="${color}">
+                                                        <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
+                                                            <img src="${RootREL}media/img/colors/${color}.png" alt="${color}" width="15" height="15" />
+                                                        </span>
+                                                </li>
+            
+            `;
+        });
+        tmp += `                              
+           
+                                        </ul>
+                                        <div class="price-box">
+                                            <span class="regular-price" id="product-price-${product.id}; ?>">
+                                                <span class="price">$${product.price}</span> </span>
+                                        </div>
+                                        <div class="actions">
+                                            <a href="javascript:showOptions('310')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
+                                                    Cart</span></a>
+                                            <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/310/' class='fancybox' id='fancybox310' style='display:none'>Options</a>
+                                            <div class="clearer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+            `;
+        return tmp;
+    }
+
+
+    $(document).ready(function() {
+        function get_cat_click() {
+            let cat = [];
+            $('.cat:checked').each(function() {
+                cat.push($(this).val());
+            });
+            cat = cat.filter((element, indexOfElement) => {
+                return indexOfElement === cat.indexOf(element)
+            });
+            return cat;
+
+        }
+        $('.choose-color').click(function() {
+            var a = $(this).attr("value");
+            console.log(a);
+        });
+
+        function filter_data() {
+            var search;
+            var page;
+            if ((/categories\/page-(.*).html\?s=(.*)/g).test(window.location.href)) {
+                page = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(window.location.href))[1];
+                search = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(window.location.href))[2];
+            }
+            var minimum_price = $('#min_price_hide').val();
+            var maximum_price = $('#max_price_hide').val();
+            var brand = get_filter('brand');
+            var color = get_filter('color');
+            var gender = get_filter('gender');
+            var cat = get_cat_click();
+            var sort = $('.sort').val();
+            var type = $('.type').val();
+            $.ajax({
+                url: rootUrl + "categories/fetch_data",
+                method: "POST",
+                data: {
+                    minimum_price: minimum_price,
+                    maximum_price: maximum_price,
+                    brand: brand,
+                    color: color,
+                    gender: gender,
+                    cat: cat,
+                    search: search,
+                    sort: sort,
+                    type: type,
+                    page: page
+                },
+                success: function(data) {
+                    // console.log(data);
+                    $('.products-display').empty();
+                    let products = JSON.parse(data)['data'];
+                    let norecords = JSON.parse(data)['norecords'];
+                    let html = '';
+                    products.forEach(element => {
+                        html += tmp_product(element, RootREL, rootUrl);
+                    });
+                    $('.products-display').html(html);
+                    $(' .message-result span.number').html(norecords);
+                }
+            });
+        }
+
+        function get_filter(class_name) {
+            var filter = [];
+            $('.' + class_name + ':checked').each(function() {
+                filter.push($(this).val());
+            });
+            return filter;
+        }
+        $('.filter_all').click(function() {
+            filter_data();
+        });
+        //sort 
+        var sort = $('.sort').val();
+        var type = $('.type').val();
+
+        $('.sort').on('change', function() {
+            sort = $(this).val();
+        });
+        $('.type').on('change', function() {
+            type = $(this).val();
+
+        });
+        $('.bt-sort').click(function() {
+            filter_data();
+        });
+        $('#price_range').slider({
+            range: true,
+            min: 1,
+            max: 300,
+            values: [1, 300],
+            step: 1,
+            stop: function(event, ui) {
+                $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
+                $('#min_price_hide').val(ui.values[0]);
+                $('#max_price_hide').val(ui.values[1]);
+                filter_data();
+            }
+        });
+
+
+
+
+    });
+</script>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

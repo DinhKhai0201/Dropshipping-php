@@ -53,12 +53,12 @@
                                                         <div class="clearer"></div>
                                                     </div>
                                                 </form>
-                                                <script type="text/javascript">
+                                                <!-- <script type="text/javascript">
                                                     //<![CDATA[
                                                     var homeFooterNewsletterValidateDetail = new VarienForm(
                                                         'home-footer-newsletter-validate-detail');
                                                     //]]>
-                                                </script>
+                                                </script> -->
                                             </div>
                                         </div>
                                     </div>
@@ -164,31 +164,31 @@
             </script>
 
             <script type="text/javascript">
-                jQuery(function($) {
-                    var check_cookie = $.cookie('newsletter_popup');
-                    if (window.location != window.parent.location) {
-                        jQuery('#newsletter_popup').remove();
-                    } else {
-                        if (check_cookie == null || check_cookie == 'shown') {
-                            setTimeout(function() {
-                                beginNewsletterForm();
-                            }, 3000);
-                        }
-                        $('#newsletter_popup_dont_show_again').on('change', function() {
-                            if ($(this).length) {
-                                var check_cookie = $.cookie('newsletter_popup');
-                                if (check_cookie == null || check_cookie == 'shown') {
-                                    $.cookie('newsletter_popup', 'dontshowitagain');
-                                } else {
-                                    $.cookie('newsletter_popup', 'shown');
-                                    beginNewsletterForm();
-                                }
-                            } else {
-                                $.cookie('newsletter_popup', 'shown');
-                            }
-                        });
-                    }
-                });
+                // jQuery(function($) {
+                //     var check_cookie = $.cookie('newsletter_popup');
+                //     if (window.location != window.parent.location) {
+                //         jQuery('#newsletter_popup').remove();
+                //     } else {
+                //         if (check_cookie == null || check_cookie == 'shown') {
+                //             setTimeout(function() {
+                //                 beginNewsletterForm();
+                //             }, 3000);
+                //         }
+                //         $('#newsletter_popup_dont_show_again').on('change', function() {
+                //             if ($(this).length) {
+                //                 var check_cookie = $.cookie('newsletter_popup');
+                //                 if (check_cookie == null || check_cookie == 'shown') {
+                //                     $.cookie('newsletter_popup', 'dontshowitagain');
+                //                 } else {
+                //                     $.cookie('newsletter_popup', 'shown');
+                //                     beginNewsletterForm();
+                //                 }
+                //             } else {
+                //                 $.cookie('newsletter_popup', 'shown');
+                //             }
+                //         });
+                //     }
+                // });
 
                 function beginNewsletterForm() {
                     jQuery.fancybox({
@@ -233,14 +233,14 @@
                         </div>
                     </div>
                 </form>
-                <script type="text/javascript">
+                <!-- <script type="text/javascript">
                     //<![CDATA[
                     var newsletterpopupSubscriberFormDetail = new VarienForm('newsletter-popup-validate-detail');
                     document.getElementById("newsletter-popup-validate-detail").onsubmit = function() {
                         jQuery.cookie('newsletter_popup', 'dontshowitagain');
                     }
                     //]]>
-                </script>
+                </script> -->
                 <div class="subscribe-bottom">
                     <input type="checkbox" id="newsletter_popup_dont_show_again" />
                     <label for="newsletter_popup_dont_show_again">Don't show this popup again</label>
