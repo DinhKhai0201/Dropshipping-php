@@ -197,7 +197,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
 
                                 <div class="pager">
                                     <p class="amount">
-                                        Items <?php echo ($this->products['nopp']*($this->products['curp'] - 1 )+1); ?> to <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + $this->products['nocurp']); ?> of <?php echo $this->products['norecords']; ?> total </p>
+                                        Items <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + 1); ?> to <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + $this->products['nocurp']); ?> of <?php echo $this->products['norecords']; ?> total </p>
                                     <div class="pages">
                                         <ol>
                                             <li>
@@ -708,7 +708,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                 var searchold = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(url))[2];
             }
             window.history.pushState('', '', rootUrl +
-                'categories/page-' + page + '.html?s=' + searchold
+                'categories/page-' + page + '.html?s=' + ((searchold != null) ? searchold : '')
             );
             location.reload();
         });
@@ -771,6 +771,33 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
         return tmp;
     }
 
+    function tmp_page(products) {
+        let tmp = '';
+        tmp += `
+                <p class="amount">
+                    Items ${products.nopp *( products.curp - 1) + 1 } to ${products.nopp * (products.curp - 1) + products.nocurp} of ${products.norecords} total </p>
+                <div class="pages">
+                    <ol>
+                        <li>
+                            <span class="precious i-precious" href="" title="Precious">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </li>`;
+        for (let index = 1; index <= Math.ceil(products.norecords / products.nopp); index++) {
+            if (products.curp == index) {
+                tmp += `<li class = "current" > ${products.curp} </li>`;
+            } else {
+                tmp += `<li value = "${index}" class = "page page-${index}" >${index}</li>`;
+            }
+        }
+        tmp += `<li >
+            <span class = "next i-next" href = "" title = "Next" >
+            <i class = "fas fa-chevron-right" > </i> </span > </li> </ol > 
+            </div>
+        `;
+        return tmp;
+    }
+
 
     $(document).ready(function() {
         function get_cat_click() {
@@ -822,14 +849,18 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                 success: function(data) {
                     // console.log(data);
                     $('.products-display').empty();
+                    $('.pager').empty();
+                    let product = JSON.parse(data);
                     let products = JSON.parse(data)['data'];
-                    let norecords = JSON.parse(data)['norecords'];
+                    // let norecords = JSON.parse(data)['norecords'];
                     let html = '';
                     products.forEach(element => {
                         html += tmp_product(element, RootREL, rootUrl);
                     });
                     $('.products-display').html(html);
-                    $(' .message-result span.number').html(norecords);
+                    $(' .message-result span.number').html(product.norecords);
+                    $('.pager').html(tmp_page(product));
+
                 }
             });
         }

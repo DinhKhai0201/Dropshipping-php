@@ -214,51 +214,105 @@
 							</div>
 						</div>
 					<?php } ?>
-					<!-- <?php if ($app['act'] == 'view') { ?>
+					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group row">
-							<label class="control-label col-md-2" for="color_name">Color</label>
-							<div class="controls col-md-8">
-								<input <?php if ($app['act'] == 'view') echo "disabled"; ?> type="text" id="colors_name" name="product[color]" placeholder="" class="form-control" value="">
+							<label class="control-label col-md-3" for="color_name">Color</label>
+							<div class="controls col-md-7">
+								<ul class="configurable-swatch-list no-count" style="list-style-type: none;">
+
+									<?php if (isset($this->record['color'])) {
+											$record['color'] = explode(",", $this->record['color']);
+											foreach ($record['color'] as $color) { ?>
+											<label for="id-color-<?php echo $color; ?>">
+												<li style=" line-height: 28px;cursor:pointer;border:1px solid black">
+
+													<div class=" swatch-link has-image choose-color" value="<?php echo $color ?>">
+														<span class="swatch-label" style="height:26px; width:26px; line-height: 28px;">
+															<img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?php echo $color ?>" title="<?php echo $color ?>" width="24" height="24" />
+														</span>
+													</div>
+
+													<input type="checkbox" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
+
+												</li>
+											</label>
+									<?php }
+										} ?>
+								</ul>
+
 							</div>
 						</div>
 					<?php } else if ($app['act'] == 'add') { ?>
-						<?php
-							$array_select = [];
-							if (isset($this->record['categories_arr'])) {
-								$list_str = $this->record['categories_arr'];
-								$list_str = rtrim($list_str, ",");
-								$list_str = ltrim($list_str, ",");
-								$array_select = explode(',', $list_str);
-							}
-							?>
+
 						<div class="form-group row">
-							<label class="control-label col-md-2" for="color_name">Color</label>
-							<div class="controls col-md-8">
-								<select name="colors[]" id="" class="form-control select2 w-p100" multiple="multiple" data-placeholder="Select colors">
-									<?php foreach ($app['color'] as $color) { ?>
-										<?php if (in_array($color, $array_select)) { ?>
-											<option value="<?php echo $color ?>" selected='selected'>
-												<?php echo $color ?>
-											</option>
-										<?php } else { ?>
-											<option value="<?php echo $color ?>">
-												<?php echo $color ?>
-											</option>
-									<?php }
-										} ?>
-								</select>
+							<label class="control-label col-md-3" for="color_name">Color</label>
+							<div class="controls col-md-7">
+								<input hidden id="colors-choose" name="product[color]" value="">
+								<ul class="configurable-swatch-list no-count" style="list-style-type: none;">
+									<?php foreach ($app['color'] as $key => $value) { ?>
+										<label for="id-color-<?php echo $value; ?>">
+											<li style=" line-height: 28px;cursor:pointer;border:1px solid black">
+
+												<div class=" swatch-link has-image choose-color" value="<?php echo $value ?>">
+													<span class="swatch-label" style="height:26px; width:26px; line-height: 28px;">
+														<img src="<?php echo RootREL . 'media/img/colors/' . $value . '.png'; ?>" alt="<?php echo $value ?>" title="<?php echo $value ?>" width="24" height="24" />
+													</span>
+												</div>
+
+												<input type="checkbox" class="filter_all color" id="id-color-<?php echo $value; ?>" value="<?php echo $value; ?>" hidden>
+
+											</li>
+										</label>
+									<?php } ?>
+								</ul>
 							</div>
 						</div>
 					<?php } else { ?>
 						<div class="form-group row">
-							<label class="control-label col-md-2" for="categories_name">Category</label>
-							<div class="controls col-md-8">
-								<select name="categories_arr[]" id="" class="form-control select2 w-p100" multiple="multiple" data-placeholder="None">
-									<?php echo vendor_app_util::displayCategory($this->categories, $this->category); ?>
-								</select>
+							<label class="control-label col-md-3" for="categories_name">Color</label>
+							<div class="controls col-md-7">
+								<input id="colors-choose" name="product[color]" value="<?php if (isset($this->record['color'])) {
+																								echo  $this->record['color'];
+																							} ?>">
+								<ul class="configurable-swatch-list no-count" style="list-style-type: none;">
+									<?php
+										foreach ($app['color'] as $key => $value) { ?>
+										<label for="id-color-<?php echo $value; ?>">
+											<li style=" line-height: 28px;cursor:pointer;<?php if (isset($this->record['color'])) {
+																										$record['color'] = explode(",", $this->record['color']);
+																										foreach ($record['color'] as $color) {
+																											if ($color == $value) {
+																												echo "border:2px solid red;";
+																											} else {
+																												echo "border:1px solic black;";
+																											}
+																										}
+																									} ?>">
+
+												<div class=" swatch-link has-image choose-color" value="<?php echo $value ?>">
+													<span class="swatch-label" style="height:26px; width:26px;line-height: 28px;">
+														<img src="<?php echo RootREL . 'media/img/colors/' . $value . '.png'; ?>" alt="<?php echo $value ?>" title="<?php echo $value ?>" width="24" height="24" />
+													</span>
+												</div>
+
+												<input type="checkbox" class="filter_all color" id="id-color-<?php echo $value; ?>" value="<?php echo $value; ?>" hidden <?php if (isset($this->record['color'])) {
+																																														$record['color'] = explode(",", $this->record['color']);
+																																														foreach ($record['color'] as $color) {
+																																															if ($color == $value) {
+																																																echo "checked";
+																																															} else {
+																																																echo "";
+																																															}
+																																														}
+																																													} ?>>
+
+											</li>
+										</label>
+									<?php } ?>
+								</ul>
 							</div>
 						</div>
-					<?php } ?> -->
+					<?php } ?>
 					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group  row">
 							<label class="control-label col-md-3" for="description">Product descriptipn</label>
@@ -399,6 +453,24 @@
 			animationLoop: true,
 			prevText: "Previous",
 			nextText: "Next",
+		});
+
+		function get_filter(class_name) {
+			let filter = [];
+			$('.' + class_name + ':checked').each(function() {
+				filter.push($(this).val());
+			});
+			return filter;
+		}
+		$('ul').on("click", "li", function() {
+			let color = get_filter('color');
+			$('.color:checked').parent().css({
+				"border": "2px solid red"
+			});
+			$('.color:not(:checked)').parent().css({
+				"border": "1px solid black"
+			});
+			$('#colors-choose').val(color.join());
 		});
 
 	});
