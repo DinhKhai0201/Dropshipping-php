@@ -220,3 +220,20 @@ font-size: 16px;
 .list-group-item:focus, .list-group-item:hover {
 z-index: 0;
 }
+/* fillter  */
+.filter-cat {
+   margin: 5px auto;
+    display: table;
+}
+.bt-filter-cat {
+    padding: 5px;
+    border-radius: 3px;
+    border: 0px;
+    cursor: pointer;
+    float: right;
+    
+}
+.bt-filter-cat:hover {
+    background-color: darkslategrey;
+    color: whitesmoke;
+}

@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="<?php echo RootREL; ?>media/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="<?php echo RootREL; ?>media/favicon.ico" type="image/x-icon" />
-    <!-- <link href="<?php echo RootREL; ?>media/css_secure/font-awesome/css/all.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
@@ -19,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/f88342096cf89fd57d043d509d14e567.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/style.css" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/9c353ad7c3c57ca26c5f27068d2cafe5.css" media="print" />
-    <script type="text/javascript" src="<?php echo RootREL; ?>media/js/4190df6d2f2903545088c80753c55f73.js"></script>
+    <script type="text/javascript" src="<?php echo RootREL; ?>media/js/main.js"></script>
     <script type="text/javascript">
         jQuery(function($) {
             var scrolled = false;
@@ -80,15 +79,6 @@
             margin-bottom: 0;
         }
     </style>
-    <!-- <script type="text/javascript">
-        var Translator = new Translate([]);
-    </script> -->
-    <!-- <script type="text/javascript">
-        if (typeof dailydealTimeCountersCategory == 'undefined') {
-            var dailydealTimeCountersCategory = new Array();
-            var i = 0;
-        }
-    </script> -->
 </head>
 <?php
 global $enableOB;

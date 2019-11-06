@@ -51,6 +51,16 @@ class categories_controller extends vendor_main_controller
 	{
 		global $app;
 		$conditions ='';
+		if (isset($_POST["cat"])) {
+			$conditions .="(";
+			foreach ($_POST["cat"] as $key => $value) {
+				if ($key != 0) {
+					$conditions .=" OR ";
+				}
+				$conditions .= "products.category_type_id like '%" . $value . "%'";
+			}
+			$conditions .= ")";
+		}
 		if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
 			$conditions .= (($conditions) ? " AND " : ""). "products.price BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'";
 		}
@@ -60,12 +70,7 @@ class categories_controller extends vendor_main_controller
 			}
 		
 		}
-		if (isset($_POST["cat"])) {
-			foreach ($_POST["cat"] as $key => $value) {
-				$conditions .= (($conditions) ? " AND " : "") . " products.category_type_id like '%" . $value . "%'";
-			}
-
-		}
+		
 		if (isset($_POST["search"])) {
 			$conditions .= (($conditions) ? " AND " : "") . " products.name  like '%" . $_POST["search"] . "%'";
 		}

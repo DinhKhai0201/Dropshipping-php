@@ -32,9 +32,9 @@ class product_model extends vendor_pagination_model
 	];
 	public function nextProduct($id, $status) {
 		if ($status == true) {
-			$sql = 'SELECT products.*, (SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage FROM products  WHERE id < '.$id.' ORDER BY id DESC LIMIT 1';
+			$sql = 'SELECT products.*, (SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage FROM products  WHERE id < '.$id.' ORDER BY products.id DESC LIMIT 1';
 		} else {
-			$sql = 'SELECT products.*, (SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage FROM products WHERE id > ' . $id . ' ORDER BY id LIMIT 1';
+			$sql = 'SELECT products.*, (SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage FROM products WHERE id > ' . $id . ' ORDER BY products.id LIMIT 1';
 		}
 		$value = $this->con->query($sql);
 		return $value;

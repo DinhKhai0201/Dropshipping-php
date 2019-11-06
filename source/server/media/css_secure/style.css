@@ -4862,7 +4862,7 @@ a.search-icon{display:inline-block;width:25px;text-align:center}
 .prev-next-products{float:right}
 .quickview-index-view .prev-next-products{display:none}
 .prev-next-products .product-nav{display:inline-block;vertical-align:middle;position:relative}
-.prev-next-products a{color:#555;display:inline-block;font-size:15px;line-height:45px!important;width:22px;text-align:center}
+.prev-next-products a{color:#555;display:inline-block;font-size:15px;line-height:45px!important;width:22px;text-align:center;border-radius: 50%;}
 .prev-next-products .product-nav .product-pop{border-top:3px solid #08c;position:absolute;left:0;top:100%;padding:10px;background-color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);z-index:1;visibility:hidden;opacity:0;transition:all .2s;text-align:center;border-radius:4px}
 .prev-next-products .product-nav .product-pop:before{content:"";width:5px;height:2px;border:5px solid transparent;border-bottom-color:#08c;display:block;position:absolute;top:-13px;left:0}
 .prev-next-products .product-nav:hover .product-pop{opacity:1;visibility:visible}
@@ -7494,8 +7494,16 @@ div.filter-title .content, h2.filter-title .content {
     font-size: 14px;
     line-height: 1;
 }
-.product-view .product-shop .availability {
-    color: #7b858a;
+.product-view .product-shop span.availability {
+    color: green;
+    font-weight: 400;
+}
+.product-view .product-shop span.out-of-stock {
+    color: red;
+    font-weight: 400;
+}
+.product-view .product-shop span.running-low{
+    color: orange;
     font-weight: 400;
 }
 .product-view .product-options .swatch-attr label {

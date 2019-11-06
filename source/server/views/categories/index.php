@@ -3,6 +3,8 @@ global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/filterproduct.css");
 array_push($mediaFiles['css'], RootREL . "media/css/textproductresult.css");
 array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
+array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
+
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <div class="top-container">
@@ -28,50 +30,10 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
     <div class="main container">
         <div class="row">
             <div class="col-main col-lg-9 lg-order-12">
-                <div id="loading-mask">
-                    <div class="background-overlay"></div>
-                    <p id="loading_mask_loader" class="loader">
-                        <i class="ajax-loader large animate-spin"></i>
-                    </p>
-                </div>
-                <div id="after-loading-success-message">
-                    <div class="background-overlay"></div>
-                    <div id="success-message-container" class="loader">
-                        <div class="msg-box">Product was successfully added to your shopping cart.</div>
-                        <button type="button" name="finish_and_checkout" id="finish_and_checkout" class="button btn-cart"><span><span>
-                                    Shopping Cart </span></span></button>
-                        <button type="button" name="continue_shopping" id="continue_shopping" class="button btn-cart">
-                            <span><span>
-                                    Continue </span></span></button>
-                    </div>
-                </div>
-                <script type='text/javascript'>
-                    jQuery('#finish_and_checkout').click(function() {
-                        try {
-                            parent.location.href =
-                                'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/';
-                        } catch (err) {
-                            location.href =
-                                'https://www.portotheme.com/magento/porto/index.php/demo1_en/checkout/cart/';
-                        }
-                    });
-                    jQuery('#continue_shopping').click(function() {
-                        jQuery('#after-loading-success-message').fadeOut(200);
-                        clearTimeout(ajaxcart_timer);
-                        setTimeout(function() {
-                            jQuery('#after-loading-success-message .timer').text(ajaxcart_sec);
-                        }, 1000);
-                    });
-                </script>
                 <p class="category-image"><img src="https://www.portotheme.com/magento/porto/media/catalog/category/men_category_banner.jpg" alt="Categories" title="Categories" /></p>
                 <div class="page-title category-title">
                     <h1>Categories</h1>
                 </div>
-                <script type="text/javascript">
-                    var dailydealTimeCountersCategory = new Array();
-                    var i = 0;
-                </script>
-
                 <div class="category-products">
                     <div class="toolbar">
                         <div class="sorter">
@@ -95,10 +57,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                         Bottom to Top </option>
                                 </select>
                             </div>
-                            <!-- <p class="view-mode">
-                                <strong title="Grid" class="grid"><i class="fas fa-th"></i></strong>&nbsp;
-                                <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?mode=list" title="List" class="list"><i class="fas fa-list-ul"></i></a>&nbsp;
-                            </p> -->
+
                         </div>
                     </div>
                     <ul class="products-grid  columns4 hide-addtocart move-action filter_data">
@@ -160,22 +119,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                             <?php } ?>
                         </div>
                     </ul>
-                    <!-- <script type="text/javascript">
-                        jQuery('.col-main .products-grid li:nth-child(2n)').addClass('nth-child-2n');
-                        jQuery('.col-main .products-grid li:nth-child(2n+1)').addClass('nth-child-2np1');
-                        jQuery('.col-main .products-grid li:nth-child(3n)').addClass('nth-child-3n');
-                        jQuery('.col-main .products-grid li:nth-child(3n+1)').addClass('nth-child-3np1');
-                        jQuery('.col-main .products-grid li:nth-child(4n)').addClass('nth-child-4n');
-                        jQuery('.col-main .products-grid li:nth-child(4n+1)').addClass('nth-child-4np1');
-                        jQuery('.col-main .products-grid li:nth-child(5n)').addClass('nth-child-5n');
-                        jQuery('.col-main .products-grid li:nth-child(5n+1)').addClass('nth-child-5np1');
-                        jQuery('.col-main .products-grid li:nth-child(6n)').addClass('nth-child-6n');
-                        jQuery('.col-main .products-grid li:nth-child(6n+1)').addClass('nth-child-6np1');
-                        jQuery('.col-main .products-grid li:nth-child(7n)').addClass('nth-child-7n');
-                        jQuery('.col-main .products-grid li:nth-child(7n+1)').addClass('nth-child-7np1');
-                        jQuery('.col-main .products-grid li:nth-child(8n)').addClass('nth-child-8n');
-                        jQuery('.col-main .products-grid li:nth-child(8n+1)').addClass('nth-child-8np1');
-                    </script> -->
                     <div class="toolbar-bottom">
                         <div class="toolbar">
                             <div class="sorter">
@@ -210,9 +153,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                                     </li>
                                             <?php }
                                             } ?>
-                                            <!-- <li class="current">1</li>
-                                            <li><a href="">2</a>
-                                            </li> -->
+
                                             <li>
                                                 <span class="next i-next" href="" title="Next">
                                                     <i class="fas fa-chevron-right"></i>
@@ -233,7 +174,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                 <div class="block-main-layer">
                     <div class="layer-filter-icon visible-sm visible-xs"><a href="javascript:void(0)"><i class="fas fa-angle-double-right"></i></a></div>
                     <h3 class="title-filter visible-sm visible-xs">Filter Your Selection<span class="close-layer"><i class="fas fa-times"></i></span></h3>
-                    <div class="block block-category-nav filter-choose">
+                    <!-- <div class="block block-category-nav filter-choose">
                         <div class="block-title">
                             <strong><span>Filter</span></strong>
                         </div>
@@ -242,8 +183,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="block block-category-nav">
+
                         <div class="block-title">
                             <strong><span>Categories</span></strong>
                         </div>
@@ -259,7 +201,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                         } ?>
 
                                     <li class="<?php echo ($haschild1) ? 'has-children' : 'has-no-children'; ?>">
-                                        <input type="checkbox" class="filter_all cat" value="<?php echo $category1['id']; ?>"><span>
+                                        <input type="checkbox" class="filter_all_cat cat" value="<?php echo $category1['id']; ?>"><span>
                                             <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category1['slug'] . "-" . $category1['id']])) ?>">
                                                 <?php echo $category1['categoryName']; ?></a><?php if ($haschild1) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?></span>
                                         <ul>
@@ -274,7 +216,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                                                     }
                                                                 } ?>
                                                     <li class="<?php echo ($haschild2) ? 'has-children' : 'has-no-children'; ?>">
-                                                        <input type="checkbox" class="filter_all  cat" value="<?php echo $category2['id']; ?>"><span>
+                                                        <input type="checkbox" class="filter_all_cat  cat" value="<?php echo $category2['id']; ?>"><span>
                                                             <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category2['slug'] . "-" . $category2['id']])) ?>">
                                                                 <?php echo $category2['categoryName']; ?></a><?php if ($haschild2) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?></span>
                                                         <ul>
@@ -289,14 +231,14 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                                                                     }
                                                                                 } ?>
                                                                 <li class="<?php echo ($haschild3) ? 'has-children' : 'has-no-children'; ?>">
-                                                                    <input type="checkbox" class="filter_all  cat" value="<?php echo $category3['id']; ?>"><span>
+                                                                    <input type="checkbox" class="filter_all_cat  cat" value="<?php echo $category3['id']; ?>"><span>
                                                                         <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category3['slug'] . "-" . $category3['id']])) ?>">
                                                                             <?php echo $category3['categoryName']; ?></a><?php if ($haschild3) { ?><a href="javascript:void(0)" class="plus"><i class="fas fa-plus"></i></i></a><?php } ?></span>
                                                                     <ul>
                                                                         <?php foreach ($this->level4 as $category4) { ?>
                                                                             <?php if ($category4['parentId'] == $category3['id']) { ?>
                                                                                 <li class="has-no-children">
-                                                                                    <input type="checkbox" class="filter_all  cat" value="<?php echo $category4['id']; ?>"><span>
+                                                                                    <input type="checkbox" class="filter_all_cat  cat" value="<?php echo $category4['id']; ?>"><span>
                                                                                         <a href="<?php echo (vendor_app_util::url(["ctl" => "categories", "act" => "index.html?" . $category4['slug'] . "-" . $category4['id']])) ?>">
                                                                                             <?php echo $category4['categoryName']; ?></a></span>
                                                                                 </li>
@@ -314,42 +256,12 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
 
                                 <?php } ?>
                             </ul>
+                            <div class="filter-cat">
+                                <button class="bt-filter-cat">Filter category</button>
+                            </div>
+
                         </div>
                         <script type="text/javascript">
-                            jQuery(function($) {
-                                $(".block.block-category-nav .block-title").click(function() {
-                                    if ($(this).hasClass("closed")) {
-                                        $(".block.block-category-nav .block-content")
-                                            .slideDown();
-                                        $(this).removeClass("closed");
-                                    } else {
-                                        $(".block.block-category-nav .block-content").slideUp();
-                                        $(this).addClass("closed");
-                                    }
-                                });
-                                $(".block.block-category-nav .category-list a.plus").click(function() {
-                                    // console.log($(this).parent().parent().children("ul"));
-                                    if ($(this).parent().hasClass("opened")) {
-                                        $(this).parent().parent().children("ul").slideUp();
-                                        $(this).parent().removeClass("opened");
-                                        $(this).parent().children("fas fa-minus").removeClass(
-                                            "fas fa-minus").addClass(
-                                            "fas fa-plus");
-                                    } else {
-                                        $(this).parent().parent().children("ul").slideDown();
-                                        $(this).parent().addClass("opened");
-                                        $(this).parent().children("fas fa-plus").removeClass(
-                                            "fas fa-plus").addClass(
-                                            "fas fa-minus");
-                                    }
-                                });
-                                $("input[type='checkbox']").change(function() {
-                                    $(this).siblings('ul')
-                                        .find("input[type='checkbox']")
-                                        .prop('checked', this.checked);
-                                });
-
-                            });
                         </script>
 
                     </div>
@@ -371,19 +283,16 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                 </dd>
                                 <dt>Color</dt>
                                 <dd>
-                                    <ol class="configurable-swatch-list no-count">
+                                    <ol class="configurable-swatch-list no-count colors">
                                         <?php foreach ($app['color'] as $key => $value) { ?>
                                             <label for="id-color-<?php echo $value; ?>">
                                                 <li style=" line-height: 28px;">
-
                                                     <div class=" swatch-link has-image choose-color" value="<?php echo $value ?>">
-                                                        <span class="swatch-label" style="height:26px; width:26px; line-height: 28px;">
+                                                        <span class="swatch-label" style="height:24px; width:24px; line-height: 28px;">
                                                             <img src="<?php echo RootREL . 'media/img/colors/' . $value . '.png'; ?>" alt="<?php echo $value ?>" title="<?php echo $value ?>" width="24" height="24" />
                                                         </span>
                                                     </div>
-
                                                     <input type="checkbox" class="filter_all color" id="id-color-<?php echo $value; ?>" value="<?php echo $value; ?>" hidden>
-
                                                 </li>
                                             </label>
                                         <?php } ?>
@@ -391,91 +300,19 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                                 </dd>
                                 <dt>Size</dt>
                                 <dd>
-                                    <ol class="configurable-swatch-list no-count">
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    S </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=7" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    M </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=6" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    L </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=5" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    XL </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=4" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    2XL </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=43" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    55 </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=42" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    56 </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo1_en/categories.html?size=41" class="swatch-link" style="line-height: 28px;">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    57 </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    31 </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    32 </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    33 </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    38 </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    39 </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="swatch-link">
-                                                <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
-                                                    40 </span>
-                                            </span>
-                                        </li>
+                                    <ol class="configurable-swatch-list no-count sizes">
+                                        <?php foreach ($app['size'] as $key => $value) { ?>
+                                            <label for="id-size-<?php echo $value; ?>">
+                                                <li>
+                                                    <span class="swatch-link">
+                                                        <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;">
+                                                            <?= $value ?> </span>
+                                                    </span>
+                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $value; ?>" value="<?php echo $value; ?>" hidden>
+                                                </li>
+                                            </label>
+                                        <?php } ?>
+
                                     </ol>
                                 </dd>
                                 <dt>Brand</dt>
@@ -495,15 +332,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                             <script type="text/javascript">
                                 jQuery(function($) {
 
-                                    $(".block-layered-nav dt").click(function() {
-                                        if ($(this).next("dd").css("display") == "none") {
-                                            $(this).next("dd").slideDown(200);
-                                            $(this).removeClass("closed");
-                                        } else {
-                                            $(this).next("dd").slideUp(200);
-                                            $(this).addClass("closed");
-                                        }
-                                    });
                                 });
                             </script>
                         </div>
@@ -511,30 +339,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                 </div>
                 <script type="text/javascript">
                     jQuery(function($) {
-                        $('.layer-filter-icon, .close-mobile-layer, .close-layer').click(function(
-                            event) {
-                            if (!$('body').hasClass('mobile-layer-shown')) {
-                                $('body').addClass('mobile-layer-shown', function() {
-                                    setTimeout(function() {
-                                        $(document).one("click", function(e) {
-                                            var target = e.target;
-                                            if (!$(target).is(
-                                                    '.block-main-layer .block'
-                                                ) && !$(target)
-                                                .parents().is(
-                                                    '.block-main-layer .block'
-                                                )) {
-                                                $('body').removeClass(
-                                                    'mobile-layer-shown'
-                                                );
-                                            }
-                                        });
-                                    }, 111);
-                                });
-                            } else {
-                                $('body').removeClass('mobile-layer-shown');
-                            }
-                        });
+
                     });
                 </script>
                 <!-- <h2 class="sidebar-title" style="margin-bottom:10px">Featured</h2>
@@ -704,224 +509,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
     </div>
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/js/jquery-1.11.1.min.js"></script>
-
 <script type="text/javascript" src="<?php echo RootREL; ?>media/js/jquery-ui.js"></script>
-<script>
-    $(document).ready(function() {
-        $(".pages ol").on("click", ".page", function() {
-            let page = $(this).val();
-            let url = window.location.href;
-            if ((/categories\/page-(.*).html\?s=(.*)/g).test(url)) {
-                var searchold = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(url))[2];
-            }
-            window.history.pushState('', '', rootUrl +
-                'categories/page-' + page + '.html?s=' + ((searchold != null) ? searchold : '')
-            );
-            location.reload();
-        });
-    });
-</script>
-<script>
-    function tmp_product(product, RootREL, rootUrl) {
-        let tmp = '';
-        tmp += ` 
-                 <li class="item">
-                                <div class="item-area product-image-hover">
-                                    <div class="product-image-area " style="width: 100%;height: 100%;">
-                                        <div class="loader-container">
-                                            <div class="loader">
-                                                <i class="ajax-loader medium animate-spin"></i>
-                                            </div>
-                                        </div>
-                                        <a href="${rootUrl}product/quickview/${product.slug}-${product.id}" class="quickview-icon quickview-icon-custom"><i class="icon-export"></i><span>Quick
-                                                View</span></a>
-                                        <a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}" class="product-image">
-                                            <img id="product-collection-image-${product.id}" class="defaultImage porto-lazyload" data-src="${RootREL}media/upload/products/${product.oneImage}" width="300" height="300" src="${RootREL}media/upload/products/${product.oneImage}" />
-                                            <img class="hoverImage" src="${RootREL}media/upload/products/${product.oneImage}" width="300" alt="Black" />
-                                        </a>`;
-        if (product.best_selling == 1) {
-            tmp += `<div class="product-label " style="right: 10px;"><span class="new-product-icon">HOT</span></div>`;
-        }
-        tmp += `                           
-                                    </div>
-                                    <div class="details-area">
-                                        <h2 class="product-name"><a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}">${product.name}</a>
-                                        </h2>
-                                        <ul class="configurable-swatch-list configurable-swatch-color">`;
-        let colors = product.color.split(",");
-        colors.forEach(color => {
-            tmp += `                  <li class="option-${color} is-media" data-product-id="${product.id}" data-option-label="${color}">
-                                                        <span class="swatch-label" style="height: 15px; width: 15px; line-height: 15px;">
-                                                            <img src="${RootREL}media/img/colors/${color}.png" alt="${color}" width="15" height="15" />
-                                                        </span>
-                                                </li>
-            
-            `;
-        });
-        tmp += `                              
-           
-                                        </ul>
-                                        <div class="price-box">
-                                            <span class="regular-price" id="product-price-${product.id}; ?>">
-                                                <span class="price">$${product.price}</span> </span>
-                                        </div>
-                                        <div class="actions">
-                                            <a href="javascript:showOptions('310')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
-                                                    Cart</span></a>
-                                            <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/310/' class='fancybox' id='fancybox310' style='display:none'>Options</a>
-                                            <div class="clearer"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-            `;
-        return tmp;
-    }
-
-    function tmp_page(products) {
-        let tmp = '';
-        tmp += `
-                <p class="amount">
-                    Items ${products.nopp *( products.curp - 1) + 1 } to ${products.nopp * (products.curp - 1) + products.nocurp} of ${products.norecords} total </p>
-                <div class="pages">
-                    <ol>
-                        <li>
-                            <span class="precious i-precious" href="" title="Precious">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                        </li>`;
-        for (let index = 1; index <= Math.ceil(products.norecords / products.nopp); index++) {
-            if (products.curp == index) {
-                tmp += `<li class = "current" > ${products.curp} </li>`;
-            } else {
-                tmp += `<li value = "${index}" class = "page page-${index}" >${index}</li>`;
-            }
-        }
-        tmp += `<li >
-            <span class = "next i-next" href = "" title = "Next" >
-            <i class = "fas fa-chevron-right" > </i> </span > </li> </ol > 
-            </div>
-        `;
-        return tmp;
-    }
-
-
-    $(document).ready(function() {
-        function get_cat_click() {
-            let cat = [];
-            $('.cat:checked').each(function() {
-                cat.push($(this).val());
-            });
-            cat = cat.filter((element, indexOfElement) => {
-                return indexOfElement === cat.indexOf(element)
-            });
-            return cat;
-
-        }
-        $('.choose-color').click(function() {
-            var a = $(this).attr("value");
-            console.log(a);
-        });
-
-        function filter_data() {
-            var search;
-            var page;
-            if ((/categories\/page-(.*).html\?s=(.*)/g).test(window.location.href)) {
-                page = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(window.location.href))[1];
-                search = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(window.location.href))[2];
-            }
-            var minimum_price = $('#min_price_hide').val();
-            var maximum_price = $('#max_price_hide').val();
-            var brand = get_filter('brand');
-            var color = get_filter('color');
-            var gender = get_filter('gender');
-            var cat = get_cat_click();
-            var sort = $('.sort').val();
-            var type = $('.type').val();
-            //filter 
-
-            // 
-            $.ajax({
-                url: rootUrl + "categories/fetch_data",
-                method: "POST",
-                data: {
-                    minimum_price: minimum_price,
-                    maximum_price: maximum_price,
-                    brand: brand,
-                    color: color,
-                    gender: gender,
-                    cat: cat,
-                    search: search,
-                    sort: sort,
-                    type: type,
-                    page: page
-                },
-                success: function(data) {
-                    // console.log(data);
-                    $('.products-display').empty();
-                    $('.pager').empty();
-                    let product = JSON.parse(data);
-                    let products = JSON.parse(data)['data'];
-                    let html = '';
-                    products.forEach(element => {
-                        html += tmp_product(element, RootREL, rootUrl);
-                    });
-                    $('.products-display').html(html);
-                    $(' .message-result span.number').html(product.norecords);
-                    $('.pager').html(tmp_page(product));
-
-
-                }
-            });
-        }
-
-        function get_filter(class_name) {
-            var filter = [];
-            $('.' + class_name + ':checked').each(function() {
-                filter.push($(this).val());
-            });
-            return filter;
-        }
-        $('.filter_all').click(function() {
-            filter_data();
-        });
-        //sort 
-        var sort = $('.sort').val();
-        var type = $('.type').val();
-
-        // $('.filter_all').on('change', function() {
-        //     $(this).parent().parent().clone().appendTo('.filter-choose-content');
-        // });
-        $('.sort').on('change', function() {
-            sort = $(this).val();
-        });
-        $('.type').on('change', function() {
-            type = $(this).val();
-
-        });
-        $('.bt-sort').click(function() {
-            filter_data();
-
-        });
-        $('#price_range').slider({
-            range: true,
-            min: 1,
-            max: 300,
-            values: [1, 300],
-            step: 1,
-            stop: function(event, ui) {
-                $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
-                $('#min_price_hide').val(ui.values[0]);
-                $('#max_price_hide').val(ui.values[1]);
-                filter_data();
-            }
-        });
-
-
-
-
-    });
-</script>
+<script src="<?php echo RootREL; ?>media/js/categories/filter.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
-
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>
