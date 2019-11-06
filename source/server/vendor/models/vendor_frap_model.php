@@ -15,7 +15,7 @@ class vendor_frap_model extends vendor_fra_model {
 		$pagination['nocurp'] 	= count($pagination['data']);
 		$pagination['curp'] 	= $this->curp;
 		$pagination['nopp'] 	= $this->nopp;
-		// exit(json_encode($pagination));
+		// echo (json_encode($pagination));
 		return $pagination;
 	}
 

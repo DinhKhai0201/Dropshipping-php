@@ -3,9 +3,6 @@ global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/filterproduct.css");
 array_push($mediaFiles['css'], RootREL . "media/css/textproductresult.css");
 array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
-
-
-
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <div class="top-container">
@@ -234,8 +231,18 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
             <div class="col-left sidebar f-left col-lg-3">
                 <div class="mobile-layer-overlay close-mobile-layer"></div>
                 <div class="block-main-layer">
-                    <div class="layer-filter-icon visible-sm visible-xs"><a href="javascript:void(0)"><i class="fas fa-stream"></i></a></div>
+                    <div class="layer-filter-icon visible-sm visible-xs"><a href="javascript:void(0)"><i class="fas fa-angle-double-right"></i></a></div>
                     <h3 class="title-filter visible-sm visible-xs">Filter Your Selection<span class="close-layer"><i class="fas fa-times"></i></span></h3>
+                    <div class="block block-category-nav filter-choose">
+                        <div class="block-title">
+                            <strong><span>Filter</span></strong>
+                        </div>
+                        <div class="block-content  ">
+                            <div class="list-group filter-choose-content">
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="block block-category-nav">
                         <div class="block-title">
                             <strong><span>Categories</span></strong>
@@ -831,6 +838,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
             var cat = get_cat_click();
             var sort = $('.sort').val();
             var type = $('.type').val();
+            //filter 
+
+            // 
             $.ajax({
                 url: rootUrl + "categories/fetch_data",
                 method: "POST",
@@ -852,7 +862,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                     $('.pager').empty();
                     let product = JSON.parse(data);
                     let products = JSON.parse(data)['data'];
-                    // let norecords = JSON.parse(data)['norecords'];
                     let html = '';
                     products.forEach(element => {
                         html += tmp_product(element, RootREL, rootUrl);
@@ -860,6 +869,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
                     $('.products-display').html(html);
                     $(' .message-result span.number').html(product.norecords);
                     $('.pager').html(tmp_page(product));
+
 
                 }
             });
@@ -879,6 +889,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
         var sort = $('.sort').val();
         var type = $('.type').val();
 
+        // $('.filter_all').on('change', function() {
+        //     $(this).parent().parent().clone().appendTo('.filter-choose-content');
+        // });
         $('.sort').on('change', function() {
             sort = $(this).val();
         });
@@ -888,6 +901,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
         });
         $('.bt-sort').click(function() {
             filter_data();
+
         });
         $('#price_range').slider({
             range: true,
@@ -908,4 +922,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
 
     });
 </script>
+<script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

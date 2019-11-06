@@ -4,10 +4,10 @@
              <div class="top-links-inner">
                  <div class="form-currency top-select">
                      <select id="select-currency" name="currency" title="Select Your Currency" onchange="setLocation(this.value)">
-                         <option value="http://www.portotheme.com/magento/porto/index.php/demo4_en/directory/currency/switch/currency/EUR/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/">
+                         <option value="">
                              EUR
                          </option>
-                         <option value="http://www.portotheme.com/magento/porto/index.php/demo4_en/directory/currency/switch/currency/USD/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/" selected="selected">
+                         <option value="" selected="selected">
                              USD
                          </option>
                      </select>
@@ -20,8 +20,8 @@
                  <span class="split"></span>
                  <div class="form-language top-select">
                      <select id="select-language" title="Your Language" onchange="window.location.href=this.value" style="width:auto;">
-                         <option value="http://www.portotheme.com/magento/porto/index.php/demo4_en/?___from_store=demo4_en" data-image="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/flags/demo4_en.png" selected="selected">English</option>
-                         <option value="http://www.portotheme.com/magento/porto/index.php/demo4_sa/?___from_store=demo4_en" data-image="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/flags/demo4_sa.png">
+                         <option value="" data-image="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/flags/demo4_en.png" selected="selected">English</option>
+                         <option value="" data-image="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/flags/demo4_sa.png">
                              Arabic
                          </option>
                      </select>
@@ -68,7 +68,7 @@
                          5678 890</b></span> </div>
              <div class="mini-cart">
                  <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i class="fas fa-shopping-cart"></i><span class="cart-info"><span class="cart-qty">0</span><span>Item(s)</span></span></a>
-                 <div class="topCartContent block-content theme-border-color">
+                 <div class="topCartContent block-content theme-border-color" style="max-height:500px;overflow:hidden;overflow-y: scroll;">
                      <div class="inner-wrapper">
                          <p class="cart-empty">
                              You have no items in your shopping cart. </p>
@@ -97,23 +97,23 @@
                      <div id="search_autocomplete_c" class="search-autocomplete_c"></div>
                      <div class="clearer"></div>
                  </div>
-                    </form>
+             </form>
          </div>
          <div class="menu-icon"><a href="javascript:void(0)" title="Menu"><i class="fa fa-bars"></i></a>
          </div>
          <script>
              jQuery('.bt-search').click(function() {
-                      try {
-                          window.history.pushState('', '', rootUrl +
-                              'categories/page-1.html' 
-                          );
+                 try {
+                     window.history.pushState('', '', rootUrl +
+                         'categories/page-1.html'
+                     );
 
-                      } catch (err) {
-                          window.history.pushState('', '', rootUrl +
-                              'categories/page-1.html' 
-                          );
+                 } catch (err) {
+                     window.history.pushState('', '', rootUrl +
+                         'categories/page-1.html'
+                     );
 
-                      }
+                 }
              });
          </script>
      </div>
@@ -375,7 +375,7 @@
                                      </div>
                                  </div>
                              </li>
-<!-- 
+                             <!-- 
                              <li class="fl-right">
                                  <a href="">Special
                                      Offer!</a>

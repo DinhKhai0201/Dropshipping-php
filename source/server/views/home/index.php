@@ -279,7 +279,7 @@
 
                                             <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
                                             <div class="actions">
-                                                <a href="javascript:void(0)" class="addtocart" title="Add to Cart" onclick="addtocart(<?= $product['id'] ?>);"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
+                                                <a href="javascript:void(0)" class="addtocart" title="Add to Cart"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
                                                 <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/429/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','429');" class="comparelink" title="Add to Compare"><i class="fa fa-copy" aria-hidden="true"></i></a>
                                                 <div class="clearer"></div>
                                             </div>
@@ -311,17 +311,7 @@
 
                 <script type="text/javascript">
                     jQuery(function($) {
-                        function addtocart(id) {
-                            $.ajax({
-                                url: rootUrl +"product/addtocart",
-                                dataType: 'json',
-                                type: 'post',
-                                data: id,
-                                function(data, success) {
-                                    console.log(data);
-                                }
-                            })
-                        }
+                      
                         $("#new_product .filter-products .owl-carousel").owlCarousel({
                             lazyLoad: true,
                             itemsCustom: [
@@ -359,5 +349,7 @@
         </div>
     </div>
 </div>
+<script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+
 <!-- start foooter -->
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

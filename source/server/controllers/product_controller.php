@@ -11,7 +11,7 @@ class product_controller extends vendor_main_controller
             $conditions .= (($conditions) ? " AND " : "") . " id={$id} and slug='{$slug}'";
             // exit(json_encode($conditions));
             $product_model = new product_model();
-            $this->products = $product_model->getAllRecords('*', [
+            $this->products = $product_model->getAllRecords('products.*,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
                 'conditions' => $conditions,
                 'order' => 'id ASC',
             ]);
