@@ -257,7 +257,7 @@
                 });
             </script>
             <div class="std">
-                <h2 class="filter-title" style="margin-top:24px;"><span class="content"><strong>Best Selling Products</strong></span></h2>
+                <h2 class="filter-title" style="margin-top:24px;"><span class="content"><strong>Best Selling</strong></span></h2>
                 <div id="new_product" class="owl-top-narrow">
                     <div class="filter-products category-products">
                         <div class="products products-grid owl-carousel">
@@ -278,22 +278,22 @@
                                             </a>
 
                                             <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
-                                            <div class="actions">
+                                            <!-- <div class="actions">
                                                 <a href="javascript:void(0)" class="addtocart" title="Add to Cart"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
                                                 <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/429/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','429');" class="comparelink" title="Add to Compare"><i class="fa fa-copy" aria-hidden="true"></i></a>
                                                 <div class="clearer"></div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
-                                            <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="fas fa-heart" style></i></a>
+                                            <!-- <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="fas fa-heart" style></i></a> -->
                                             <div class="ratings">
                                                 <div class="rating-box">
                                                     <div class="rating" style="width:0"></div>
                                                 </div>
                                             </div>
                                             <div class="price-box">
-                                                <span class="regular-price" id="product-price-429">
+                                                <span class="regular-price" id="product-price-<?= $product['id']?>">
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
                                             </div>
                                         </div>

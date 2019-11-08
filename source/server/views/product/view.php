@@ -115,7 +115,7 @@
                                                     <div class="product-pop theme-border-color">
                                                         <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $previousproduct['oneImage']; ?>" width="100px" alt="Previous" />
                                                         <h3 class="product-name"><?php echo  $previousproduct['name']; ?></h3>
-                                                    </div>
+                                                    </div></a>
                                                 <?php }
                                             } ?>
                                         </div>
@@ -126,7 +126,7 @@
                                                     <div class="product-pop theme-border-color">
                                                         <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $nextproduct['oneImage']; ?>" width="100px" alt="Previous" />
                                                         <h3 class="product-name"><?php echo  $nextproduct['name']; ?></h3>
-                                                    </div>
+                                                    </div></a>
                                                  <?php } }?>
                                         </div>
                                    
@@ -152,7 +152,7 @@
                                             <p class="in-stock">Availability: <span class="<?php echo ($product['quantity'] == 0) ? 'out-of-stock' : (($product['quantity'] > 0 && $product['quantity'] < 15) ? 'running-low' : 'availability'); ?>"><?php echo ($product['quantity'] == 0) ? 'Out of stock' : (($product['quantity'] > 0 && $product['quantity'] < 15) ? 'Running low' : 'In stock'); ?></span>
                                             </p>
                                             <div class="price-box">
-                                                <span class="regular-price" id="product-price-319">
+                                                <span class="regular-price" id="product-price-<?= $product['id']?>">
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
                                             </div>
                                         </div>
@@ -491,12 +491,13 @@
                                             <div class="price-box">
                                                 <p class="old-price">
                                                     <span class="price-label">Regular Price:</span>
-                                                    <span class="price" id="old-price-343">
+                                                    <span class="price" id="old-price-<?=$alsoproduct['id']?>">
                                                         <?php echo $alsoproduct['price']; ?> </span>
                                                 </p>
+
                                                 <p class="special-price">
                                                     <span class="price-label">Special Price</span>
-                                                    <span class="price" id="product-price-343">
+                                                    <span class="price" id="product-price-<?=$alsoproduct['id']?>">
                                                         $20.99 </span>
                                                 </p>
                                             </div>

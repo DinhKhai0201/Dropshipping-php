@@ -4,6 +4,8 @@ array_push($mediaFiles['css'], RootREL . "media/css/filterproduct.css");
 array_push($mediaFiles['css'], RootREL . "media/css/textproductresult.css");
 array_push($mediaFiles['css'], RootREL . "media/css/pagination.css");
 array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
+array_push($mediaFiles['css'], RootREL . "media/css/foot_page.css");
+
 
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
@@ -57,7 +59,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                         Bottom to Top </option>
                                 </select>
                             </div>
-
+                            <div class="sort-cat-products">
+                                <button class="bt-sort-cat-products">Sort</button>
+                            </div>
                         </div>
                     </div>
                     <ul class="products-grid  columns4 hide-addtocart move-action filter_data">
@@ -65,7 +69,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                             <p>Result Products</p>
                             <span>Has <span class="number"><?php echo $this->products['norecords']; ?></span> products found. </span>
                         </div>
-                        <div class="products-display">
+                        <div class="products-display clearfix">
                             <?php foreach ($this->products['data'] as $products) { ?>
                                 <li class="item">
                                     <div class="item-area product-image-hover">
@@ -137,11 +141,12 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
 
                                 <div class="pager">
                                     <p class="amount">
-                                        Items <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + 1); ?> to <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + $this->products['nocurp']); ?> of <?php echo $this->products['norecords']; ?> total </p>
+                                        Items <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + 1); ?> to <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + $this->products['nocurp']); ?> of <?php echo $this->products['norecords']; ?> total
+                                    </p>
                                     <div class="pages">
                                         <ol>
                                             <li>
-                                                <span class="precious i-precious" href="" title="Precious">
+                                                <span id="prev" class="precious i-precious" value="<?php echo (intval($this->products['curp']) - 1); ?>" title="Precious">
                                                     <i class="fas fa-chevron-left"></i>
                                                 </span>
                                             </li>
@@ -155,12 +160,13 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                             } ?>
 
                                             <li>
-                                                <span class="next i-next" href="" title="Next">
+                                                <span id="next" class="next i-next" value="<?php echo (intval($this->products['curp']) + 1); ?>" title="Next">
                                                     <i class="fas fa-chevron-right"></i>
                                                 </span>
                                             </li>
                                         </ol>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -169,7 +175,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                 <div class="swatches-js">
                 </div>
             </div>
-            <div class="col-left sidebar f-left col-lg-3">
+            <div class="col-left sidebar f-left col-lg-3 top-fix">
                 <div class="mobile-layer-overlay close-mobile-layer"></div>
                 <div class="block-main-layer">
                     <div class="layer-filter-icon visible-sm visible-xs"><a href="javascript:void(0)"><i class="fas fa-angle-double-right"></i></a></div>
@@ -269,17 +275,25 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                         <div class="block-content">
                             <dl id="narrow-by-list">
                                 <dt>Price</dt>
-                                <dd>
-                                    <ol>
-                                        <li>
-                                            <div class="list-group">
-                                                <input type="hidden" id="min_price_hide" value="0" />
-                                                <input type="hidden" id="max_price_hide" value="300" />
-                                                <p id="price_show">$1 - $300</p>
-                                                <div id="price_range"></div>
+                               
+                                <dd class="odd">
+                                    <div class="price price-filter-slider">
+                                        <div>
+                                            <div class="slider-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                                <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 49.4048%; width: 50.5952%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 49.4048%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span>
                                             </div>
-                                        </li>
-                                    </ol>
+
+                                            <div class="text-box">
+                                                <span>from</span> <input type="text" name="min" id="min_price_hide" class="priceTextBox minPrice" value="1" style="border:solid 1px #eee; color: #a3a2a2; padding: 2px 5px; font-size: 14px; margin: 0 2px; width: 50px;">
+                                                <span>to</span> <input type="text" name="max" id="max_price_hide" class="priceTextBox maxPrice" value="300" style="border:solid 1px #eee; color: #a3a2a2; padding: 2px 5px; font-size: 14px; margin: 0 2px; width: 50px;">
+                                                <input type="button" value="GO" name="go" class="go" style="">
+                                                <input type="hidden" id="amount" class="price-amount" style="background:none; border:none;" value="$115 - $200">
+                                            </div>
+
+                                        </div>
+                                        <div class="clearer"></div>
+                                    </div>
+                                   
                                 </dd>
                                 <dt>Color</dt>
                                 <dd>
@@ -499,17 +513,14 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                     </script>
 
                 </div> -->
-                <h2 style="font-weight:600;font-size:16px;color:#000;line-height:1;">Custom HTML Block</h2>
-                <h5 style="font-family:Arial;font-weight:400;font-size:11px;color:#878787;line-height:1;margin-bottom:13px;">
-                    This is a custom sub-title.</h5>
-                <p style="font-weight:400;font-size:14px;color:#666;line-height:1.42;">Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus </p>
+
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="<?php echo RootREL; ?>media/js/jquery-ui.js"></script>
+<script src="<?php echo RootREL; ?>media/js/jquery.twbsPagination.min.js"></script>
 <script src="<?php echo RootREL; ?>media/js/categories/filter.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

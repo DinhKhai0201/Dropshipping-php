@@ -40,11 +40,10 @@
                  </div>
                  <div class="top-links-area">
                      <div class="top-links-icon">
-                         <a href="javascript:void(0)">links</a>
+                         <a href="javascript:void(0)">Menu</a>
                      </div>
                      <ul class="links">
-                         <li class="first"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/" title="My Account">My Account</a></li>
-                         <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/dailydeal/" title="Daily deal">Daily deal</a></li>
+                         <li class="first"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'account'))?>" title="My Account">My Account</a></li>
                          <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/" title="My Wishlist">My Wishlist</a></li>
                          <?php if (isset($_SESSION['user'])) { ?>
                              <li class=" last"><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login', 'act' => 'logout')); ?>" title="Log In">Log out</a></li>
@@ -61,7 +60,7 @@
          </div>
      </div>
      <div class="header container">
-         <h1 class="logo"><strong>Drop Shipping</strong><a href="<?php echo vendor_app_util::url(array('ctl' => '')); ?>" title="DropShipping Commerce" class="logo"><img src="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/logo_white_new.png" alt="Magento Commerce" /></a></h1>
+         <h1 class="logo"><strong>Drop Shipping</strong><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => '')); ?>" title="DropShipping Commerce" class="logo"><img src="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/logo_white_new.png" alt="Magento Commerce" /></a></h1>
          <div class="cart-area">
              <div class="custom-block"><i class="fas fa-phone" style="margin-right: 11px;font-size:30px;color:#40aee5;"></i><span style="margin-top:-2px;">CALL US
                      NOW<br><b style="color:#fff;font-size:18px;font-weight:600;display:block;line-height:27px;">+123
@@ -88,13 +87,12 @@
              </div>
          </div>
          <div class="search-area-c">
-             <a href="javascript:void(0);" class="fa search-icon"><i class="fas fa-search"></i></a>
+             <a href="javascript:void(0);" class="fa search-icon search-mini"><i class="fas fa-search"></i></a>
              <form id="search_mini_form_c">
                  <div class="form-search ">
                      <label for="search">Search:</label>
                      <input id="search" type="text" name="s" class="input-text" />
                      <button type="submit" title="Search" class="button bt-search"><i class="fa fa-search" aria-hidden="true"></i></button>
-                     <div id="search_autocomplete_c" class="search-autocomplete_c"></div>
                      <div class="clearer"></div>
                  </div>
              </form>
@@ -125,7 +123,7 @@
                          <ul class="menu">
 
                              <li class="">
-                                 <a href="<?php echo vendor_app_util::url(array('ctl' => '')); ?>"><span>Home</span></a>
+                                 <a href="<?php echo vendor_app_util::url(array('area' => '','ctl' => '')); ?>"><span>Home</span></a>
                              </li>
                              <li class="menu-static-width">
                                  <a href=""><span>Categories</span></a>
@@ -630,6 +628,11 @@
  </div>
  <div class="mobile-nav-overlay close-mobile-nav"></div>
  <script type="text/javascript">
+     jQuery(function($) {
+                 $('.search-mini').click(function() {
+                     $('#search_mini_form_c').toggle('slow');
+                 });
+                });
  </script>
  <!-- 
   end navbar

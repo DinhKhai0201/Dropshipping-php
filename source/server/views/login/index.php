@@ -100,11 +100,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/login.css");
                     </div>
 
                 </form>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    var dataForm = new VarienForm('login-form', true);
-                    //]]>
-                </script>
+              
             </div>
         </div>
     </div>

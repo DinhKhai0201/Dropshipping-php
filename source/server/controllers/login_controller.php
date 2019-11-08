@@ -18,13 +18,14 @@ class login_controller extends vendor_main_controller {
 		}
 
 		if(isset($_POST['btn_submit'])) {
-            $user = $_POST['user'];
+			$user = $_POST['user'];
+			// exit(json_encode($user));
 			$auth = new vendor_auth_model();	
 			if (!vendor_app_util::validationEmail($user['email'])){
 				$this->errors['input'] = "Wrong email!";
 			}
 
-			else if($auth->login($user, true)) {
+			else if($auth->login($user, false)) {
 				if (isset($_SESSION['link']) && $_SESSION['link'] != "") {
 					header( "Location: ".vendor_app_util::url(array('area' => '', 'ctl'=>substr($_SESSION['link'],6))));
 				} else {

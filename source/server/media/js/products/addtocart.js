@@ -34,7 +34,7 @@ function totals(a, element, rootUrl) {
                         <span class="price-total"><span class="price">$${a}</span></span>
                     </div>
                     <div class="actions">
-                        <a class="btn btn-default" href=""><i class="icon-basket"></i>View Cart</a>
+                        <a class="btn btn-default" href="javascript:void(0)"><i class="icon-basket"></i>View Cart</a>
                         <a class="btn btn-default" href=""><i class="icon-right-thin"></i>Checkout</a>
                     <div class="clearer"></div>
                     </div>

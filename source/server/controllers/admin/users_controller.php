@@ -3,6 +3,8 @@
 use function GuzzleHttp\json_encode;
 
 class users_controller extends vendor_backend_controller {
+	protected $errors = false;
+
 	public function index() {
 		global $app;
 		$conditions = "";

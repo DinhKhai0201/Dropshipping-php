@@ -67,8 +67,7 @@ jQuery(function ($) {
 
 });
 $(document).ready(function () {
-    $(".pages ol").on("click", ".page", function () {
-        let page = $(this).val();
+    function panigation(page, rootUrl) {
         let url = window.location.href;
         if ((/categories\/page-(.*).html\?s=(.*)/g).test(url)) {
             var searchold = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(url))[2];
@@ -77,6 +76,20 @@ $(document).ready(function () {
             'categories/page-' + page + '.html?s=' + ((searchold != null) ? searchold : '')
         );
         location.reload();
+    }
+    $(".pages ol").on("click", ".page", function () {
+        let page = $(this).val();
+        panigation(page, rootUrl);
+    });
+    $(".pages ol").on("click", "#prev", function () {
+        let page = $(this).context.attributes.value.value;
+        panigation(page, rootUrl);
+
+    });
+    $(".pages ol").on("click", "#next", function () {
+        let page = $(this).context.attributes.value.value;
+        panigation(page, rootUrl);
+
     });
 });
 function tmp_product(product, RootREL, rootUrl) {
@@ -143,7 +156,7 @@ function tmp_page(products) {
                 <div class="pages">
                     <ol>
                         <li>
-                            <span class="precious i-precious" href="" title="Precious">
+                            <span id = "prev" class="precious i-precious"  title="Precious">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
                         </li>`;
@@ -151,11 +164,11 @@ function tmp_page(products) {
         if (products.curp == index) {
             tmp += `<li class = "current" > ${products.curp} </li>`;
         } else {
-            tmp += `<li value = "${index}" class = "page page-${index}" >${index}</li>`;
+            tmp += `<li value = "${index}" class = "page-filter page-${index}" >${index}</li>`;
         }
     }
     tmp += `<li >
-            <span class = "next i-next" href = "" title = "Next" >
+            <span id= "next" class="next i-next"  title = "Next" >
             <i class = "fas fa-chevron-right" > </i> </span > </li> </ol > 
             </div>
         `;
@@ -164,6 +177,21 @@ function tmp_page(products) {
 
 
 $(document).ready(function () {
+    var page_filter = null;
+        let  pages = $('.pages ol li');
+        console.log(pages);
+        if (pages.eq(1).hasClass('current')) {
+            console.log("1");
+            $('#prev').addClass('notallow');
+            $('#next').addClass('pointer');
+        } else if (pages.eq(pages.size() - 2).hasClass('current')) {
+            console.log("last");
+            $('#next').addClass('notallow');
+            $('#prev').addClass('pointer');
+        } else {
+            $('#prev').addClass('pointer');
+            $('#next').addClass('pointer');
+        }
     function get_cat_click() {
         let cat = [];
         $('.cat:checked').each(function () {
@@ -179,7 +207,16 @@ $(document).ready(function () {
         var a = $(this).attr("value");
         console.log(a);
     });
-
+    function animationScroll() {
+        jQuery("html, body").animate({
+            scrollTop: jQuery(".products-display").offset().top - 60
+        }, 1000);
+    }
+    $(".container").on("click", ".page-filter", function () {
+        page_filter = $(this).val();
+        filter_data();
+        
+    });
     function filter_data() {
         var search;
         var page;
@@ -187,14 +224,16 @@ $(document).ready(function () {
             page = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(window.location.href))[1];
             search = ((/categories\/page-(.*).html\?s=(.*)$/g).exec(window.location.href))[2];
         }
+        if (page_filter) {
+            page = page_filter;
+        }
         var minimum_price = $('#min_price_hide').val();
         var maximum_price = $('#max_price_hide').val();
         var brand = get_filter('brand');
         var color = get_filter('color');
         var size = get_filter('size');
-        console.log(size);
         var cat = get_cat_click();
-        console.log(cat);
+        console.log(page);
         var sort = $('.sort').val();
         var type = $('.type').val();
         //filter 
@@ -215,7 +254,7 @@ $(document).ready(function () {
                 page: page
             },
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $('.products-display').empty();
                 $('.pager').empty();
                 let product = JSON.parse(data);
@@ -227,6 +266,7 @@ $(document).ready(function () {
                 $('.products-display').html(html);
                 $(' .message-result span.number').html(product.norecords);
                 $('.pager').html(tmp_page(product));
+                animationScroll();
             }
         });
     }
@@ -266,17 +306,81 @@ $(document).ready(function () {
         $('.size:checked').parent().addClass('border-choose');
         $('.size:not(:checked)').parent().removeClass('border-choose');
     });
-    $('#price_range').slider({
+    // $('#price_range').slider({
+    //     range: true,
+    //     min: 1,
+    //     max: 300,
+    //     values: [1, 300],
+    //     step: 1,
+    //     stop: function (event, ui) {
+    //         $('#price_show').html("$"+ui.values[0] + ' - ' +"$"+ui.values[1]);
+    //         $('#min_price_hide').val(ui.values[0]);
+    //         $('#max_price_hide').val(ui.values[1]);
+    //         filter_data();
+    //     }
+    // });
+    var newMinPrice, newMaxPrice, url, temp;
+    var categoryMinPrice = 1;
+    var categoryMaxPrice = 300;
+    $(".slider-range").slider({
         range: true,
-        min: 1,
-        max: 300,
+        min: categoryMinPrice,
+        max: categoryMaxPrice,
         values: [1, 300],
         step: 1,
+        slide: function (event, ui) {
+            newMinPrice = ui.values[0];
+            newMaxPrice = ui.values[1];
+            $(".price-amount").val("$" + newMinPrice + " - $" + newMaxPrice);
+            // Update TextBox Price
+            $(".minPrice").val(newMinPrice);
+            $(".maxPrice").val(newMaxPrice);
+        },
         stop: function (event, ui) {
-            $('#price_show').html("$"+ui.values[0] + ' - ' +"$"+ui.values[1]);
-            $('#min_price_hide').val(ui.values[0]);
-            $('#max_price_hide').val(ui.values[1]);
+            // Current Min and Max Price
+            var newMinPrice = ui.values[0];
+            var newMaxPrice = ui.values[1];
+            // Update Text Price
+            $(".price-amount").val("$" + newMinPrice + " - $" + newMaxPrice);
+            // Update TextBox Price
+            $(".minPrice").val(newMinPrice);
+            $(".maxPrice").val(newMaxPrice);
             filter_data();
         }
     });
+
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+    $(".priceTextBox").focus(function () {
+        temp = $(this).val();
+    });
+
+    $(".priceTextBox").keyup(function () {
+        var value = $(this).val();
+        if (value != "" && !isNumber(value)) {
+            $(this).val(temp);
+        }
+    });
+
+    $(".priceTextBox").keypress(function (e) {
+        if (e.keyCode == 13) {
+            var value = $(this).val();
+            if (value < categoryMinPrice || value > categoryMaxPrice) {
+                $(this).val(temp);
+            }
+            filter_data();
+        }
+    });
+
+    $(".priceTextBox").blur(function () {
+        var value = $(this).val();
+        if (value < categoryMinPrice || value > categoryMaxPrice) {
+            $(this).val(temp);
+        }
+    });
+    $('.go').click(function () {
+        filter_data();
+    });
+   
 });

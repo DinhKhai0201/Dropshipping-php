@@ -486,9 +486,9 @@ div.etalage_description.rtl{ direction:rtl; text-align:right }
 	z-index: 2;
 	width: 1.2em;
 	height: 1.2em;
-	cursor: default;
-	-ms-touch-action: none;
-	touch-action: none;
+	cursor: pointer;
+	-ms-touch-action: pan-x;
+	touch-action: pan-x;
 }
 .ui-slider .ui-slider-range {
 	position: absolute;

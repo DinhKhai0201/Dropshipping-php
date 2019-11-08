@@ -374,6 +374,8 @@
                     }
                 });
             </script>
+            <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+
             </div>
             </div>
             <?php
@@ -382,7 +384,7 @@
             }
             echo vendor_html_helper::_jsFooter();
             ?>
-            
+
             <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script> -->
             </body>
 
