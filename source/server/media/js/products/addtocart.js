@@ -34,8 +34,8 @@ function totals(a, element, rootUrl) {
                         <span class="price-total"><span class="price">$${a}</span></span>
                     </div>
                     <div class="actions">
-                        <a class="btn btn-default" href="javascript:void(0)"><i class="icon-basket"></i>View Cart</a>
-                        <a class="btn btn-default" href=""><i class="icon-right-thin"></i>Checkout</a>
+                        <a class="btn btn-default" href="${rootUrl}"><i class="icon-basket"></i>View Cart</a>
+                        <a class="btn btn-default" href="${rootUrl}"><i class="icon-right-thin"></i>Checkout</a>
                     <div class="clearer"></div>
                     </div>
                     `;
@@ -44,7 +44,7 @@ function totals(a, element, rootUrl) {
 jQuery(function ($) {
    
 
-    function addProduct(id, name,slug, image, price, qty) {
+    function addProduct(id, name,slug, image, price, qty, color) {
         let key = Math.random();
         let products = [];
         if (localStorage.getItem('products')) {
@@ -57,7 +57,8 @@ jQuery(function ($) {
             slug: slug,
             image: image,
             price: price,
-            qty: qty
+            qty: qty,
+            color: color
         });
         localStorage.setItem('products', JSON.stringify(products));
     }
@@ -77,34 +78,34 @@ jQuery(function ($) {
         return html;
     }
 
-    if (localStorage && localStorage.getItem('products')) {
-        let leng = (JSON.parse(localStorage.getItem('products')).length);
-        if (leng > 0) {
-            $('.inner-wrapper').empty();
-            $('.inner-wrapper').html(display());
-            $('.cart-qty').html(leng);
+    // if (localStorage && localStorage.getItem('products')) {
+    //     let leng = (JSON.parse(localStorage.getItem('products')).length);
+    //     if (leng > 0) {
+    //         $('.inner-wrapper').empty();
+    //         $('.inner-wrapper').html(display());
+    //         $('.cart-qty').html(leng);
 
-        }
-    }
+    //     }
+    // }
 
-    function removeProduct(keyp) {
-        let check = confirm('Are you sure you would like to remove this item from the shopping cart?');
-        if (check) {
-            let storageProducts = JSON.parse(localStorage.getItem('products'));
-            let products = storageProducts.filter(product => product.key != keyp);
-            localStorage.setItem('products', JSON.stringify(products));
-        }
+    // function removeProduct(keyp) {
+    //     let check = confirm('Are you sure you would like to remove this item from the shopping cart?');
+    //     if (check) {
+    //         let storageProducts = JSON.parse(localStorage.getItem('products'));
+    //         let products = storageProducts.filter(product => product.key != keyp);
+    //         localStorage.setItem('products', JSON.stringify(products));
+    //     }
 
-        let leng = (JSON.parse(localStorage.getItem('products')).length);
-        $('.cart-qty').html(leng);
-        if (leng >= 1) {
-            $('.inner-wrapper').empty();
-            $('.inner-wrapper').html(display());
+    //     let leng = (JSON.parse(localStorage.getItem('products')).length);
+    //     $('.cart-qty').html(leng);
+    //     if (leng >= 1) {
+    //         $('.inner-wrapper').empty();
+    //         $('.inner-wrapper').html(display());
 
-        } else {
-            $('.inner-wrapper').html('<p class="cart-empty">You have no items in your shopping cart. </p>');
-        }
-    }
+    //     } else {
+    //         $('.inner-wrapper').html('<p class="cart-empty">You have no items in your shopping cart. </p>');
+    //     }
+    // }
 
     let product_id = $('#product_id').val();
     let product_image = $('#product_image').val();
@@ -112,19 +113,61 @@ jQuery(function ($) {
     let product_price = $('#product_price').val();
     let product_slug = $('#product_slug').val();
     var product_qty = $('.qty').val();
-   
+    function get_filter(class_name) {
+        var filter = [];
+        $('.' + class_name + ':checked').each(function () {
+            filter.push($(this).val());
+        });
+        return filter;
+    }
+    $('ul.colors').on("click", "li", function () {
+        $('.color:checked').parent().addClass('border-choose');
+        $('.color:not(:checked)').parent().removeClass('border-choose');
+        $('.error-color').hide();
+    });
+    $('ul.sizes').on("click", "li", function () {
+        $('.size:checked').parent().addClass('border-choose');
+        $('.size:not(:checked)').parent().removeClass('border-choose');
+
+    });
     $('.btn-cart').click(function () {
-        addProduct(product_id, product_name, product_slug, product_image, product_price, product_qty);
-        let leng = JSON.parse(localStorage.getItem('products')).length;
-        if (leng > 0) {
-            $('.inner-wrapper').empty();
-            $('.inner-wrapper').html(display());
-            $('.cart-qty').html(leng);
+        let color = get_filter('color');
+        if (color.length == 0) {
+            console.log("a");
+            $('.error-color').show();
+        } else {
+            addProduct(product_id, product_name, product_slug, product_image, product_price, product_qty, color);
+            let leng = JSON.parse(localStorage.getItem('products')).length;
+            if (leng > 0) {
+                $('.inner-wrapper').empty();
+                $('.inner-wrapper').html(display());
+                $('.cart-qty').html(leng);
+            }
+        }
+        
+    });
+    $('.addWishlistJs').click(function() {
+        let color = get_filter('color');
+        if (color.length == 0) {
+            console.log("a");
+            $('.error-color').show();
+        } else {
+            $.ajax({
+                url: rootUrl + "product/addtowishlist",
+                method: "POST",
+                data: {
+                    id: product_id,
+                    color: color.join(),
+                    qty: product_qty,
+                    price: product_price
+                },
+                success: function (data) {
+                    let product = JSON.parse(data);
+                    alert("Added to wishlist");
+                    console.log(product);
+                }
+            });
         }
     });
 
-    $(".container").on("click", ".btn-remove", function () {
-        let key = ($(this).context.attributes.value.value);
-        removeProduct(key);
-    });
 });

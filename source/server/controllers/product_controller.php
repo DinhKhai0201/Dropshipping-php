@@ -1,6 +1,8 @@
 <?php
 class product_controller extends vendor_main_controller
 {
+    protected  $errors = false;
+
     public function view()
     {
         global $app;
@@ -63,9 +65,34 @@ class product_controller extends vendor_main_controller
         }
         $this->display();
     }
-    public function addtocart() {
-        if (!empty($_POST["id"])) {	
-            exit("asdasdasd");
+  
+    public function addtowishlist()
+    {
+
+        $pm = new product_model();
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $this->record = $pm->getRecord($id);
+        }
+        $wishData['product_id'] = $id;
+        $wishData['user_id'] = $_SESSION['user']['id'];
+        $wishData['quantity'] = $_POST['qty'];
+        $wishData['price'] = $_POST['price'];
+        $wishData['color'] = $_POST['color'];
+
+        $wm = new wishlist_model();
+        $valid = $wm->validator($wishData);
+        if ($valid['status']) {
+            if ($wm->addRecord($wishData)){
+                $this->errors = ['OK' => 'OK!'];
+                echo (json_encode($this->record));
+             } else {
+                $this->errors = ['database' => 'An error occurred when inserting data!'];
+                echo (json_encode($this->errors['database']));
+            }
+        } else {
+            $this->errors = ['valid' => 'Not valid data!'];
+            echo (json_encode($this->errors['valid']));
         }
     }
 }

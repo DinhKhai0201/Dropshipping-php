@@ -2,6 +2,11 @@
 <div class="main-container col2-left-layout">
     <div class="main container">
         <div class="row">
+            <div class="col-left sidebar f-left col-lg-3">
+                <div class="block block-account">
+                    <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
+                </div>
+            </div>
             <div class="col-main col-lg-9 lg-order-12">
                 <div class="my-account">
                     <div class="page-title">
@@ -366,8 +371,7 @@
                             <button data-action="save-customer-address" type="submit" title="Save Address" class="button"><span><span>Save Address</span></span></button>
                         </div>
                     </form>
-                    <script type="text/javascript">
-                        //<![CDATA[
+                    <!-- <script type="text/javascript">
                         var dataForm = new VarienForm('form-validate', true);
                         new RegionUpdater('country', 'region', 'region_id', {
                             "config": {
@@ -1430,7 +1434,7 @@
                                 "247": {
                                     "code": "65",
                                     "name": "Hautes-Pyr\u00e9n\u00e9es"
-                                },
+                                },s
                                 "274": {
                                     "code": "92",
                                     "name": "Hauts-de-Seine"
@@ -2336,14 +2340,10 @@
                             }
                         }, undefined, 'zip');
                         //]]>
-                    </script>
+                    </script> -->
                 </div>
             </div>
-            <div class="col-left sidebar f-left col-lg-3">
-                <div class="block block-account">
-                    <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

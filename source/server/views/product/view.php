@@ -1,3 +1,7 @@
+<?php
+global $mediaFiles;
+array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
+?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <?php foreach ($this->products as $product) { ?>
     <div class="top-container">
@@ -109,27 +113,31 @@
                                     <div class="prev-next-products">
                                         <div class="product-nav product-prev">
                                             <?php if (isset($this->previousproduct)) {
-                                                foreach ($this->previousproduct as $previousproduct) { ?>
-                                                <a href="<?php echo(vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $previousproduct['slug'] . "-" .  $previousproduct['id']])) ?>" title="Previous Product">
-                                                    <i class="fas fa-caret-left"></i>
-                                                    <div class="product-pop theme-border-color">
-                                                        <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $previousproduct['oneImage']; ?>" width="100px" alt="Previous" />
-                                                        <h3 class="product-name"><?php echo  $previousproduct['name']; ?></h3>
-                                                    </div></a>
-                                                <?php }
-                                            } ?>
+                                                    foreach ($this->previousproduct as $previousproduct) { ?>
+                                                    <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $previousproduct['slug'] . "-" .  $previousproduct['id']])) ?>" title="Previous Product">
+                                                        <i class="fas fa-caret-left"></i>
+                                                        <div class="product-pop theme-border-color">
+                                                            <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $previousproduct['oneImage']; ?>" width="100px" alt="Previous" />
+                                                            <h3 class="product-name"><?php echo  $previousproduct['name']; ?></h3>
+                                                        </div>
+                                                    </a>
+                                            <?php }
+                                                } ?>
                                         </div>
                                         <div class="product-nav product-next">
-                                            <?php if (isset($this->nextproduct)) { foreach ($this->nextproduct as $nextproduct) { ?>
-                                                <a class="product-next" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $nextproduct['slug'] . "-" .   $nextproduct['id']])) ?>" title="Next Product">
-                                                    <i class="fas fa-caret-right"></i>
-                                                    <div class="product-pop theme-border-color">
-                                                        <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $nextproduct['oneImage']; ?>" width="100px" alt="Previous" />
-                                                        <h3 class="product-name"><?php echo  $nextproduct['name']; ?></h3>
-                                                    </div></a>
-                                                 <?php } }?>
+                                            <?php if (isset($this->nextproduct)) {
+                                                    foreach ($this->nextproduct as $nextproduct) { ?>
+                                                    <a class="product-next" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $nextproduct['slug'] . "-" .   $nextproduct['id']])) ?>" title="Next Product">
+                                                        <i class="fas fa-caret-right"></i>
+                                                        <div class="product-pop theme-border-color">
+                                                            <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $nextproduct['oneImage']; ?>" width="100px" alt="Previous" />
+                                                            <h3 class="product-name"><?php echo  $nextproduct['name']; ?></h3>
+                                                        </div>
+                                                    </a>
+                                            <?php }
+                                                } ?>
                                         </div>
-                                   
+
                                     </div>
                                     <div class="product-name">
                                         <h1><?php echo $product['name']; ?></h1>
@@ -152,7 +160,7 @@
                                             <p class="in-stock">Availability: <span class="<?php echo ($product['quantity'] == 0) ? 'out-of-stock' : (($product['quantity'] > 0 && $product['quantity'] < 15) ? 'running-low' : 'availability'); ?>"><?php echo ($product['quantity'] == 0) ? 'Out of stock' : (($product['quantity'] > 0 && $product['quantity'] < 15) ? 'Running low' : 'In stock'); ?></span>
                                             </p>
                                             <div class="price-box">
-                                                <span class="regular-price" id="product-price-<?= $product['id']?>">
+                                                <span class="regular-price" id="product-price-<?= $product['id'] ?>">
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
                                             </div>
                                         </div>
@@ -170,25 +178,25 @@
                                                     <span id="select_label_color" class="select-label"></span>
                                                 </label>
                                             </dt>
-                                            <dd class="clearfix swatch-attr">
-                                                <div class="input-box">
-                                                    <select name="super_attribute[92]" id="attribute92" class="required-entry super-attribute-select no-display swatch-select">
-                                                        <option>Choose an Option...</option>
-                                                    </select>
-                                                    <ul id="configurable_swatch_color" class="configurable-swatch-list clearfix">
-                                                        <?php $product['color'] = explode(",", $product['color']); ?>
-                                                        <?php foreach ($product['color'] as $color) { ?>
-                                                            <li class="option-black is-media" id="option<?php $product['id']; ?>">
-                                                                <a href="javascript:void(0)" name="<?= $color ?>" id="swatch<?php $product['id']; ?>" class="swatch-link swatch-link-92 has-image" title="<?= $color ?>" style="height: 32px; width: 32px;">
-                                                                    <span class="swatch-label" style="height: 30px; width: 30px; line-height: 30px;">
-                                                                        <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?= $color ?>" width="30" height="30" />
+                                            <dt>
+                                                <h5 class="error-color" style="color:red;display:none">Choose a color!</h5>
+                                            </dt><br>
+                                            <dd>
+                                                <ul class="configurable-swatch-list no-count colors">
+                                                    <?php $product['color'] = explode(",", $product['color']); ?>
+                                                    <?php foreach ($product['color'] as $color) { ?>
+                                                        <label for="id-color-<?php echo $color; ?>">
+                                                            <li style=" line-height: 28px;">
+                                                                <div class=" swatch-link has-image choose-color" value="<?php echo $color ?>">
+                                                                    <span class="swatch-label" style="height:24px; width:24px; line-height: 28px;">
+                                                                        <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?php echo $color ?>" title="<?php echo $color ?>" width="24" height="24" />
                                                                     </span>
-                                                                    <span class="x">X</span>
-                                                                </a>
+                                                                </div>
+                                                                <input type="checkbox" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
                                                             </li>
-                                                        <?php } ?>
-                                                    </ul>
-                                                </div>
+                                                        </label>
+                                                    <?php } ?>
+                                                </ul>
                                             </dd>
                                             <dt class="swatch-attr">
                                                 <label id="size_label" class="required">
@@ -260,15 +268,14 @@
                                             <span id='ajax_loader' style='display:none'><i class="ajax-loader small animate-spin"></i></span>
                                         </div>
                                         <ul class="add-to-links">
-                                            <li title="Add to Wish list"><a href="#" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
+                                            <li title="Add to Wish list " class="addWishlistJs"><a href="javascript:void(0)" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
                                                         to Wishlist</span></a></li>
-                                            <li title="Add to Compare"><a href="#" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
+                                            <li title="Add to Compare"><a href="javascript:void(0)" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
                                                         to Compare</span></a></li>
 
                                         </ul>
                                     </div>
                                     <div class="clearer"></div>
-                                    <!-- Check whether the plugin is enabled -->
                                     <style>
                                         #at3win #at3winheader h3 {
                                             text-align: left !important;
@@ -491,13 +498,13 @@
                                             <div class="price-box">
                                                 <p class="old-price">
                                                     <span class="price-label">Regular Price:</span>
-                                                    <span class="price" id="old-price-<?=$alsoproduct['id']?>">
+                                                    <span class="price" id="old-price-<?= $alsoproduct['id'] ?>">
                                                         <?php echo $alsoproduct['price']; ?> </span>
                                                 </p>
 
                                                 <p class="special-price">
                                                     <span class="price-label">Special Price</span>
-                                                    <span class="price" id="product-price-<?=$alsoproduct['id']?>">
+                                                    <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
                                                         $20.99 </span>
                                                 </p>
                                             </div>
@@ -514,9 +521,17 @@
     </div>
 <?php }  ?>
 <script src="<?php echo RootREL; ?>media/js/products/zoomimage.js"></script>
-<script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/mylazyLoad.js"></script>
 <script>
-
+    jQuery(function($) {
+        let product_id = $('#product_id').val();
+        let product_image = $('#product_image').val();
+        let product_name = $('#product_name').val();
+        let product_price = $('#product_price').val();
+        let product_slug = $('#product_slug').val();
+        var product_qty = $('.qty').val();
+    });
 </script>
+<script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

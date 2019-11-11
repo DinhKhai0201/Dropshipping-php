@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="block-content" style="margin-top: 33px;margin-bottom: 37px;width:100%;float:right;">
-                                                <form action="http://www.portotheme.com/magento/porto/index.php/demo4_en/newsletter/subscriber/new/" method="post" id="home-footer-newsletter-validate-detail" onsubmit="setNewsletterCookie()">
+                                                <form action="" method="post" id="home-footer-newsletter-validate-detail" onsubmit="setNewsletterCookie()">
                                                     <div class="input-box">
                                                         <input type="text" name="email" id="newsletter-footer" title="Sign up for our newsletter" class="input-text required-entry validate-email" placeholder="Email Address" />
                                                         <button type="submit" title="Subscribe" class="button"><span><span>Subscribe</span></span></button>
@@ -74,18 +74,18 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <ul class="links">
-                                                                            <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/about-porto/" title="About us">About us</a></li>
-                                                                            <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/contact/" title="Contact Us">Contact us</a>
+                                                                            <li><a href="" title="About us">About us</a></li>
+                                                                            <li><a href="" title="Contact Us">Contact us</a>
                                                                             </li>
-                                                                            <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/customer/account/" title="My Account">My Account</a>
+                                                                            <li><a href="" title="My Account">My Account</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <ul class="links">
-                                                                            <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/history/" title="Order history">Order
+                                                                            <li><a href="" title="Order history">Order
                                                                                     history</a></li>
-                                                                            <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/catalogsearch/advanced/" title="Contact us">Advanced
+                                                                            <li><a href="" title="Contact us">Advanced
                                                                                     search</a></li>
                                                                             <li><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" title="Login">Login</a></li>
                                                                         </ul>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="footer-bottom">
                         <div class="container">
-                            <div class="custom-block f-right"><img src="http://www.portotheme.com/magento/porto/media/wysiwyg/smartwave/footer/payment-icon.png" alt="" /></div>
+                            <div class="custom-block f-right"><img src="<?php echo RootREL; ?>media/wysiwyg/smartwave/footer/payment-icon.png" alt="" /></div>
                             <address>© PSCD. 2019. All Rights Reserved</address>
                         </div>
                     </div>
@@ -374,7 +374,7 @@
                     }
                 });
             </script>
-            <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+            <script src="<?php echo RootREL; ?>media/js/products/displaycart.js"></script>
 
             </div>
             </div>

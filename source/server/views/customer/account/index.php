@@ -3,6 +3,12 @@
 <div class="main-container col2-left-layout">
     <div class="main container">
         <div class="row">
+            <div class="col-left sidebar f-left col-lg-3">
+                <div class="block block-account">
+                    <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
+
+                </div>
+            </div>
             <div class="col-main col-lg-9 lg-order-12">
 
                 <div class="my-account">
@@ -30,7 +36,7 @@
                                             <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'account', 'act' => 'edit')); ?>">Edit</a>
                                         </div>
                                         <div class="box-content clearfix">
-                                            <div class="avatar-user" style="width:30%;float:left;margin-right:6px;">
+                                            <div class="avatar-user" style="width:30%;float:left;margin-right:6px;border:2px solid gray;">
                                                 <img src="<?php echo RootREL . "media/upload/users/" . (!empty($_SESSION['user']['avata']) ? $_SESSION['user']['avata'] : 'no_image.png'); ?>" width="100%">
                                             </div>
                                             <div class="info-user clearfix" style="width:70%">
@@ -94,12 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-left sidebar f-left col-lg-3">
-                <div class="block block-account">
-                    <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
 
-                </div>
-            </div>
         </div>
     </div>
 </div>

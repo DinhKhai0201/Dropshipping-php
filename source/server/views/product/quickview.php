@@ -1,3 +1,7 @@
+<?php
+global $mediaFiles;
+array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
+?>
 <?php include_once 'views/layout/' . $this->layout . 'header.php'; ?>
 <?php foreach ($this->products as $product) { ?>
 
@@ -89,25 +93,25 @@
                                                     <span id="select_label_color" class="select-label"></span>
                                                 </label>
                                             </dt>
-                                            <dd class="clearfix swatch-attr">
-                                                <div class="input-box">
-                                                    <select name="super_attribute[92]" id="attribute92" class="required-entry super-attribute-select no-display swatch-select">
-                                                        <option>Choose an Option...</option>
-                                                    </select>
-                                                    <ul id="configurable_swatch_color" class="configurable-swatch-list clearfix">
-                                                        <?php $product['color'] = explode(",", $product['color']); ?>
-                                                        <?php foreach ($product['color'] as $color) { ?>
-                                                            <li class="option-black is-media" id="option<?php $product['id']; ?>">
-                                                                <a href="javascript:void(0)" name="<?= $color ?>" id="swatch<?php $product['id']; ?>" class="swatch-link swatch-link-92 has-image" title="<?= $color ?>" style="height: 32px; width: 32px;">
-                                                                    <span class="swatch-label" style="height: 30px; width: 30px; line-height: 30px;">
-                                                                        <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?= $color ?>" width="30" height="30" />
+                                            <dt>
+                                                <h5 class="error-color" style="color:red;display:none">Choose a color!</h5>
+                                            </dt><br>
+                                            <dd>
+                                                <ul class="configurable-swatch-list no-count colors">
+                                                    <?php $product['color'] = explode(",", $product['color']); ?>
+                                                    <?php foreach ($product['color'] as $color) { ?>
+                                                        <label for="id-color-<?php echo $color; ?>">
+                                                            <li style=" line-height: 28px;">
+                                                                <div class=" swatch-link has-image choose-color" value="<?php echo $color ?>">
+                                                                    <span class="swatch-label" style="height:24px; width:24px; line-height: 28px;">
+                                                                        <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?php echo $color ?>" title="<?php echo $color ?>" width="24" height="24" />
                                                                     </span>
-                                                                    <span class="x">X</span>
-                                                                </a>
+                                                                </div>
+                                                                <input type="checkbox" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
                                                             </li>
-                                                        <?php } ?>
-                                                    </ul>
-                                                </div>
+                                                        </label>
+                                                    <?php } ?>
+                                                </ul>
                                             </dd>
                                             <dt class="swatch-attr">
                                                 <label id="size_label" class="required">
@@ -174,8 +178,8 @@
                                             <div class="qty-holder">
                                                 <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty" />
                                                 <div class="qty-changer">
-                                                    <a style="font-size:18px;text-decoration:none;" href="javascript:void(0)" class="qty_inc">+</a>
-                                                    <a style="font-size:24px;text-decoration:none;" href="javascript:void(0)" class="qty_dec">-</a>
+                                                    <a title="Increase" style="font-size:18px;text-decoration:none;" href="javascript:void(0)" class="qty_inc">+</a>
+                                                    <a title="Decrease" style="font-size:24px;text-decoration:none;" href="javascript:void(0)" class="qty_dec">-</a>
                                                 </div>
                                             </div>
                                             <button type="button" title="Add to Cart" class="button btn-cart"><span><span>Add to
@@ -183,9 +187,9 @@
                                             <span id='ajax_loader' style='display:none'><i class="ajax-loader small animate-spin"></i></span>
                                         </div>
                                         <ul class="add-to-links">
-                                            <li><a href="#" onclick="ajaxWishlist(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/wishlist/index/add/product/319/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-wishlist"><i class="icon-wishlist"></i><span>Add
+                                            <li title="Add to Wish list " class="addWishlistJs"><a href="javascript:void(0)" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
                                                         to Wishlist</span></a></li>
-                                            <li><a href="#" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
+                                            <li><a href="javascript:void(0)" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
                                                         to Compare</span></a></li>
 
                                         </ul>

@@ -3,6 +3,11 @@
 <div class="main-container col2-left-layout">
     <div class="main container">
         <div class="row">
+            <div class="col-left sidebar f-left col-lg-3">
+                <div class="block block-account">
+                    <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
+                </div>
+            </div>
             <div class="col-main col-lg-9 lg-order-12">
 
                 <div class="my-account">
@@ -109,11 +114,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-left sidebar f-left col-lg-3">
-                <div class="block block-account">
-                    <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
