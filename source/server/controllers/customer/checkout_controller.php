@@ -7,6 +7,7 @@ class checkout_controller extends vendor_main_controller
 			header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
 		} else {
 			$cart = new cart_model();
+			$wishlist = new wishlist_model();
 			$this->nocart = $cart->getCountRecords();
 			$this->products = $cart->getAllRecords('carts.*', [
 				'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
@@ -28,7 +29,7 @@ class checkout_controller extends vendor_main_controller
 	}
 	public function addtocart()
 	{
-
+		$status = false;
 		$pm = new product_model();
 		if (isset($_POST['id'])) {
 			$id = $_POST['id'];
@@ -44,21 +45,19 @@ class checkout_controller extends vendor_main_controller
 		$wm = new cart_model();
 		$valid = $wm->validator($cartData);
 		if ($valid['status']) {
-			if ($wm->addRecord($cartData)) {
-				$this->errors = ['OK' => 'OK!'];
-				echo (json_encode($this->record));
-			} else {
-				$this->errors = ['database' => 'An error occurred when inserting data!'];
-				echo (json_encode($this->errors['database']));
-			}
+			if ($res = $wm->addRecord($cartData)) {
+				$status = true;
+				$cartData['id'] = $res;
+			} 
+		}
+		if ($status == true) {
+			echo json_encode($cartData);
 		} else {
-			$this->errors = ['valid' => 'Not valid data!'];
-			echo (json_encode($this->errors['valid']));
+			echo json_encode($status);
 		}
 	}
 	public  function removecart()
 	{
-		global $app;
 		if (isset($_SESSION['user'])) {
 			$id = $_POST['id'];
 			$cart = new cart_model();
@@ -69,7 +68,6 @@ class checkout_controller extends vendor_main_controller
 
 	public function removecartmany()
 	{
-		global $app;
 		$status = false;
 		if (isset($_SESSION['user'])) {
 			$cart = new cart_model();

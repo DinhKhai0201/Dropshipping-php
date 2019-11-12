@@ -26,88 +26,8 @@ function tmp(element, rootUrl, RootREL) {
                     `;
     return tmp;
 }
-function totals(a, element, rootUrl) {
-    let tmp = '';
-    tmp = `
-                    <div class="totals">
-                        <span class="label">Total: </span>
-                        <span class="price-total"><span class="price">$${a}</span></span>
-                    </div>
-                    <div class="actions">
-                        <a class="btn btn-default" href="${rootUrl}"><i class="icon-basket"></i>View Cart</a>
-                        <a class="btn btn-default" href="${rootUrl}"><i class="icon-right-thin"></i>Checkout</a>
-                    <div class="clearer"></div>
-                    </div>
-                    `;
-    return tmp;
-}
+
 jQuery(function ($) {
-   
-
-    function addProduct(id, image, price, qty, color) {
-        
-        // let key = Math.random();
-        // let products = [];
-        // if (localStorage.getItem('products')) {
-        //     products = JSON.parse(localStorage.getItem('products'));
-        // }
-        // products.push({
-        //     key: key,
-        //     product_id: id,
-        //     name: name,
-        //     slug: slug,
-        //     image: image_p,
-        //     price: price,
-        //     qty: qty,
-        //     color: color
-        // });
-        // localStorage.setItem('products', JSON.stringify(products));
-    }
-
-    // function display() {
-    //     let html = '';
-    //     if (localStorage && localStorage.getItem('products')) {
-    //         products = JSON.parse(localStorage.getItem('products'));
-    //         products.forEach(element => {
-    //             html += tmp(element, rootUrl, RootREL);
-    //         });
-    //         let a = products.reduce(function (r, a) {
-    //             return parseInt(r) + parseInt(a['price']);
-    //         }, 0);
-    //         html += totals(a, products, rootUrl);
-    //     }
-    //     return html;
-    // }
-
-    // if (localStorage && localStorage.getItem('products')) {
-    //     let leng = (JSON.parse(localStorage.getItem('products')).length);
-    //     if (leng > 0) {
-    //         $('.inner-wrapper').empty();
-    //         $('.inner-wrapper').html(display());
-    //         $('.cart-qty').html(leng);
-
-    //     }
-    // }
-
-    // function removeProduct(keyp) {
-    //     let check = confirm('Are you sure you would like to remove this item from the shopping cart?');
-    //     if (check) {
-    //         let storageProducts = JSON.parse(localStorage.getItem('products'));
-    //         let products = storageProducts.filter(product => product.key != keyp);
-    //         localStorage.setItem('products', JSON.stringify(products));
-    //     }
-
-    //     let leng = (JSON.parse(localStorage.getItem('products')).length);
-    //     $('.cart-qty').html(leng);
-    //     if (leng >= 1) {
-    //         $('.inner-wrapper').empty();
-    //         $('.inner-wrapper').html(display());
-
-    //     } else {
-    //         $('.inner-wrapper').html('<p class="cart-empty">You have no items in your shopping cart. </p>');
-    //     }
-    // }
-
     let product_id = $('#product_id').val();
     let product_image = $('#product_image').val();
     let product_price = $('#product_price').val();
@@ -130,8 +50,53 @@ jQuery(function ($) {
         $('.size:not(:checked)').parent().removeClass('border-choose');
 
     });
+    function tmp(element, name, slug, rootUrl, RootREL) {
+        let tmp = '';
+        tmp = `
+                    <ol class="mini-products-list item_${element.id}" >
+                        <li class="item">
+                            <div class="clearfix product-details">
+                                <div class ="image-cart" style ="margin-right: 20px;width: 40%;float: left;">
+                                    <span><a href="${rootUrl}product/view/${slug}-${element.product_id}" title="${name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${name}"></a></span>
+                                <div class="clearer"></div>
+
+                                </div>
+                                <div class ="info-cart">
+                                    <p class="product-name">
+                                    <a href="${rootUrl}product/view/${slug}-${element.product_id}">
+                                    ${name}</a>
+                                    </p>
+                
+                                    <p class="qty-price">${element.quantity} X <span class="price">$${element.price}</span>
+                                    </p>
+                                    <a title="Remove This Item" price ="${element.price}"  value ="${element.id}" class="btn-remove remove-cart"><i class="icon-cancel"></i></a>
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </li>                                           
+                    </ol>
+                    `;
+        return tmp;
+    }
+    function totals(a, rootUrl) {
+        let tmp = '';
+        tmp = `
+                        <div class="totals">
+                            <span class="label">Total: </span>
+                            <span class="price-total"><span class="price">$${a}</span></span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-basket"></i>View Cart</a>
+                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-right-thin"></i>Checkout</a>
+                        <div class="clearer"></div>
+                        </div>
+                        `;
+        return tmp;
+    }
     $('.btn-cart').click(function () {
         let color = get_filter('color');
+        let name = ($(this).context.attributes.name.value);
+        let slug = ($(this).context.attributes.slug.value);
         if (color.length == 0) {
             console.log("a");
             $('.error-color').show();
@@ -152,8 +117,24 @@ jQuery(function ($) {
                 },
                 success: function (data) {
                     let product = JSON.parse(data);
-                    alert("Added to cart");
-                    console.log(data);
+                    let html = tmp(product, name, slug, rootUrl, RootREL);
+                    let qty = $('.cart-info .cart-qty').html();
+                    // let price_id = $('.price-total .getPrice').html();
+                    let new_price;
+                    $('.cart-info .cart-qty').empty();
+                    if (parseInt(qty) == 0) {
+                        price_id = 0;
+                        new_price = (parseInt(price_id) + parseInt(product.price));
+                        $('.inner-wrapper').empty();
+                        html += totals(new_price, rootUrl);
+                    } else {
+                        price_id = $('.price-total .getPrice').html().substr(1);
+                        new_price = (parseInt(price_id) + parseInt(product.price));
+                    }
+                    $('.price-total .getPrice').html('$' + new_price);
+                    $('.cart-info .cart-qty').empty();
+                    $('.cart-info .cart-qty').html(parseInt(qty) + 1);
+                    $('.inner-wrapper').prepend(html);
                 }
             });
            

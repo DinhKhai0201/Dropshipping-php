@@ -9,16 +9,51 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
         <div class="main container">
             <div class="col-main">
 
+                <script type="text/javascript">
+                    var optionsPrice = new Product.OptionsPrice({
+                        "priceFormat": {
+                            "pattern": "$%s",
+                            "precision": 2,
+                            "requiredPrecision": 2,
+                            "decimalSymbol": ".",
+                            "groupSymbol": ",",
+                            "groupLength": 3,
+                            "integerRequired": 1
+                        },
+                        "includeTax": "false",
+                        "showIncludeTax": false,
+                        "showBothPrices": false,
+                        "idSuffix": "_clone",
+                        "oldPlusDisposition": 0,
+                        "plusDisposition": 0,
+                        "plusDispositionTax": 0,
+                        "oldMinusDisposition": 0,
+                        "minusDisposition": 0,
+                        "productId": "319",
+                        "productPrice": 15,
+                        "productOldPrice": 15,
+                        "priceInclTax": 15,
+                        "priceExclTax": 15,
+                        "skipCalculate": 1,
+                        "defaultTax": 8.25,
+                        "currentTax": 0,
+                        "tierPrices": [],
+                        "tierPricesInclTax": [],
+                        "swatchPrices": null
+                    });
+                </script>
                 <div id="messages_product_view"></div>
                 <div class="product-view custom  ">
                     <div class="product-essential">
-                        <form method="post" id="product_addtocart_form">
+                        <input id="product_id" hidden value='<?php echo ($product['id']); ?>' />
+                        <input id="product_image" hidden value='<?php echo RootREL . "media/upload/products/" . ($product['oneImage']); ?>' />
+                        <input id="product_name" hidden value='<?php echo ($product['name']); ?>' />
+                        <input id="product_price" hidden value='<?php echo ($product['price']); ?>' />
+                        <input id="product_slug" hidden value='<?php echo ($product['slug']); ?>' />
+
+                        <form action="" method="post" id="">
                             <input name="form_key" type="hidden" value="gRxWBEl2ZMe5EQyi" />
-                            <input id="product_id" hidden value='<?php echo ($product['id']); ?>' />
-                            <input id="product_image" hidden value='<?php echo RootREL . "media/upload/products/" . ($product['oneImage']); ?>' />
-                            <input id="product_name" hidden value='<?php echo ($product['name']); ?>' />
-                            <input id="product_price" hidden value='<?php echo ($product['price']); ?>' />
-                            <input id="product_slug" hidden value='<?php echo ($product['slug']); ?>' />
+
                             <div class="no-display">
                                 <input type="hidden" name="product" value="<?php echo $product['id']; ?>" />
                                 <input type="hidden" name="related_product" id="related-products-field" value="" />
@@ -53,6 +88,35 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                     </script>
                                 </div>
                                 <div class="product-shop col-md-6">
+                                    <div class="prev-next-products">
+                                        <div class="product-nav product-prev">
+                                            <?php if (isset($this->previousproduct)) {
+                                                    foreach ($this->previousproduct as $previousproduct) { ?>
+                                                    <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $previousproduct['slug'] . "-" .  $previousproduct['id']])) ?>" title="Previous Product">
+                                                        <i class="fas fa-caret-left"></i>
+                                                        <div class="product-pop theme-border-color">
+                                                            <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $previousproduct['oneImage']; ?>" width="100px" alt="Previous" />
+                                                            <h3 class="product-name"><?php echo  $previousproduct['name']; ?></h3>
+                                                        </div>
+                                                    </a>
+                                            <?php }
+                                                } ?>
+                                        </div>
+                                        <div class="product-nav product-next">
+                                            <?php if (isset($this->nextproduct)) {
+                                                    foreach ($this->nextproduct as $nextproduct) { ?>
+                                                    <a class="product-next" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $nextproduct['slug'] . "-" .   $nextproduct['id']])) ?>" title="Next Product">
+                                                        <i class="fas fa-caret-right"></i>
+                                                        <div class="product-pop theme-border-color">
+                                                            <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $nextproduct['oneImage']; ?>" width="100px" alt="Previous" />
+                                                            <h3 class="product-name"><?php echo  $nextproduct['name']; ?></h3>
+                                                        </div>
+                                                    </a>
+                                            <?php }
+                                                } ?>
+                                        </div>
+
+                                    </div>
                                     <div class="product-name">
                                         <h1><?php echo $product['name']; ?></h1>
                                     </div>
@@ -74,7 +138,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                             <p class="in-stock">Availability: <span class="<?php echo ($product['quantity'] == 0) ? 'out-of-stock' : (($product['quantity'] > 0 && $product['quantity'] < 15) ? 'running-low' : 'availability'); ?>"><?php echo ($product['quantity'] == 0) ? 'Out of stock' : (($product['quantity'] > 0 && $product['quantity'] < 15) ? 'Running low' : 'In stock'); ?></span>
                                             </p>
                                             <div class="price-box">
-                                                <span class="regular-price" id="product-price-319">
+                                                <span class="regular-price" id="product-price-<?= $product['id'] ?>">
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
                                             </div>
                                         </div>
@@ -85,7 +149,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                     </div>
 
                                     <div class="product-options" id="product-options-wrapper">
-
                                         <dl>
                                             <dt class="swatch-attr">
                                                 <label id="color_label" class="required">
@@ -164,13 +227,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                         decorateGeneric($$('#product-options-wrapper dl'), ['last']);
                                     </script>
                                     <div class="product-options-bottom">
-
-
-
                                         <div class="price-box">
                                             <span class="regular-price" id="product-price-319_clone">
-                                                <span class="price">$15.00</span> </span>
-
+                                                <span class="price"></span> </span>
                                         </div>
 
                                         <div class="add-to-cart">
@@ -178,24 +237,23 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                             <div class="qty-holder">
                                                 <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty" />
                                                 <div class="qty-changer">
-                                                    <a title="Increase" style="font-size:18px;text-decoration:none;" href="javascript:void(0)" class="qty_inc">+</a>
-                                                    <a title="Decrease" style="font-size:24px;text-decoration:none;" href="javascript:void(0)" class="qty_dec">-</a>
+                                                    <a style="font-size:18px;text-decoration:none;" href="javascript:void(0)" class="qty_inc">+</a>
+                                                    <a style="font-size:24px;text-decoration:none;" href="javascript:void(0)" class="qty_dec">-</a>
                                                 </div>
                                             </div>
-                                            <button type="button" title="Add to Cart" class="button btn-cart"><span><span>Add to
+                                            <button type="button" title="Add to Cart" name="<?= $product['name']; ?>" slug="<?= $product['slug']; ?>" class="button btn-cart"><span><span>Add to
                                                         Cart</span></span></button>
                                             <span id='ajax_loader' style='display:none'><i class="ajax-loader small animate-spin"></i></span>
                                         </div>
                                         <ul class="add-to-links">
                                             <li title="Add to Wish list " class="addWishlistJs"><a href="javascript:void(0)" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
                                                         to Wishlist</span></a></li>
-                                            <li><a href="javascript:void(0)" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
+                                            <li title="Add to Compare"><a href="javascript:void(0)" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
                                                         to Compare</span></a></li>
 
                                         </ul>
                                     </div>
                                     <div class="clearer"></div>
-                                    <!-- Check whether the plugin is enabled -->
                                     <style>
                                         #at3win #at3winheader h3 {
                                             text-align: left !important;
@@ -206,18 +264,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                         </form>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    jQuery(function($) {
-                        $("body.quickview-index-view .no-rating a, body.quickview-index-view .ratings a")
-                            .off('click').on("click", function(e) {
-                                window.parent.location.href = $(this).attr("href");
-                                window.parent.jQuery.fancybox.close();
-                            });
-                    });
-                </script>
-                <style type="text/css">
-                </style>
-
             </div>
         </div>
     </div>

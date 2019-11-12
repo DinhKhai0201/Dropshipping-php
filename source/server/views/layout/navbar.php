@@ -1,3 +1,4 @@
+ <?php $navbar = $this->cart_popup();?>
  <div class="header-container type3 header-newskin">
      <div class="top-links-container">
          <div class="top-links container">
@@ -29,7 +30,7 @@
                      </div>
                      <ul class="links">
                          <li class="first"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'account')) ?>" title="My Account">My Account</a></li>
-                         <li><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'wishlist')); ?>" title="My Wishlist">My Wishlist</a></li>
+                         <li><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'wishlist')); ?>" title="My Wishlist">(<span class="no_wishlist"><?= $navbar['nowishlist'] ?></span>)My Wishlist</a></li>
                          <?php if (isset($_SESSION['user'])) { ?>
                              <li class=" last"><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login', 'act' => 'logout')); ?>" title="Log In">Log out</a></li>
                          <?php } else { ?>
@@ -51,16 +52,13 @@
                      NOW<br><b style="color:#fff;font-size:18px;font-weight:600;display:block;line-height:27px;">+123
                          5678 890</b></span> </div>
              <div class="mini-cart">
-                 <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i class="fas fa-shopping-cart"></i><span class="cart-info"><span class="cart-qty"><?php if (isset($this->nocart)) {
-                                                                                                                                                                                                echo $this->nocart;
-                                                                                                                                                                                            } else {
-                                                                                                                                                                                                echo "0";
-                                                                                                                                                                                            } ?></span><span>Item(s)</span></span></a>
+                 <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i class="fas fa-shopping-cart"></i><span class="cart-info"><span class="cart-qty"><?= $navbar['nocart'] ?></span><span>Item(s)</span></span></a>
                  <div class="topCartContent block-content theme-border-color" style="max-height:500px;overflow:hidden;overflow-y: scroll;">
                      <div class="inner-wrapper">
-                         <?php if (isset($this->nocart) && $this->nocart > 0) { ?>
-                             <?php foreach ($this->products as $key => $value) { ?>
-                                 <ol class="mini-products-list">
+
+                         <?php if (isset($navbar['nocart']) && $navbar['nocart'] > 0) { ?>
+                             <?php foreach ($navbar['data'] as $key => $value) { ?>
+                                 <ol class="mini-products-list item_<?= $value['id']; ?>">
                                      <li class="item">
                                          <div class="clearfix product-details">
                                              <div class="image-cart" style="margin-right: 20px;width: 40%;float: left;">
@@ -76,7 +74,7 @@
 
                                                  <p class="qty-price"><?= $value['quantity']; ?> X <span class="price">$<?= $value['price']; ?></span>
                                                  </p>
-                                                 <a title="Remove This Item" key="<?= $value['id']; ?>" value="<?= $value['id']; ?>" class="btn-remove remove-key"><i class="icon-cancel"></i></a>
+                                                 <a title="Remove This Item" price="<?= $value['price']; ?>" value="<?= $value['id']; ?>" class="btn-remove remove-cart"><i class="icon-cancel"></i></a>
                                              </div>
                                          </div>
                                          <div class="clearer"></div>
@@ -86,11 +84,11 @@
                              <?php } ?>
                              <div class="totals">
                                  <span class="label">Total: </span>
-                                 <span class="price-total"><span class="price"><?php $total = 0;
-                                                                                    foreach ($this->products as $key => $value) {
-                                                                                        $total += $value['price'];
-                                                                                    }
-                                                                                    echo "$" . $total; ?></span></span>
+                                 <span class="price-total"><span class="price getPrice"><?php $total = 0;
+                                                                                            foreach ($navbar['data'] as $key => $value) {
+                                                                                                $total += $value['price'];
+                                                                                            }
+                                                                                            echo "$" . $total; ?></span></span>
                              </div>
                              <div class="actions">
                                  <a class="btn btn-default" href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout')); ?>"><i class="icon-basket"></i>View Cart</a>
@@ -177,26 +175,6 @@
                                                                          <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_old_en/fashion.html"><span>Boxed
                                                                                  Slider Banner</span></a>
                                                                      </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Boxed
-                                                                                 Image Banner</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Left
-                                                                                 Sidebar</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo11_en/electronics/cameras.html"><span>Right
-                                                                                 Sidebar</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo17_en/fashion.html"><span>Product
-                                                                                 Flex Grid</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/porto-product-list-types/"><span>Product
-                                                                                 List Item Types</span></a>
-                                                                     </li>
                                                                  </ul>
                                                              </div>
                                                          </li>
@@ -217,22 +195,6 @@
                                                                          <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>4
                                                                                  Columns Products</span></a>
                                                                      </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo13_en/fashion.html"><span>5
-                                                                                 Columns Products</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo16_en/fashion.html"><span>6
-                                                                                 Columns Products</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo13_old_en/fashion.html"><span>7
-                                                                                 Columns Products</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo13_old_en/electronics.html"><span>8
-                                                                                 Columns Products</span></a>
-                                                                     </li>
                                                                  </ul>
                                                              </div>
                                                          </li>
@@ -240,7 +202,7 @@
                                                  </div>
                                              </div>
                                              <div class="right-mega-block col-sm-4">
-                                                 <a href="#"><img style="max-width:100%; width:100%;float:right;" src="http://www.portotheme.com/magento/porto/media/wysiwyg/porto/megamenu/menu-banner-static-width2.jpg" alt=""></a>
+                                                 <a href="#"><img style="max-width:100%; width:100%;float:right;" src="<?php echo RootREL ?>media/wysiwyg/porto/homepage/menu-banner-static-width2.jpg" alt=""></a>
                                              </div>
                                          </div>
                                      </div>
@@ -270,22 +232,7 @@
                                                                          <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Inner
                                                                                  Zoom</span></a>
                                                                      </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo6_en/reason-logo-snapback.html"><span>Right
-                                                                                 Side Zoom</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo10_en/fashion/matte-browline-sunglasses.html"><span>Addtocart
-                                                                                 Sticky</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
-                                                                                 Tabs</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo9_en/fashion/men-sports-watch-m.html"><span>Accordion
-                                                                                 Tabs</span></a>
-                                                                     </li>
+
                                                                  </ul>
                                                              </div>
                                                          </li>
@@ -341,22 +288,7 @@
                                                                          <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-fullwidth.html/"><span>Full
                                                                                  Width Layout</span><span class="cat-label cat-label-label1">New</span></a>
                                                                      </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-grid.html/"><span>Grid
-                                                                                 Images Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-left-right.html/"><span>Sticky
-                                                                                 Both Side Info</span><span class="cat-label cat-label-label1">New</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-right.html/"><span>Sticky
-                                                                                 Right Side Info</span><span class="cat-label cat-label-label1">New</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-wide-grid.html/"><span>Wide
-                                                                                 Grid Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                                                                     </li>
+
                                                                  </ul>
                                                              </div>
                                                          </li>
@@ -364,7 +296,7 @@
                                                  </div>
                                              </div>
                                              <div class="right-mega-block col-sm-4">
-                                                 <a href="#"><img style="max-width:100%; width:100%;padding-right:10px;padding-top:9px;float:right;" src="http://www.portotheme.com/magento/porto/media/wysiwyg/porto/megamenu/menu-banner.jpg" alt=""></a>
+                                                 <a href="#"><img style="max-width:100%; width:100%;padding-right:10px;padding-top:9px;float:right;" src="<?php echo RootREL ?>media/wysiwyg/porto/homepage/menu-banner.jpg" alt=""></a>
                                              </div>
                                          </div>
                                      </div>
@@ -451,54 +383,6 @@
                          <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_old_en/fashion.html"><span>Boxed
                                  Slider Banner</span></a>
                      </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Boxed
-                                 Image Banner</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Left
-                                 Sidebar</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo11_en/electronics/cameras.html"><span>Right
-                                 Sidebar</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo17_en/fashion.html"><span>Product
-                                 Flex Grid</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/porto-product-list-types/"><span>Product
-                                 List Item Types</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>Ajax
-                                 Infinite Scroll</span><span class="cat-label cat-label-label1">New</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo14_en/fashion.html"><span>3
-                                 Columns Products</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/fashion.html"><span>4
-                                 Columns Products</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo13_en/fashion.html"><span>5
-                                 Columns Products</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo16_en/fashion.html"><span>6
-                                 Columns Products</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo13_old_en/fashion.html"><span>7
-                                 Columns Products</span></a>
-                     </li>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo13_old_en/electronics.html"><span>8
-                                 Columns Products</span></a>
-                     </li>
                  </ul>
              </li>
              <li class="menu-item menu-item-has-children menu-parent-item">
@@ -511,30 +395,7 @@
                                  <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Horizontal
                                          Thumbnails</span></a>
                              </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
-                                         Thumbnails</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo5_en/reason-logo-snapback.html"><span>Inner
-                                         Zoom</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo6_en/reason-logo-snapback.html"><span>Right
-                                         Side Zoom</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo10_en/fashion/matte-browline-sunglasses.html"><span>Addtocart
-                                         Sticky</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/silver-porto-headset.html"><span>Vertical
-                                         Tabs</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo9_en/fashion/men-sports-watch-m.html"><span>Accordion
-                                         Tabs</span></a>
-                             </li>
+
                          </ul>
                      </li>
                      <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
@@ -548,26 +409,7 @@
                                  <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo8_en/product-type-fullwidth.html"><span>Sticky
                                          Tabs</span></a>
                              </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/classic-sunglasses.html/"><span>Simple
-                                         Product</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/faux-leather-high-top-sneakers.html/"><span>Configurable
-                                         Product</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/seiko-bundle.html/"><span>Bundle
-                                         Product</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/women-jewellery.html/"><span>Grouped
-                                         Product</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/sample-downloadable.html/"><span>Downloadable
-                                         Product</span></a>
-                             </li>
+
                          </ul>
                      </li>
                      <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
@@ -581,26 +423,7 @@
                                  <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-carousel.html/"><span>Extended
                                          Layout</span><span class="cat-label cat-label-label1">New</span></a>
                              </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-fullwidth.html/"><span>Full
-                                         Width Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-grid.html/"><span>Grid
-                                         Images Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-left-right.html/"><span>Sticky
-                                         Both Side Info</span><span class="cat-label cat-label-label1">New</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-sticky-right.html/"><span>Sticky
-                                         Right Side Info</span><span class="cat-label cat-label-label1">New</span></a>
-                             </li>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href="http://www.portotheme.com/magento/porto/index.php/demo4_en/product-type-wide-grid.html/"><span>Wide
-                                         Grid Layout</span><span class="cat-label cat-label-label1">New</span></a>
-                             </li>
+
                          </ul>
                      </li>
                  </ul>
@@ -672,7 +495,4 @@
     global $obMediaFiles;
     global $enableOB;
     $enableOB = true;
-
-    // array_push($obMediaFiles['js'], RootREL . "media/libs/jquery/jquery.min.js");
-    // array_push($obMediaFiles['js'], RootREL . "media/js/navbar.js");
     ?>

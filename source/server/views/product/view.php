@@ -263,7 +263,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                                     <a style="font-size:24px;text-decoration:none;" href="javascript:void(0)" class="qty_dec">-</a>
                                                 </div>
                                             </div>
-                                            <button type="button" title="Add to Cart" class="button btn-cart"><span><span>Add to
+                                            <button type="button" title="Add to Cart" name="<?= $product['name']; ?>" slug="<?= $product['slug']; ?>" class="button btn-cart"><span><span>Add to
                                                         Cart</span></span></button>
                                             <span id='ajax_loader' style='display:none'><i class="ajax-loader small animate-spin"></i></span>
                                         </div>

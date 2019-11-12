@@ -59,7 +59,6 @@ class wishlist_controller extends vendor_main_controller
     
     public function removewishlistmany()
     {
-        global $app;
         $status = false;
         if (isset($_SESSION['user'])) {
             $wishlist = new wishlist_model();
@@ -71,7 +70,6 @@ class wishlist_controller extends vendor_main_controller
     }
     public function oneWishlistToCart()
     {
-        global $app;
         $status = false;
         if (isset($_SESSION['user'])) {
             $wishlist = new wishlist_model();
@@ -92,15 +90,19 @@ class wishlist_controller extends vendor_main_controller
             if ($valid['status']) {
                 if ($res = $cart->addRecord($cartData)) {
                     $status = true;
+                    $cartData['id'] = $res;
                 }
             }
+            if ($status ==true) {
+                echo json_encode($cartData);
+            } else {
+                echo json_encode($status);
+            }
             
-            echo json_encode($status);
         }
     }
     public function allWishlistToCart()
     {
-        global $app;
         $status = false;
         if (isset($_SESSION['user'])) {
             $wishlist = new wishlist_model();

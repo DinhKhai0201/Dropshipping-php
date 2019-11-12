@@ -43,7 +43,7 @@
                                                             <span class="regular-price" id="product-price-<?= $product['product_id'] ?>">
                                                                 <span class="price"><? echo  "$" . $product['price']; ?></span> </span>
                                                         </div>
-                                                        <button type="button" title="Add to Cart" class="button btn-cart wishlistToCart" value="<?= $product['id'] ?>"><span><span>Add to Cart</span></span></button>
+                                                        <button type="button" title="Add to Cart" class="button btn-cart wishlistToCart" name="<?= $product['products_name'] ?>" slug="<?= $product['products_slug'] ?>" value="<?= $product['id'] ?>"><span><span>Add to Cart</span></span></button>
                                                     </div>
                                                 </td>
                                                 <td class="last"><a href="javascript:void(0)" title="Remove Item" value="<?= $product['id'] ?>" class="btn-remove remove-wishlist btn-remove2">Remove item</a>
@@ -70,6 +70,50 @@
     </div>
 </div>
 <script>
+    function tmp(element, name, slug, rootUrl, RootREL) {
+        let tmp = '';
+        tmp = `
+                    <ol class="mini-products-list item_${element.id}" >
+                        <li class="item">
+                            <div class="clearfix product-details">
+                                <div class ="image-cart" style ="margin-right: 20px;width: 40%;float: left;">
+                                    <span><a href="${rootUrl}product/view/${slug}-${element.product_id}" title="${name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${name}"></a></span>
+                                <div class="clearer"></div>
+
+                                </div>
+                                <div class ="info-cart">
+                                    <p class="product-name">
+                                    <a href="${rootUrl}product/view/${slug}-${element.product_id}">
+                                    ${name}</a>
+                                    </p>
+                
+                                    <p class="qty-price">${element.quantity} X <span class="price">$${element.price}</span>
+                                    </p>
+                                    <a title="Remove This Item" price ="${element.price}"  value ="${element.id}" class="btn-remove remove-cart"><i class="icon-cancel"></i></a>
+                                </div>
+                            </div>
+                            <div class="clearer"></div>
+                        </li>                                           
+                    </ol>
+                    `;
+        return tmp;
+    }
+
+    function totals(a, rootUrl) {
+        let tmp = '';
+        tmp = `
+                        <div class="totals">
+                            <span class="label">Total: </span>
+                            <span class="price-total"><span class="price">$${a}</span></span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-basket"></i>View Cart</a>
+                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-right-thin"></i>Checkout</a>
+                        <div class="clearer"></div>
+                        </div>
+                        `;
+        return tmp;
+    }
     jQuery(function($) {
         $('.my-wishlist').on('click', '.remove-wishlist', function() {
             let id = ($(this).context.attributes.value.value);
@@ -95,14 +139,19 @@
                     if (data) {
                         $('fieldset').remove();
                         $(' <p>Nothing in wishlist</p>').insertAfter('.my-wishlist .page-title');
+                        $('.no_wishlist').empty();
+                        $('.no_wishlist').html('0');
                     } else {
-                        console.log("Error");
+                        alert("Error");
                     }
                 }
             });
         });
         $('.my-wishlist').on('click', '.wishlistToCart', function() {
             let id = ($(this).context.attributes.value.value);
+            let name = ($(this).context.attributes.name.value);
+            let slug = ($(this).context.attributes.slug.value);
+            let qty = $('.cart-info .cart-qty').text();
             $.ajax({
                 url: rootUrl + "customer/wishlist/oneWishlistToCart",
                 method: "POST",
@@ -110,13 +159,24 @@
                     id: id,
                 },
                 success: function(data) {
-                    let status = JSON.parse(data);
-                    if (status == true) {
-                        alert("Added cart Ok.");
+                    let datas = JSON.parse(data);
+                    let html = tmp(datas, name, slug, rootUrl, RootREL);
+                    let qty = $('.cart-info .cart-qty').html();
+                    let price_id = $('.price-total .getPrice').html();
+                    let new_price;
+                    if (parseInt(qty) == 0) {
+                        price_id = 0;
+                        new_price = (parseInt(price_id) + parseInt(datas.price));
+                        $('.inner-wrapper').empty();
+                        html += totals(new_price, rootUrl);
                     } else {
-                        alert("Error");
+                        price_id = price_id.substr(1);
+                        new_price = (parseInt(price_id) + parseInt(datas.price));
                     }
-
+                    $('.price-total .getPrice').html('$' + new_price);
+                    $('.cart-info .cart-qty').empty();
+                    $('.cart-info .cart-qty').html(parseInt(qty) + 1);
+                    $('.inner-wrapper').prepend(html);
                 }
             });
         });

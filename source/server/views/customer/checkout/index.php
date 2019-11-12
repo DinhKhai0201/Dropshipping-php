@@ -42,7 +42,7 @@
                                         <tbody class="list-cart">
                                             <?php foreach ($this->products as $product) { ?>
                                                 <tr id="item_<?= $product['id']; ?>">
-                                                    <td class="action-td"><a href="javascript:void(0)" value="<?= $product['id']; ?>" title="Remove item" class="btn-remove remove-key btn-remove2"></a></td>
+                                                    <td class="action-td"><a href="javascript:void(0)" price="<?= $product['price']; ?>" value="<?= $product['id']; ?>" title="Remove item" class="btn-remove remove-key btn-remove2"></a></td>
                                                     <td class="pr-img-td"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name']; ?>" class="product-image"><img src="<?php echo RootREL . "media/upload/products/" . $product['image']; ?>" width="80" height="80" alt="<?= $product['products_name']; ?>" /></a></td>
                                                     <td class="product-name-td">
                                                         <h2 class="product-name">
@@ -60,7 +60,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="qty-holder">
-                                                            <a href="javascript:void(0)" class="table_qty_dec">-</a><input value="1" size="4" title="Qty" class="input-text qty" maxlength="12" /><a href="javascript:void(0)" class="table_qty_inc">+</a>
+                                                            <a href="javascript:void(0)" class="table_qty_dec">-</a><input value="1" size="4" title="Qty" class="input-text qty" id="qtyValue" maxlength="12" /><a href="javascript:void(0)" class="table_qty_inc">+</a>
                                                         </div>
                                                     </td>
                                                     <td>

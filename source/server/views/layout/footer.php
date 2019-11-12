@@ -53,12 +53,6 @@
                                                         <div class="clearer"></div>
                                                     </div>
                                                 </form>
-                                                <!-- <script type="text/javascript">
-                                                    //<![CDATA[
-                                                    var homeFooterNewsletterValidateDetail = new VarienForm(
-                                                        'home-footer-newsletter-validate-detail');
-                                                    //]]>
-                                                </script> -->
                                             </div>
                                         </div>
                                     </div>
@@ -94,34 +88,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="col-md-7">
-                                                        <div class="block">
-                                                            <div class="block-title"><strong><span>Main
-                                                                        Features</span></strong></div>
-                                                            <div class="block-content">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <ul class="features">
-                                                                            <li><a href="#">Super Fast Magento Theme</a>
-                                                                            </li>
-                                                                            <li><a href="#">1st Fully working Ajax
-                                                                                    Theme</a></li>
-                                                                            <li><a href="#">20 Unique Homepage
-                                                                                    Layouts</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <ul class="features">
-                                                                            <li><a href="#">Powerful Admin Panel</a>
-                                                                            </li>
-                                                                            <li><a href="#">Mobile &amp; Retina
-                                                                                    Optimized</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -162,57 +128,6 @@
                         .remove();
                 });
             </script>
-
-            <script type="text/javascript">
-                // jQuery(function($) {
-                //     var check_cookie = $.cookie('newsletter_popup');
-                //     if (window.location != window.parent.location) {
-                //         jQuery('#newsletter_popup').remove();
-                //     } else {
-                //         if (check_cookie == null || check_cookie == 'shown') {
-                //             setTimeout(function() {
-                //                 beginNewsletterForm();
-                //             }, 3000);
-                //         }
-                //         $('#newsletter_popup_dont_show_again').on('change', function() {
-                //             if ($(this).length) {
-                //                 var check_cookie = $.cookie('newsletter_popup');
-                //                 if (check_cookie == null || check_cookie == 'shown') {
-                //                     $.cookie('newsletter_popup', 'dontshowitagain');
-                //                 } else {
-                //                     $.cookie('newsletter_popup', 'shown');
-                //                     beginNewsletterForm();
-                //                 }
-                //             } else {
-                //                 $.cookie('newsletter_popup', 'shown');
-                //             }
-                //         });
-                //     }
-                // });
-
-                function beginNewsletterForm() {
-                    jQuery.fancybox({
-                        'padding': '0px',
-                        'autoScale': true,
-                        'transitionIn': 'fade',
-                        'transitionOut': 'fade',
-                        'type': 'inline',
-                        'href': '#newsletter_popup',
-                        'onComplete': function() {
-                            $.cookie('newsletter_popup', 'shown');
-                        },
-                        'tpl': {
-                            closeBtn: '<a title="Close" class="fancybox-item fancybox-close fancybox-newsletter-close" href="javascript:;"></a>'
-                        },
-                        'helpers': {
-                            overlay: {
-                                locked: false
-                            }
-                        }
-                    });
-                    jQuery('#newsletter_popup').trigger('click');
-                }
-            </script>
             <style type="text/css">
                 #newsletter_popup {
                     width: 700px;
@@ -220,7 +135,7 @@
                 }
             </style>
             <div class="block block-subscribe" id="newsletter_popup">
-                <form action="http://www.portotheme.com/magento/porto/index.php/demo4_en/newsletter/subscriber/new/" method="post" id="newsletter-popup-validate-detail" onsubmit="setNewsletterCookie()">
+                <form action="http://www.portotheme.com/magento/porto/index.php/demo4_en/newsletter/subscriber/new/" method="post" id="newsletter-popup-validate-detail">
                     <div class="block-content">
                         <img src="skin/frontend/smartwave/porto/images/logo.png" alt="" />
                         <h2>BE THE FIRST TO KNOW</h2>
@@ -231,16 +146,7 @@
                             <button type="submit" title="Go!" class="button"><span><span>Go!</span></span></button>
                             <div class="clearer"></div>
                         </div>
-                    </div>
                 </form>
-                <!-- <script type="text/javascript">
-                    //<![CDATA[
-                    var newsletterpopupSubscriberFormDetail = new VarienForm('newsletter-popup-validate-detail');
-                    document.getElementById("newsletter-popup-validate-detail").onsubmit = function() {
-                        jQuery.cookie('newsletter_popup', 'dontshowitagain');
-                    }
-                    //]]>
-                </script> -->
                 <div class="subscribe-bottom">
                     <input type="checkbox" id="newsletter_popup_dont_show_again" />
                     <label for="newsletter_popup_dont_show_again">Don't show this popup again</label>
@@ -374,7 +280,7 @@
                     }
                 });
             </script>
-            <!-- <script src="<?php echo RootREL; ?>media/js/products/displaycart.js"></script> -->
+            <script src="<?php echo RootREL; ?>media/js/products/removecartpopup.js"></script>
 
             </div>
             </div>
@@ -385,7 +291,6 @@
             echo vendor_html_helper::_jsFooter();
             ?>
 
-            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script> -->
             </body>
 
             </html>

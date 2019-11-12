@@ -281,6 +281,22 @@ class vendor_main_controller {
 		if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == $rolesFlip[$role])
 		 	return true;
 		return false;
-    }
+	}
+	public function cart_popup() {
+		$cart_nav = new cart_model();
+		$wishlist_nav = new wishlist_model();
+		$nocart_nav = $cart_nav->getCountRecords();
+		$nowishlist_nav = $wishlist_nav->getCountRecords();
+		$products_nav = $cart_nav->getAllRecords('carts.*', [
+			'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
+			'joins' => ['product', 'user']
+		]);
+		return [
+			'nocart'=> $nocart_nav,
+			'nowishlist' => $nowishlist_nav,
+			'data' => $products_nav
+		];
+	}
+	
 }
 ?>
