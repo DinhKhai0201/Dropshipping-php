@@ -3,37 +3,22 @@
          <div class="top-links container">
              <div class="top-links-inner">
                  <div class="form-currency top-select">
-                     <select id="select-currency" name="currency" title="Select Your Currency" onchange="setLocation(this.value)">
-                         <option value="">
-                             EUR
-                         </option>
-                         <option value="" selected="selected">
-                             USD
-                         </option>
-                     </select>
-                     <script type="text/javascript">
-                         (function($) {
-                             $("#select-currency").selectbox();
-                         })(jQuery);
-                     </script>
+                     <div class="contact" style="color:white;display: block;float: left;font-size: 11px;line-height: 26px;margin-left: 5px;">
+                         <span>
+                             <i class="fas fa-phone"></i>
+                             <span>Hotline: 0123.456.789 - 0987.654.321</span>
+                         </span>
+                         <span>
+                             <i class="far fa-envelope"></i>
+                             <span>contact@dropshipping.com</span>
+                         </span>
+                     </div>
                  </div>
                  <span class="split"></span>
-                 <div class="form-language top-select">
-                     <select id="select-language" title="Your Language" onchange="window.location.href=this.value" style="width:auto;">
-                         <option value="" data-image="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/flags/demo4_en.png" selected="selected">English</option>
-                         <option value="" data-image="<?php echo RootREL; ?>media/skin/frontend/smartwave/porto/images/flags/demo4_sa.png">
-                             Arabic
-                         </option>
-                     </select>
-                     <script type="text/javascript">
-                         (function($) {
-                             $("#select-language").selectbox();
-                         })(jQuery);
-                     </script>
-                 </div>
+
                  <span class="split"></span>
                  <div class="compare-link">
-                     <a href="javascript:void(0)" onclick="popWin('http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/index/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/','compare','top:0,left:0,width=820,height=600,resizable=yes,scrollbars=yes')"><i class="icon-compare-link"></i>Compare (0)</a>
+                     <a href="javascript:void(0)"><i class="fas fa-bars"></i></i>Compare (0)</a>
                      <div class="compare-popup theme-border-color">
                          <p class="empty">You have no items to compare.</p>
                      </div>
@@ -43,8 +28,8 @@
                          <a href="javascript:void(0)">Menu</a>
                      </div>
                      <ul class="links">
-                         <li class="first"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'account'))?>" title="My Account">My Account</a></li>
-                         <li><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/" title="My Wishlist">My Wishlist</a></li>
+                         <li class="first"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'account')) ?>" title="My Account">My Account</a></li>
+                         <li><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'wishlist')); ?>" title="My Wishlist">My Wishlist</a></li>
                          <?php if (isset($_SESSION['user'])) { ?>
                              <li class=" last"><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login', 'act' => 'logout')); ?>" title="Log In">Log out</a></li>
                          <?php } else { ?>
@@ -66,11 +51,57 @@
                      NOW<br><b style="color:#fff;font-size:18px;font-weight:600;display:block;line-height:27px;">+123
                          5678 890</b></span> </div>
              <div class="mini-cart">
-                 <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i class="fas fa-shopping-cart"></i><span class="cart-info"><span class="cart-qty">0</span><span>Item(s)</span></span></a>
+                 <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i class="fas fa-shopping-cart"></i><span class="cart-info"><span class="cart-qty"><?php if (isset($this->nocart)) {
+                                                                                                                                                                                                echo $this->nocart;
+                                                                                                                                                                                            } else {
+                                                                                                                                                                                                echo "0";
+                                                                                                                                                                                            } ?></span><span>Item(s)</span></span></a>
                  <div class="topCartContent block-content theme-border-color" style="max-height:500px;overflow:hidden;overflow-y: scroll;">
                      <div class="inner-wrapper">
-                         <p class="cart-empty">
-                             You have no items in your shopping cart. </p>
+                         <?php if (isset($this->nocart) && $this->nocart > 0) { ?>
+                             <?php foreach ($this->products as $key => $value) { ?>
+                                 <ol class="mini-products-list">
+                                     <li class="item">
+                                         <div class="clearfix product-details">
+                                             <div class="image-cart" style="margin-right: 20px;width: 40%;float: left;">
+                                                 <span><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $value['products_slug'] . "-" . $value['product_id']])) ?>" title="<?= $value['products_name']; ?>" class="product-image"><img src="<?php echo RootREL . "media/upload/products/" . $value['image']; ?>" alt="<?= $value['products_name']; ?>"></a></span>
+                                                 <div class="clearer"></div>
+
+                                             </div>
+                                             <div class="info-cart">
+                                                 <p class="product-name">
+                                                     <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $value['products_slug'] . "-" . $value['product_id']])) ?>">
+                                                         <?= $value['products_name']; ?></a>
+                                                 </p>
+
+                                                 <p class="qty-price"><?= $value['quantity']; ?> X <span class="price">$<?= $value['price']; ?></span>
+                                                 </p>
+                                                 <a title="Remove This Item" key="<?= $value['id']; ?>" value="<?= $value['id']; ?>" class="btn-remove remove-key"><i class="icon-cancel"></i></a>
+                                             </div>
+                                         </div>
+                                         <div class="clearer"></div>
+                                     </li>
+                                 </ol>
+
+                             <?php } ?>
+                             <div class="totals">
+                                 <span class="label">Total: </span>
+                                 <span class="price-total"><span class="price"><?php $total = 0;
+                                                                                    foreach ($this->products as $key => $value) {
+                                                                                        $total += $value['price'];
+                                                                                    }
+                                                                                    echo "$" . $total; ?></span></span>
+                             </div>
+                             <div class="actions">
+                                 <a class="btn btn-default" href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout')); ?>"><i class="icon-basket"></i>View Cart</a>
+                                 <a class="btn btn-default" href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout', 'act' => 'cart')); ?>"><i class="icon-right-thin"></i>Checkout</a>
+                                 <div class="clearer"></div>
+                             </div>
+
+                         <?php } else { ?>
+                             <p class="cart-empty">
+                                 You have no items in your shopping cart. </p>
+                         <?php } ?>
                      </div>
                  </div>
                  <script type="text/javascript">
@@ -123,7 +154,7 @@
                          <ul class="menu">
 
                              <li class="">
-                                 <a href="<?php echo vendor_app_util::url(array('area' => '','ctl' => '')); ?>"><span>Home</span></a>
+                                 <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => '')); ?>"><span>Home</span></a>
                              </li>
                              <li class="menu-static-width">
                                  <a href=""><span>Categories</span></a>
@@ -629,10 +660,10 @@
  <div class="mobile-nav-overlay close-mobile-nav"></div>
  <script type="text/javascript">
      jQuery(function($) {
-                 $('.search-mini').click(function() {
-                     $('#search_mini_form_c').toggle('slow');
-                 });
-                });
+         $('.search-mini').click(function() {
+             $('#search_mini_form_c').toggle('slow');
+         });
+     });
  </script>
  <!-- 
   end navbar

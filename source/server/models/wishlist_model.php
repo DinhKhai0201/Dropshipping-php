@@ -16,4 +16,13 @@ class wishlist_model extends vendor_pagination_model
            
         ];
     }
+    public function delALlWishlist()
+    {
+        $sql = "DELETE FROM wishlists WHERE user_id = ".$_SESSION['user']['id'];
+        if ($this->con->query($sql)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

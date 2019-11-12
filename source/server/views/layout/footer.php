@@ -374,7 +374,7 @@
                     }
                 });
             </script>
-            <script src="<?php echo RootREL; ?>media/js/products/displaycart.js"></script>
+            <!-- <script src="<?php echo RootREL; ?>media/js/products/displaycart.js"></script> -->
 
             </div>
             </div>

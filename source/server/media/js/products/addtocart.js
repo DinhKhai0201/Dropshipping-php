@@ -1,11 +1,11 @@
-function tmp(element, rootUrl) {
+function tmp(element, rootUrl, RootREL) {
     let tmp = '';
     tmp = `
                     <ol class="mini-products-list" >
                         <li class="item">
                             <div class="clearfix product-details">
                                 <div class ="image-cart" style ="margin-right: 20px;width: 40%;float: left;">
-                                    <span><a href="${rootUrl}product/view/${element.slug}-${element.product_id}" title="${element.name}" class="product-image"><img src="${element.image}" alt="${element.name}"></a></span>
+                                    <span><a href="${rootUrl}product/view/${element.slug}-${element.product_id}" title="${element.name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${element.name}"></a></span>
                                 <div class="clearer"></div>
 
                                 </div>
@@ -44,39 +44,40 @@ function totals(a, element, rootUrl) {
 jQuery(function ($) {
    
 
-    function addProduct(id, name,slug, image, price, qty, color) {
-        let key = Math.random();
-        let products = [];
-        if (localStorage.getItem('products')) {
-            products = JSON.parse(localStorage.getItem('products'));
-        }
-        products.push({
-            key: key,
-            product_id: id,
-            name: name,
-            slug: slug,
-            image: image,
-            price: price,
-            qty: qty,
-            color: color
-        });
-        localStorage.setItem('products', JSON.stringify(products));
+    function addProduct(id, image, price, qty, color) {
+        
+        // let key = Math.random();
+        // let products = [];
+        // if (localStorage.getItem('products')) {
+        //     products = JSON.parse(localStorage.getItem('products'));
+        // }
+        // products.push({
+        //     key: key,
+        //     product_id: id,
+        //     name: name,
+        //     slug: slug,
+        //     image: image_p,
+        //     price: price,
+        //     qty: qty,
+        //     color: color
+        // });
+        // localStorage.setItem('products', JSON.stringify(products));
     }
 
-    function display() {
-        let html = '';
-        if (localStorage && localStorage.getItem('products')) {
-            products = JSON.parse(localStorage.getItem('products'));
-            products.forEach(element => {
-                html += tmp(element, rootUrl);
-            });
-            let a = products.reduce(function (r, a) {
-                return parseInt(r) + parseInt(a['price']);
-            }, 0);
-            html += totals(a, products, rootUrl);
-        }
-        return html;
-    }
+    // function display() {
+    //     let html = '';
+    //     if (localStorage && localStorage.getItem('products')) {
+    //         products = JSON.parse(localStorage.getItem('products'));
+    //         products.forEach(element => {
+    //             html += tmp(element, rootUrl, RootREL);
+    //         });
+    //         let a = products.reduce(function (r, a) {
+    //             return parseInt(r) + parseInt(a['price']);
+    //         }, 0);
+    //         html += totals(a, products, rootUrl);
+    //     }
+    //     return html;
+    // }
 
     // if (localStorage && localStorage.getItem('products')) {
     //     let leng = (JSON.parse(localStorage.getItem('products')).length);
@@ -109,10 +110,9 @@ jQuery(function ($) {
 
     let product_id = $('#product_id').val();
     let product_image = $('#product_image').val();
-    let product_name = $('#product_name').val();
     let product_price = $('#product_price').val();
-    let product_slug = $('#product_slug').val();
     var product_qty = $('.qty').val();
+    
     function get_filter(class_name) {
         var filter = [];
         $('.' + class_name + ':checked').each(function () {
@@ -136,35 +136,54 @@ jQuery(function ($) {
             console.log("a");
             $('.error-color').show();
         } else {
-            addProduct(product_id, product_name, product_slug, product_image, product_price, product_qty, color);
-            let leng = JSON.parse(localStorage.getItem('products')).length;
-            if (leng > 0) {
-                $('.inner-wrapper').empty();
-                $('.inner-wrapper').html(display());
-                $('.cart-qty').html(leng);
+            let image_p;
+            if ((/upload\/products\/(.*)/g).test(product_image)) {
+                image_p = ((/upload\/products\/(.*)/g).exec(product_image))[1];
             }
-        }
-        
-    });
-    $('.addWishlistJs').click(function() {
-        let color = get_filter('color');
-        if (color.length == 0) {
-            console.log("a");
-            $('.error-color').show();
-        } else {
             $.ajax({
-                url: rootUrl + "product/addtowishlist",
+                url: rootUrl + "customer/checkout/addtocart",
                 method: "POST",
                 data: {
                     id: product_id,
                     color: color.join(),
                     qty: product_qty,
-                    price: product_price
+                    price: product_price,
+                    image: image_p
+                },
+                success: function (data) {
+                    let product = JSON.parse(data);
+                    alert("Added to cart");
+                    console.log(data);
+                }
+            });
+           
+        }
+        
+    });
+    //ok
+    $('.addWishlistJs').click(function() {
+        let color = get_filter('color');
+        if (color.length == 0) {
+            $('.error-color').show();
+        } else {
+            let image_p;
+            if ((/upload\/products\/(.*)/g).test(product_image)) {
+                image_p = ((/upload\/products\/(.*)/g).exec(product_image))[1];
+            }
+            $.ajax({
+                url: rootUrl + "customer/wishlist/addtowishlist",
+                method: "POST",
+                data: {
+                    id: product_id,
+                    color: color.join(),
+                    qty: product_qty,
+                    price: product_price,
+                    image: image_p
                 },
                 success: function (data) {
                     let product = JSON.parse(data);
                     alert("Added to wishlist");
-                    console.log(product);
+                    console.log(data);
                 }
             });
         }

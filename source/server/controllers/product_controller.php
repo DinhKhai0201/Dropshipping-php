@@ -47,7 +47,7 @@ class product_controller extends vendor_main_controller
             $conditions .= (($conditions) ? " AND " : "") . " id={$id} and slug='{$slug}'";
 
             $product_model = new product_model();
-            $this->products = $product_model->getAllRecords('*', [
+            $this->products = $product_model->getAllRecords('*,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
                 'conditions' => $conditions,
                 'order' => 'id ASC',
             ]);
@@ -66,33 +66,5 @@ class product_controller extends vendor_main_controller
         $this->display();
     }
   
-    public function addtowishlist()
-    {
-
-        $pm = new product_model();
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
-            $this->record = $pm->getRecord($id);
-        }
-        $wishData['product_id'] = $id;
-        $wishData['user_id'] = $_SESSION['user']['id'];
-        $wishData['quantity'] = $_POST['qty'];
-        $wishData['price'] = $_POST['price'];
-        $wishData['color'] = $_POST['color'];
-
-        $wm = new wishlist_model();
-        $valid = $wm->validator($wishData);
-        if ($valid['status']) {
-            if ($wm->addRecord($wishData)){
-                $this->errors = ['OK' => 'OK!'];
-                echo (json_encode($this->record));
-             } else {
-                $this->errors = ['database' => 'An error occurred when inserting data!'];
-                echo (json_encode($this->errors['database']));
-            }
-        } else {
-            $this->errors = ['valid' => 'Not valid data!'];
-            echo (json_encode($this->errors['valid']));
-        }
-    }
+    
 }
