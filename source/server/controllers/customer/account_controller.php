@@ -17,7 +17,7 @@ class account_controller extends vendor_main_controller
                     'page' => 1,
                     'nopp' => 5
                 ],
-                'order' => 'id ASC'
+                'order' => 'id DESC'
             ]);
             $this->display();
         }

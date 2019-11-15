@@ -17,7 +17,7 @@ if(isset($app['prs']['status'])) {
 	var curp 		= parseInt(<?php echo $this->records['curp']; ?>);
 	var nopp 		= parseInt(<?php echo $this->records['nopp']; ?>);
 
-	var getDisable  = <?=(isset($app['prs']['status']) && ($app['prs']['status']==='0'))? 1:0;?>
+	var getDisable  = <?=(isset($app['prs']['status']) && ($app['prs']['status']==='0'))? 1:0;?>;
 </script>
 
 <?php vendor_html_helper::contentheader('Users <small>management</small>', [['urlp'=>['ctl'=>$app['ctl'], 'act'=>$app['act']]]]); ?>

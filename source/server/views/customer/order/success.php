@@ -14,7 +14,7 @@
                     <p>You will receive an order confirmation email with details of your order and a link to
                         track its progress.</p>
                     <p>
-                        Click <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/print/order_id/2/" onclick="this.target='_blank'">here to print</a> a copy of your order
+                        Click <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'invoice')); ?>" onclick="this.target='_blank'">here to print</a> a copy of your order
                         confirmation. </p>
 
                     <div class="buttons-set">
@@ -31,17 +31,10 @@
                     <div class="block-content">
                         <ol id="recently-viewed-items">
                             <li class="item odd">
-                                <p class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-709.html">NTX01
+                                <p class="product-name"><a href="">NTX01
                                         - Headphone</a></p>
                             </li>
-                            <li class="item even">
-                                <p class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj-710.html">
-                                        25 Acoustic Noise </a></p>
-                            </li>
-                            <li class="item last odd">
-                                <p class="product-name"><a href="http://www.portotheme.com/magento/porto/index.php/demo4_en/headphone-sj.html">Headphone
-                                        SJ</a></p>
-                            </li>
+                           
                         </ol>
                         <script type="text/javascript">
                             decorateList('recently-viewed-items');

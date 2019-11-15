@@ -132,5 +132,20 @@ class checkout_controller extends vendor_main_controller
 			echo json_encode($status);
 		}
 	}
+	public function editqty() {
+		if (isset($_SESSION['user'])) {
+			$cart = new cart_model();
+			$id = $_POST['id'];
+			$cartData['quantity'] = $_POST['quantity'];
+			$valid = $cart->validator($cartData, $id);
+			if($valid['status']){
+				if($cart->editRecord($id,$cartData)) {
+					http_response_code(200);
+					echo ($id);
+				}
+			}
+			
+		}
+	}
 	
 }

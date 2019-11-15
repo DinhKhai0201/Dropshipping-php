@@ -5,7 +5,6 @@
             <div class="cart cart-append-product">
                 <div class="page-title title-buttons">
                     <h1>Shopping Cart</h1>
-
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-lg-8 col-xl-10">
@@ -60,7 +59,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="qty-holder">
-                                                            <a href="javascript:void(0)" class="table_qty_dec">-</a><input value="1" size="4" title="Qty" class="input-text qty" id="qtyValue" maxlength="12" /><a href="javascript:void(0)" class="table_qty_inc">+</a>
+                                                            <a href="javascript:void(0)" class="table_qty_dec qty_decrease" unit="<?= $product['price']; ?>" key ="<?= $product['id']; ?>">-</a><input value="<?=$product['quantity']?>" size="4" title="Qty" class="input-text qty" id="qtyValue" maxlength="12" /><a href="javascript:void(0)" class="table_qty_inc qty_increase" key ="<?= $product['id']; ?>" unit="<?= $product['price']; ?>">+</a>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -70,7 +69,7 @@
                                                     </td>
                                                     <td class="td-total">
                                                         <span class="cart-price">
-                                                            <span class="price"><?php echo intval($product['price']) * intval($product['quantity']); ?></span>
+                                                            <span class="price subtotal_price_<?= $product['id']; ?>"><?php echo intval($product['price']) * intval($product['quantity']); ?></span>
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -113,11 +112,11 @@
                                                     <strong>Grand Total</strong>
                                                 </td>
                                                 <td style="" class="a-right">
-                                                    <strong><span class="price price-total-list"><?php $total = 0;
+                                                    <strong><span class="price price-total-list">$<span class ="price-total-list-ajax"><?php $total = 0;
                                                                                                     foreach ($this->products as $key => $value) {
-                                                                                                        $total += $value['price'];
+                                                                                                        $total += (intval($value['price']) * intval($value['quantity']));
                                                                                                     }
-                                                                                                    echo "$" . $total; ?></span></strong>
+                                                                                                    echo $total; ?></span></span></strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -126,11 +125,11 @@
                                                 <td style="" class="a-right" colspan="1">
                                                     Subtotal </td>
                                                 <td style="" class="a-right">
-                                                    <span class="price price-total-list"><?php $total = 0;
+                                                    <span class="price price-total-list">$<span class ="price-total-list-ajax"><?php $total = 0;
                                                                                             foreach ($this->products as $key => $value) {
-                                                                                                $total += $value['price'];
+                                                                                                $total += (intval($value['price']) * intval($value['quantity']));
                                                                                             }
-                                                                                            echo "$" . $total; ?></span> </td>
+                                                                                            echo $total; ?></span></span> </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -138,7 +137,6 @@
                                         <li> <button type="button" title="Proceed to Order" class="button btn-proceed-checkout btn-checkout" onclick="window.location.href='<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout', 'act' => 'cart')); ?>'"><span><span>
                                                         Order Now</span></span></button>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -151,5 +149,49 @@
 </div>
 <script src="<?php echo RootREL; ?>media/js/checkout/displaycart.js"></script>
 <script src="<?php echo RootREL; ?>media/js/checkout/wishlist.js"></script>
+<script>
+    jQuery(function($) {
+        $('.container').on('click', '.qty_increase', function() {
+            let qty = parseInt($(this).parent().children(".qty").val());
+            let unit = parseInt($(this).context.attributes.unit.value);
+            let id = ($(this).context.attributes.key.value);
+            $.ajax({
+                url: rootUrl + "customer/checkout/editqty",
+                method: "POST",
+                 data: {
+                    quantity: qty,
+                    id: id
+                },
+                success: function(data) {
+                    $('.subtotal_price_'+data).html((unit*qty));
+                    let new_price = parseInt($('.price-total-list-ajax').html()) + unit;
+                    $('.price-total-list-ajax').html(new_price);
+                     $('.price-total .getPrice').html('$' + new_price);
+                     $('.qty_cart_'+ data).html(qty);
 
+                }
+            });
+        });
+        $('.container').on('click', '.qty_decrease', function() {
+            let qty = $(this).parent().children(".qty").val();
+            let unit = parseInt($(this).context.attributes.unit.value);
+            let id = ($(this).context.attributes.key.value);
+             $.ajax({
+                url: rootUrl + "customer/checkout/editqty",
+                method: "POST",
+                 data: {
+                    quantity: qty,
+                    id: id
+                },
+                success: function(data) {
+                    $('.subtotal_price_'+data).html((unit*qty));
+                    let new_price = parseInt($('.price-total-list-ajax').html()) - unit;
+                    $('.price-total-list-ajax').html(new_price);
+                     $('.price-total .getPrice').html('$' + new_price);
+                     $('.qty_cart_'+ data).html(qty);
+                }
+            });
+        });
+    });
+</script>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php';

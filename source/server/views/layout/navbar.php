@@ -72,7 +72,7 @@
                                                          <?= $value['products_name']; ?></a>
                                                  </p>
 
-                                                 <p class="qty-price"><?= $value['quantity']; ?> X <span class="price">$<?= $value['price']; ?></span>
+                                                 <p class="qty-price"><span class ="qty_cart_<?= $value['id']; ?>"><?= $value['quantity']; ?></span> X <span class="price">$<?= $value['price']; ?></span>
                                                  </p>
                                                  <a title="Remove This Item" price="<?= $value['price']; ?>" value="<?= $value['id']; ?>" class="btn-remove remove-cart"><i class="icon-cancel"></i></a>
                                              </div>
@@ -86,7 +86,7 @@
                                  <span class="label">Total: </span>
                                  <span class="price-total"><span class="price getPrice"><?php $total = 0;
                                                                                             foreach ($navbar['data'] as $key => $value) {
-                                                                                                $total += $value['price'];
+                                                                                                $total += (intval($value['price']) * intval($value['quantity']));
                                                                                             }
                                                                                             echo "$" . $total; ?></span></span>
                              </div>

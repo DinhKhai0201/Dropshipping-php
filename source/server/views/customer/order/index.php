@@ -15,7 +15,7 @@
                     </div>
                     <div class="pager">
                         <p class="amount">
-                            <strong><?= $this->noorder ?> Item(s)</strong>
+                            <strong><?= $this->orders['norecords'] ?> Item(s)</strong>
                         </p>
                     </div>
                     <table class="data-table" id="my-orders-table">
@@ -36,7 +36,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($this->orders as $key => $value) { ?>
+                            <?php foreach ($this->orders['data'] as $key => $value) { ?>
                                 <tr>
                                     <td><?= $value['id'] ?></td>
                                     <td><span class="nobr"><?= $value['created'] ?></span></td>
@@ -44,9 +44,9 @@
                                     <td><span class="price"><?= (intval($value['total_price']) + intval($value['shipping_fee'])) ?></span></td>
                                     <td><em><?= $value['order_status'] ?></em></td>
                                     <td class="a-center">
-                                        <span class="nobr"><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/view/order_id/2/">View
+                                        <span class="nobr"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'vieworder')); ?>">View
                                                 Order</a>
-                                            <span class="separator">|</span> <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/reorder/order_id/2/" class="link-reorder">Invoice</a>
+                                            <span class="separator">|</span> <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'invoice')); ?>" class="link-reorder">Invoice</a>
                                         </span>
                                     </td>
                                 </tr>

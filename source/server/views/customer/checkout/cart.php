@@ -485,6 +485,10 @@
                                                     <input id="p_method_checkmo" value="checkmo" type="radio" name="payment[method]" checked="checked" class="radio" autocomplete="off">
                                                 </span>
                                                 <label for="p_method_checkmo">Paypal </label>
+                                                <span class="">
+                                                    <input id="p_method_checkmo" value="checkmo" type="radio" name="payment[method]" checked="checked" class="radio" autocomplete="off">
+                                                </span>
+                                                <label for="p_method_checkmo">Direct Payment </label>
                                             </dt>
 
                                         </dl>
@@ -545,7 +549,7 @@
                                                     <td style="" class="a-right" colspan="5">
                                                         Shipping &amp; Handling (Flat Rate - Fixed) </td>
                                                     <td style="" class="a-right last">
-                                                        <span class="price">$2.00</span> </td>
+                                                        <span class="price">$<span class ="shipping_fee">2</span></span> </td>
                                                 </tr>
                                                 <tr class="last">
                                                     <td style="" class="a-right" colspan="5">
@@ -577,7 +581,7 @@
                                                                 <span class="price"><?php echo "$" . $carts['price']; ?></span>
                                                             </span>
                                                         </td>
-                                                        <td class="a-center">1</td>
+                                                        <td class="a-center"><?= $carts['quantity'] ?></td>
                                                         <!-- sub total starts here -->
                                                         <td class="a-right last">
                                                             <span class="cart-price">
@@ -592,12 +596,11 @@
                                 </div>
                                 <div class="info-order" style='margin-top:30px'>
                                     <p class="label-order">Note more information</p>
-                                    <textarea id="order-info" style="width:100%;height:50px;"></textarea>
+                                    <textarea id="order-info" style="width:100%;height:50px;" placeholder="Ex: Ship to me at 9.00 pm at sunday..."></textarea>
                                 </div>
                                 <div class="buttons-set" id="payment-buttons-container">
                                     <p class="f-left">Forgot an Item? <a href="<?php echo (vendor_app_util::url(['area' => 'customer', "ctl" => "checkout"])) ?>">Edit Your Cart </a></p>
-                                    <p class="back-link"> &nbsp; Or <a href="javascript:void(0)" class="back-3"><small>&laquo;
-                                            </small>Back</a></p>
+                                    <p class="back-link"> &nbsp;Or<a href="javascript:void(0)" class="back-3"><small>&laquo;</small>Back</a></p>
                                     <button type="button" class="button continue_order"><span><span>Order</span></span></button>
                                 </div>
                             </div>
@@ -674,7 +677,6 @@
         $('.order_now').on('click', '.continue_order', function() {
             let total_price = parseInt($('.total_price').html());
             let order_info = $('#order-info').val();
-            // console.log(total_price);
             $.ajax({
                 url: rootUrl + "customer/checkout/orders",
                 method: "POST",

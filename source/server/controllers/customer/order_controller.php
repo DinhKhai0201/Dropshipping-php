@@ -5,9 +5,13 @@ class order_controller extends vendor_main_controller
     {
         if (isset($_SESSION['user'])) {
         $order = new order_model();
-        $this->noorder = $order->getCountRecords(['conditions' => 'orders.user_id =' . $_SESSION['user']['id']]);
-        $this->orders = $order->getAllRecords('orders.*', [
+        // $this->noorder = $order->getCountRecords(['conditions' => 'orders.user_id =' . $_SESSION['user']['id']]);
+        $this->orders = $order->allp('orders.*', [
             'conditions' => 'orders.user_id =' . $_SESSION['user']['id'],
+            'joins' => false,
+                'pagination' => [
+                    'nopp' => 5
+                ],
             'order' => 'id DESC'
            
         ]);

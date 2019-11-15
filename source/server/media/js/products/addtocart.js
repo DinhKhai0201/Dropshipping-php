@@ -67,7 +67,7 @@ jQuery(function ($) {
                                     ${name}</a>
                                     </p>
                 
-                                    <p class="qty-price">${element.quantity} X <span class="price">$${element.price}</span>
+                                    <p class="qty-price"><span class ="qty_cart_${element.id}">${element.quantity}</span> X <span class="price">$${element.price}</span>
                                     </p>
                                     <a title="Remove This Item" price ="${element.price}"  value ="${element.id}" class="btn-remove remove-cart"><i class="icon-cancel"></i></a>
                                 </div>
@@ -86,8 +86,7 @@ jQuery(function ($) {
                             <span class="price-total"><span class="price">$${a}</span></span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-basket"></i>View Cart</a>
-                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-right-thin"></i>Checkout</a>
+                            <a class="btn btn-default" href="${rootUrl}customer/checkout"><i class="icon-basket"></i>View Cart</a>
                         <div class="clearer"></div>
                         </div>
                         `;
@@ -97,6 +96,8 @@ jQuery(function ($) {
         let color = get_filter('color');
         let name = ($(this).context.attributes.name.value);
         let slug = ($(this).context.attributes.slug.value);
+        let qty =$(this).parent().children('.qty-holder').children().val();
+        console.log(qty);
         if (color.length == 0) {
             console.log("a");
             $('.error-color').show();
@@ -111,7 +112,7 @@ jQuery(function ($) {
                 data: {
                     id: product_id,
                     color: color.join(),
-                    qty: product_qty,
+                    qty: qty,
                     price: product_price,
                     image: image_p
                 },

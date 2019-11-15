@@ -87,7 +87,7 @@
                                     ${name}</a>
                                     </p>
                 
-                                    <p class="qty-price">${element.quantity} X <span class="price">$${element.price}</span>
+                                    <p class="qty-price"><span class ="qty_cart_${element.id}">${element.quantity}</span> X <span class="price">$${element.price}</span>
                                     </p>
                                     <a title="Remove This Item" price ="${element.price}"  value ="${element.id}" class="btn-remove remove-cart"><i class="icon-cancel"></i></a>
                                 </div>
