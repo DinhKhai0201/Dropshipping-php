@@ -54,16 +54,22 @@ $app['roles'] = [
 	'4'=>'shipper',
 	'5'=>'adsmanager',
 ];
+$app['order_status'] = [
+	'Pendding',
+	'Cancel',
+	'Shipping',
+	'Complete'
+];
 $app['currency'] =[
-	'0' => 'USD',
-	'1' => 'GBP',
-	'2' => 'VND',
-	'3' => 'EUR',
-	'4' => 'ETH',
-	'5' => '¥',
-	'6' => 'CAD',
-	'7' => 'AUD',
-	'8' => 'RMB'
+	'USD',
+	'GBP',
+	'VND',
+	'EUR',
+	'ETH',
+	'¥',
+	'CAD',
+	'AUD',
+	'RMB'
 ];
 
 $app['recordTime'] = [

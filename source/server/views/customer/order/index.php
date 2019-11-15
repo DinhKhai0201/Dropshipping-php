@@ -9,10 +9,59 @@
                 </div>
             </div>
             <div class="col-main col-lg-9 lg-order-12">
-                order
+                <div class="my-account">
+                    <div class="page-title">
+                        <h1>My Orders</h1>
+                    </div>
+                    <div class="pager">
+                        <p class="amount">
+                            <strong><?= $this->noorder ?> Item(s)</strong>
+                        </p>
+                    </div>
+                    <table class="data-table" id="my-orders-table">
+                        <col width="1" />
+                        <col width="1" />
+                        <col />
+                        <col width="1" />
+                        <col width="1" />
+                        <col width="1" />
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Ship To</th>
+                                <th><span class="nobr">Order Total</span></th>
+                                <th><span class="nobr">Order Status</span></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->orders as $key => $value) { ?>
+                                <tr>
+                                    <td><?= $value['id'] ?></td>
+                                    <td><span class="nobr"><?= $value['created'] ?></span></td>
+                                    <td><?= $value['to_address'] ?></td>
+                                    <td><span class="price"><?= (intval($value['total_price']) + intval($value['shipping_fee'])) ?></span></td>
+                                    <td><em><?= $value['order_status'] ?></em></td>
+                                    <td class="a-center">
+                                        <span class="nobr"><a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/view/order_id/2/">View
+                                                Order</a>
+                                            <span class="separator">|</span> <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/sales/order/reorder/order_id/2/" class="link-reorder">Invoice</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="buttons-set">
+                    <p class="back-link"><a href="javascript:history.back()"><small>&laquo;
+                            </small>Back</a></p>
+                </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php';

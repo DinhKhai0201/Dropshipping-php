@@ -92,7 +92,6 @@
                              </div>
                              <div class="actions">
                                  <a class="btn btn-default" href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout')); ?>"><i class="icon-basket"></i>View Cart</a>
-                                 <a class="btn btn-default" href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout', 'act' => 'cart')); ?>"><i class="icon-right-thin"></i>Checkout</a>
                                  <div class="clearer"></div>
                              </div>
 

@@ -8,6 +8,17 @@ class account_controller extends vendor_main_controller
         if (!isset($_SESSION['user'])) {
             header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
         } else {
+            $order = new order_model();
+            $this->noorder = $order->getCountRecords(['conditions' => 'orders.user_id =' . $_SESSION['user']['id']]);
+            $this->recordsorder = $order->allp('*', [
+                'conditions' => 'orders.user_id =' . $_SESSION['user']['id'],
+                'joins' => false,
+                'pagination' => [
+                    'page' => 1,
+                    'nopp' => 5
+                ],
+                'order' => 'id ASC'
+            ]);
             $this->display();
         }
 		

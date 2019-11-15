@@ -8,7 +8,7 @@ class wishlist_controller extends vendor_main_controller
             header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
         } else {
             $wishlist = new wishlist_model();
-            $this->nowishlist = $wishlist->getCountRecords();
+            $this->nowishlist = $wishlist->getCountRecords(['conditions' => 'wishlists.user_id =' . $_SESSION['user']['id']]);
             $this->products = $wishlist->getAllRecords('wishlists.*', [
                 'conditions' => 'wishlists.user_id =' . $_SESSION['user']['id'],
                 'joins' => ['product', 'user']

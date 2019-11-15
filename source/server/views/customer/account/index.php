@@ -24,6 +24,51 @@
                                 your recent account activity and update your account information. Select a
                                 link below to view or edit information.</p>
                         </div>
+                        <div class="box-account box-recent">
+                            <div class="box-head">
+                                <h2>Recent Orders</h2>
+                                <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order')); ?>">View All</a>
+                            </div>
+                            <table class="data-table" id="my-orders-table">
+                                <colgroup>
+                                    <col width="1">
+                                    <col width="1">
+                                    <col>
+                                    <col width="1">
+                                    <col width="1">
+                                    <col width="1">
+                                </colgroup>
+                                <thead>
+                                    <tr class="first last">
+                                        <th>Order #</th>
+                                        <th>Date</th>
+                                        <th>Ship To</th>
+                                        <th><span class="nobr">Order Total</span></th>
+                                        <th>Status</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($this->recordsorder['data'] as $key => $value) { ?>
+                                        <tr class="order_<?= $value['id'] ?>">
+                                            <td><?= $value['id'] ?></td>
+                                            <td><span class="nobr"><?= $value['created'] ?></span></td>
+                                            <td><?= $value['to_address'] ?></td>
+                                            <td><span class="price"><?= (intval($value['total_price']) + intval($value['shipping_fee'])) ?></span></td>
+                                            <td><em><?= $value['order_status'] ?></em></td>
+                                            <td class="a-center">
+                                                <span class="nobr"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'vieworder')); ?>">View
+                                                        Order</a>
+                                                    <span class="separator">|</span> <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'invoice')); ?>" class="link-reorder">Invoice</a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="box-account box-info">
                             <div class="box-head">
                                 <h2>Account Information</h2>

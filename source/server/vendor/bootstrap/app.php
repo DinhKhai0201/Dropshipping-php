@@ -82,12 +82,12 @@ if(isset($_GET["pr"])) {
 				$app['slug'] = $matches[1];
 				$app['id'] = $matches[2];
 				$app['page-type'] = 'product-quickview';
-			// }else if(preg_match('/categories\/index\.html\?price\=(\d+)-(\d+)/', $link_url, $matches)){
-			// 	$prs = explode("/", "categories/index.html?price=" . $matches[1] . "-" . $matches[2]);
-			// 	$app['linkpage'] = "categories-index";				
-			// 	$app['from'] = $matches[1];
-			// 	$app['to'] = $matches[2];
-			// 	$app['page-type'] = 'categories-index';
+			}else if (preg_match('/customer\/order\/success\/(.*)/', $link_url, $matches)) {
+				$prs = explode("/", "customer/order/success/" . $matches[1]);
+				$app['linkpage'] = "order-success";
+				$app['order_id'] = $matches[1];
+				// exit($app['order_id']);
+				$app['page-type'] = 'order-success';
 			} else if (preg_match('/categories\/index\.html\?s\=(.*) /', $link_url, $matches)) {
 				echo ('4');
 				$prs = explode("/", "categories/index.html?s=" . $matches[1]);

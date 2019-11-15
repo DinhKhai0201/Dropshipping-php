@@ -13,9 +13,9 @@ class login_controller extends vendor_main_controller {
 			} else {
 			}
 		}
-        if (isset($_SESSION['user']['role']) && $_SESSION['user']['role']==$rolesFlip["admin"]) {
-			header( "Location: ".vendor_app_util::url(array('area' => 'admin', 'ctl'=>'dashboard')));
-		}
+        // if (isset($_SESSION['user']['role']) && $_SESSION['user']['role']==$rolesFlip["admin"]) {
+		// 	header( "Location: ".vendor_app_util::url(array('area' => 'admin', 'ctl'=>'dashboard')));
+		// }
 
 		if(isset($_POST['btn_submit'])) {
 			$user = $_POST['user'];

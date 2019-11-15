@@ -430,7 +430,7 @@ class vendor_main_model {
 		if($result) {
 			$record = $result->fetch_assoc();
 		} else $record=false;
-		
+		// exit($sql);
 		return $record;
 	}
 

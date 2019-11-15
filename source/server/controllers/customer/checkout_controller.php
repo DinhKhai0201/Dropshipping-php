@@ -7,15 +7,11 @@ class checkout_controller extends vendor_main_controller
 			header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
 		} else {
 			$cart = new cart_model();
-			$wishlist = new wishlist_model();
-			$this->nocart = $cart->getCountRecords();
+			$this->nocart = $cart->getCountRecords(['conditions' => 'carts.user_id =' . $_SESSION['user']['id']]);
 			$this->products = $cart->getAllRecords('carts.*', [
 				'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
 				'joins' => ['product', 'user']
 			]);
-			// foreach ($this->products as $key => $value) {
-			// 	echo (json_encode($value));
-			// }
 			$this->display();
 		}
 	}
@@ -24,8 +20,67 @@ class checkout_controller extends vendor_main_controller
 		if (!isset($_SESSION['user'])) {
 			header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
 		} else {
+			global $app;
+			$cart = new cart_model();
+			$this->nocart = $cart->getCountRecords(['conditions' => 'carts.user_id =' . $_SESSION['user']['id']]);
+			$this->carts = $cart->getAllRecords('carts.*', [
+				'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
+				'joins' => ['product', 'user']
+			]);
             $this->display();
         }
+	}
+	public function orders() {
+		$status = false;
+		if (isset($_SESSION['user'])) {
+			global $app;
+			$cart = new cart_model();
+			$order = new order_model();
+			$order_i = new order_item_model();
+			$to_address = $_SESSION['user']['address'];
+			$currency = 0;
+			$token = md5(random_bytes(16));
+			// exit($token);
+			$this->carts = $cart->getAllRecords('carts.*', [
+				'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
+				'joins' => ['product', 'user']
+			]);
+			$dataOrder['token'] = $token;
+			$dataOrder['user_id'] = $_SESSION['user']['id'];
+			$dataOrder['order_status'] = $app['order_status'][0];
+			$dataOrder['to_address'] =  $to_address;
+			$dataOrder['total_price'] = $_POST['total'];
+			$dataOrder['info'] = $_POST['info'];
+			$dataOrder['currency'] = $currency;
+			$valid = $order->validator($dataOrder);
+			if ($valid['status']) {
+				if ($id_order = $order->addRecord($dataOrder)) {
+					foreach ($this->carts as $key => $value) {
+						$order_item['order_id'] = $id_order;
+						$order_item['product_id'] = $value['product_id'];
+						$order_item['quantity'] = $value['quantity'];
+						$order_item['color'] = $value['color'];
+						$order_item['size'] = $value['size'];
+						$order_item['price'] = $value['price'];
+						$valid_order = $order_i->validator($order_item);
+						if ($valid_order['status']) {
+							if ($ido = $order_i->addRecord($order_item)) {
+								$status = true;
+							}
+						}
+
+					}
+					
+				}
+			}
+
+			if ($status = true) {
+				$cart->delAllCart();
+				http_response_code(200);
+				echo ($token);
+			}
+			
+		}
 	}
 	public function addtocart()
 	{
@@ -76,5 +131,6 @@ class checkout_controller extends vendor_main_controller
 			}
 			echo json_encode($status);
 		}
-	} 
+	}
+	
 }

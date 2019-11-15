@@ -5,22 +5,15 @@ class order_model extends vendor_pagination_model
 	public static $status = [
 						0 => 'Pendding',
 						1 => 'Cancel',
-						2 => 'Complete'
+						2 => 'Shipping',
+						3 => 'Complete'
                     ];
   
 	public function rules() {
 		global $app;
-	    return [
-        	'name' => ['required', 'unique', 'string', ['max', 'value'=>50]]
-        	// 'coupon_code' 	=> ['required', 'unique', 'string', ['max', 'value'=>50]],
-	    ];
+	    
 	}
-
-	protected $relationships = [
-		'hasMany'	=>	[
-			['product_use_coupon',	'key'=>'coupon_id', 'on_del'=>true],
-		],
-	];
+	
 
 }
 ?>

@@ -135,8 +135,8 @@
                                         </tbody>
                                     </table>
                                     <ul class="checkout-types">
-                                        <li> <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout" onclick="window.location.href='<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout', 'act' => 'cart')); ?>'"><span><span>
-                                                        To Checkout</span></span></button>
+                                        <li> <button type="button" title="Proceed to Order" class="button btn-proceed-checkout btn-checkout" onclick="window.location.href='<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout', 'act' => 'cart')); ?>'"><span><span>
+                                                        Order Now</span></span></button>
                                         </li>
 
                                     </ul>

@@ -107,8 +107,7 @@
                             <span class="price-total"><span class="price">$${a}</span></span>
                         </div>
                         <div class="actions">
-                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-basket"></i>View Cart</a>
-                            <a class="btn btn-default" href="${rootUrl}"><i class="icon-right-thin"></i>Checkout</a>
+                            <a class="btn btn-default" href="${rootUrl}customer/checkout"><i class="icon-basket"></i>View Cart</a>
                         <div class="clearer"></div>
                         </div>
                         `;
@@ -127,6 +126,9 @@
                 success: function(data) {
                     let id = JSON.parse(data);
                     $('#item_' + id).remove();
+                    let num_wishlist = parseInt($('.no_wishlist').html());
+                    $('.no_wishlist').empty();
+                    $('.no_wishlist').html(num_wishlist - 1);
 
                 }
             });

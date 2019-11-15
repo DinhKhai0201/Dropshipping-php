@@ -163,9 +163,12 @@ jQuery(function ($) {
                 },
                 success: function (data) {
                     let product = JSON.parse(data);
-                    alert("Added to wishlist");
-                    console.log(data);
-                }
+                    let num_wishlist = parseInt($('.no_wishlist').html());
+                    $('.no_wishlist').empty();
+                    $('.no_wishlist').html(num_wishlist + 1);
+                        console.log(data);
+                    }
+
             });
         }
     });
