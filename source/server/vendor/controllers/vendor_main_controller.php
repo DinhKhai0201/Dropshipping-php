@@ -285,12 +285,19 @@ class vendor_main_controller {
 	public function cart_popup() {
 		$cart_nav = new cart_model();
 		$wishlist_nav = new wishlist_model();
-		$nocart_nav = $cart_nav->getCountRecords(['conditions' => 'carts.user_id =' . $_SESSION['user']['id']]);
-		$nowishlist_nav = $wishlist_nav->getCountRecords(['conditions' => 'wishlists.user_id =' . $_SESSION['user']['id']]);
-		$products_nav = $cart_nav->getAllRecords('carts.*', [
-			'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
-			'joins' => ['product', 'user']
-		]);
+		if (isset($_SESSION['user'])) {
+			$nocart_nav = $cart_nav->getCountRecords(['conditions' => 'carts.user_id =' . $_SESSION['user']['id']]);
+			$nowishlist_nav = $wishlist_nav->getCountRecords(['conditions' => 'wishlists.user_id =' . $_SESSION['user']['id']]);
+			$products_nav = $cart_nav->getAllRecords('carts.*', [
+				'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
+				'joins' => ['product', 'user']
+			]);
+		} else {
+			$nocart_nav = 0;
+			$nowishlist_nav = 0;
+			$products_nav = [];
+		}
+		
 		return [
 			'nocart'=> $nocart_nav,
 			'nowishlist' => $nowishlist_nav,

@@ -56,7 +56,7 @@
                  <div class="topCartContent block-content theme-border-color" style="max-height:500px;overflow:hidden;overflow-y: scroll;">
                      <div class="inner-wrapper">
 
-                         <?php if (isset($navbar['nocart']) && $navbar['nocart'] > 0) { ?>
+                         <?php if (isset($navbar['nocart']) && isset($_SESSION['user']) && $navbar['nocart'] > 0) { ?>
                              <?php foreach ($navbar['data'] as $key => $value) { ?>
                                  <ol class="mini-products-list item_<?= $value['id']; ?>">
                                      <li class="item">

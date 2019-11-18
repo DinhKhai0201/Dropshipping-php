@@ -67,11 +67,11 @@
               <i class="fas fa-align-left"></i> Show all Order
               </a>
             </li>
-            <li <?=($app['ctl']=='orders')? 'class="active"':'';?>>
+            <!-- <li <?=($app['ctl']=='orders')? 'class="active"':'';?>>
               <a href="<?=vendor_app_util::url(array('ctl'=>'orders', 'act'=>'add')); ?>">
                 <i class="fas fa-plus"></i> Add a Order
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <li class="treeview <?=($app['ctl']=='coupons')? 'active menu-open':'';?>">

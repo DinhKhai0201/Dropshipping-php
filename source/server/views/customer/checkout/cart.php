@@ -556,7 +556,7 @@
                                                         <strong>Grand Total</strong>
                                                     </td>
                                                     <td style="" class="a-right last">
-                                                        <strong><span class="price"><?php $total = 0;
+                                                        <strong><span class="price "><?php $total = 0;
                                                                                         foreach ($this->carts as $key => $value) {
                                                                                             $total += (intval($value['price']) * intval($value['quantity']));
                                                                                         }
@@ -585,7 +585,7 @@
                                                         <!-- sub total starts here -->
                                                         <td class="a-right last">
                                                             <span class="cart-price">
-                                                                <span class="price"><?php echo "$" . (intval($carts['price']) * intval($carts['quantity'])); ?></span>
+                                                                <span class="price "><?php echo "$" . (intval($carts['price']) * intval($carts['quantity'])); ?></span>
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -674,14 +674,16 @@
             $('#checkout-step-payment').show('slow');
             $('#checkout-step-review').hide('slow');
         });
-        $('.order_now').on('click', '.continue_order', function() {
+        $('.order_now').on('click', '.continue_order', function() { 
             let total_price = parseInt($('.total_price').html());
+            let shipping_fee = parseInt($('.shipping_fee').html());
+            console.log(total_price)
             let order_info = $('#order-info').val();
             $.ajax({
                 url: rootUrl + "customer/checkout/orders",
                 method: "POST",
                 data: {
-                    total: total_price,
+                    total: total_price + shipping_fee,
                     info: order_info
                 },
                 success: function(data) {

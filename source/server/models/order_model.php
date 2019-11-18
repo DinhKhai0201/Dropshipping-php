@@ -13,6 +13,15 @@ class order_model extends vendor_pagination_model
 		global $app;
 	    
 	}
+	protected $relationships = [
+		'hasMany'	=>	[
+			['order_item',	'key'=>'order_id', 'on_del'=>true],
+			
+		],
+		'belongTo' => [
+			['user','key'=>'user_id']
+		]
+	];
 	
 
 }

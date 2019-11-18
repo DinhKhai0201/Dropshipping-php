@@ -30,7 +30,7 @@ class wishlist_controller extends vendor_main_controller
         $wishData['price'] = $_POST['price'];
         $wishData['color'] = $_POST['color'];
         $wishData['image'] = $_POST['image'];
-
+        $wishData['supplier_id'] = $_POST['supplier_id'];
         $wm = new wishlist_model();
         $valid = $wm->validator($wishData);
         if ($valid['status']) {
@@ -80,6 +80,7 @@ class wishlist_controller extends vendor_main_controller
                 $data = $this->record;
                 $cartData['product_id'] = $data['product_id'];
                 $cartData['user_id'] = $_SESSION['user']['id'];
+                $cartData['supplier_id'] = $data['supplier_id'];
                 $cartData['quantity'] = $data['quantity'];
                 $cartData['color'] = $data['color'];
                 $cartData['size'] = $data['size'];
@@ -116,6 +117,7 @@ class wishlist_controller extends vendor_main_controller
                 $data = $value;
                 $cartData['product_id'] = $data['product_id'];
                 $cartData['user_id'] = $_SESSION['user']['id'];
+                $cartData['supplier_id'] = $data['supplier_id'];
                 $cartData['quantity'] = $data['quantity'];
                 $cartData['color'] = $data['color'];
                 $cartData['size'] = $data['size'];

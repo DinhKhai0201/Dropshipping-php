@@ -2,6 +2,7 @@ jQuery(function ($) {
     $(".container").on("click", ".towishlist", function () {
         let id = ($(this).context.attributes.value.value);
         let key = ($(this).context.attributes.key.value);
+        let supplier_id = ($(this).context.attributes.supplier.value);
         let color = ($(this).context.attributes.colors.value);
         let qty = ($(this).context.attributes.qty.value);
         let price = ($(this).context.attributes.price.value);
@@ -14,7 +15,8 @@ jQuery(function ($) {
                 color: color,
                 qty: qty,
                 price:price,
-                image: image
+                image: image,
+                supplier_id : supplier_id
             },
             success: function (data) {
                 // console.log(data);

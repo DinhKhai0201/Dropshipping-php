@@ -96,8 +96,9 @@ jQuery(function ($) {
         let color = get_filter('color');
         let name = ($(this).context.attributes.name.value);
         let slug = ($(this).context.attributes.slug.value);
+        let supplier = ($(this).context.attributes.supplier.value);
         let qty =$(this).parent().children('.qty-holder').children().val();
-        console.log(qty);
+        console.log(supplier);
         if (color.length == 0) {
             console.log("a");
             $('.error-color').show();
@@ -114,7 +115,8 @@ jQuery(function ($) {
                     color: color.join(),
                     qty: qty,
                     price: product_price,
-                    image: image_p
+                    image: image_p,
+                    supplier: supplier
                 },
                 success: function (data) {
                     let product = JSON.parse(data);
@@ -145,6 +147,7 @@ jQuery(function ($) {
     //ok
     $('.addWishlistJs').click(function() {
         let color = get_filter('color');
+        let supplier = ($(this).context.attributes.supplier.value);
         if (color.length == 0) {
             $('.error-color').show();
         } else {
@@ -160,7 +163,8 @@ jQuery(function ($) {
                     color: color.join(),
                     qty: product_qty,
                     price: product_price,
-                    image: image_p
+                    image: image_p,
+                     supplier: supplier
                 },
                 success: function (data) {
                     let product = JSON.parse(data);

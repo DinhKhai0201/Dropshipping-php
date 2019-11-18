@@ -30,11 +30,9 @@
                                                 <td colspan="50" class="a-right">
                                                     <button title="Continue Shopping" class="button btn-continue" onclick="window.location.href='<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>'"><span><span>Continue
                                                                 Shopping</span></span></button>
-                                                    <button title="Update Shopping Cart" class="button btn-update"><span><span>Update
-                                                                Shopping Cart</span></span></button>
+                                                 
                                                     <button title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Shopping
                                                                 Cart</span></span></button>
-
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -50,7 +48,7 @@
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:void(0)" key="<?= $product['id']; ?>" value="<?= $product['product_id']; ?>" colors="<?= $product['color']; ?>" qty="<?= $product['quantity']; ?>" price="<?= $product['price']; ?>" image="<?= $product['image']; ?>" class="link-wishlist towishlist use-ajax">Add</a>
+                                                        <a href="javascript:void(0)" key="<?= $product['id']; ?>" value="<?= $product['product_id']; ?>" colors="<?= $product['color']; ?>" supplier ="<?= $product['supplier_id']; ?>"  qty="<?= $product['quantity']; ?>" price="<?= $product['price']; ?>" image="<?= $product['image']; ?>" class="link-wishlist towishlist use-ajax">Add</a>
                                                     </td>
                                                     <td>
                                                         <span class="cart-price">

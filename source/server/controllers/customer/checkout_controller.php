@@ -47,7 +47,7 @@ class checkout_controller extends vendor_main_controller
 			]);
 			$dataOrder['token'] = $token;
 			$dataOrder['user_id'] = $_SESSION['user']['id'];
-			$dataOrder['order_status'] = $app['order_status'][0];
+			$dataOrder['order_status'] = 0;
 			$dataOrder['to_address'] =  $to_address;
 			$dataOrder['total_price'] = $_POST['total'];
 			$dataOrder['info'] = $_POST['info'];
@@ -58,6 +58,7 @@ class checkout_controller extends vendor_main_controller
 					foreach ($this->carts as $key => $value) {
 						$order_item['order_id'] = $id_order;
 						$order_item['product_id'] = $value['product_id'];
+						$order_item['supplier_id'] = $value['supplier_id'];
 						$order_item['quantity'] = $value['quantity'];
 						$order_item['color'] = $value['color'];
 						$order_item['size'] = $value['size'];
@@ -73,7 +74,6 @@ class checkout_controller extends vendor_main_controller
 					
 				}
 			}
-
 			if ($status = true) {
 				$cart->delAllCart();
 				http_response_code(200);
@@ -96,7 +96,7 @@ class checkout_controller extends vendor_main_controller
 		$cartData['price'] = $_POST['price'];
 		$cartData['color'] = $_POST['color'];
 		$cartData['image'] = $_POST['image'];
-
+		$cartData['supplier_id'] = $_POST['supplier'];
 		$wm = new cart_model();
 		$valid = $wm->validator($cartData);
 		if ($valid['status']) {

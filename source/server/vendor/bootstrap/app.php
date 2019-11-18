@@ -107,28 +107,28 @@ if(isset($_GET["pr"])) {
 			// 	$app['linkpage'] = "categories";
 			// 	$app['page-current'] = $matches[1];
 			// 	$app['page-type'] = 'categories';
-			}else if(preg_match('/viec-lam-hap-dan\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-				$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
-				$app['linkpage'] = "viec-lam-hap-dan";
-				$app['page-current'] = $matches[1];
-				$app['page-type'] = 'viec-lam-hap-dan';	
-			}else if(preg_match('/tuyen-dung\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-				$prs = explode("/","employers/index?page=".$matches[1]."&".$matches[2]);
-				$app['linkpage'] = "tuyen-dung";
-				$app['page-current'] = $matches[1];
-			}else if(preg_match('/ung-vien\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-				$prs = explode("/","candidates/index?page=".$matches[1]."&".$matches[2]);
-				$app['linkpage'] = "ung-vien";
-				$app['page-current'] = $matches[1];
-			}else if(preg_match('/tuyen-dung\/(.*)-(\d+)$/', $_GET['pr'], $matches)){
-				$prs = explode("/","jobs/index?cat=".$matches[2]);
-				$app['linkpage'] = "tuyen-dung-category";
-				$app['category-slug'] = $matches[1];
-				$app['linkpage-id-nganhnghe'] = $matches[2];
-			}else if(preg_match('/tuyen-dung\/(.*[\-].*[^\d+])$/', $_GET['pr'], $matches)){
-				$prs = explode("/","jobs/index?location=".$matches[1]);
-				$app['linkpage'] = "tuyen-dung-location";
-				$app['linkpage-id-diadiem'] = $matches[1];
+			// }else if(preg_match('/viec-lam-hap-dan\/trang-(\d+).html?(.*)/', $link_url, $matches)){
+			// 	$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
+			// 	$app['linkpage'] = "viec-lam-hap-dan";
+			// 	$app['page-current'] = $matches[1];
+			// 	$app['page-type'] = 'viec-lam-hap-dan';	
+			// }else if(preg_match('/tuyen-dung\/trang-(\d+).html?(.*)/', $link_url, $matches)){
+			// 	$prs = explode("/","employers/index?page=".$matches[1]."&".$matches[2]);
+			// 	$app['linkpage'] = "tuyen-dung";
+			// 	$app['page-current'] = $matches[1];
+			// }else if(preg_match('/ung-vien\/trang-(\d+).html?(.*)/', $link_url, $matches)){
+			// 	$prs = explode("/","candidates/index?page=".$matches[1]."&".$matches[2]);
+			// 	$app['linkpage'] = "ung-vien";
+			// 	$app['page-current'] = $matches[1];
+			// }else if(preg_match('/tuyen-dung\/(.*)-(\d+)$/', $_GET['pr'], $matches)){
+			// 	$prs = explode("/","jobs/index?cat=".$matches[2]);
+			// 	$app['linkpage'] = "tuyen-dung-category";
+			// 	$app['category-slug'] = $matches[1];
+			// 	$app['linkpage-id-nganhnghe'] = $matches[2];
+			// }else if(preg_match('/tuyen-dung\/(.*[\-].*[^\d+])$/', $_GET['pr'], $matches)){
+			// 	$prs = explode("/","jobs/index?location=".$matches[1]);
+			// 	$app['linkpage'] = "tuyen-dung-location";
+			// 	$app['linkpage-id-diadiem'] = $matches[1];
 			}else{
 
 				switch($par){

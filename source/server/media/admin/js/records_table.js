@@ -7,7 +7,7 @@ $(document).ready(function () {
 		var ctl = $("table.dataTable").attr("controller");
 		function delRecord(id, act) {
 			let urlDele = rootUrl+"admin/"+ctl+"/"+act+"/"+ id;
-			console.log(urlDele);
+			// console.log(urlDele);
 			$.ajax({
 				url: urlDele,
 				success: function (data) {
@@ -66,6 +66,26 @@ $(document).ready(function () {
 				idAct = $(this).attr('alt');
 				delRecord(idAct, 'del');
 			}
+		});
+		$('tbody.records').on('click', 'td.btn-act button.process-record', function () {
+			idAct = $(this).attr('alt');
+			status = $(this).attr('status')
+			urlToggle = rootUrl + "admin/" + ctl + "/changestatus/" + idAct + "/" + status;
+			$.ajax({
+				url: urlToggle,
+				success: function (data) {
+					if (status == 0) {
+						$('#process' + idAct).removeClass("btn-danger").addClass("btn-success");
+						$('#process' + idAct).html('Processed');
+					}
+					if (status == 1) {
+						$('#process' + idAct).removeClass("btn-success").addClass("btn-danger");
+						$('#process' + idAct).html('Not processed');
+					}
+					$('#process' + idAct).attr({ "status": (status == '0') ?'1':'0' });
+				}
+			})
+			
 		});
 		
 		// ok
