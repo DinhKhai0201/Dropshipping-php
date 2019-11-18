@@ -1,8 +1,7 @@
 <?php
 global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
-
-
+array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
 
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
@@ -17,6 +16,31 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
             </div>
             <div class="col-main col-lg-9 lg-order-12">
                 <div class="my-account">
+                    <div class="top-container">
+                        <div class="breadcrumbs" style ="margin-bottom: 20px">
+                            <div class="container">
+                                <div class="row">
+                                        <ul>
+                                            <li class="home">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "order"])) ?>" title="My account Dropshipping">My Order</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="product">
+                                                <strong>My Detail Order </strong>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="page-title">
                         <h1>My Orders</h1>
                     </div>
@@ -41,12 +65,15 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
                         <col />
                         <col width="1" />
                         <col width="1" />
+                        <col width="1" />
                         <thead>
                             <tr>
                                 <th>Order #</th>
                                 <th>Date</th>
                                 <th>Ship To</th>
-                                <th><span class="nobr">Order Total</span></th>
+                                <th>Info</th>
+
+                                <th><span class="nobr">Total Price</span></th>
                                 <th><span class="nobr">Order Status</span></th>
                             </tr>
                         </thead>
@@ -56,19 +83,20 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
                                     <td><?= $value['id'] ?></td>
                                     <td><span class="nobr"><?= $value['created'] ?></span></td>
                                     <td><?= $value['to_address'] ?></td>
+                                    <td><?= $value['info'] ?></td>
+
                                     <td><span class="price"><?= (intval($value['total_price'])) ?></span></td>
                                     <td><em>
-                                     <?php if ($value['order_status'] == 0) {
-                                            echo "Pendding";
+                                    <?php if ($value['order_status'] == 0) {
+                                            echo "<p class ='pendding'>Pendding</p>";
                                         } else if ($value['order_status'] == 1) {
-                                            echo "Cancel";
+                                            echo "<p class ='cancel'>Cancel</p>";
                                         } else if ($value['order_status'] == 2) {
-                                            echo "Shipping";
+                                            echo "<p class ='shipping'>Shipping</p>";
                                         } else {
-                                            echo "Complete";
+                                            echo "<p class ='complete'>Complete</p>";
                                         }
                                         ?>
-                                    </td>
                                    
                                 </tr>
                             <?php } ?>
@@ -92,24 +120,30 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
                                 <th>Quantity</th>
                                  <th>Color</th>
                                   <th>Size</th>
-                                <th><span class="nobr">Order Total</span></th>
-                                <th><span class="nobr">Order Status</span></th>
+                                <th><span class="nobr">Sub Total</span></th>
+                                <th><span class="nobr">Status</span></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($this->order_item as $key => $value) { ?>
                                 <tr>
-                                    <td><?= $value['product_id'] ?></td>
-                                    <td><span class="nobr"><?= $value['supplier_id'] ?></span></td>
+                                    <td>
+                                    <a href ="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => "product", "act" => "view/" . $value['products_slug'] . "-" . $value['product_id']])) ?>" target="_blank">
+                                        <?= $value['products_name'] ?>
+                                    </a>
+                                    </td>
+                                    <td><span class="nobr">
+                                        <?= $value['users_firstname'] ?>
+                                    </span></td>
                                     <td><?= $value['quantity'] ?></td>
                                      <td><?= $value['color'] ?></td>
                                       <td><?= $value['size'] ?></td>
                                     <td><span class="price"><?= (intval($value['price'])) ?></span></td>
                                     <td><em>
                                      <?php if ($value['status'] == 0) {
-                                            echo "Not process";
+                                            echo "<p class ='not-process'>Not process</p>";
                                         } else {
-                                            echo "Processed";
+                                            echo "<p class ='processed'>Processed</p>";
                                         }
                                         ?>
                                     </td>
@@ -122,6 +156,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
                 <div class="buttons-set">
                     <p class="back-link"><a href="javascript:history.back()"><small>&laquo;
                             </small>Back</a></p>
+                    
                 </div>
             </div>
         </div>

@@ -1,0 +1,18 @@
+.pendding {
+    color: orange;
+}
+.shipping {
+    color: blue;
+}
+.complete {
+    color: green;
+}
+.cancel {
+    color: red;
+}
+.not-process {
+    color: red;
+}
+.processed {
+    color:green;
+}

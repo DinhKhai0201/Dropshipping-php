@@ -164,14 +164,14 @@ jQuery(function ($) {
                     qty: product_qty,
                     price: product_price,
                     image: image_p,
-                     supplier: supplier
+                    supplier_id: supplier
                 },
                 success: function (data) {
                     let product = JSON.parse(data);
                     let num_wishlist = parseInt($('.no_wishlist').html());
                     $('.no_wishlist').empty();
                     $('.no_wishlist').html(num_wishlist + 1);
-                        console.log(data);
+                    console.log(data);
                     }
 
             });

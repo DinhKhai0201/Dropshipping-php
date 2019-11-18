@@ -1,4 +1,9 @@
+<?php
+global $mediaFiles;
+array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
+?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
+
 <div class="main-container col2-left-layout">
     <div class="main container">
         <div class="row">
@@ -10,6 +15,27 @@
             </div>
             <div class="col-main col-lg-9 lg-order-12">
                 <div class="my-account">
+                    <div class="top-container">
+                        <div class="breadcrumbs" style ="margin-bottom: 20px">
+                            <div class="container">
+                                <div class="row">
+                                        <ul>
+                                            <li class="home">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="product">
+                                                <strong>My Order </strong>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="page-title">
                         <h1>My Orders</h1>
                     </div>
@@ -25,13 +51,16 @@
                         <col width="1" />
                         <col width="1" />
                         <col width="1" />
+
+                        <col width="1" />
                         <thead>
                             <tr>
                                 <th>Order #</th>
                                 <th>Date</th>
                                 <th>Ship To</th>
-                                <th><span class="nobr">Order Total</span></th>
-                                <th><span class="nobr">Order Status</span></th>
+                                <th>Info</th>
+                                <th><span class="nobr">Total</span></th>
+                                <th><span class="nobr">Status</span></th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -41,16 +70,18 @@
                                     <td><?= $value['id'] ?></td>
                                     <td><span class="nobr"><?= $value['created'] ?></span></td>
                                     <td><?= $value['to_address'] ?></td>
+                                    <td><?= $value['info'] ?></td>
+
                                     <td><span class="price"><?= (intval($value['total_price'])) ?></span></td>
                                     <td><em>
                                      <?php if ($value['order_status'] == 0) {
-                                            echo "Pendding";
+                                            echo "<p class ='pendding'>Pendding</p>";
                                         } else if ($value['order_status'] == 1) {
-                                            echo "Cancel";
+                                            echo "<p class ='cancel'>Cancel</p>";
                                         } else if ($value['order_status'] == 2) {
-                                            echo "Shipping";
+                                            echo "<p class ='shipping'>Shipping</p>";
                                         } else {
-                                            echo "Complete";
+                                            echo "<p class ='complete'>Complete</p>";
                                         }
                                         ?>
                                     </td>
@@ -68,11 +99,13 @@
                 <div class="buttons-set">
                     <p class="back-link"><a href="javascript:history.back()"><small>&laquo;
                             </small>Back</a></p>
+                    <?php vendor_html_helper::paginationuser($this->orders['norecords'], $this->orders['nocurp'], $this->orders['curp'], $this->orders['nopp']); ?>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-</div>
-<?php include_once 'views/layout/' . $this->layout . 'footer.php';
+<!-- </div> -->
+<!-- <p>a</p> -->
+<?php include_once 'views/layout/' . $this->layout . 'footer.php';?>

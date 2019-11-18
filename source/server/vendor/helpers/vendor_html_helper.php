@@ -13,6 +13,14 @@ class vendor_html_helper{
 		$relpath = self::helpersDirectory.__FUNCTION__."/index.php";
 		if(is_file("views".$relpath)) include "views".$relpath;
 		else include "vendor".$relpath;
+    }
+    public static function paginationuser($norecords, $nocurp, $curp, $nopp) {
+		$from 	= ($curp-1)*$nopp+1;
+		$to 	= ($curp-1)*$nopp + $nocurp;
+		$nopages= ceil($norecords/$nopp);
+		$relpath = self::helpersDirectory.__FUNCTION__."/index.php";
+		if(is_file("views".$relpath)) include "views".$relpath;
+		else include "vendor".$relpath;
 	}
 
 	public static function contentheader($title, $breadcrumb) {

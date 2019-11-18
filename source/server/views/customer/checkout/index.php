@@ -3,6 +3,28 @@
     <div class="main container">
         <div class="col-main">
             <div class="cart cart-append-product">
+                <div class="top-container">
+                        <div class="breadcrumbs" style ="margin-bottom: 20px">
+                            <div class="container">
+                                <div class="row">
+                                        <ul>
+                                            <li class="home">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                          
+                                            <li class="product">
+                                                <strong>Shopping cart </strong>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="page-title title-buttons">
                     <h1>Shopping Cart</h1>
                 </div>

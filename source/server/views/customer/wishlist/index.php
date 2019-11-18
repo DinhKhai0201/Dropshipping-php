@@ -9,6 +9,28 @@
             </div>
             <div class="col-main col-lg-9 lg-order-12">
                 <div class="my-account">
+                    <div class="top-container">
+                        <div class="breadcrumbs" style ="margin-bottom: 20px">
+                            <div class="container">
+                                <div class="row">
+                                        <ul>
+                                            <li class="home">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                            <li class="">
+                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
+                                                <span class="breadcrumbs-split">></span>
+                                            </li>
+                                          
+                                            <li class="product">
+                                                <strong>My wishlist </strong>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="my-wishlist ">
                         <div class="page-title title-buttons">
                             <h1>My Wishlist</h1>
