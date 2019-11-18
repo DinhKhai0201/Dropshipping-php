@@ -80,7 +80,7 @@ $(document).ready(function () {
 					}
 					if (status == 1) {
 						$('#process' + idAct).removeClass("btn-success").addClass("btn-danger");
-						$('#process' + idAct).html('Not processed');
+						$('#process' + idAct).html('Not process');
 					}
 					$('#process' + idAct).attr({ "status": (status == '0') ?'1':'0' });
 				}
@@ -288,7 +288,35 @@ $(document).ready(function () {
 				})
 			}
 		});
-	
+		let modal = document.querySelector(".modaly");
+		let trigger = document.querySelector(".trigger");
+		let closeButton = document.querySelector(".close-button");
+
+		function toggleModal() {
+			modal.classList.toggle("show-modaly");
+		}
+
+		function windowOnClick(event) {
+			if (event.target === modal) {
+				toggleModal();
+			}
+		}
+
+		trigger.addEventListener("click", toggleModal);
+		closeButton.addEventListener("click", toggleModal);
+		window.addEventListener("click", windowOnClick);
+		//4 step order
+		$('.modaly-body').on('click','.modaly-bt',function() {
+			let status = $(this).attr('status');
+			let id = $(this).attr('key');
+			urlToggle = rootUrl + "admin/" + ctl + "/changeStatusOrder/" + id + "/" + status;
+			$.ajax({
+				url: urlToggle,
+				success: function (data) {
+					location.reload();
+				}
+			})
+		});
 	})(jQuery);
 	
 });

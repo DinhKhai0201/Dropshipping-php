@@ -12,9 +12,9 @@ class orders_controller extends vendor_backend_controller {
           }
           
           if(isset($app['prs']['search'])){
-            exit();
             $conditions .= (($conditions)? " AND ":"").
-            " orders.status	like '%".$app['prs']['search']."%' OR ".
+			" orders.order_status	like '%".$app['prs']['search']."%' OR ".
+			" orders.to_address	like '%" . $app['prs']['search'] . "%' OR " .
             " users.firstname	like '%".$app['prs']['search']."%' OR ".
             " users.lastname	like '%".$app['prs']['search']."%' OR ".
             " orders.id like '%".$app['prs']['search']."%'";
@@ -36,8 +36,11 @@ class orders_controller extends vendor_backend_controller {
   public function view($id) {
 		$om = new order_model();
 		$oim = new order_item_model();
-		$this->record = $om->getRecord($id);
-		// exit(json_encode($this->record));
+		$this->record = $om->getAllRecordsId('orders.*', [
+			'conditions' => 'orders.id =' . $id,
+			'joins' => ['user']
+		]);
+		// exit(($this->record));
 		$this->records = $oim->allp('order_items.*', [
 				'conditions' => 'order_items.order_id = '.$id,
 				 'joins' => ['product','user'],
@@ -48,13 +51,22 @@ class orders_controller extends vendor_backend_controller {
 		$this->display();
 	}
 
-
+	
 	public function changestatus() {
 		global $app;
 		$id = $app['prs'][1];
 		$oim = new order_item_model();
 		$oiData['status'] = ($app['prs'][2] == 0)?1:0;
 		if($oim->editRecord($id, $oiData)) echo "Change status successful";
+		else echo "error";
+	}
+	public function changeStatusOrder()
+	{
+		global $app;
+		$id = $app['prs'][1];
+		$om = new order_model();
+		$oData['order_status'] = $app['prs'][2];
+		if ($om->editRecord($id, $oData))  echo "Change status successful";
 		else echo "error";
 	}
 	// ok

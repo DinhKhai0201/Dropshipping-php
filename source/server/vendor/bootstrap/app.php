@@ -87,13 +87,20 @@ if(isset($_GET["pr"])) {
 				$app['linkpage'] = "order-success";
 				$app['order_id'] = $matches[1];
 				// exit($app['order_id']);
-				$app['page-type'] = 'order-success';
+				$app['page-type'] = 'order-success'; 
 			} else if (preg_match('/categories\/index\.html\?s\=(.*) /', $link_url, $matches)) {
-				echo ('4');
+				// echo ('4');
 				$prs = explode("/", "categories/index.html?s=" . $matches[1]);
 				$app['linkpage'] = "categories-index";
 				$app['search'] = $matches[1];
 				$app['page-type'] = 'categories-index';
+			} else if (preg_match('/customer\/order\/vieworder\/(.*)-(.*)/', $link_url, $matches)) {
+				$prs = explode("/", "customer/order/vieworder/" . $matches[1].'-'.$matches[2]);
+				$app['linkpage'] = "order-vieworder";
+				$app['ordertoken'] = $matches[1];
+				$app['id'] = $matches[2];
+				$app['page-type'] = 'order-vieworder';
+			
 				// exit(json_encode($app['to']));
 			// } else if (preg_match('/categories\/index\.html\?cat\=(.*)-(\d+)/', $link_url, $matches)) {
 			// 	$prs = explode("/", "/categories/index.html?cat=" . $matches[1]."-". $matches[2]);
@@ -130,7 +137,6 @@ if(isset($_GET["pr"])) {
 			// 	$app['linkpage'] = "tuyen-dung-location";
 			// 	$app['linkpage-id-diadiem'] = $matches[1];
 			}else{
-
 				switch($par){
 
 					// case "bao-gia-dich-vu-dang-tin":
@@ -225,6 +231,7 @@ if(isset($_GET["pr"])) {
 							$app['page-type'] = 'categories-index';
 								break;
 						}
+						
 						if(preg_match('/viec-lam\/(.*)-(\d+).amp.html/', $link_url, $matches)){
 							$prs = explode("/","jobs/viewAmp/".$matches[1].'/'.$matches[2]);
 							$app['linkpage'] = "tuyen-dung-viec-lam";

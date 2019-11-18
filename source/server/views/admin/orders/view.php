@@ -6,7 +6,7 @@
     'urlp' => ['ctl' => $app['ctl']]
   ],
   [
-    'title' =>  'Detail of order ' . $this->record['id'],
+    'title' =>  'Detail of order ' ,
     'urlp'  =>  ['ctl' => $app['ctl'], 'act' => $app['act']]
   ]
 ]); ?>

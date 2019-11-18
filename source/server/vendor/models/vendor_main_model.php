@@ -115,6 +115,67 @@ class vendor_main_model {
 
 		return $this->con->query($sql);
 	}
+	public function getAllRecordsId($fields = '*', $options = null)
+	{
+		$join = '';
+		if (isset($this->relationships) && (isset($options['joins']) && $options['joins'])) {
+			$joinFields = "";
+			foreach ($this->relationships as $k => $rv) {
+				if (!vendor_app_util::is_multi_array($rv)) {
+					$vtmp = $rv;
+					$rv = [];
+					$rv[] = $vtmp;
+				}
+				foreach ($rv as $v) {
+					if (isset($options['joins']) && !in_array($v[0], $options['joins']))
+						continue;
+					$joinTable = $this->getTableNameFromModelName($v[0]);
+					$joinTableFields = $this->getAllFieldsOfTable($joinTable);
+					if ($k == "belongTo") {
+						foreach ($joinTableFields as $field) {
+							$joinFields .= ", " . $joinTable . "." . $field . " as " . $joinTable . "_" . $field;
+						}
+						$join .= " LEFT JOIN " . $joinTable . " ON " . $this->table . "." . $v['key'] . "=" . $joinTable . ".id ";
+					} else if ($k == "hasMany" && isset($options['get-child']) && $options['get-child']) {
+						foreach ($joinTableFields as $field) {
+							$joinFields .= ", " . $joinTable . "." . $field . " as " . $joinTable . "_" . $field;
+						}
+						$join .= " RIGHT JOIN " . $joinTable . " ON " . $this->table . ".id=" . $joinTable . "." . $v['key'] . " ";
+					}
+				}
+			}
+			if ($joinFields)	$fields .= $joinFields;
+		}
+		$conditions = (isset($options['conditions']) && $options['conditions']) ? ' where ' . $options['conditions'] : "";
+
+		/* Becaful with group */
+		$group = "";
+		if (isset($options['group'])) {
+			$group = " GROUP BY ";
+			if (strpos($options['group'], '.') !== false) {
+				$group .= $options['group'];
+			} else 	$group .= $this->table . "." . $options['group'];
+		}
+
+		$order = " ORDER BY ";
+		if (isset($options['order'])) {
+			if (substr($options['order'], 0, 1) == '*') {
+				$order .= substr($options['order'], 1);
+			} else if (strpos($options['order'], '.') !== false) {
+				$order .= $options['order'];
+			} else 	$order .= $this->table . "." . $options['order'];
+		} else
+			$order .= $this->table . ".created DESC";
+
+		$sql = "SELECT " . $fields . " FROM " . $this->table . $join . $conditions . $group . $order;
+		// var_dump($sql);
+		$result = $this->con->query($sql);
+		$records = [];
+		foreach ($result as $key => $value) {
+			$records[] = $value;
+		}
+		return $records;
+	}
 	public function getAllRecordsExport($fields = '*', $options = null) {
 		$join = '';
 		if(isset($this->relationships) && (isset($options['joins']) && $options['joins'])) {

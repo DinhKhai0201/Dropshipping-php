@@ -6,60 +6,7 @@
 				<div id="legend" style="margin: 20px auto;display: table;font-weight: 700;">
 					<legend class=""><?php echo ucwords($app['act'] . ' ' . $app['ctl']); ?></legend>
 				</div>
-				<!-- <button class="btn btn-default btn-lg col-xs-5  trigger"><span itemprop="name">Tất cả danh mục</span><span class="caret _2UAALXHJVap4y2kAfwkH6_"></span></button>
-				<div class="modaly">
-					<div class="modal-contenty">
-						<span class="close-button">&times;</span>
-						<h1>Hello, I am a modal!</h1>
-					</div>
-				</div> -->
-				<!-- <style>
-					.modaly {
-						position: fixed;
-						left: 0;
-						top: 0;
-						width: 100%;
-						height: 100%;
-						background-color: rgba(0, 0, 0, 0.5);
-						opacity: 0;
-						z-index: 9999;
-						visibility: hidden;
-						transform: scale(1.1);
-						transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-					}
-
-					.modal-contenty {
-						position: absolute;
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%, -50%);
-						background-color: white;
-						padding: 1rem 1.5rem;
-						width: 24rem;
-						border-radius: 0.5rem;
-					}
-
-					.close-button {
-						float: right;
-						width: 1.5rem;
-						line-height: 1.5rem;
-						text-align: center;
-						cursor: pointer;
-						border-radius: 0.25rem;
-						background-color: lightgray;
-					}
-
-					.close-button:hover {
-						background-color: darkgray;
-					}
-
-					.show-modaly {
-						opacity: 1;
-						visibility: visible;
-						transform: scale(1.0);
-						transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-					}
-				</style> -->
+				
 				<?php if ($app['act'] != 'view') { ?>
 					<form id="form-addproduct" action="<?php echo vendor_app_util::url(["ctl" => "products", "act" => $app['act'] == 'edit' ? $app['act'] . "/" . $this->record['id'] : $app['act']]); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 					<?php } ?>
@@ -404,23 +351,7 @@
 <script type="text/javascript" src="<?php echo RootREL; ?>media/admin/js/okzoom.js"></script>
 
 <script>
-	// var modal = document.querySelector(".modaly");
-	// var trigger = document.querySelector(".trigger");
-	// var closeButton = document.querySelector(".close-button");
-
-	// function toggleModal() {
-	// 	modal.classList.toggle("show-modaly");
-	// }
-
-	// function windowOnClick(event) {
-	// 	if (event.target === modal) {
-	// 		toggleModal();
-	// 	}
-	// }
-
-	// trigger.addEventListener("click", toggleModal);
-	// closeButton.addEventListener("click", toggleModal);
-	// window.addEventListener("click", windowOnClick);
+	
 	$("#name").keyup(function() {
 		$("#slug").val(slugify($(this).val()));
 	});

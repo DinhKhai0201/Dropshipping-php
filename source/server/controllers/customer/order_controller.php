@@ -47,15 +47,31 @@ class order_controller extends vendor_main_controller
         } else {
             header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
         }
-    }
+    } 
     public function vieworder()
     {
+        global $app;
         if (isset($_SESSION['user'])) {
             $order_item = new order_item_model();
-            $this->orders = $order_item->getAllRecords('order_items.*', [
-                'conditions' => 'orders.user_id =' . $_SESSION['user']['id'].' AND id = 1'
-            ]);
-            $this->display();
+            $order = new order_model();
+            // exit($app['ordertoken']);
+            if (isset($app['ordertoken']) && isset($app['id'])) {
+                $token = $app['ordertoken'];
+                $id = $app['id'];
+                $this->order = $order->getAllRecords('orders.*', [
+                    'conditions' => 'orders.token ="' .$token.'"'
+                ]);
+                $this->order_item = $order_item->getAllRecords('order_items.*', [
+                    'conditions' => 'order_items.order_id ="' .$id.'"',
+                    'joins' => ['product','user']
+                ]);
+                $this->display();
+            }
+          
+            // $this->orders = $order_item->getAllRecords('order_items.*', [
+            //     'conditions' => 'orders.user_id =' . $_SESSION['user']['id'].' AND id = 1'
+            // ]);
+            
         } else {
             header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
         }
