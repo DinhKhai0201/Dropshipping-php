@@ -40,6 +40,7 @@ jQuery(function ($) {
         });
         return filter;
     }
+   
     $('ul.colors').on("click", "li", function () {
         $('.color:checked').parent().addClass('border-choose');
         $('.color:not(:checked)').parent().removeClass('border-choose');

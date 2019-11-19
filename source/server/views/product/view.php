@@ -2,10 +2,22 @@
 global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
 array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
+array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
+
 
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <?php foreach ($this->products as $product) { ?>
+    <div class="modaly">
+        <div class="modal-contenty">
+            <span class="close-button">&times;</span>
+            <h3 class="modaly-title">Notification!</h3>
+            <hr>
+            <div class="row modaly-body">
+                <p style="color:blue">Review successfully </p>
+            </div>
+        </div>
+    </div>
     <div class="top-container">
         <div class="breadcrumbs">
             <div class="container">
@@ -146,13 +158,22 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
                                     </div>
 
                                     <div class="ratings">
-                                        <div class="rating-box">
-                                            <div class="rating" style="width:0"></div>
+
+                                        <div class="row" style="margin-left:0px">
+                                            <p class="star-one"><?= $this->avenge ?>/5</p>
+                                            <div id="156" class="ratingbar" data-rating-value="<?= round($this->avenge) ?>">
+                                                <i id="1" class="ratingstar far fa-star"></i>
+                                                <i id="2" class="ratingstar far fa-star"></i>
+                                                <i id="3" class="ratingstar far fa-star"></i>
+                                                <i id="4" class="ratingstar far fa-star"></i>
+                                                <i id="5" class="ratingstar far fa-star"></i>
+                                            </div>
+                                            <p class="rating-links">
+                                                <a href="javascript:void(0)"><?= $this->one + $this->two + $this->three + $this->four + $this->five ?> Review(s)</a>
+                                            </p>
                                         </div>
-                                        <p class="rating-links">
-                                            <a href="javascript:void(0)">0 Review(s)</a>
-                                        </p>
                                     </div>
+
                                     <div class="short-description ">
                                         <h2>Quick Overview</h2>
                                         <div class="std"><?php echo $product['description']; ?></div>
@@ -166,7 +187,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
                                             </div>
                                         </div>
-                                      
+
                                     </div>
 
                                     <div class="product-options" id="product-options-wrapper">
@@ -262,12 +283,12 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
                                                     <a style="font-size:24px;text-decoration:none;" href="javascript:void(0)" class="qty_dec">-</a>
                                                 </div>
                                             </div>
-                                            <button type="button" title="Add to Cart" supplier ="<?= $product['user_id']; ?>" name="<?= $product['name']; ?>" slug="<?= $product['slug']; ?>" class="button btn-cart"><span><span>Add to
+                                            <button type="button" title="Add to Cart" supplier="<?= $product['user_id']; ?>" name="<?= $product['name']; ?>" slug="<?= $product['slug']; ?>" class="button btn-cart"><span><span>Add to
                                                         Cart</span></span></button>
                                             <span id='ajax_loader' style='display:none'><i class="ajax-loader small animate-spin"></i></span>
                                         </div>
                                         <ul class="add-to-links">
-                                            <li title="Add to Wish list " class="addWishlistJs" supplier ="<?= $product['user_id']; ?>"><a href="javascript:void(0)" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
+                                            <li title="Add to Wish list " class="addWishlistJs" supplier="<?= $product['user_id']; ?>"><a href="javascript:void(0)" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
                                                         to Wishlist</span></a></li>
                                             <li title="Add to Compare"><a href="javascript:void(0)" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
                                                         to Compare</span></a></li>
@@ -305,143 +326,145 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
                                         <div class="tab-content" id="tab_tags_tabbed_contents">
                                             <div class="box-collateral box-tags">
                                                 <div class="col-md-9 col-md-offset-3 comments-section comment-append">
-                                                    <div class="clearfix"  id="comment_form">
+                                                    <div class="clearfix" id="comment_form">
                                                         <h4>Post a comment:</h4>
-                                                        <textarea type ="text"  placeholder ="Post your comment" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
-                                                        <?php if(isset($_SESSION['user'])) {?>
-                                                        <a  key_p ="<?php echo $product['id']; ?>" href ="javascript:void(0)" class="btn btn-primary btn-sm pull-right comment-bt" id="submit_comment">Submit comment</a>
-                                                        <?php } else {?>
-                                                        <a  href ="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit comment</a>
-                                                        <?php }?>
+                                                        <textarea type="text" placeholder="Post your comment" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                                        <?php if (isset($_SESSION['user'])) { ?>
+                                                            <a key_p="<?php echo $product['id']; ?>" href="javascript:void(0)" class="btn btn-primary btn-sm pull-right comment-bt" id="submit_comment">Submit comment</a>
+                                                        <?php } else { ?>
+                                                            <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit comment</a>
+                                                        <?php } ?>
                                                     </div>
 
-                                                    <h2><span id="comments_count"><?=$this->comment['norecords']?></span> Comment(s)</h2>
+                                                    <h2><span id="comments_count"><?= $this->comment['norecords'] ?></span> Comment(s)</h2>
                                                     <hr>
-                                                    <?php foreach($this->comment['data'] as $comment) {?>
-                                                    <div id="comments-wrapper-<?=$comment['id']?>">
-                                                        <div class="comment clearfix">
-                                                                <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                                    <?php foreach ($this->comment['data'] as $comment) { ?>
+                                                        <div id="comments-wrapper-<?= $comment['id'] ?>">
+                                                            <div class="comment clearfix">
+                                                                <img src=" <?php echo RootREL . "media/upload/users/" . (!empty($comment['user_avata']) ? $comment['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
                                                                 <div class="comment-details">
-                                                                    <span class="comment-name"><?=$comment['users_firstname']?></span>
-                                                                    <span class="comment-date"><?=date("F j, Y ", strtotime($comment["created"]));?></span>
-                                                                    <p><?=$comment['contents']?></p>
-                                                                    <a class="reply-btn" href="javascript:void(0)" >reply</a> <br>
-                                                                    <div class ="clearfix show-reply show-replay-<?=$comment['id']?>" style ="display:none">
-                                                                        <textarea type ="text"  placeholder ="Post your reply" id="comment_reply" class="comment_reply_<?=$comment['id']?> form-control input-text" cols="30" rows="3" ></textarea>
-                                                                         <?php if(isset($_SESSION['user'])) {?>
-                                                                        <a  key_p ="<?php echo $product['id']; ?>"  key_c ="<?php echo $comment['id']; ?>" href ="javascript:void(0)" class="button btn btn-primary btn-sm pull-right reply-bt" id="submit_reply">Submit reply</a>
-                                                                         <?php } else {?>
-                                                                        <a  href ="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit reply</a>
-                                                                        <?php }?>
+                                                                    <span class="comment-name"><?= $comment['users_firstname'] ?></span>
+                                                                    <span class="comment-date"><?= date("F j, Y ", strtotime($comment["created"])); ?></span>
+                                                                    <p><?= $comment['contents'] ?></p>
+                                                                    <a class="reply-btn" href="javascript:void(0)">reply</a> <br>
+                                                                    <div class="clearfix show-reply show-replay-<?= $comment['id'] ?>" style="display:none">
+                                                                        <textarea type="text" placeholder="Post your reply" id="comment_reply" class="comment_reply_<?= $comment['id'] ?> form-control input-text" cols="30" rows="3"></textarea>
+                                                                        <?php if (isset($_SESSION['user'])) { ?>
+                                                                            <a key_p="<?php echo $product['id']; ?>" key_c="<?php echo $comment['id']; ?>" href="javascript:void(0)" class="button btn btn-primary btn-sm pull-right reply-bt" id="submit_reply">Submit reply</a>
+                                                                        <?php } else { ?>
+                                                                            <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit reply</a>
+                                                                        <?php } ?>
                                                                     </div>
-                                                                     <?php foreach($this->reply  as $rely){
-                                                                        if ($rely['comment_id'] == $comment['id']) {
-                                                                        ?>
-                                                                     <div class="comment reply-c reply-<?=$comment['id']?> clearfix">
-                                                                   
-                                                                        <div class ="clearfix cm-rl-<?= $rely['id']?>">
-                                                                            <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
-                                                                            <div class="comment-details">
-                                                                                <span class="comment-name"><?= $rely['users_firstname']?></span>
-                                                                                <span class="comment-date"><?=date("F j, Y ", strtotime($rely["created"]));?></span>
-                                                                                <p><?= $rely['content']?></p>
+                                                                    <?php foreach ($this->reply  as $rely) {
+                                                                                if ($rely['comment_id'] == $comment['id']) {
+                                                                                    ?>
+                                                                            <div class="comment reply-c reply-<?= $comment['id'] ?> clearfix">
+
+                                                                                <div class="clearfix cm-rl-<?= $rely['id'] ?>">
+                                                                                    <img src="<?php echo RootREL . "media/upload/users/" . (!empty($rely['user_avata']) ? $rely['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
+                                                                                    <div class="comment-details">
+                                                                                        <span class="comment-name"><?= $rely['users_firstname'] ?></span>
+                                                                                        <span class="comment-date"><?= date("F j, Y ", strtotime($rely["created"])); ?></span>
+                                                                                        <p><?= $rely['content'] ?></p>
+                                                                                    </div>
+                                                                                </div>
+
+
                                                                             </div>
-                                                                        </div>
-                                                                    
-                                                                       
-                                                                    </div>
-                                                                     <?php }}?>   
+                                                                    <?php }
+                                                                            } ?>
                                                                 </div>
-                                                              
+
                                                             </div>
-                                                    </div>
-                                                    <?php }?>
+                                                        </div>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="tab-content" id="tab_review_tabbed_contents">
                                             <div class="collateral-box" id="product-customer-reviews">
                                                 <ol>
-                                                    <li>Be the first to review this product</li>
+                                                    <li>Rating information</li>
+                                                </ol>
+                                                <div class="row">
+                                                    <p class="star-one">1<i id="1" class="ratingstar fa-star fab fas"></i></p>
+                                                    <div id="123" class="ratingbar" data-rating-value="1">
+                                                        <i id="1" class="ratingstar far fa-star"></i>
+                                                        <i id="2" class="ratingstar far fa-star"></i>
+                                                        <i id="3" class="ratingstar far fa-star"></i>
+                                                        <i id="4" class="ratingstar far fa-star"></i>
+                                                        <i id="5" class="ratingstar far fa-star"></i>
+                                                    </div>
+                                                    <p class="length-star"><?= $this->one ?> Review(s)</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="star-one">2<i id="1" class="ratingstar fa-star fab fas"></i></p>
+                                                    <div id="456" class="ratingbar" data-rating-value="2">
+                                                        <i id="1" class="ratingstar far fa-star"></i>
+                                                        <i id="2" class="ratingstar far fa-star"></i>
+                                                        <i id="3" class="ratingstar far fa-star"></i>
+                                                        <i id="4" class="ratingstar far fa-star"></i>
+                                                        <i id="5" class="ratingstar far fa-star"></i>
+                                                    </div>
+                                                    <p class="length-star"><?= $this->two ?> Review(s)</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="star-one">3<i id="1" class="ratingstar fa-star fab fas"></i></p>
+                                                    <div id="789" class="ratingbar" data-rating-value="3">
+                                                        <i id="1" class="ratingstar far fa-star"></i>
+                                                        <i id="2" class="ratingstar far fa-star"></i>
+                                                        <i id="3" class="ratingstar far fa-star"></i>
+                                                        <i id="4" class="ratingstar far fa-star"></i>
+                                                        <i id="5" class="ratingstar far fa-star"></i>
+                                                    </div>
+                                                    <p class="length-star"><?= $this->three ?> Review(s)</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="star-one">4<i id="1" class="ratingstar fa-star fab fas"></i></p>
+                                                    <div id="188" class="ratingbar" data-rating-value="4">
+                                                        <i id="1" class="ratingstar far fa-star"></i>
+                                                        <i id="2" class="ratingstar far fa-star"></i>
+                                                        <i id="3" class="ratingstar far fa-star"></i>
+                                                        <i id="4" class="ratingstar far fa-star"></i>
+                                                        <i id="5" class="ratingstar far fa-star"></i>
+                                                    </div>
+                                                    <p class="length-star"><?= $this->four ?> Review(s)</p>
+                                                </div>
+                                                <div class="row">
+                                                    <p class="star-one">5<i id="1" class="ratingstar fa-star fab fas"></i></p>
+                                                    <div id="154" class="ratingbar" data-rating-value="5">
+                                                        <i id="1" class="ratingstar far fa-star"></i>
+                                                        <i id="2" class="ratingstar far fa-star"></i>
+                                                        <i id="3" class="ratingstar far fa-star"></i>
+                                                        <i id="4" class="ratingstar far fa-star"></i>
+                                                        <i id="5" class="ratingstar far fa-star"></i>
+                                                    </div>
+                                                    <p class="length-star"><?= $this->five ?> Review(s)</p>
+                                                </div>
+                                                <ol>
+                                                    <a href="javascript:void(0)" type="submit" title="Submit Review" class="button btn open-bt"><span><span>
+                                                                Please take a Review </span></span></a>
                                                 </ol>
                                             </div>
+                                            <div class="add-review" style="display:none">
+                                                <div id="ratingSection">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
 
-                                            <div class="add-review">
-                                                <div class="form-add">
-                                                    <h3>Write Your Own Review</h3>
-                                                    <div class="block-content">
-                                                        <form action="https://www.portotheme.com/magento/porto/index.php/demo1_en/review/product/post/id/319/" method="post" id="review-form">
-                                                            <input name="form_key" type="hidden" value="gRxWBEl2ZMe5EQyi" />
-                                                            <fieldset>
-                                                                <h4>How do you rate this product? <em class="required">*</em>
-                                                                </h4>
-                                                                <span id="input-message-box"></span>
-                                                                <table class="data-table ratings-table" id="product-review-table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="a-center">&nbsp;</th>
-                                                                            <th class="a-center"><span class="nobr">1
-                                                                                    star</span>
-                                                                            </th>
-                                                                            <th class="a-center"><span class="nobr">2
-                                                                                    stars</span>
-                                                                            </th>
-                                                                            <th class="a-center"><span class="nobr">3
-                                                                                    stars</span>
-                                                                            </th>
-                                                                            <th class="a-center"><span class="nobr">4
-                                                                                    stars</span>
-                                                                            </th>
-                                                                            <th class="a-center"><span class="nobr">5
-                                                                                    stars</span>
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th>Quality</th>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[1]" id="Quality_1" value="1" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[1]" id="Quality_2" value="2" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[1]" id="Quality_3" value="3" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[1]" id="Quality_4" value="4" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[1]" id="Quality_5" value="5" class="radio" /></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Value</th>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[2]" id="Value_1" value="6" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[2]" id="Value_2" value="7" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[2]" id="Value_3" value="8" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[2]" id="Value_4" value="9" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[2]" id="Value_5" value="10" class="radio" /></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th>Price</th>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[3]" id="Price_1" value="11" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[3]" id="Price_2" value="12" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[3]" id="Price_3" value="13" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[3]" id="Price_4" value="14" class="radio" /></td>
-                                                                            <td class="value a-center"><input type="radio" name="ratings[3]" id="Price_5" value="15" class="radio" /></td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <input type="hidden" name="validate_rating" class="validate-rating" value="" />
-                                                                <script type="text/javascript">
-                                                                    decorateTable('product-review-table');
-                                                                </script>
+                                                            <form id="ratingForm" method="POST">
+                                                                <div class="form-group">
+                                                                    <h4>Rate this product</h4>
+                                                                    <p id="error-rating" style="color:red;display:none">Choice a rating first!</p>
+                                                                    <div id="<?php echo $product['id']; ?>" class="ratingbar" data-rating-value="0" data-userid="111">
+                                                                        <i id="1" class="ratingstar far fa-star" title="Bad"></i>
+                                                                        <i id="2" class="ratingstar far fa-star" title="So so"></i>
+                                                                        <i id="3" class="ratingstar far fa-star" title="Medium"></i>
+                                                                        <i id="4" class="ratingstar far fa-star" title="Good"></i>
+                                                                        <i id="5" class="ratingstar far fa-star" title="WOnderful"></i>
+                                                                    </div>
+                                                                </div>
+
                                                                 <ul class="form-list">
-                                                                    <li>
-                                                                        <label for="nickname_field" class="required"><em>*</em>Nickname</label>
-                                                                        <div class="input-box">
-                                                                            <input type="text" name="nickname" id="nickname_field" class="input-text required-entry" value="" />
-                                                                        </div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <label for="summary_field" class="required"><em>*</em>Summary
-                                                                            of Your Review</label>
-                                                                        <div class="input-box">
-                                                                            <input type="text" name="title" id="summary_field" class="input-text required-entry" value="" />
-                                                                        </div>
-                                                                    </li>
                                                                     <li>
                                                                         <label for="review_field" class="required"><em>*</em>Review</label>
                                                                         <div class="input-box">
@@ -449,50 +472,15 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
                                                                         </div>
                                                                     </li>
                                                                 </ul>
-                                                            </fieldset>
-                                                            <div class="buttons-set">
-                                                                <button type="submit" title="Submit Review" class="button"><span><span>Submit
-                                                                            Review</span></span></button>
-                                                            </div>
-                                                        </form>
-                                                        <script type="text/javascript">
-                                                            var dataForm = new VarienForm('review-form');
-                                                            Validation.addAllThese(
-                                                                [
-                                                                    ['validate-rating',
-                                                                        'Please select one of each of the ratings above',
-                                                                        function(v) {
-                                                                            var trs = $('product-review-table')
-                                                                                .select('tr');
-                                                                            var inputs;
-                                                                            var error = 1;
-
-                                                                            for (var j = 0; j < trs
-                                                                                .length; j++) {
-                                                                                var tr = trs[j];
-                                                                                if (j > 0) {
-                                                                                    inputs = tr.select('input');
-
-                                                                                    for (i in inputs) {
-                                                                                        if (inputs[i].checked ==
-                                                                                            true) {
-                                                                                            error = 0;
-                                                                                        }
-                                                                                    }
-
-                                                                                    if (error == 1) {
-                                                                                        return false;
-                                                                                    } else {
-                                                                                        error = 1;
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                            return true;
-                                                                        }
-                                                                    ]
-                                                                ]
-                                                            );
-                                                        </script>
+                                                                <div class="buttons-set">
+                                                                    <a href="javascript:void(0)" type="submit" title="Submit Review" class="button btn rating-bt"><span><span>Submit
+                                                                                Review</span></span></a>
+                                                                </div>
+                                                                <!-- <div class="form-group">
+                                                                    <button type="submit" class="btn btn-info" id="saveReview">Save Review</button> <button type="button" class="btn btn-info" id="cancelReview">Cancel</button>
+                                                                </div>			 -->
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -552,18 +540,20 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
 <script>
     jQuery(function($) {
         let product_id = $('#product_id').val();
-        
+
         let product_image = $('#product_image').val();
         let product_name = $('#product_name').val();
         let product_price = $('#product_price').val();
         let product_slug = $('#product_slug').val();
         var product_qty = $('.qty').val();
-        
-        
+
+
     });
 </script>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/comment.js"></script>
+<script src="<?php echo RootREL; ?>media/js/products/rate.js"></script>
+
 
 
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

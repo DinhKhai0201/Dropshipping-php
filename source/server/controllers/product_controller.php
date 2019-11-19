@@ -29,6 +29,7 @@ class product_controller extends vendor_main_controller
             ]);
             $cm = new comment_model();
             $rm = new reply_model();
+            $rate = new rate_model();
             $this->comment = $cm->allp('comments.*', [
                 'conditions' => 'product_id = '.$id,
                 'joins' => ['product', 'user'],
@@ -42,6 +43,12 @@ class product_controller extends vendor_main_controller
                 'joins' => ['product', 'user','comment'],
                 'order' => 'id ASC',
             ]);
+            $this->one = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id.' AND rating = 1']);
+            $this->two = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 2']);
+            $this->three = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 3']);
+            $this->four = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 4']);
+            $this->five = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 5']);
+            $this->avenge = round((float)(($this->one *1 +  $this->two*2 +  $this->three*3 +  $this->four*4 +  $this->five*5)/($this->one  +  $this->two +  $this->three  +  $this->four +  $this->five )),1);
             //previous and next product
             $this->previousproduct = $product_model->nextProduct($id, true);
             $this->nextproduct = $product_model->nextProduct($id, false);
@@ -147,6 +154,42 @@ class product_controller extends vendor_main_controller
                  echo json_encode($status);
             }
             
+        }
+    }
+    public function rate()
+    {
+        $status = false;
+        if (isset($_SESSION['user'])) {
+            $dataRate['user_id'] = $_SESSION['user']['id'];
+            if (isset($_POST['product_id'])) {
+                $dataRate['product_id'] = $_POST['product_id'];
+            }
+            if (isset($_POST['rating'])) {
+                $dataRate['rating'] = $_POST['rating'];
+            }
+            if (isset($_POST['contents'])) {
+                $dataRate['contents'] = $_POST['contents'];
+            }
+            $rm = new rate_model();
+            $valid = $rm->validator($dataRate);
+            if ($valid['status']) {
+                if ($idrm = $rm->addRecord($dataRate)) {
+                    $status = true;
+                }
+            }
+            if ($status == true) {
+                $this->res = $rm->getAllRecords('rates.*', [
+                    'conditions' => 'rates.id =' . $idrm,
+                    'joins' => ['product', 'user']
+                ]);
+                $data = [];
+                foreach ($this->res as $value) {
+                    $data[] = $value;
+                }
+                echo json_encode($data);
+            } else {
+                echo json_encode($status);
+            }
         }
     }
   
