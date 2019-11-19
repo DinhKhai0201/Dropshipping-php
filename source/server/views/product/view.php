@@ -336,48 +336,53 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                         <?php } ?>
                                                     </div>
 
-                                                    <h2><span id="comments_count"><?= $this->comment['norecords'] ?></span> Comment(s)</h2>
+                                                    <h2><span id="comments_count"><?= $this->comment['norecords'] ?></span> Comment(s) | <a href="javascript:void(0)" type="submit" title="Expand comment" class="button btn open-bt-cm"><span><span>
+                                                                    Show comments </span></span></a></h2>
                                                     <hr>
-                                                    <?php foreach ($this->comment['data'] as $comment) { ?>
-                                                        <div id="comments-wrapper-<?= $comment['id'] ?>">
-                                                            <div class="comment clearfix">
-                                                                <img src=" <?php echo RootREL . "media/upload/users/" . (!empty($comment['user_avata']) ? $comment['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
-                                                                <div class="comment-details">
-                                                                    <span class="comment-name"><?= $comment['users_firstname'] ?></span>
-                                                                    <span class="comment-date"><?= date("F j, Y ", strtotime($comment["created"])); ?></span>
-                                                                    <p><?= $comment['contents'] ?></p>
-                                                                    <a class="reply-btn" href="javascript:void(0)">reply</a> <br>
-                                                                    <div class="clearfix show-reply show-replay-<?= $comment['id'] ?>" style="display:none">
-                                                                        <textarea type="text" placeholder="Post your reply" id="comment_reply" class="comment_reply_<?= $comment['id'] ?> form-control input-text" cols="30" rows="3"></textarea>
-                                                                        <?php if (isset($_SESSION['user'])) { ?>
-                                                                            <a key_p="<?php echo $product['id']; ?>" key_c="<?php echo $comment['id']; ?>" href="javascript:void(0)" class="button btn btn-primary btn-sm pull-right reply-bt" id="submit_reply">Submit reply</a>
-                                                                        <?php } else { ?>
-                                                                            <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit reply</a>
-                                                                        <?php } ?>
-                                                                    </div>
-                                                                    <?php foreach ($this->reply  as $rely) {
-                                                                                if ($rely['comment_id'] == $comment['id']) {
-                                                                                    ?>
-                                                                            <div class="comment reply-c reply-<?= $comment['id'] ?> clearfix">
+                                                    <div class="comment-display" style="display:none">
+                                                        <?php foreach ($this->comment['data'] as $comment) { ?>
+                                                            <div id="comments-wrapper-<?= $comment['id'] ?>">
+                                                                <div class="comment clearfix">
+                                                                    <img src=" <?php echo RootREL . "media/upload/users/" . (!empty($comment['user_avata']) ? $comment['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
+                                                                    <div class="comment-details">
+                                                                        <span class="comment-name"><?= $comment['users_firstname'] ?></span>
+                                                                        <span class="comment-date"><?= date("F j, Y ", strtotime($comment["created"])); ?></span>
+                                                                        <p><?= $comment['contents'] ?></p>
+                                                                        <a class="reply-btn" href="javascript:void(0)">reply</a> <br>
+                                                                        <div class="clearfix show-reply show-replay-<?= $comment['id'] ?>" style="display:none">
+                                                                            <textarea type="text" placeholder="Post your reply" id="comment_reply" class="comment_reply_<?= $comment['id'] ?> form-control input-text" cols="30" rows="3"></textarea>
+                                                                            <?php if (isset($_SESSION['user'])) { ?>
+                                                                                <a key_p="<?php echo $product['id']; ?>" key_c="<?php echo $comment['id']; ?>" href="javascript:void(0)" class="button btn btn-primary btn-sm pull-right reply-bt" id="submit_reply">Submit reply</a>
+                                                                            <?php } else { ?>
+                                                                                <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit reply</a>
+                                                                            <?php } ?>
+                                                                        </div>
+                                                                        <?php foreach ($this->reply  as $rely) {
+                                                                                    if ($rely['comment_id'] == $comment['id']) {
+                                                                                        ?>
+                                                                                <div class="comment reply-c reply-<?= $comment['id'] ?> clearfix">
 
-                                                                                <div class="clearfix cm-rl-<?= $rely['id'] ?>">
-                                                                                    <img src="<?php echo RootREL . "media/upload/users/" . (!empty($rely['user_avata']) ? $rely['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
-                                                                                    <div class="comment-details">
-                                                                                        <span class="comment-name"><?= $rely['users_firstname'] ?></span>
-                                                                                        <span class="comment-date"><?= date("F j, Y ", strtotime($rely["created"])); ?></span>
-                                                                                        <p><?= $rely['content'] ?></p>
+                                                                                    <div class="clearfix cm-rl-<?= $rely['id'] ?>">
+                                                                                        <img src="<?php echo RootREL . "media/upload/users/" . (!empty($rely['user_avata']) ? $rely['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
+                                                                                        <div class="comment-details">
+                                                                                            <span class="comment-name"><?= $rely['users_firstname'] ?></span>
+                                                                                            <span class="comment-date"><?= date("F j, Y ", strtotime($rely["created"])); ?></span>
+                                                                                            <p><?= $rely['content'] ?></p>
+                                                                                        </div>
                                                                                     </div>
+
+
                                                                                 </div>
+                                                                        <?php }
+                                                                                } ?>
+                                                                    </div>
 
-
-                                                                            </div>
-                                                                    <?php }
-                                                                            } ?>
                                                                 </div>
-
                                                             </div>
-                                                        </div>
-                                                    <?php } ?>
+                                                        <?php } ?>
+                                                    </div>
+                                                    <a href="javascript:void(0)" type="submit" num_loaded="5" title="Expand comment" class="button btn show-more"><span><span>
+                                                                Show more </span></span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -476,13 +481,35 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                                     <a href="javascript:void(0)" type="submit" title="Submit Review" class="button btn rating-bt"><span><span>Submit
                                                                                 Review</span></span></a>
                                                                 </div>
-                                                                <!-- <div class="form-group">
-                                                                    <button type="submit" class="btn btn-info" id="saveReview">Save Review</button> <button type="button" class="btn btn-info" id="cancelReview">Cancel</button>
-                                                                </div>			 -->
+
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="rating-display" style="border-top: 1px solid #eee;">
+                                                <?php foreach ($this->rating as $key => $rating) { ?>
+                                                    <div id="comments-wrapper-<?= $rating['id'] ?>" style="padding-top: 20px;">
+                                                        <div class="comment clearfix">
+                                                            <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                                            <div class="comment-details">
+                                                                <span class="comment-name"><?= $rating['users_firstname'] ?></span>
+                                                                <span class="comment-date"><?= $rating['created'] ?></span>
+                                                                <div class="row" style="margin-left:0px">
+                                                                    <div id="156<?= $rating['id'] ?>" class="ratingbar" data-rating-value="<?= $rating['rating'] ?>">
+                                                                        <i id="1" class="ratingstar far fa-star"></i>
+                                                                        <i id="2" class="ratingstar far fa-star"></i>
+                                                                        <i id="3" class="ratingstar far fa-star"></i>
+                                                                        <i id="4" class="ratingstar far fa-star"></i>
+                                                                        <i id="5" class="ratingstar far fa-star"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <p><?= $rating['contents'] ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+
                                             </div>
                                         </div>
                                         <script type="text/javascript">

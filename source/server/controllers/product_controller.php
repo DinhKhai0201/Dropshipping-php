@@ -43,6 +43,11 @@ class product_controller extends vendor_main_controller
                 'joins' => ['product', 'user','comment'],
                 'order' => 'id ASC',
             ]);
+            $this->rating = $rate->getAllRecords('rates.*', [
+                'conditions' => 'rates.product_id =' . $id,
+                'joins' => ['product', 'user'],
+                'order' => 'id ASC',
+            ]);
             $this->one = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id.' AND rating = 1']);
             $this->two = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 2']);
             $this->three = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 3']);

@@ -30,7 +30,8 @@ jQuery(function ($) {
                                 </div>
                         </div>`;
                     });
-                    $(html).insertAfter('.comment-append hr');
+                    
+                    $('.comment-display').prepend(html);
                     $('#comment_text').val('');
                     $('#comments_count').html( parseInt($('#comments_count').html()) + 1);
                    
@@ -72,8 +73,10 @@ jQuery(function ($) {
                    
                 }
             });
+     }); 
+    $('.open-bt-cm').click(function () {
+        $('.comment-display').toggle('slow');
     });
-   
     $('body').on('click','.reply-btn',function(){
          $(this).parent().children('.show-reply').toggle('slow');
     });
