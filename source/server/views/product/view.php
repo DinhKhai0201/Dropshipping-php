@@ -1,6 +1,8 @@
 <?php
 global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
+array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
+
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <?php foreach ($this->products as $product) { ?>
@@ -164,10 +166,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
                                             </div>
                                         </div>
-                                        <script type="text/javascript">
-                                            var dailydealTimeCounters = new Array();
-                                            var i = 0;
-                                        </script>
+                                      
                                     </div>
 
                                     <div class="product-options" id="product-options-wrapper">
@@ -293,7 +292,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                         <ul>
                                             <li id="tab_description_tabbed" class=" active first"><a href="#">Description</a>
                                             </li>
-                                            <li id="tab_tags_tabbed" class=""><a href="#">Tags</a></li>
+                                            <li id="tab_tags_tabbed" class=""><a href="#">Comment</a></li>
                                             <li id="tab_review_tabbed" class=""><a href="#">Reviews</a></li>
                                         </ul>
                                         <div class="clearer"></div>
@@ -305,31 +304,59 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                         </div>
                                         <div class="tab-content" id="tab_tags_tabbed_contents">
                                             <div class="box-collateral box-tags">
-                                                <h2>Product Tags</h2>
-                                                <form id="addTagForm" action="https://www.portotheme.com/magento/porto/index.php/demo1_en/tag/index/save/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/" method="get">
-                                                    <div class="form-add">
-                                                        <label for="productTagName">Add Your Tags:</label>
-                                                        <div class="input-box">
-                                                            <input type="text" class="input-text required-entry" name="productTagName" id="productTagName" />
-                                                        </div>
-                                                        <button type="button" title="Add Tags" class="button" onclick="submitTagForm()">
-                                                            <span>
-                                                                <span>Add Tags</span>
-                                                            </span>
-                                                        </button>
+                                                <div class="col-md-9 col-md-offset-3 comments-section comment-append">
+                                                    <div class="clearfix"  id="comment_form">
+                                                        <h4>Post a comment:</h4>
+                                                        <textarea type ="text"  placeholder ="Post your comment" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                                        <?php if(isset($_SESSION['user'])) {?>
+                                                        <a  key_p ="<?php echo $product['id']; ?>" href ="javascript:void(0)" class="btn btn-primary btn-sm pull-right comment-bt" id="submit_comment">Submit comment</a>
+                                                        <?php } else {?>
+                                                        <a  href ="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit comment</a>
+                                                        <?php }?>
                                                     </div>
-                                                </form>
-                                                <p class="note">Use spaces to separate tags. Use single quotes
-                                                    (') for phrases.</p>
-                                                <script type="text/javascript">
-                                                    var addTagFormJs = new VarienForm('addTagForm');
 
-                                                    function submitTagForm() {
-                                                        if (addTagFormJs.validator.validate()) {
-                                                            addTagFormJs.form.submit();
-                                                        }
-                                                    }
-                                                </script>
+                                                    <h2><span id="comments_count"><?=$this->comment['norecords']?></span> Comment(s)</h2>
+                                                    <hr>
+                                                    <?php foreach($this->comment['data'] as $comment) {?>
+                                                    <div id="comments-wrapper-<?=$comment['id']?>">
+                                                        <div class="comment clearfix">
+                                                                <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                                                <div class="comment-details">
+                                                                    <span class="comment-name"><?=$comment['users_firstname']?></span>
+                                                                    <span class="comment-date"><?=date("F j, Y ", strtotime($comment["created"]));?></span>
+                                                                    <p><?=$comment['contents']?></p>
+                                                                    <a class="reply-btn" href="javascript:void(0)" >reply</a> <br>
+                                                                    <div class ="clearfix show-reply show-replay-<?=$comment['id']?>" style ="display:none">
+                                                                        <textarea type ="text"  placeholder ="Post your reply" id="comment_reply" class="comment_reply_<?=$comment['id']?> form-control input-text" cols="30" rows="3" ></textarea>
+                                                                         <?php if(isset($_SESSION['user'])) {?>
+                                                                        <a  key_p ="<?php echo $product['id']; ?>"  key_c ="<?php echo $comment['id']; ?>" href ="javascript:void(0)" class="button btn btn-primary btn-sm pull-right reply-bt" id="submit_reply">Submit reply</a>
+                                                                         <?php } else {?>
+                                                                        <a  href ="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" class="btn btn-primary btn-sm pull-right comment-bt">Submit reply</a>
+                                                                        <?php }?>
+                                                                    </div>
+                                                                     <?php foreach($this->reply  as $rely){
+                                                                        if ($rely['comment_id'] == $comment['id']) {
+                                                                        ?>
+                                                                     <div class="comment reply-c reply-<?=$comment['id']?> clearfix">
+                                                                   
+                                                                        <div class ="clearfix cm-rl-<?= $rely['id']?>">
+                                                                            <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                                                            <div class="comment-details">
+                                                                                <span class="comment-name"><?= $rely['users_firstname']?></span>
+                                                                                <span class="comment-date"><?=date("F j, Y ", strtotime($rely["created"]));?></span>
+                                                                                <p><?= $rely['content']?></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    
+                                                                       
+                                                                    </div>
+                                                                     <?php }}?>   
+                                                                </div>
+                                                              
+                                                            </div>
+                                                    </div>
+                                                    <?php }?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="tab-content" id="tab_review_tabbed_contents">
@@ -525,13 +552,18 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
 <script>
     jQuery(function($) {
         let product_id = $('#product_id').val();
+        
         let product_image = $('#product_image').val();
         let product_name = $('#product_name').val();
         let product_price = $('#product_price').val();
         let product_slug = $('#product_slug').val();
         var product_qty = $('.qty').val();
+        
+        
     });
 </script>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+<script src="<?php echo RootREL; ?>media/js/products/comment.js"></script>
+
 
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>
