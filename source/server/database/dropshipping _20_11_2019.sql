@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th10 19, 2019 lúc 04:06 PM
+-- Thời gian đã tạo: Th10 20, 2019 lúc 02:58 PM
 -- Phiên bản máy phục vụ: 5.7.28-0ubuntu0.19.04.2
 -- Phiên bản PHP: 7.2.24-0ubuntu0.19.04.1
 
@@ -99,10 +99,11 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `product_id`, `user_id`, `supplier_id`, `quantity`, `price`, `color`, `size`, `image`, `created`, `updated`) VALUES
-(1, 98, 1, 1, 1, 100, 'black', NULL, '265bdacd52b4f996722bdb48fead0465image5.jpg', '2019-11-18 06:47:29', '2019-11-18 06:47:29'),
-(2, 98, 1, 1, 2, 100, 'blue', NULL, '265bdacd52b4f996722bdb48fead0465image5.jpg', '2019-11-18 06:47:57', '2019-11-19 08:29:06'),
-(3, 98, 1, 1, 3, 100, 'black,blue', '', '265bdacd52b4f996722bdb48fead0465image5.jpg', '2019-11-18 06:49:08', '2019-11-18 06:49:20'),
-(4, 98, 1, 1, 3, 100, 'blue,brown', NULL, '265bdacd52b4f996722bdb48fead0465image5.jpg', '2019-11-18 07:12:06', '2019-11-18 07:12:06');
+(19, 99, 1, 1, 0, 100000, 'blue', 'S,55', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:40:44', '2019-11-20 02:44:54'),
+(20, 99, 1, 1, 1, 100000, 'blue', 'S,55', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:41:06', '2019-11-20 02:41:06'),
+(21, 99, 1, 1, 1, 100000, 'blue', 'S,55', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:41:13', '2019-11-20 02:41:13'),
+(22, 99, 1, 1, 1, 100000, 'blue', 'S', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:53:00', '2019-11-20 02:53:00'),
+(23, 99, 1, 1, 1, 100000, 'blue,brown,green', 'S,55,56', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:56:24', '2019-11-20 02:56:24');
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,13 @@ INSERT INTO `comments` (`id`, `product_id`, `user_id`, `contents`, `created`, `u
 (27, 98, 1, 'sdfsdfsdf', '2019-11-19 03:45:53', '2019-11-19 03:45:53'),
 (28, 98, 1, 'asdasdasd', '2019-11-19 03:47:19', '2019-11-19 03:47:19'),
 (29, 98, 1, 'asdasd', '2019-11-19 03:47:23', '2019-11-19 03:47:23'),
-(30, 98, 1, 'adadasd', '2019-11-19 03:47:58', '2019-11-19 03:47:58');
+(30, 98, 1, 'adadasd', '2019-11-19 03:47:58', '2019-11-19 03:47:58'),
+(31, 85, 1, 'asdasdasd', '2019-11-20 10:43:15', '2019-11-20 10:43:15'),
+(32, 98, 1, 'asdasd', '2019-11-20 01:32:53', '2019-11-20 01:32:53'),
+(33, 98, 1, 'asdasdasd', '2019-11-20 02:03:22', '2019-11-20 02:03:22'),
+(34, 98, 1, '', '2019-11-20 02:03:24', '2019-11-20 02:03:24'),
+(35, 98, 1, 'asdasdasd', '2019-11-20 02:03:27', '2019-11-20 02:03:27'),
+(36, 98, 1, '', '2019-11-20 02:05:11', '2019-11-20 02:05:11');
 
 -- --------------------------------------------------------
 
@@ -247,7 +254,9 @@ INSERT INTO `galleries` (`id`, `product_id`, `image`, `created`, `updated`) VALU
 (54, 87, 'ad28f53c26a71ce28e088c9510930db9image3.jpg', '2019-10-31 04:46:35', '2019-10-31 04:46:35'),
 (55, 87, '3f1c8a646280307ca28f2c4b09303a51image2.jpeg', '2019-10-31 04:46:35', '2019-10-31 04:46:35'),
 (56, 98, '265bdacd52b4f996722bdb48fead0465image5.jpg', '2019-11-05 09:36:58', '2019-11-05 09:36:58'),
-(57, 98, '9f958c27da9c1c4b00c92fd5a8dda697image4.jpeg', '2019-11-05 09:36:58', '2019-11-05 09:36:58');
+(57, 98, '9f958c27da9c1c4b00c92fd5a8dda697image4.jpeg', '2019-11-05 09:36:58', '2019-11-05 09:36:58'),
+(58, 99, 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 08:51:32', '2019-11-20 08:51:32'),
+(59, 99, '51a9df01cc93c8181db9b900bf1b19b1Screenshot from 2019-10-18 09-51-16.png', '2019-11-20 08:51:32', '2019-11-20 08:51:32');
 
 -- --------------------------------------------------------
 
@@ -297,7 +306,8 @@ INSERT INTO `orders` (`id`, `token`, `user_id`, `shipped_date`, `to_address`, `t
 (34, '7d828dd926197025005007212f3becbb', 1, NULL, 'a', 15, 0, '', 3, '2019-11-15 04:46:39', '2019-11-18 04:36:19'),
 (35, 'fb57bbf72b6c609a5259b508adfd001e', 1, NULL, 'a', 102, 0, '', 0, '2019-11-18 09:47:09', '2019-11-18 09:47:09'),
 (36, '42e0da7cc688382c4382bdac5f4cb0f7', 1, NULL, 'a', 102, 0, 'asasdasd', 0, '2019-11-18 09:47:33', '2019-11-18 09:47:33'),
-(37, 'd01c08ce37ec406f035aab5107fd9455', 1, NULL, 'a', 402, 0, 'ok fine', 2, '2019-11-18 11:42:56', '2019-11-18 06:14:17');
+(37, 'd01c08ce37ec406f035aab5107fd9455', 1, NULL, 'a', 402, 0, 'ok fine', 2, '2019-11-18 11:42:56', '2019-11-20 10:36:49'),
+(38, '6f635aedbdd5205327c8a23a6043fab0', 1, NULL, '12 thanh huy 3,Quận thanh khê,Đà nẵng,Viet nam,5001', 1102, 0, 'ádasdasd', 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11');
 
 -- --------------------------------------------------------
 
@@ -335,8 +345,14 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `supplier_id`, `quant
 (30, 33, 85, 0, 7, 3, '', 'green', NULL, 0, '2019-11-15 04:16:14', '2019-11-15 04:16:14'),
 (31, 34, 85, 0, 5, 3, '', 'green', NULL, 0, '2019-11-15 04:46:40', '2019-11-15 04:46:40'),
 (32, 36, 98, 1, 1, 100, '', 'black', NULL, 1, '2019-11-18 09:47:33', '2019-11-18 12:43:57'),
-(33, 37, 98, 1, 3, 100, '', 'black,blue', NULL, 1, '2019-11-18 11:42:57', '2019-11-18 07:08:02'),
-(34, 37, 98, 1, 1, 100, '', 'black,blue', NULL, 1, '2019-11-18 11:42:57', '2019-11-18 07:08:00');
+(33, 37, 98, 1, 3, 100, '', 'black,blue', NULL, 0, '2019-11-18 11:42:57', '2019-11-20 09:40:12'),
+(34, 37, 98, 1, 1, 100, '', 'black,blue', NULL, 1, '2019-11-18 11:42:57', '2019-11-20 10:36:52'),
+(35, 38, 98, 1, 1, 100, '', 'black,brown', NULL, 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11'),
+(36, 38, 98, 1, 1, 100, '', 'black,brown', NULL, 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11'),
+(37, 38, 98, 1, 3, 100, '', 'blue,brown', NULL, 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11'),
+(38, 38, 98, 1, 3, 100, '', 'black,blue', NULL, 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11'),
+(39, 38, 98, 1, 2, 100, '', 'blue', NULL, 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11'),
+(40, 38, 98, 1, 1, 100, '', 'black', NULL, 0, '2019-11-20 10:16:11', '2019-11-20 10:16:11');
 
 -- --------------------------------------------------------
 
@@ -390,6 +406,7 @@ CREATE TABLE `products` (
   `price` int(11) NOT NULL DEFAULT '0',
   `quantity` int(11) NOT NULL DEFAULT '0',
   `color` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `size` text COLLATE utf8_unicode_ci,
   `num_of_brought` int(11) NOT NULL DEFAULT '0',
   `product_detail_orther` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
@@ -402,23 +419,24 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `category_type_id`, `user_id`, `brand_id`, `num_of_view`, `price`, `quantity`, `color`, `num_of_brought`, `product_detail_orther`, `status`, `best_selling`, `created`, `updated`) VALUES
-(81, 'asdfghjk123456', 'Skirt t20', 'skirt-20', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'red', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(84, '123asd', 'Skirt t21', 'skirt-t21', '<p>good</p>\r\n', '5', 1, 1, 0, 3, 2, 'blue', 0, NULL, 1, 0, '2019-10-25 03:26:50', '2019-11-01 13:52:57'),
-(85, 'asd', 'asdasd', 'asdasd', '<p>abcd</p>\r\n', '5,7,10,11', 1, 2, 0, 3, 0, 'green', 0, NULL, 1, 0, '2019-10-31 04:10:04', '2019-11-01 13:53:01'),
-(86, 'asd', 'asdasd', 'asdasd', '<p>abcd</p>\r\n', '6,9', 1, 2, 0, 3, 0, 'black,blue,brown,green,grey,pink,yellow,white', 0, NULL, 1, 0, '2019-10-31 04:10:24', '2019-11-05 10:38:50'),
-(87, 'dasdasdasf', 'DASASDA ASDASD ASD AS ', 'dasasda-asdasd-asd-as', '<p>&aacute;dsa</p>\r\n', '5,7,10,12', 1, 1, 0, 2, 2, 'green,pink', 0, NULL, 0, 0, '2019-10-31 04:46:35', '2019-11-01 13:53:11'),
-(88, 'asdfghjk123456', 'Skirt t22', 'skirt-22', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'red,blue', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(89, 'asdfghjk123456', 'Skirt t23', 'skirt-23', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 0, 'black,blue,red', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-05 10:15:06'),
-(90, 'asdfghjk123456', 'Skirt t24', 'skirt-t24', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'red,black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(91, 'asdfghjk123456', 'Skirt t25', 'skirt-t25', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(92, 'asdfghjk123456', 'Skirt t26', 'skirt-t26', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(93, 'asdfghjk123456', 'Skirt t27', 'skirt-t27', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(94, 'asdfghjk123456', 'Skirt t28', 'skirt-t28', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(95, 'asdfghjk123456', 'Skirt t29', 'skirt-t29', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(96, 'asdfghjk123456', 'Skirt t30', 'skirt-t30', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(97, 'asdfghjk123456', 'Skirt t31', 'skirt-t31', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
-(98, 'asdasd', 'asda', 'asda', '<p>asdasdasd</p>\r\n', '6', 1, 2, 0, 100, 100, 'black,blue,brown', 0, NULL, 1, 0, '2019-11-05 09:36:58', '2019-11-05 09:36:58');
+INSERT INTO `products` (`id`, `sku`, `name`, `slug`, `description`, `category_type_id`, `user_id`, `brand_id`, `num_of_view`, `price`, `quantity`, `color`, `size`, `num_of_brought`, `product_detail_orther`, `status`, `best_selling`, `created`, `updated`) VALUES
+(81, 'asdfghjk123456', 'Skirt t20', 'skirt-20', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'red', 'm,s', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 08:36:03'),
+(84, '123asd', 'Skirt t21', 'skirt-t21', '<p>good</p>\r\n', '5', 1, 1, 0, 3, 2, 'blue', 'l', 0, NULL, 1, 0, '2019-10-25 03:26:50', '2019-11-20 09:01:26'),
+(85, 'asd', 'asdasd', 'asdasd', '<p>abcd</p>\r\n', '5,7,10,11', 1, 2, 0, 3, 0, 'green', 'xl', 0, NULL, 1, 0, '2019-10-31 04:10:04', '2019-11-20 09:01:35'),
+(86, 'asd', 'asdasd', 'asdasd', '<p>abcd</p>\r\n', '6,9', 1, 2, 0, 3, 0, 'black,blue,brown,green,grey,pink,yellow,white', 'm', 0, NULL, 1, 0, '2019-10-31 04:10:24', '2019-11-20 09:01:32'),
+(87, 'dasdasdasf', 'DASASDA ASDASD ASD AS ', 'dasasda-asdasd-asd-as', '<p>&aacute;dsa</p>\r\n', '5,7,10,12', 1, 1, 0, 2, 2, 'green,pink', 's', 0, NULL, 0, 0, '2019-10-31 04:46:35', '2019-11-20 09:01:30'),
+(88, 'asdfghjk123456', 'Skirt t22', 'skirt-22', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'red,blue', 'm', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:39'),
+(89, 'asdfghjk123456', 'Skirt t23', 'skirt-23', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 0, 'black,blue,red', 'm', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:37'),
+(90, 'asdfghjk123456', 'Skirt t24', 'skirt-t24', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'red,black', NULL, 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-01 13:52:52'),
+(91, 'asdfghjk123456', 'Skirt t25', 'skirt-t25', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 'm', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:41'),
+(92, 'asdfghjk123456', 'Skirt t26', 'skirt-t26', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 'm', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:52'),
+(93, 'asdfghjk123456', 'Skirt t27', 'skirt-t27', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 'l', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:50'),
+(94, 'asdfghjk123456', 'Skirt t28', 'skirt-t28', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', '56', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:48'),
+(95, 'asdfghjk123456', 'Skirt t29', 'skirt-t29', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 's', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:56'),
+(96, 'asdfghjk123456', 'Skirt t30', 'skirt-t30', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', 's', 0, NULL, 1, 1, '2019-10-23 08:19:56', '2019-11-20 09:01:58'),
+(97, 'asdfghjk123456', 'Skirt t31', 'skirt-t31', '<p>beautiful</p>\r\n', '5', 1, 1, 0, 9, 6, 'black', '55', 0, NULL, 1, 0, '2019-10-23 08:19:56', '2019-11-20 09:20:18'),
+(98, 'asdasd', 'asda', 'asda', '<p>asdasdasd</p>\r\n', '6', 1, 2, 0, 100, 100, 'black,blue,brown', '56', 0, NULL, 1, 0, '2019-11-05 09:36:58', '2019-11-20 09:20:17'),
+(99, 'huashud19823791823', 'ao thun ', 'ao-thun', '<p>asdasdasd</p>\r\n', '6,9', 1, 3, 0, 100000, 0, 'blue,brown,green', 'S,55,56', 0, NULL, 0, 1, '2019-11-20 08:51:32', '2019-11-20 09:36:17');
 
 -- --------------------------------------------------------
 
@@ -466,7 +484,11 @@ INSERT INTO `rates` (`id`, `user_id`, `product_id`, `rating`, `contents`, `creat
 (9, 1, 98, 4, 'asdadasdasd', '2019-11-19 03:23:23', '2019-11-19 03:23:23'),
 (10, 1, 98, 4, 'qweqweqwe', '2019-11-19 03:30:54', '2019-11-19 03:30:54'),
 (11, 1, 98, 4, 'asdasdasdasdasd', '2019-11-19 03:32:24', '2019-11-19 03:32:24'),
-(12, 1, 98, 4, 'asdasdasd', '2019-11-19 03:42:28', '2019-11-19 03:42:28');
+(12, 1, 98, 4, 'asdasdasd', '2019-11-19 03:42:28', '2019-11-19 03:42:28'),
+(13, 1, 97, 5, 'ok', '2019-11-19 04:49:00', '2019-11-19 04:49:00'),
+(14, 1, 85, 5, 'asdasdasd', '2019-11-20 10:42:24', '2019-11-20 10:42:24'),
+(15, 1, 85, 3, 'asda', '2019-11-20 10:43:01', '2019-11-20 10:43:01'),
+(16, 1, 98, 4, 'asdasd', '2019-11-20 01:50:19', '2019-11-20 01:50:19');
 
 -- --------------------------------------------------------
 
@@ -537,7 +559,13 @@ INSERT INTO `replies` (`id`, `product_id`, `user_id`, `comment_id`, `content`, `
 (46, 98, 1, 20, 'fgg', '2019-11-19 01:35:39', '2019-11-19 01:35:39'),
 (47, 98, 1, 20, 'asdasdasd', '2019-11-19 03:38:24', '2019-11-19 03:38:24'),
 (48, 98, 1, 30, 'asdasd', '2019-11-19 03:48:02', '2019-11-19 03:48:02'),
-(49, 98, 1, 29, 'asdasdasd', '2019-11-19 03:52:01', '2019-11-19 03:52:01');
+(49, 98, 1, 29, 'asdasdasd', '2019-11-19 03:52:01', '2019-11-19 03:52:01'),
+(50, 98, 1, 28, 'ádasdads', '2019-11-19 04:48:16', '2019-11-19 04:48:16'),
+(51, 85, 1, 31, 'asdasdasd', '2019-11-20 10:43:27', '2019-11-20 10:43:27'),
+(52, 98, 1, 19, 'asasdasd', '2019-11-20 12:32:28', '2019-11-20 12:32:28'),
+(53, 98, 1, 29, 'asdasd', '2019-11-20 02:01:02', '2019-11-20 02:01:02'),
+(54, 98, 1, 1, 'adasdasd', '2019-11-20 02:01:11', '2019-11-20 02:01:11'),
+(55, 98, 1, 30, 'asdasdasd', '2019-11-20 02:03:18', '2019-11-20 02:03:18');
 
 -- --------------------------------------------------------
 
@@ -615,7 +643,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `avata`, `firstname`, `lastname`, `phone`, `address`, `remember_token`, `token`, `reset_token`, `remember_me_identify`, `remember_me_token`, `remember_active_token`, `identification_tax_code`, `role`, `status`, `created`, `updated`) VALUES
-(1, 'user2@gmail.com', 'c93ccd78b2076528346216b3b2f701e6', NULL, 'khai', 'khai', '2435454564747', 'a', '$2y$10$YX6vK27ZMmVFaF9qjV3rDQ==', NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2019-09-11 09:42:31', '2019-11-11 04:43:20'),
+(1, 'user2@gmail.com', 'c93ccd78b2076528346216b3b2f701e6', NULL, 'khai', 'khai', '2435454564747', '12 thanh huy 3,Quận thanh khê,Đà nẵng,Viet nam,5001', '$2y$10$8PmPZCsGEwk1PyG9yV2KIQ==', NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2019-09-11 09:42:31', '2019-11-20 10:15:33'),
 (2, 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '156929299986865.png', 'An AN aâ', 'Tran', '09876577654', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2019-09-11 09:48:13', '2019-10-14 10:03:37'),
 (3, 'user@gmail.com', '21232f297a57a5a743894a0e4a801fc3', NULL, 'b', 'a', '0123456789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2019-10-08 03:45:40', '2019-10-08 03:45:40'),
 (4, 'user3@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '157077949929210.png', 'dfsdf', 'sdfsdf', '0123456789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2019-10-11 02:38:19', '2019-10-11 02:38:19'),
@@ -666,7 +694,11 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `product_id`, `user_id`, `supplier_id`, `quantity`, `price`, `color`, `size`, `image`, `created`, `updated`) VALUES
-(2, 85, 2, 1, 1, 3, 'green', NULL, '5b2757a07b4c30c0f69eebf4d7cc19e6Screenshot from 2019-09-23 15-54-52.png', '2019-11-15 08:13:17', '2019-11-18 09:21:34');
+(2, 85, 2, 1, 1, 3, 'green', NULL, '5b2757a07b4c30c0f69eebf4d7cc19e6Screenshot from 2019-09-23 15-54-52.png', '2019-11-15 08:13:17', '2019-11-18 09:21:34'),
+(12, 99, 1, 1, 1, 100000, 'blue', 'S,55', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:40:55', '2019-11-20 02:40:55'),
+(13, 99, 1, 1, 1, 100000, 'blue', NULL, 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:41:23', '2019-11-20 02:41:23'),
+(14, 99, 1, 1, 3, 100000, 'blue', 'S,55', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:44:22', '2019-11-20 02:44:22'),
+(15, 99, 1, 1, 1, 100000, 'blue,brown,green', 'S,55,56', 'caef94c0ff3eb019fcae7eb8e6e6b59cScreenshot from 2019-10-18 11-20-12.png', '2019-11-20 02:56:25', '2019-11-20 02:56:25');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -817,7 +849,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT cho bảng `category_types`
 --
@@ -827,7 +859,7 @@ ALTER TABLE `category_types`
 -- AUTO_INCREMENT cho bảng `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT cho bảng `coupons`
 --
@@ -837,7 +869,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT cho bảng `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT cho bảng `invoices`
 --
@@ -847,12 +879,12 @@ ALTER TABLE `invoices`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT cho bảng `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT cho bảng `payments`
 --
@@ -867,7 +899,7 @@ ALTER TABLE `payment_methods`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT cho bảng `product_use_coupons`
 --
@@ -877,12 +909,12 @@ ALTER TABLE `product_use_coupons`
 -- AUTO_INCREMENT cho bảng `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT cho bảng `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT cho bảng `shipments`
 --
@@ -907,7 +939,7 @@ ALTER TABLE `views`
 -- AUTO_INCREMENT cho bảng `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
