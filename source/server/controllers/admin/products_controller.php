@@ -149,7 +149,14 @@ class products_controller extends vendor_backend_controller {
     if($product->editRecord($id, $productData)) echo "Change status successful";
     else echo "error";
   }
-
+  public function changebestselling() {
+		global $app;
+		$id = $app['prs'][1];
+		$pm = new product_model();
+		$oiData['best_selling'] = ($app['prs'][2] == 0)?1:0;
+		if($pm->editRecord($id, $oiData)) echo "Change status successful";
+		else echo "error";
+	}
   public function del($id) {
     $product = new product_model();
     if($product->delRelativeRecord($id)) echo "Delete Successful";

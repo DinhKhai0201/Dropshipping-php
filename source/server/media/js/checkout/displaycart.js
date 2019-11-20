@@ -30,6 +30,7 @@ jQuery(function ($) {
                 $('.price-total-list').html('$' + new_price);
                 $('#item_' + id).remove();
                 $('.item_' + id).remove();
+                toastr.success("Successfully remove");
                 
             }
         });
@@ -41,12 +42,14 @@ jQuery(function ($) {
             success: function (data) {
                 let status = JSON.parse(data);
                 if (status) {
+                    toastr.success("Successfully remove all from cart");
                     $('fieldset').remove();
                     $('.cart-table-wrap').html('<p>Nothing in cart</p>');
                     $('.cart-info .cart-qty').html('0')
                     $('.price-total-list').html('$0');
                     $('.inner-wrapper').html('<p class="cart-empty">You have no items in your shopping cart. </p>');
                 } else {
+                    toastr.error("Failed remove  all from cart");
                     console.log("Error");
                 }
             }

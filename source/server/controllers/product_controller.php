@@ -43,9 +43,12 @@ class product_controller extends vendor_main_controller
                 'joins' => ['product', 'user','comment'],
                 'order' => 'id ASC',
             ]);
-            $this->rating = $rate->getAllRecords('rates.*', [
+            $this->rating = $rate->allp('rates.*', [
                 'conditions' => 'rates.product_id =' . $id,
                 'joins' => ['product', 'user'],
+                'pagination' => [
+                    'nopp' => 5
+                ],
                 'order' => 'id ASC',
             ]);
             $this->one = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id.' AND rating = 1']);
@@ -53,7 +56,13 @@ class product_controller extends vendor_main_controller
             $this->three = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 3']);
             $this->four = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 4']);
             $this->five = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 5']);
-            $this->avenge = round((float)(($this->one *1 +  $this->two*2 +  $this->three*3 +  $this->four*4 +  $this->five*5)/($this->one  +  $this->two +  $this->three  +  $this->four +  $this->five )),1);
+            $this->sum = ($this->one  +  $this->two +  $this->three  +  $this->four +  $this->five);
+            if ($this->sum > 0) {
+                $this->avenge = round((float) (($this->one * 1 +  $this->two * 2 +  $this->three * 3 +  $this->four * 4 +  $this->five * 5) / ($this->sum)), 1);
+            } else {
+                $this->avenge = 0;
+            }
+            
             //previous and next product
             $this->previousproduct = $product_model->nextProduct($id, true);
             $this->nextproduct = $product_model->nextProduct($id, false);
@@ -197,30 +206,67 @@ class product_controller extends vendor_main_controller
             }
         }
     }
-    // public function showmore()
-    // {
-    //     $status = false;
-    //     if (isset($_SESSION['user'])) {
-    //         if (isset($_POST['id_p'])) {
-    //             $id = $_POST['id_p'];
-    //         }
-    //         if (isset($_POST['no'])) {
-    //             $no = $_POST['no'];
-    //         }
-    //         $cm = new comment_model();
-    //         $this->comment = $cm->allp('comments.*', [
-    //             'conditions' => 'product_id = ' . $id,
-    //             'joins' => ['product', 'user'],
-    //             'pagination' => [
-    //                 'page'=>$no,
-    //                 'nopp' => 5
-    //             ],
-    //             'order' => 'id DESC'
-    //         ]);
-    //         echo json_encode($this->comment);
-           
-    //     }
-    // }
+    public function fetch_comment()
+    {
+        $status = false;
+       
+            if (isset($_POST['id_p'])) {
+                $id = $_POST['id_p'];
+            }
+            if (isset($_POST['page'])) {
+                $page = $_POST['page'];
+            }
+            $cm = new comment_model();
+            $lm = new reply_model();
+            $this->comment = $cm->allp('comments.*', [
+                'conditions' => 'product_id = ' . $id,
+                'joins' => ['product', 'user'],
+                'pagination' => [
+                    'page'=>$page,
+                    'nopp' => 5
+                ],
+                'order' => 'id DESC'
+            ]);
+            $data['comment'] = $this->comment['data'];
+            $data['norecords'] = $this->comment['norecords'];
+            $data['nocurp'] = $this->comment['nocurp'];
+            $data['curp'] = $this->comment['curp'];
+            $data['nopp'] = $this->comment['nopp'];
+            foreach($this->comment['data'] as $comment) {
+                $this->reply = $lm->getAllRecords('replies.*', [
+                    'conditions' => 'replies.product_id = ' . $id. ' AND replies.comment_id ='. $comment['id'],
+                    'joins' => ['product', 'user'],
+                    'order' => 'id DESC'
+                ]);
+                foreach($this->reply as $reply) {
+                    $data['replies'][]=$reply;
+                }
+            }
+            echo json_encode($data);
+    }
+    public function fetch_rating()
+    {
+        $status = false;
+
+        if (isset($_POST['id_p'])) {
+            $id = $_POST['id_p'];
+        }
+        if (isset($_POST['page'])) {
+            $page = $_POST['page'];
+        }
+        $rm = new rate_model();
+        $this->rates = $rm->allp('rates.*', [
+            'conditions' => 'product_id = ' . $id,
+            'joins' => ['product', 'user'],
+            'pagination' => [
+                'page' => $page,
+                'nopp' => 5
+            ],
+            'order' => 'id DESC'
+        ]);
+       
+        echo json_encode($this->rates);
+    }
   
     
 }

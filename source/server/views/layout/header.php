@@ -17,8 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/f88342096cf89fd57d043d509d14e567.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css/toastr/toastr.min.css" media="all" />
     <link rel="stylesheet" type="text/css" href="<?php echo RootREL; ?>media/css_secure/9c353ad7c3c57ca26c5f27068d2cafe5.css" media="print" />
     <script type="text/javascript" src="<?php echo RootREL; ?>media/js/main.js"></script>
+    <script type="text/javascript" src="<?php echo RootREL; ?>media/js/toastr/toastr.min.js"></script>
     <script type="text/javascript">
         jQuery(function($) {
             var scrolled = false;

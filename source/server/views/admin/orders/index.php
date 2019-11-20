@@ -114,13 +114,13 @@ if (isset($app['prs']['status'])) {
 
 										<td class="tabletShow <?php echo 'status-Order' . $record['order_status'] ?>" id="<?php echo ("status" . $record['id']); ?>">
 											<?php if ($record['order_status'] == 0) {
-														echo "Pendding";
+														echo "<p style ='color:orange'>Pendding<p>";
 													} else if ($record['order_status'] == 1) {
-														echo "Cancel";
+														echo "<p style ='color:red'>Cancel<p>";
 													} else if ($record['order_status'] == 2) {
-														echo "Shipping";
+														echo "<p style ='color:blue'>Shipping<p>";
 													} else {
-														echo "Complete";
+														echo "<p style ='color:green'>Complete<p>";
 													}
 
 													?>

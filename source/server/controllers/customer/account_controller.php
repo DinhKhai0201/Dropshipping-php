@@ -73,6 +73,44 @@ class account_controller extends vendor_main_controller
         if (!isset($_SESSION['user'])) {
             header("Location: " . vendor_app_util::url(array('area' => '', 'ctl' => 'login')));
         } else {
+            $id = $_SESSION['user']['id'];
+             if(isset($_POST['btn_submit'])) { 
+                    $address = [$_POST['street'],$_POST['province'],$_POST['city'],$_POST['country'],$_POST['postcode']];
+                    $um = new user_model();
+                    $userData = $_POST['user'];
+                    $userData['address'] = implode(",", $address);
+                     $valid = $um->validator($userData, $id);
+                    if ($valid['status']) {
+                        
+                        if ($um->editRecord($id, $userData)) {
+                            $um = new user_model();
+                            $um->editRecord(
+                                $id,
+                                [
+                                    'remember_token' 	=> '',
+                                ]
+                            );
+
+                            session_unset(); 
+                            session_destroy(); 
+                            $time = 3600;
+                            unset($_COOKIE['remember_token']);
+                            setcookie('remember_token', '', time() - $time, '/');
+                            
+                            header( "Location: ".vendor_app_util::url(array('area' => '', 'ctl'=>'login')));
+                        } else {
+                            $this->errors = ['database' => 'An error occurred when editing data!'];
+                            $this->record = $userData;
+                        }
+                    } else {
+                        $this->errors = $um::convertErrorMessage($valid['message']);
+                        $this->record = $userData;
+                        $this->record['id'] = $id;
+                    }
+                    //  exit(json_encode($userData));
+              }
+           
+           
             $this->display();
         }
     }

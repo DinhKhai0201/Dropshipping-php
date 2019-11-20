@@ -103,6 +103,7 @@ jQuery(function ($) {
         if (color.length == 0) {
             console.log("a");
             $('.error-color').show();
+            toastr.warning("Choose  a color");
         } else {
             let image_p;
             if ((/upload\/products\/(.*)/g).test(product_image)) {
@@ -139,6 +140,7 @@ jQuery(function ($) {
                     $('.cart-info .cart-qty').empty();
                     $('.cart-info .cart-qty').html(parseInt(qty) + 1);
                     $('.inner-wrapper').prepend(html);
+                    toastr.success("Successfully add to cart");
                 }
             });
            
@@ -151,6 +153,7 @@ jQuery(function ($) {
         let supplier = ($(this).context.attributes.supplier.value);
         if (color.length == 0) {
             $('.error-color').show();
+            toastr.warning("Choose  a color");
         } else {
             let image_p;
             if ((/upload\/products\/(.*)/g).test(product_image)) {
@@ -172,6 +175,7 @@ jQuery(function ($) {
                     let num_wishlist = parseInt($('.no_wishlist').html());
                     $('.no_wishlist').empty();
                     $('.no_wishlist').html(num_wishlist + 1);
+                    toastr.success("Successfully add to wishlist");
                     console.log(data);
                     }
 

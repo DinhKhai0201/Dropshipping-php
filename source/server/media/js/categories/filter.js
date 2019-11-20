@@ -77,20 +77,11 @@ $(document).ready(function () {
         );
         location.reload();
     }
-    $(".pages ol").on("click", ".page", function () {
-        let page = $(this).val();
+    $(".category-products").on("click", ".page", function () {
+        let page = $(this).children().attr('data-dt-idx');
         panigation(page, rootUrl);
     });
-    $(".pages ol").on("click", "#prev", function () {
-        let page = $(this).context.attributes.value.value;
-        panigation(page, rootUrl);
-
-    });
-    $(".pages ol").on("click", "#next", function () {
-        let page = $(this).context.attributes.value.value;
-        panigation(page, rootUrl);
-
-    });
+   
 });
 function tmp_product(product, RootREL, rootUrl) {
     let tmp = '';
@@ -148,34 +139,58 @@ function tmp_product(product, RootREL, rootUrl) {
     return tmp;
 }
 
-function tmp_page(products) {
+
+
+function pagi(data) {
     let tmp = '';
+    let nopages = Math.ceil(parseInt(data.norecords) / parseInt(data.nopp));
     tmp += `
-                <p class="amount">
-                    Items ${products.nopp * (products.curp - 1) + 1} to ${products.nopp * (products.curp - 1) + products.nocurp} of ${products.norecords} total </p>
-                <div class="pages">
-                    <ol>
-                        <li>
-                            <span id = "prev" class="precious i-precious"  title="Precious">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                        </li>`;
-    for (let index = 1; index <= Math.ceil(products.norecords / products.nopp); index++) {
-        if (products.curp == index) {
-            tmp += `<li class = "current" > ${products.curp} </li>`;
-        } else {
-            tmp += `<li value = "${index}" class = "page-filter page-${index}" >${index}</li>`;
-        }
+        <div class="pager">
+
+        <div class="pages">
+            <ol>
+                <li class="page previous " id="table_previous" style="cursor:pointer">
+                    <span style="display:${(parseInt(data.curp) == 1) ? 'none' : 'block'}" tabindex="" data-dt-idx="${parseInt(data.curp) - 1}"><i class="fas fa-chevron-left"></i></span>
+                </li>`;
+    let start = 1;
+    if (parseInt(data.curp) > 2 && parseInt(nopages) > 3) {
+        tmp += `<li class="page" style="cursor:pointer">
+                        <span tabindex="0">1</span>
+                    </li>
+                    <li class="page disabled" style="cursor:pointer">
+                        <span href="javascript:void(0);">...</span>
+                    </li>`;
     }
-    tmp += `<li >
-            <span id= "next" class="next i-next"  title = "Next" >
-            <i class = "fas fa-chevron-right" > </i> </span > </li> </ol > 
-            </div>
-        `;
+    start = (parseInt(data.curp) - 1) < 1 ? 1 : (parseInt(data.curp) - 1);
+    let end = (parseInt(data.curp) + 1) > parseInt(nopages) ? parseInt(nopages) : (parseInt(data.curp) + 1);
+    for (let index = start; index <= end; index++) {
+        tmp += `<li class="page ${(index == parseInt(data.curp)) ? 'current' : ''}" style="cursor:pointer">
+                        <span data-dt-idx="${index}" tabindex="0">${index}</span>
+                    </li>`;
+
+    }
+    end = nopages;
+    if (end - parseInt(data.curp) > 1 && parseInt(nopages) > 3) {
+        tmp += ` <li class="page disabled">
+                        <span href="javascript:void(0);">...</span>
+                    </li>
+                    <li class="page" style="cursor:pointer">
+                        <span tabindex="0" data-dt-idx="${parseInt(nopages)}">${parseInt(nopages)}</span>
+                    </li> `;
+    }
+    tmp += `
+                <li class="page next " id="table_next" style="cursor:pointer">
+                    <span style="display:${(parseInt(data.curp) == parseInt(nopages)) ? 'none' : 'block'}" aria-controls="example1" data-dt-idx="${parseInt(data.curp) + 1}" tabindex="0"><i class="fas fa-chevron-right"></i>
+                    </span>
+                </li>
+
+            </ol>
+        </div>
+
+    </div>
+    `;
     return tmp;
 }
-
-
 $(document).ready(function () {
     var page_filter = null;
         let  pages = $('.pages ol li');
@@ -257,6 +272,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 // console.log(data);
+                toastr.success("Successfully filter");
                 $('.products-display').empty();
                 $('.pager').empty();
                 let product = JSON.parse(data);
@@ -267,7 +283,7 @@ $(document).ready(function () {
                 });
                 $('.products-display').html(html);
                 $(' .message-result span.number').html(product.norecords);
-                $('.pager').html(tmp_page(product));
+                $('.pager').html(pagi(product));
                 animationScroll();
             }
         });

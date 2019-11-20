@@ -139,35 +139,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/foot_page.css");
                                     <a href="" title="Set Descending Direction"><i class="icon-up"></i></a>
                                 </div>
 
-                                <div class="pager">
-                                    <p class="amount">
-                                        Items <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + 1); ?> to <?php echo ($this->products['nopp'] * ($this->products['curp'] - 1) + $this->products['nocurp']); ?> of <?php echo $this->products['norecords']; ?> total
-                                    </p>
-                                    <div class="pages">
-                                        <ol>
-                                            <li>
-                                                <span id="prev" class="precious i-precious" value="<?php echo (intval($this->products['curp']) - 1); ?>" title="Precious">
-                                                    <i class="fas fa-chevron-left"></i>
-                                                </span>
-                                            </li>
-                                            <?php for ($i = 1; $i <= ceil($this->products['norecords'] / $this->products['nopp']); $i++) {  ?>
-                                                <?php if ($this->products['curp'] == $i) { ?>
-                                                    <li class="current"><?php echo $this->products['curp']; ?></li>
-                                                <?php } else { ?>
-                                                    <li value="<?php echo $i; ?>" class="page page-<?php echo $i ?>"><?php echo $i; ?>
-                                                    </li>
-                                            <?php }
-                                            } ?>
-
-                                            <li>
-                                                <span id="next" class="next i-next" value="<?php echo (intval($this->products['curp']) + 1); ?>" title="Next">
-                                                    <i class="fas fa-chevron-right"></i>
-                                                </span>
-                                            </li>
-                                        </ol>
-                                    </div>
-
-                                </div>
+                                <?php vendor_html_helper::paginationajax($this->products['norecords'], $this->products['nocurp'], $this->products['curp'], $this->products['nopp']); ?>
                             </div>
                         </div>
                     </div>
@@ -275,7 +247,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/foot_page.css");
                         <div class="block-content">
                             <dl id="narrow-by-list">
                                 <dt>Price</dt>
-                               
+
                                 <dd class="odd">
                                     <div class="price price-filter-slider">
                                         <div>
@@ -293,7 +265,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/foot_page.css");
                                         </div>
                                         <div class="clearer"></div>
                                     </div>
-                                   
+
                                 </dd>
                                 <dt>Color</dt>
                                 <dd>

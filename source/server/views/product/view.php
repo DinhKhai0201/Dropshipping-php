@@ -339,7 +339,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                     <h2><span id="comments_count"><?= $this->comment['norecords'] ?></span> Comment(s) | <a href="javascript:void(0)" type="submit" title="Expand comment" class="button btn open-bt-cm"><span><span>
                                                                     Show comments </span></span></a></h2>
                                                     <hr>
-                                                    <div class="comment-display" style="display:none">
+                                                    <div id="href-comment" class="comment-display" style="display:none">
                                                         <?php foreach ($this->comment['data'] as $comment) { ?>
                                                             <div id="comments-wrapper-<?= $comment['id'] ?>">
                                                                 <div class="comment clearfix">
@@ -380,8 +380,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                                 </div>
                                                             </div>
                                                         <?php } ?>
-                                                        <a href="javascript:void(0)" type="submit" id_p ="<?=$product['id']?>" num_loaded="2" title="Expand comment" class="button btn show-more"><span><span>
-                                                                    Show more </span></span></a>
+                                                        <?php vendor_html_helper::paginationajax($this->comment['norecords'], $this->comment['nocurp'], $this->comment['curp'], $this->comment['nopp']); ?>
                                                     </div>
 
                                                 </div>
@@ -489,10 +488,10 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                 </div>
                                             </div>
                                             <div class="rating-display" style="border-top: 1px solid #eee;">
-                                                <?php foreach ($this->rating as $key => $rating) { ?>
+                                                <?php foreach ($this->rating['data'] as $key => $rating) { ?>
                                                     <div id="comments-wrapper-<?= $rating['id'] ?>" style="padding-top: 20px;">
                                                         <div class="comment clearfix">
-                                                            <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                                            <img src="<?php echo RootREL . "media/upload/users/" . (!empty($rating['user_avata']) ? $rating['user_avata'] : 'no_image.png'); ?>" alt="" class="profile_pic">
                                                             <div class="comment-details">
                                                                 <span class="comment-name"><?= $rating['users_firstname'] ?></span>
                                                                 <span class="comment-date"><?= $rating['created'] ?></span>
@@ -510,7 +509,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                         </div>
                                                     </div>
                                                 <?php } ?>
-
+                                                <?php vendor_html_helper::paginationajax($this->rating['norecords'], $this->rating['nocurp'], $this->rating['curp'], $this->rating['nopp']); ?>
                                             </div>
                                         </div>
                                         <script type="text/javascript">

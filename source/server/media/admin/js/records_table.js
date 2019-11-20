@@ -87,7 +87,27 @@ $(document).ready(function () {
 			})
 			
 		});
-		
+		$('tbody.records').on('click', '.best-selling-record', function () {
+			idAct = $(this).attr('alt');
+			status = $(this).attr('status')
+			urlToggle = rootUrl + "admin/" + ctl + "/changebestselling/" + idAct + "/" + status;
+			console.log(status)
+			$.ajax({
+				url: urlToggle,
+				success: function (data) {
+					if (status == 0) {
+						$('#best' + idAct).removeClass("btn-success").addClass("btn-danger");
+						$('#best' + idAct).html('Hot');
+					}
+					if (status == 1) {
+						$('#best' + idAct).removeClass("btn-danger").addClass("btn-success");
+						$('#best' + idAct).html('Normal');
+					}
+					$('#best' + idAct).attr({ "status": (status == '0') ?'1':'0' });
+				}
+			})
+			
+		});
 		// ok
 		$('tbody.records').on('click','td.btn-act button.toggle-status-record', function () {
 			// var isToggle = confirm("Are you sure to change status this record?");
@@ -180,44 +200,44 @@ $(document).ready(function () {
 			}
 		});
 
-		$('tbody.records').on('click','.toggle-cv', function () {
-			var isToggle = confirm("Are you sure to change status this cv?");
-			if(isToggle){
-				data = $(this).attr('alt').split('-');
-				action = $(this).attr('action');
-				id = data[0];
-				status = data[1];
-				urlToggle = rootUrl+"admin/"+ctl+"/"+action+"/"+ id +"/"+ status;
-				let that = this;
-				$.ajax({
-					url: urlToggle,
-					success: function (data) {
-						$(that).removeClass(`fa-toggle-${status=='0'?'off':'on'}`);
-						$(that).addClass(`fa-toggle-${status=='0'?'on':'off'}`)
-						$(that).attr('alt',`${id}-${status=='0'?'1':'0'}`)
-					},
-					error: function (data) {
-						alert("Error");
-					}
-				})
-			}
-		});
+		// $('tbody.records').on('click','.toggle-cv', function () {
+		// 	var isToggle = confirm("Are you sure to change status this cv?");
+		// 	if(isToggle){
+		// 		data = $(this).attr('alt').split('-');
+		// 		action = $(this).attr('action');
+		// 		id = data[0];
+		// 		status = data[1];
+		// 		urlToggle = rootUrl+"admin/"+ctl+"/"+action+"/"+ id +"/"+ status;
+		// 		let that = this;
+		// 		$.ajax({
+		// 			url: urlToggle,
+		// 			success: function (data) {
+		// 				$(that).removeClass(`fa-toggle-${status=='0'?'off':'on'}`);
+		// 				$(that).addClass(`fa-toggle-${status=='0'?'on':'off'}`)
+		// 				$(that).attr('alt',`${id}-${status=='0'?'1':'0'}`)
+		// 			},
+		// 			error: function (data) {
+		// 				alert("Error");
+		// 			}
+		// 		})
+		// 	}
+		// });
 
 
-		$('.change-status-cv').on('change', function(){
-			let id = $(this).attr('data')
-			let status = $(this).val()
-			url = rootUrl+"admin/cvs/changeCvOnlineStatus/"+id+"/"+status;
-			$.ajax({
-				url: url,
-				success: function (data) {
-					window.location.reload();
-				},
-				error: function (data) {
-					alert("Error");
-				}
-			})
-		})
+		// $('.change-status-cv').on('change', function(){
+		// 	let id = $(this).attr('data')
+		// 	let status = $(this).val()
+		// 	url = rootUrl+"admin/cvs/changeCvOnlineStatus/"+id+"/"+status;
+		// 	$.ajax({
+		// 		url: url,
+		// 		success: function (data) {
+		// 			window.location.reload();
+		// 		},
+		// 		error: function (data) {
+		// 			alert("Error");
+		// 		}
+		// 	})
+		// })
 
 		$('.tableCredit').on('click', '.editCreditCvUpload', function(){
 			let id = $(this).attr('alt');

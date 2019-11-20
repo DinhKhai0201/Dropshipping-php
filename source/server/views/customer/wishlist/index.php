@@ -10,23 +10,23 @@
             <div class="col-main col-lg-9 lg-order-12">
                 <div class="my-account">
                     <div class="top-container">
-                        <div class="breadcrumbs" style ="margin-bottom: 20px">
+                        <div class="breadcrumbs" style="margin-bottom: 20px">
                             <div class="container">
                                 <div class="row">
-                                        <ul>
-                                            <li class="home">
-                                                <a href="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => ""])) ?>" title="Go to Home Page">Home</a>
-                                                <span class="breadcrumbs-split">></span>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
-                                                <span class="breadcrumbs-split">></span>
-                                            </li>
-                                          
-                                            <li class="product">
-                                                <strong>My wishlist </strong>
-                                            </li>
-                                        </ul>
+                                    <ul>
+                                        <li class="home">
+                                            <a href="<?php echo (vendor_app_util::url(['area' => '', "ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                            <span class="breadcrumbs-split">></span>
+                                        </li>
+                                        <li class="">
+                                            <a href="<?php echo (vendor_app_util::url(['area' => 'customer', "ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
+                                            <span class="breadcrumbs-split">></span>
+                                        </li>
+
+                                        <li class="product">
+                                            <strong>My wishlist </strong>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -151,6 +151,7 @@
                     let num_wishlist = parseInt($('.no_wishlist').html());
                     $('.no_wishlist').empty();
                     $('.no_wishlist').html(num_wishlist - 1);
+                    toastr.success("Successfully remove wishlist");
 
                 }
             });
@@ -165,8 +166,10 @@
                         $(' <p>Nothing in wishlist</p>').insertAfter('.my-wishlist .page-title');
                         $('.no_wishlist').empty();
                         $('.no_wishlist').html('0');
+                        toastr.success("Successfully remove all wishlist");
                     } else {
                         alert("Error");
+                        toastr.error("Successfully remove all wishlist");
                     }
                 }
             });
@@ -197,6 +200,7 @@
                         price_id = price_id.substr(1);
                         new_price = (parseInt(price_id) + parseInt(datas.price));
                     }
+                    toastr.success("Successfully add to cart");
                     $('.price-total .getPrice').html('$' + new_price);
                     $('.cart-info .cart-qty').empty();
                     $('.cart-info .cart-qty').html(parseInt(qty) + 1);
@@ -211,9 +215,9 @@
                 success: function(data) {
                     let status = JSON.parse(data);
                     if (status == true) {
-                        alert("Added all cart Ok.");
+                        toastr.success("Successfully add all to cart");
                     } else {
-                        alert("Error");
+                        toastr.error("Failed");
                     }
 
                 }

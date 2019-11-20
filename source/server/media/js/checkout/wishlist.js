@@ -26,6 +26,7 @@ jQuery(function ($) {
                 let num_wishlist = parseInt($('.no_wishlist').html());
                 $('.no_wishlist').empty();
                 $('.no_wishlist').html(num_wishlist + 1);
+                toastr.success("Successfully add to wishlist");
 
             }
         });

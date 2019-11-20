@@ -146,15 +146,19 @@ if (isset($app['prs']['status'])) {
 													}
 
 													?>
+											
+												
 										</td>
 										<td class="tabletShow <?php echo 'bestSelling-Product' . $record['best_selling'] ?>" id="<?php echo ("bestSelling" . $record['id']); ?>">
-											<?php if ($record['best_selling'] == 1) {
-														echo "Hot";
-													} else {
-														echo "Normal";
-													}
-
-													?>
+											<button data-placement="right" title="Best selling" id="best<?php echo $record['id']; ?>" status="<?= $record['best_selling'] ?>" type="button" class="btn <?php if ($record['best_selling'] == 0) {
+																																																							echo "btn-success ";
+																																																						} else {
+																																																							echo " btn-danger";
+																																																						} ?> best-selling-record" alt="<?php echo $record['id']; ?>"><?php if ($record['best_selling'] == 0) {
+																																																																							echo "Normal";
+																																																																						} else {
+																																																																							echo "Hot";
+																																																																						} ?></button>
 										</td>
 										<td class="btn-act" class="pull-right">
 											<a href="<?php echo (vendor_app_util::url(["ctl" => "products", "act" => "edit/" . $record['id']])) ?>" id="<?php echo ("edit" . $record['id']); ?>">

@@ -171,10 +171,7 @@
 							<table controller="products" class="table table-bordered table-striped no-margin dataTable" style="text-align:center; width:100%;min-width:800px;">
 								<thead>
 									<tr role="row">
-										<th id="checAllTop" class="checkAll" style="width: 10px;">
-											<input type="checkbox" name="" id="cb-all-product" style="display:none;">
-											<label for="cb-all-product"></label>
-										</th>
+									
 										<th style="width: 20px;">ID</th>
 										<th style="width: 250px;">Product</th>
 										<th class="tabletShow" style="width: 200px;">Supplier</th>
@@ -190,12 +187,6 @@
 										<?php $i = 1 + ($this->records['curp'] - 1) * $this->records['nopp'];
 											foreach ($this->records['data'] as $record) { ?>
 											<tr role="row" id="row<?= $record['id']; ?>">
-
-												<td id="<?php echo ("checkbox" . $record['id']); ?>" class="checkboxRecord">
-													<input type="checkbox" name="" alt="<?= $record['id']; ?>" id="cb-product-<?= $record['id']; ?>" class='cb-user'>
-													<label for="cb-product-<?= $record['id']; ?>"></label>
-												</td>
-
 												<td id="<?php echo ("fullname" . $record['id']); ?>">
 													<?php echo $i++; ?>
 												</td>
