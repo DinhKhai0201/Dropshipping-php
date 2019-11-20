@@ -47,6 +47,7 @@ jQuery(function ($) {
         $('.error-color').hide();
     });
     $('ul.sizes').on("click", "li", function () {
+        console.log("a");
         $('.size:checked').parent().addClass('border-choose');
         $('.size:not(:checked)').parent().removeClass('border-choose');
 
@@ -95,11 +96,12 @@ jQuery(function ($) {
     }
     $('.btn-cart').click(function () {
         let color = get_filter('color');
+        let size = get_filter('size');
         let name = ($(this).context.attributes.name.value);
         let slug = ($(this).context.attributes.slug.value);
         let supplier = ($(this).context.attributes.supplier.value);
         let qty =$(this).parent().children('.qty-holder').children().val();
-        console.log(supplier);
+        console.log(size);
         if (color.length == 0) {
             console.log("a");
             $('.error-color').show();
@@ -115,6 +117,7 @@ jQuery(function ($) {
                 data: {
                     id: product_id,
                     color: color.join(),
+                    size:size.join(),
                     qty: qty,
                     price: product_price,
                     image: image_p,
@@ -150,6 +153,7 @@ jQuery(function ($) {
     //ok
     $('.addWishlistJs').click(function() {
         let color = get_filter('color');
+        let size = get_filter('size');
         let supplier = ($(this).context.attributes.supplier.value);
         if (color.length == 0) {
             $('.error-color').show();
@@ -165,6 +169,7 @@ jQuery(function ($) {
                 data: {
                     id: product_id,
                     color: color.join(),
+                    size:size.join(),
                     qty: product_qty,
                     price: product_price,
                     image: image_p,

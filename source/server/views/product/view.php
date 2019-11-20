@@ -224,40 +224,22 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                     <span id="select_label_size" class="select-label"></span>
                                                 </label>
                                             </dt>
-                                            <dd class="clearfix swatch-attr last">
+                                            <dd class="clearfix  last">
                                                 <div class="input-box">
-                                                    <select name="super_attribute[144]" id="attribute144" class="required-entry super-attribute-select no-display swatch-select">
-                                                        <option>Choose an Option...</option>
-                                                    </select>
-                                                    <ul id="configurable_swatch_size" class="configurable-swatch-list clearfix">
-                                                        <li class="option-m" id="option7">
-                                                            <a href="javascript:void(0)" name="m" id="swatch7" class="swatch-link swatch-link-144" title="M" style="height: 32px; min-width: 32px;">
-                                                                <span class="swatch-label" style="height: 30px; min-width: 30px; line-height: 30px;">
-                                                                    M </span>
-                                                                <span class="x">X</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="option-l" id="option6">
-                                                            <a href="javascript:void(0)" name="l" id="swatch6" class="swatch-link swatch-link-144" title="L" style="height: 32px; min-width: 32px;">
-                                                                <span class="swatch-label" style="height: 30px; min-width: 30px; line-height: 30px;">
-                                                                    L </span>
-                                                                <span class="x">X</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="option-xl" id="option5">
-                                                            <a href="javascript:void(0)" name="xl" id="swatch5" class="swatch-link swatch-link-144" title="XL" style="height: 32px; min-width: 32px;">
-                                                                <span class="swatch-label" style="height: 30px; min-width: 30px; line-height: 30px;">
-                                                                    XL </span>
-                                                                <span class="x">X</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="option-2xl" id="option4">
-                                                            <a href="javascript:void(0)" name="2xl" id="swatch4" class="swatch-link swatch-link-144" title="2XL" style="height: 32px; min-width: 32px;">
-                                                                <span class="swatch-label" style="height: 30px; min-width: 30px; line-height: 30px;">
-                                                                    2XL </span>
-                                                                <span class="x">X</span>
-                                                            </a>
-                                                        </li>
+                                                   
+                                                    <ul id="configurable_swatch_size" class="configurable-swatch-list clearfix sizes">
+                                                     <?php $product['size'] = explode(",", $product['size']); ?>
+                                                        <?php foreach ($product['size'] as $key=> $size) { ?>
+                                                            <label for="id-size-<?php echo $size; ?>" style ="line-height: 2.4;">
+                                                                <li  style ="border:1px solid gray" class="clearfix">
+                                                                    <span class="clearfix">
+                                                                        <span class="swatch-label" style="height:30px; width:30px;">
+                                                                            <?= $size ?> </span>
+                                                                    </span>
+                                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
+                                                                </li>
+                                                            </label>
+                                                        <?php }?>
                                                     </ul>
                                                 </div>
                                             </dd>
@@ -328,7 +310,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                 <div class="col-md-9 col-md-offset-3 comments-section comment-append">
                                                     <div class="clearfix" id="comment_form">
                                                         <h4>Post a comment:</h4>
-                                                        <textarea type="text" placeholder="Post your comment" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                                        <textarea type="text" placeholder="Post your comment" id="comment_text" class="form-control" cols="30" rows="3" required></textarea>
                                                         <?php if (isset($_SESSION['user'])) { ?>
                                                             <a key_p="<?php echo $product['id']; ?>" href="javascript:void(0)" class="btn btn-primary btn-sm pull-right comment-bt" id="submit_comment">Submit comment</a>
                                                         <?php } else { ?>
@@ -350,7 +332,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                                         <p><?= $comment['contents'] ?></p>
                                                                         <a class="reply-btn" href="javascript:void(0)">reply</a> <br>
                                                                         <div class="clearfix show-reply show-replay-<?= $comment['id'] ?>" style="display:none">
-                                                                            <textarea type="text" placeholder="Post your reply" id="comment_reply" class="comment_reply_<?= $comment['id'] ?> form-control input-text" cols="30" rows="3"></textarea>
+                                                                            <textarea type="text" placeholder="Post your reply" id="comment_reply" class="comment_reply_<?= $comment['id'] ?> form-control input-text" cols="30" rows="3" required></textarea>
                                                                             <?php if (isset($_SESSION['user'])) { ?>
                                                                                 <a key_p="<?php echo $product['id']; ?>" key_c="<?php echo $comment['id']; ?>" href="javascript:void(0)" class="button btn btn-primary btn-sm pull-right reply-bt" id="submit_reply">Submit reply</a>
                                                                             <?php } else { ?>

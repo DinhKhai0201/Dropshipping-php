@@ -94,6 +94,9 @@ class checkout_controller extends vendor_main_controller
 		$cartData['user_id'] = $_SESSION['user']['id'];
 		$cartData['quantity'] = $_POST['qty'];
 		$cartData['price'] = $_POST['price'];
+		if (isset($_POST['size'])) {
+			$cartData['size'] = $_POST['size'];
+		}
 		$cartData['color'] = $_POST['color'];
 		$cartData['image'] = $_POST['image'];
 		$cartData['supplier_id'] = $_POST['supplier'];

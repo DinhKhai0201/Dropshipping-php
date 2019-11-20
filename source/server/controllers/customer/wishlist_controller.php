@@ -28,6 +28,9 @@ class wishlist_controller extends vendor_main_controller
         $wishData['user_id'] = $_SESSION['user']['id'];
         $wishData['quantity'] = $_POST['qty'];
         $wishData['price'] = $_POST['price'];
+        if (isset($_POST['size'])) {
+			$wishData['size'] = $_POST['size'];
+		}
         $wishData['color'] = $_POST['color'];
         $wishData['image'] = $_POST['image'];
         $wishData['supplier_id'] = $_POST['supplier_id'];

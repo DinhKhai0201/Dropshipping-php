@@ -129,7 +129,7 @@ function tmp_product(product, RootREL, rootUrl) {
                                         <div class="actions">
                                             <a href="javascript:showOptions('310')" class="addtocart" title="Add to Cart"><i class="icon-cart"></i><span>&nbsp;Add to
                                                     Cart</span></a>
-                                            <a href='https://www.portotheme.com/magento/porto/index.php/demo1_en/ajaxcart/index/options/product_id/310/' class='fancybox' id='fancybox310' style='display:none'>Options</a>
+                                            <a href='' class='fancybox' id='fancybox310' style='display:none'>Options</a>
                                             <div class="clearer"></div>
                                         </div>
                                     </div>

@@ -70,7 +70,7 @@
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:void(0)" key="<?= $product['id']; ?>" value="<?= $product['product_id']; ?>" colors="<?= $product['color']; ?>" supplier ="<?= $product['supplier_id']; ?>"  qty="<?= $product['quantity']; ?>" price="<?= $product['price']; ?>" image="<?= $product['image']; ?>" class="link-wishlist towishlist use-ajax">Add</a>
+                                                        <a href="javascript:void(0)" key="<?= $product['id']; ?>" size="<?= $product['size']; ?>" value="<?= $product['product_id']; ?>" colors="<?= $product['color']; ?>" supplier ="<?= $product['supplier_id']; ?>"  qty="<?= $product['quantity']; ?>" price="<?= $product['price']; ?>" image="<?= $product['image']; ?>" class="link-wishlist towishlist use-ajax">Add</a>
                                                     </td>
                                                     <td>
                                                         <span class="cart-price">

@@ -107,7 +107,7 @@ jQuery(function ($) {
                    res.forEach(element => {
                        html =`<div id="comments-wrapper-${element.id}">
                                  <div class="comment clearfix">
-                                    <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                    <img src="${RootREL}media/upload/users/${(element.users_avata && element.users_avata != '') ? element.users_avata : 'no_image.png'}" alt="" class="profile_pic">
                                     <div class="comment-details">
                                         <span class="comment-name">${element.users_firstname}</span>
                                         <span class="comment-date">${element.created}</span>
@@ -147,7 +147,7 @@ jQuery(function ($) {
                    res.forEach(element => {
                        html =`<div class="comment reply-c reply-${element.comment_id} clearfix">
                                  <div class ="clearfix cm-rl-${element.id}">
-                                    <img src="https://en.es-static.us/upl/2018/12/comet-wirtanen-Jack-Fusco-dec-2018-Anza-Borrego-desert-CA-e1544613895713.jpg" alt="" class="profile_pic">
+                                    <img src="${RootREL}media/upload/users/${(element.users_avata && element.users_avata != '') ? element.users_avata : 'no_image.png'}" alt="" class="profile_pic">
                                     <div class="comment-details">
                                         <span class="comment-name">${element.users_firstname}</span>
                                         <span class="comment-date">${element.created}</span>
