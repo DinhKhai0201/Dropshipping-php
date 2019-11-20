@@ -380,9 +380,10 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                                 </div>
                                                             </div>
                                                         <?php } ?>
+                                                        <a href="javascript:void(0)" type="submit" id_p ="<?=$product['id']?>" num_loaded="2" title="Expand comment" class="button btn show-more"><span><span>
+                                                                    Show more </span></span></a>
                                                     </div>
-                                                    <a href="javascript:void(0)" type="submit" num_loaded="5" title="Expand comment" class="button btn show-more"><span><span>
-                                                                Show more </span></span></a>
+
                                                 </div>
                                             </div>
                                         </div>

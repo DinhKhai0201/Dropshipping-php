@@ -70,6 +70,13 @@ class categories_controller extends vendor_main_controller
 			}
 		
 		}
+		if (isset($_POST["size"])) {
+			foreach ($_POST["size"] as $key => $value) {
+				$conditions .= (($conditions) ? " AND " : "") . " products.size like '%" . $value . "%'";
+			}
+
+		}
+
 		
 		if (isset($_POST["search"])) {
 			$conditions .= (($conditions) ? " AND " : "") . " products.name  like '%" . $_POST["search"] . "%'";

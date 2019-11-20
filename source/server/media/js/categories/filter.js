@@ -232,6 +232,7 @@ $(document).ready(function () {
         var brand = get_filter('brand');
         var color = get_filter('color');
         var size = get_filter('size');
+        console.log(size);
         var cat = get_cat_click();
         console.log(page);
         var sort = $('.sort').val();
@@ -250,11 +251,12 @@ $(document).ready(function () {
                 cat: cat,
                 search: search,
                 sort: sort,
+                size: size,
                 type: type,
                 page: page
             },
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $('.products-display').empty();
                 $('.pager').empty();
                 let product = JSON.parse(data);

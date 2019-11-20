@@ -77,6 +77,24 @@ jQuery(function ($) {
     $('.open-bt-cm').click(function () {
         $('.comment-display').toggle('slow');
     });
+    $('.show-more').click(function() {
+        // let load  = $(this).attr('num_loaded');
+        // let id = $(this).attr('id_p');
+        // $.ajax({
+        //     url: rootUrl + "product/showmore",
+        //     method: "POST",
+        //     data: {
+        //         id_p: id,
+        //         no: load
+               
+        //     },
+        //     success: function (data) {
+        //         // let res = JSON.parse(data);
+        //         console.log(data)
+
+        //     }
+        // });
+    })
     $('body').on('click','.reply-btn',function(){
          $(this).parent().children('.show-reply').toggle('slow');
     });

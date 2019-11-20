@@ -197,6 +197,30 @@ class product_controller extends vendor_main_controller
             }
         }
     }
+    // public function showmore()
+    // {
+    //     $status = false;
+    //     if (isset($_SESSION['user'])) {
+    //         if (isset($_POST['id_p'])) {
+    //             $id = $_POST['id_p'];
+    //         }
+    //         if (isset($_POST['no'])) {
+    //             $no = $_POST['no'];
+    //         }
+    //         $cm = new comment_model();
+    //         $this->comment = $cm->allp('comments.*', [
+    //             'conditions' => 'product_id = ' . $id,
+    //             'joins' => ['product', 'user'],
+    //             'pagination' => [
+    //                 'page'=>$no,
+    //                 'nopp' => 5
+    //             ],
+    //             'order' => 'id DESC'
+    //         ]);
+    //         echo json_encode($this->comment);
+           
+    //     }
+    // }
   
     
 }

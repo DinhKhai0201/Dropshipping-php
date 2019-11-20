@@ -260,6 +260,96 @@
 							</div>
 						</div>
 					<?php } ?>
+					<!-- size -->
+					<?php if ($app['act'] == 'view') { ?>
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="color_name">Size</label>
+							<div class="controls col-md-7">
+								<ul class="configurable-swatch-list no-count" style="list-style-type: none;">
+
+									<?php if (isset($this->record['size'])) {
+											$record['size'] = explode(",", $this->record['size']);
+											foreach ($record['size'] as $size) { ?>
+											 <label for="id-size-<?php echo $size; ?>">
+                                                <li style ="border:1px solid black">
+                                                    <span class="swatch-link">
+                                                        <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;padding: 10px;margin:2px;">
+                                                            <?= $size ?> </span>
+                                                    </span>
+                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
+                                                </li>
+                                            </label>
+									<?php }
+										} ?>
+								</ul>
+
+							</div>
+						</div>
+					<?php } else if ($app['act'] == 'add') { ?>
+
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="size_name">Size</label>
+							<div class="controls col-md-7">
+								<input hidden id="sizes-choose" name="product[size]" value="">
+								<ul class="configurable-swatch-list size-p no-count" style="list-style-type: none;">
+									<?php foreach ($app['size'] as $key => $size) { ?>
+										 <label for="id-size-<?php echo $size; ?>">
+                                                <li style ="border:1px solid black">
+                                                    <span class="swatch-link">
+                                                        <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;padding: 10px;margin:4px;">
+                                                            <?= $size ?> </span>
+                                                    </span>
+                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
+                                                </li>
+                                            </label>
+									<?php } ?>
+								</ul>
+							</div>
+						</div>
+					<?php } else { ?>
+						<div class="form-group row">
+							<label class="control-label col-md-3" for="size_name">Size</label>
+							<div class="controls col-md-7">
+								<input id="sizes-choose" name="product[size]" value="<?php if (isset($this->record['size'])) {
+																								echo  $this->record['size'];
+																							} ?>">
+								<ul class="configurable-swatch-list size-p no-count" style="list-style-type: none;">
+									<?php
+										foreach ($app['size'] as $key => $size) { ?>
+											<label for="id-size-<?php echo $size; ?>">
+                                                <li style ="<?php if (isset($this->record['size'])) {
+																										$record['size'] = explode(",", $this->record['size']);
+																										foreach ($record['size'] as $sizez) {
+																											if ($sizez == $size) {
+																												echo "border:2px solid red;";
+																											} else {
+																												echo "border:1px solic black;";
+																											}
+																										}
+																									} ?>">
+                                                    <span class="swatch-link">
+                                                        <span class="swatch-label" style="height:26px; min-width:26px; line-height: 28px;padding: 10px;margin:4px;">
+                                                            <?= $size ?> </span>
+                                                    </span>
+                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden <?php if (isset($this->record['size'])) {
+																																														$record['size'] = explode(",", $this->record['size']);
+																																														foreach ($record['size'] as $sizez) {
+																																															if ($sizez == $size) {
+																																																echo "checked";
+																																															} else {
+																																																echo "";
+																																															}
+																																														}
+																																													} ?>>
+                                                </li>
+                                            </label>
+										
+									<?php } ?>
+								</ul>
+							</div>
+						</div>
+					<?php } ?>
+					<!-- end size -->
 					<?php if ($app['act'] == 'view') { ?>
 						<div class="form-group  row">
 							<label class="control-label col-md-3" for="description">Product descriptipn</label>
@@ -402,6 +492,16 @@
 				"border": "1px solid black"
 			});
 			$('#colors-choose').val(color.join());
+		});
+		$('.size-p').on("click", "li", function() {
+			let size = get_filter('size');
+			$('.size:checked').parent().css({
+				"border": "2px solid red"
+			});
+			$('.size:not(:checked)').parent().css({
+				"border": "1px solid black"
+			});
+			$('#sizes-choose').val(size.join());
 		});
 
 	});

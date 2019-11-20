@@ -122,10 +122,10 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                             <div class="avatar-user" style="width:30%;float:left;margin-right:6px;border:2px solid gray;">
                                                 <img src="<?php echo RootREL . "media/upload/users/" . (!empty($_SESSION['user']['avata']) ? $_SESSION['user']['avata'] : 'no_image.png'); ?>" width="100%">
                                             </div>
-                                            <div class="info-user clearfix" style="width:70%">
+                                            <div class="info-user clearfix" >
                                                 <p>
                                                     <?php if (isset($_SESSION['user'])) {
-                                                        echo $_SESSION['user']['lastname'] . " " . $_SESSION['user']['firstname'] . "<br/>" . $_SESSION['user']['email'] . "<br/>" . $_SESSION['user']['phone'] . "<br/>";
+                                                        echo "Name: ".$_SESSION['user']['lastname'] . " " . $_SESSION['user']['firstname'] . "<br/>" . "Email: " . $_SESSION['user']['email'] . "<br/>" . "Phone: " . $_SESSION['user']['phone'] . "<br/>";
                                                     } ?>
 
                                                 </p>
@@ -138,7 +138,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                     <div class="box">
                                         <div class="box-title">
                                             <h3>Newsletters</h3>
-                                            <a href="https://www.portotheme.com/magento/porto/index.php/demo4_en/newsletter/manage/">Edit</a>
+                                            <a href="">Edit</a>
                                         </div>
                                         <div class="box-content">
                                             <p>
