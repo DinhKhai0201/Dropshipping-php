@@ -56,6 +56,9 @@ if (isset($app['prs']['status'])) {
 										max="3000-12-31" class="form-control" value ="<?php if (isset($app['prs']['end'])) echo $app['prs']['end']; ?>"></span>
 							<button class="btn btn-apply" id='btn_filter_orders_table'>Filter</button>
 						</li>
+						<button class="btn btn-apply" id='filter_yestoday'>Yestoday</button>
+
+						<button class="btn btn-apply" id='filter_today'>Today</button>
 					</ul>
 				</div>
 

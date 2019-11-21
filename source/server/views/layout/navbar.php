@@ -144,116 +144,14 @@
                  <div class="menu-wrapper">
                      <div class="menu-all-pages-container">
                          <ul class="menu">
-
-                             <li class="">
+                             <li class="menu-item">
                                  <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => '')); ?>"><span>Home</span></a>
                              </li>
-                             <li class="menu-static-width">
-                                 <a href=""><span>Categories</span></a>
-                                 <div class="nav-sublist-dropdown" style="display: none; list-style: none; width: 610px;">
-                                     <div class="container">
-                                         <div class="mega-columns row">
-                                             <div class="block1 col-sm-8">
-                                                 <div class="sw-row">
-                                                     <ul>
-                                                         <li class="menu-item menu-item-has-children menu-parent-item col-sw-2" style="list-style: none;">
-                                                             <a class="level1" href="javascript:void(0)" style="pointer-events: none;"><span>Variations
-                                                                     1</span></a>
-                                                             <div class="nav-sublist level1">
-                                                                 <ul>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>Fullwidth
-                                                                                 Banner</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>Boxed
-                                                                                 Slider Banner</span></a>
-                                                                     </li>
-                                                                 </ul>
-                                                             </div>
-                                                         </li>
-                                                         <li class="menu-item menu-item-has-children menu-parent-item col-sw-2" style="list-style: none;">
-                                                             <a class="level1" href="javascript:void(0)" style="pointer-events: none;"><span>Variations
-                                                                     2</span></a>
-                                                             <div class="nav-sublist level1">
-                                                                 <ul>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>Ajax
-                                                                                 Infinite Scroll</span><span class="cat-label cat-label-label1">New</span></a>
-                                                                     </li>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>3
-                                                                                 Columns Products</span></a>
-                                                                     </li>
-                                                                  
-                                                                 </ul>
-                                                             </div>
-                                                         </li>
-                                                     </ul>
-                                                 </div>
-                                             </div>
-                                             <div class="right-mega-block col-sm-4">
-                                                 <a href="#"><img style="max-width:100%; width:100%;float:right;" src="<?php echo RootREL ?>media/wysiwyg/porto/homepage/menu-banner-static-width2.jpg" alt=""></a>
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </div>
+                             <li class="menu-item">
+                                 <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><span>Categories</span></a>
                              </li>
-                             <li class="menu-full-width">
-                                 <a href=""><span>Products</span></a>
-                                 <div class="nav-sublist-dropdown" style="display: none; list-style: none;">
-                                     <div class="container">
-                                         <div class="mega-columns row">
-                                             <div class="block1 col-sm-8">
-                                                 <div class="sw-row">
-                                                     <ul>
-                                                         <li class="menu-item menu-item-has-children menu-parent-item col-sw-3" style="list-style: none;">
-                                                             <a class="level1" href="javascript:void(0)" style="pointer-events: none;"><span>Variations</span></a>
-                                                             <div class="nav-sublist level1">
-                                                                 <ul>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>Horizontal
-                                                                                 Thumbnails</span></a>
-                                                                     </li>
-                                                                    
-
-                                                                 </ul>
-                                                             </div>
-                                                         </li>
-                                                         <li class="menu-item menu-item-has-children menu-parent-item col-sw-3" style="list-style: none;">
-                                                             <a class="level1" href="javascript:void(0)" style="pointer-events: none;"><span>Variations</span></a>
-                                                             <div class="nav-sublist level1">
-                                                                 <ul>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>Moved
-                                                                                 Tabs</span></a>
-                                                                     </li>
-                                                                  
-                                                                 </ul>
-                                                             </div>
-                                                         </li>
-                                                         <li class="menu-item menu-item-has-children menu-parent-item col-sw-3" style="list-style: none;">
-                                                             <a class="level1" href="javascript:void(0)" style="pointer-events: none;"><span>Page
-                                                                     Layout Types</span></a>
-                                                             <div class="nav-sublist level1">
-                                                                 <ul>
-                                                                     <li class="menu-item " style="list-style: none;">
-                                                                         <a class="level2" href=""><span>Default
-                                                                                 Layout</span></a>
-                                                                     </li>
-
-                                                                 </ul>
-                                                             </div>
-                                                         </li>
-                                                     </ul>
-                                                 </div>
-                                             </div>
-                                             <div class="right-mega-block col-sm-4">
-                                                 <a href="#"><img style="max-width:100%; width:100%;padding-right:10px;padding-top:9px;float:right;" src="<?php echo RootREL ?>media/wysiwyg/porto/homepage/menu-banner.jpg" alt=""></a>
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </div>
+                             <li class="menu-item">
+                                 <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout')); ?>"><span>Shopping cart</span></a>
                              </li>
                              <li class="menu-item menu-item-has-children menu-parent-item ">
                                  <a href="javascript:void(0)"><span>Pages</span></a>
@@ -321,48 +219,12 @@
              <li class="menu-item">
                  <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => '')); ?>"><span>Home</span></a>
              </li>
-             <li class="menu-item menu-item-has-children menu-parent-item">
-                 <a href=""><span>Categories</span></a>
-                 <ul>
-                     <li class="menu-item " style="list-style: none;">
-                         <a class="level2" href=""><span>Fullwidth
-                                 Banner</span></a>
-                     </li>
-                  
-                 </ul>
+             <li class="menu-item ">
+                 <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><span>Categories</span></a>
              </li>
-             <li class="menu-item menu-item-has-children menu-parent-item">
-                 <a href=""><span>Products</span></a>
-                 <ul>
-                     <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
-                         <a class="level1" href="javascript:void(0)"><span>Variations</span></a>
-                         <ul>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href=""><span>Horizontal
-                                         Thumbnails</span></a>
-                             </li>
-
-                         </ul>
-                     </li>
-                     <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
-                         <a class="level1" href="javascript:void(0)"><span>Variations</span></a>
-                         <ul>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href=""><span>Moved
-                                         Tabs</span></a>
-                             </li>
-                         </ul>
-                     </li>
-                     <li class="menu-item menu-item-has-children menu-parent-item" style="list-style: none;">
-                         <a class="level1" href="javascript:void(0)"><span>Product Layout Types</span></a>
-                         <ul>
-                             <li class="menu-item " style="list-style: none;">
-                                 <a class="level2" href=""><span>Default
-                                         Layout</span></a>
-                             </li>
-                         </ul>
-                     </li>
-                 </ul>
+             <li class="menu-item ">
+                 <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'checkout')); ?>"><span>Shopping cart</span></a>
+                 
              </li>
              <li class="menu-item menu-item-has-children menu-parent-item ">
                  <a href="javascript:void(0)"><span>Pages</span></a>

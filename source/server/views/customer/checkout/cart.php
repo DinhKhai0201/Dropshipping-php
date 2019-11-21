@@ -229,7 +229,7 @@
                             <div id="checkout-step-review" class="step a-item" style="display:none">
                                 <div class="order-review" id="checkout-review-load">
                                     <div id="checkout-review-table-wrapper">
-                                        <table class="data-table" id="checkout-review-table">
+                                        <table class="data-table" id="checkout-review-table" >
                                             <colgroup>
                                                 <col>
                                                 <col width="1">

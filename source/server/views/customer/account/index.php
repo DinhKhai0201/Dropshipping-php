@@ -53,7 +53,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                 <h2>Recent Orders</h2>
                                 <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order')); ?>">View All</a>
                             </div>
-                            <table class="data-table" id="my-orders-table">
+                            <table class="data-table" id="my-orders-table" style="word-break:break-word;">
                                 <colgroup>
                                     <col width="1">
                                     <col width="1">

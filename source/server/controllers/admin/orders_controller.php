@@ -23,6 +23,15 @@ class orders_controller extends vendor_backend_controller {
 		  } else {
 
 		  }
+		  if(isset($app['prs']['today'])){
+            $status = $app['prs']['today']; 
+            $conditions .= (($conditions)? " AND ":"")." DATE(orders.created) = DATE(curdate())";
+		  }
+		  if(isset($app['prs']['yestoday'])){
+            $status = $app['prs']['yestoday']; 
+            $conditions .= (($conditions)? " AND ":"")." DATE(orders.created) = SUBDATE(curdate(), INTERVAL 1 DAY)";
+		  }
+		  
           if(isset($app['prs']['search'])){
             $conditions .= (($conditions)? " AND ":"").
 			" orders.order_status	like '%".$app['prs']['search']."%' OR ".

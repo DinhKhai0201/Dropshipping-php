@@ -53,7 +53,22 @@ $(document).ready(function () {
 			var url = rootUrl+ 'admin/'+ctl+'/index'+content;
 		    window.location.replace(url);
 		});
-
+		$('#filter_today').on('click', function(){
+			status= $('#select_list_'+ctl+'_status').val();
+			content = '';
+			if(status && status != 'all') content+='/status='+status;
+			content+='/today=now_date';
+			var url = rootUrl+ 'admin/'+ctl+'/index'+content;
+		    window.location.replace(url);
+		});
+		$('#filter_yestoday').on('click', function(){
+			status= $('#select_list_'+ctl+'_status').val();
+			content = '';
+			if(status && status != 'all') content+='/status='+status;
+			content+='/yestoday=yestoday_date';
+			var url = rootUrl+ 'admin/'+ctl+'/index'+content;
+		    window.location.replace(url);
+		});
 		$('#btn_filter_cvs_table').on('click', function(){
 			status= $('#select_list_'+ctl+'_status').val();
 			if(status && status != 'all'){
