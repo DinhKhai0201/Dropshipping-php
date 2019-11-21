@@ -221,41 +221,6 @@
 <div class="main-container col1-layout">
     <div class="main container">
         <div class="col-main">
-            <div id="loading-mask">
-                <div class="background-overlay"></div>
-                <p id="loading_mask_loader" class="loader">
-                    <i class="ajax-loader large animate-spin"></i>
-                </p>
-            </div>
-            <div id="after-loading-success-message">
-                <div class="background-overlay"></div>
-                <div id="success-message-container" class="loader">
-                    <div class="msg-box">Product was successfully added to your shopping cart.</div>
-                    <button type="button" name="finish_and_checkout" id="finish_and_checkout" class="button btn-cart"><span><span>
-                                Shopping Cart </span></span></button>
-                    <button type="button" name="continue_shopping" id="continue_shopping" class="button btn-cart">
-                        <span><span>
-                                Continue </span></span></button>
-                </div>
-            </div>
-            <script type='text/javascript'>
-                jQuery('#finish_and_checkout').click(function() {
-                    try {
-                        parent.location.href =
-                            'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/';
-                    } catch (err) {
-                        location.href =
-                            'http://www.portotheme.com/magento/porto/index.php/demo4_en/checkout/cart/';
-                    }
-                });
-                jQuery('#continue_shopping').click(function() {
-                    jQuery('#after-loading-success-message').fadeOut(200);
-                    clearTimeout(ajaxcart_timer);
-                    setTimeout(function() {
-                        jQuery('#after-loading-success-message .timer').text(ajaxcart_sec);
-                    }, 1000);
-                });
-            </script>
             <div class="std">
                 <h2 class="filter-title" style="margin-top:24px;"><span class="content"><strong>Best Selling</strong></span></h2>
                 <div id="new_product" class="owl-top-narrow">
@@ -278,15 +243,10 @@
                                             </a>
 
                                             <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
-                                            <!-- <div class="actions">
-                                                <a href="javascript:void(0)" class="addtocart" title="Add to Cart"><i class="fa fa-shopping-cart"></i><span>&nbsp;Add to Cart</span></a>
-                                                <a href="javascript:void(0)" onclick="ajaxCompare(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/catalog/product_compare/add/product/429/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9kZW1vNF9lbg,,/form_key/EnsiPctuwaTCt7HC/','429');" class="comparelink" title="Add to Compare"><i class="fa fa-copy" aria-hidden="true"></i></a>
-                                                <div class="clearer"></div>
-                                            </div> -->
+                                           
                                         </div>
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
-                                            <!-- <a href="javascript:void(0)" onclick="ajaxWishlist(this,'http://www.portotheme.com/magento/porto/index.php/demo4_en/wishlist/index/add/product/429/form_key/EnsiPctuwaTCt7HC/','429');" class="addtowishlist" title="Add to Wishlist"><i class="fas fa-heart" style></i></a> -->
                                             <div class="ratings">
                                                 <div class="rating-box">
                                                     <div class="rating" style="width:0"></div>

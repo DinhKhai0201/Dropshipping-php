@@ -68,19 +68,18 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <ul class="links">
-                                                                            <li><a href="" title="About us">About us</a></li>
-                                                                            <li><a href="" title="Contact Us">Contact us</a>
+                                                                            <li><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'about-us')); ?>" title="About us">About us</a></li>
+                                                                            <li><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'contact-us')); ?>" title="Contact Us">Contact us</a>
                                                                             </li>
-                                                                            <li><a href="" title="My Account">My Account</a>
+                                                                            <li><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'account')); ?>" title="My Account">My Account</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <ul class="links">
-                                                                            <li><a href="" title="Order history">Order
+                                                                            <li><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order')); ?>" title="Order history">Order
                                                                                     history</a></li>
-                                                                            <li><a href="" title="Contact us">Advanced
-                                                                                    search</a></li>
+                                                                          
                                                                             <li><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'login')); ?>" title="Login">Login</a></li>
                                                                         </ul>
                                                                     </div>

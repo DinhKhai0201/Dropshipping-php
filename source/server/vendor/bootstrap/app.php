@@ -12,7 +12,7 @@ $app['linkpage'] = 'home';
 
 if(isset($_GET["pr"])) {
 	$str_url = $_SERVER['REQUEST_URI'];
-	
+	// exit($str_url);
 	if(strpos($str_url, "index.php?pr")){
 		$app['linkpage'] = "null";
 		$prs = explode("/","404/index");
@@ -37,7 +37,7 @@ if(isset($_GET["pr"])) {
 	}else if(preg_match('/candidates$/', $str_url) && !preg_match('/employer\/candidates/', $str_url)){
 		$app['linkpage'] = "null";
 		$prs = explode("/","404/index");
-	}else if(preg_match('/page\/index/', $str_url)){
+	}else if(preg_match('/pages\/index/', $str_url)){
 		$app['linkpage'] = "null";
 		$prs = explode("/","404/index");
 	}else if(preg_match('/home$/', $str_url)){
@@ -76,6 +76,11 @@ if(isset($_GET["pr"])) {
 				$app['slug'] = $matches[1];
 				$app['id'] = $matches[2];
 				$app['page-type'] = 'product-view';
+			// }else if(preg_match('/(.*)/', $link_url, $matches)){
+			// 	$prs = explode("/", "static_pages/index/" . $matches[1]);
+			// 	$app['linkpage'] = "product-view";
+			// 	$app['slug'] = $matches[1];
+			// 	$app['page-type'] = 'product-view';
 			} else if (preg_match('/product\/quickview\/(.*)-(\d+)/', $link_url, $matches)) {
 				$prs = explode("/", "product/quickview/" . $matches[1] . "-" . $matches[2]);
 				$app['linkpage'] = "product-quickview";
@@ -100,42 +105,6 @@ if(isset($_GET["pr"])) {
 				$app['ordertoken'] = $matches[1];
 				$app['id'] = $matches[2];
 				$app['page-type'] = 'order-vieworder';
-			
-				// exit(json_encode($app['to']));
-			// } else if (preg_match('/categories\/index\.html\?cat\=(.*)-(\d+)/', $link_url, $matches)) {
-			// 	$prs = explode("/", "/categories/index.html?cat=" . $matches[1]."-". $matches[2]);
-			// 	$app['linkpage'] = "categories-index";
-			// 	$app['slugC'] = $matches[1];
-			// 	$app['idC'] = $matches[2];
-			// 	// exit(json_encode($app['idC']));
-			// 	$app['page-type'] = 'categories-index';
-			// }else if(preg_match('/categories\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-			// 	$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
-			// 	$app['linkpage'] = "categories";
-			// 	$app['page-current'] = $matches[1];
-			// 	$app['page-type'] = 'categories';
-			// }else if(preg_match('/viec-lam-hap-dan\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-			// 	$prs = explode("/","jobs/index?page=".$matches[1]."&".$matches[2]);
-			// 	$app['linkpage'] = "viec-lam-hap-dan";
-			// 	$app['page-current'] = $matches[1];
-			// 	$app['page-type'] = 'viec-lam-hap-dan';	
-			// }else if(preg_match('/tuyen-dung\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-			// 	$prs = explode("/","employers/index?page=".$matches[1]."&".$matches[2]);
-			// 	$app['linkpage'] = "tuyen-dung";
-			// 	$app['page-current'] = $matches[1];
-			// }else if(preg_match('/ung-vien\/trang-(\d+).html?(.*)/', $link_url, $matches)){
-			// 	$prs = explode("/","candidates/index?page=".$matches[1]."&".$matches[2]);
-			// 	$app['linkpage'] = "ung-vien";
-			// 	$app['page-current'] = $matches[1];
-			// }else if(preg_match('/tuyen-dung\/(.*)-(\d+)$/', $_GET['pr'], $matches)){
-			// 	$prs = explode("/","jobs/index?cat=".$matches[2]);
-			// 	$app['linkpage'] = "tuyen-dung-category";
-			// 	$app['category-slug'] = $matches[1];
-			// 	$app['linkpage-id-nganhnghe'] = $matches[2];
-			// }else if(preg_match('/tuyen-dung\/(.*[\-].*[^\d+])$/', $_GET['pr'], $matches)){
-			// 	$prs = explode("/","jobs/index?location=".$matches[1]);
-			// 	$app['linkpage'] = "tuyen-dung-location";
-			// 	$app['linkpage-id-diadiem'] = $matches[1];
 			}else{
 				switch($par){
 
@@ -143,9 +112,9 @@ if(isset($_GET["pr"])) {
 					// 	$prs = explode("/","page/index/bao-gia-dich-vu-dang-tin");
 					// 	$app['linkpage'] = "bao-gia-dich-vu-dang-tin";
 					// 	break;
-					// case "gioi-thieu":
-					// 	$prs = explode("/","page/index/gioi-thieu");
-					// 	$app['linkpage'] = "gioi-thieu";
+					// case "about-us":
+					// 	$prs = explode("/","static_pages/index/about-us");
+					// 	$app['linkpage'] = "about-us";
 					// 	break;
 					// case "dieu-khoan-su-dung":
 					// 	$prs = explode("/","page/index/dieu-khoan-su-dung");
@@ -278,8 +247,9 @@ if(isset($_GET["pr"])) {
 						// }
 
 						$static_page = $_GET["pr"];
-						if(!preg_match('/admin/', $static_page) && !preg_match('/employer/', $static_page) && !preg_match('/jobseeker/', $static_page) && !preg_match('/\//', $static_page) ){
-							$prs = explode("/","page/index/".$static_page);
+						// exit($static_page);
+						if(!preg_match('/admin/', $static_page) && !preg_match('/customer/', $static_page) && !preg_match('/jobseeker/', $static_page) && !preg_match('/\//', $static_page) ){
+							$prs = explode("/","static_pages/index/".$static_page);
 							$app['linkpage'] = $static_page;
 							break;
 						}

@@ -49,7 +49,7 @@ class product_controller extends vendor_main_controller
                 'pagination' => [
                     'nopp' => 5
                 ],
-                'order' => 'id ASC',
+                'order' => 'id DESC',
             ]);
             $this->one = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id.' AND rating = 1']);
             $this->two = $rate->getCountRecords(['conditions' => 'rates.product_id =' . $id . ' AND rating = 2']);
