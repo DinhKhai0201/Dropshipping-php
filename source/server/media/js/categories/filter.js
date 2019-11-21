@@ -99,9 +99,17 @@ function tmp_product(product, RootREL, rootUrl) {
                                         <a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}" class="product-image">
                                             <img id="product-collection-image-${product.id}" class="defaultImage porto-lazyload" data-src="${RootREL}media/upload/products/${product.oneImage}" width="300" height="300" src="${RootREL}media/upload/products/${product.oneImage}" />
                                             <img class="hoverImage" src="${RootREL}media/upload/products/${product.oneImage}" width="300" alt="Black" />
+     
                                         </a>`;
+    if (product.coupons_type == 0) { 
+    tmp +=`<div class="product-label" style="right: 10px;position: absolute;font-size: 14px;font-weight: 700;color: #fff;line-height: 1;top: 39px;z-index: 3;"><span class="sale-product-icon" style ="padding: 6px;">-${product.coupons_percent_value}%</span></div>`;
+    } else if(product.coupons_type == 1) {
+    tmp+= `<div class="product-label" style="right: 10px;position: absolute;font-size: 14px;font-weight: 700;color: #fff;line-height: 1;top: 39px;z-index: 3;"><span class="sale-product-icon " padding: 6px;>-$${product.coupons_fix_value}</span></div>`;
+    } else {
+                
+    }
     if (product.best_selling == 1) {
-        tmp += `<div class="product-label " style="right: 10px;"><span class="new-product-icon">HOT</span></div>`;
+                                 tmp += `<div class="product-label " style="right: 10px;"><span class="new-product-icon">HOT</span></div>`;
     }
     tmp += `                           
                                     </div>

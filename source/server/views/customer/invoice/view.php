@@ -65,7 +65,19 @@
                             <p class="itemtext"><?= $value['quantity'] ?></p>
                         </td>
                         <td class="tableitem">
-                            <p class="itemtext">$<?= $value['price'] ?></p>
+                            <p class="itemtext">
+                               <?php if (isset($value['coupons_type'])) {?>
+                                            <?php echo "$<strike>".$value['price']."</strike>"; ?> </span>
+                                    <?php if (intval($value['coupons_type']) == 0) {?>
+                                            $<?php echo (intval($value['price']) - (intval($value['price'])*(intval($value['coupons_percent_value'])))/100);?>
+                                    <?php } else if (intval($value['coupons_type']) == 1) {?>
+                                        $<?php echo (intval($value['price']) - (intval($value['coupons_fix_value'])))?>
+                                <?php }?>
+                                </p>
+                                    <?php } else {?>
+                                    <?php echo "$" . $value['price']; ?>
+                                    <?php }?>
+                            </p>
                         </td>
                     </tr>
                 <?php } ?>

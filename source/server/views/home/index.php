@@ -248,9 +248,31 @@
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
                                            
-                                            <div class="price-box">
-                                                <span class="regular-price" id="product-price-<?= $product['id']?>">
-                                                    <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
+                                             <div class="price-box">
+                                                <span class="regular-price" id="product-price-<?= $product['id'] ?>">
+                                                    <span class="price">
+                                                   
+                                                    <?php if (isset($product['coupons_type'])) {?>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Regular Price:</span>
+                                                        <span class="price" id="old-price-<?= $product['id'] ?>">
+                                                            <?php echo "$".$product['price']; ?> </span>
+                                                    </p>
+                                                    <p class="special-price">
+                                                    <span class="price-label">Special Price</span>
+                                                    <?php if (intval($product['coupons_type']) == 0) {?>
+                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                            $<?php echo (intval($product['price']) - (intval($product['price'])*(intval($product['coupons_percent_value'])))/100);?>
+                                                        </span>
+                                                    <?php } else if (intval($product['coupons_type']) == 1) {?>
+                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                        $<?php echo (intval($product['price']) - (intval($product['coupons_fix_value'])))?></span>
+                                                <?php }?>
+                                                </p>
+                                                 <?php } else {?>
+                                                  <?php echo "$" . $product['price']; ?>
+                                                 <?php }?>
+                                                    </span> </span>
                                             </div>
                                         </div>
                                     </div>

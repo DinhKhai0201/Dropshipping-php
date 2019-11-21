@@ -85,6 +85,12 @@ array_push($mediaFiles['css'], RootREL . "media/css/foot_page.css");
                                                 <img id="product-collection-image-<?php echo $products['id']; ?>" class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $products['oneImage']; ?>" width="300" height="300" />
                                                 <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $products['oneImage']; ?>" width="300" alt="Black" />
                                             </a>
+                                            <?php if (isset($products['coupons_type'])){
+                                                 if (intval($products['coupons_type']) == 0) { echo 
+                                                    '<div class="product-label" style="right: 10px;position: absolute;font-size: 14px;font-weight: 700;color: #fff;line-height: 1;top: 39px;z-index: 3;"><span class="sale-product-icon" style ="padding: 6px;">-'.$products['coupons_percent_value']."%</span></div>"; 
+                                                    } else if (intval($products['coupons_type']) == 1) {
+                                                       echo '<div class="product-label" style="right: 10px;position: absolute;font-size: 14px;font-weight: 700;color: #fff;line-height: 1;top: 39px;z-index: 3;"><span class="sale-product-icon " padding: 6px;>-$'.$products['coupons_fix_value']."</span></div>" ;
+                                                     }} ?>
                                             <?php if ($products['best_selling'] == 1) { ?>
                                                 <div class="product-label" style="right: 10px; "><span class="new-product-icon">HOT</span></div>
                                             <?php } ?>

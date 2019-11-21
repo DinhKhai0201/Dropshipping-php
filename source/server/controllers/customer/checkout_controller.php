@@ -23,9 +23,12 @@ class checkout_controller extends vendor_main_controller
 			global $app;
 			$cart = new cart_model();
 			$this->nocart = $cart->getCountRecords(['conditions' => 'carts.user_id =' . $_SESSION['user']['id']]);
-			$this->carts = $cart->getAllRecords('carts.*', [
+			$orther_cart = "LEFT JOIN product_use_coupons ON carts.product_id = product_use_coupons.product_id LEFT JOIN coupons ON product_use_coupons.coupon_id = coupons.id";
+			$this->carts = $cart->getAllRecords('carts.*,coupons.type as coupons_type,coupons.percent_value as coupons_percent_value,coupons.fix_value as coupons_fix_value,coupons.time_start as coupons_time_start,coupons.time_end as coupons_time_end', [
+				'orther_cart'=>$orther_cart,
 				'conditions' => 'carts.user_id =' . $_SESSION['user']['id'],
-				'joins' => ['product', 'user']
+				'joins' => ['product', 'user'],
+				'order' => 'carts.id DESC '
 			]);
             $this->display();
         }
@@ -37,7 +40,6 @@ class checkout_controller extends vendor_main_controller
 			$cart = new cart_model();
 			$order = new order_model();
 			$order_i = new order_item_model();
-			$to_address = $_SESSION['user']['address'];
 			$currency = 0;
 			$token = md5(random_bytes(16));
 			// exit($token);
@@ -48,7 +50,7 @@ class checkout_controller extends vendor_main_controller
 			$dataOrder['token'] = $token;
 			$dataOrder['user_id'] = $_SESSION['user']['id'];
 			$dataOrder['order_status'] = 0;
-			$dataOrder['to_address'] =  $to_address;
+			$dataOrder['to_address'] =  $_POST['address'];
 			$dataOrder['total_price'] = $_POST['total'];
 			$dataOrder['info'] = $_POST['info'];
 			$dataOrder['currency'] = $currency;

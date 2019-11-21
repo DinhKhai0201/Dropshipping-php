@@ -20,6 +20,7 @@
                     <div class="buttons-set">
                         <button type="button" class="button" title="Continue Shopping" onclick="window.location='<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>'"><span><span>Continue
                                     Shopping</span></span></button>
+                        <button type="button" class="button" title="Continue Shopping" onclick="window.location='<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order')); ?>'"><span><span>My Order</span></span></button>
                     </div>
                 </div>
             </div>

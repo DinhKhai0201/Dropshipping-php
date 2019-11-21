@@ -98,6 +98,7 @@ class vendor_main_model {
 		}
 		// this is jorn product ,product_use_coupon and coupon
 		$orther = (isset($options['orther']) && $options['orther']) ? '' . $options['orther'] : "";
+		$orther_cart = (isset($options['orther_cart']) && $options['orther_cart']) ? '' . $options['orther_cart'] : "";
 		// 
 		$conditions = (isset($options['conditions']) && $options['conditions'])? ' where '.$options['conditions']: "";
 
@@ -121,7 +122,7 @@ class vendor_main_model {
 		} else
 			$order .= $this->table.".created DESC";
 
-		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$orther.$conditions.$group.$order;
+		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$orther.$orther_cart.$conditions.$group.$order;
 		// var_dump($sql);
 
 		return $this->con->query($sql);

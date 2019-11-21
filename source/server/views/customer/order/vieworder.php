@@ -138,7 +138,28 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                     <td><?= $value['quantity'] ?></td>
                                      <td><?= $value['color'] ?></td>
                                       <td><?= $value['size'] ?></td>
-                                    <td><span class="price"><?= (intval($value['price'])) ?></span></td>
+                                    <td><span class="price">
+                                        <?php if (isset($value['coupons_type'])) {?>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Regular Price:</span>
+                                                        <span class="price" id="old-price-<?= $value['id'] ?>">
+                                                            <?php echo "$".$value['price']; ?> </span>
+                                                    </p>
+                                                    <p class="special-price">
+                                                    <span class="price-label">Special Price</span>
+                                                    <?php if (intval($value['coupons_type']) == 0) {?>
+                                                         <span class="price" id="value-price-<?= $value['id'] ?>">
+                                                            $<?php echo (intval($value['price']) - (intval($value['price'])*(intval($value['coupons_percent_value'])))/100);?>
+                                                        </span>
+                                                    <?php } else if (intval($value['coupons_type']) == 1) {?>
+                                                         <span class="price" id="value-price-<?= $value['id'] ?>">
+                                                        $<?php echo (intval($value['price']) - (intval($value['coupons_fix_value'])))?></span>
+                                                <?php }?>
+                                                </p>
+                                                 <?php } else {?>
+                                                  <?php echo "$" . $value['price']; ?>
+                                                 <?php }?>
+                                    </span></td>
                                     <td><em>
                                      <?php if ($value['status'] == 0) {
                                             echo "<p class ='not-process'>Not process</p>";

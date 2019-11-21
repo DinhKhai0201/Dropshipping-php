@@ -545,12 +545,13 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $alsoproduct['slug'] . "-" . $alsoproduct['id']])) ?>" title="<?php echo $alsoproduct['name']; ?>"><?php echo $alsoproduct['name']; ?></a>
                                             </h2>
                                             <div class="price-box">
-                                                <p class="old-price">
-                                                    <span class="price-label">Regular Price:</span>
-                                                    <span class="price" id="old-price-<?= $alsoproduct['id'] ?>">
-                                                        <?php echo "$".$alsoproduct['price']; ?> </span>
-                                                </p>
+                                                
                                                 <?php if (isset($alsoproduct['coupons_type'])) {?>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Regular Price:</span>
+                                                        <span class="price" id="old-price-<?= $alsoproduct['id'] ?>">
+                                                            <?php echo "$".$alsoproduct['price']; ?> </span>
+                                                    </p>
                                                     <p class="special-price">
                                                     <span class="price-label">Special Price</span>
                                                     <?php if (intval($alsoproduct['coupons_type']) == 0) {?>
@@ -562,7 +563,13 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                         $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['coupons_fix_value'])))?></span>
                                                 <?php }?>
                                                 </p>
-                                                 <?php }?>
+                                                 <?php } else {?>
+                                                    <p class="special-price">
+                                                    <span class="price-label"> Price</span>
+                                                         <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
+                                                            $<?php echo intval($alsoproduct['price']);?>
+                                                        </span>
+                                                 <?php }?>   
                                             </div>
                                         </div>
                                     </div>

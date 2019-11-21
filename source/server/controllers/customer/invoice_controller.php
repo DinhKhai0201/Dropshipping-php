@@ -16,9 +16,11 @@ class invoice_controller extends vendor_main_controller
                 $this->order = $order->getAllRecords('orders.*', [
                     'conditions' => 'orders.token ="' . $token . '"'
                 ]);
-                $this->order_item = $order_item->getAllRecords('order_items.*', [
-                    'conditions' => 'order_items.order_id ="' . $id . '"',
-                    'joins' => ['product', 'user']
+                $orther_cart = "LEFT JOIN product_use_coupons ON order_items.product_id = product_use_coupons.product_id LEFT JOIN coupons ON product_use_coupons.coupon_id = coupons.id";
+                $this->order_item = $order_item->getAllRecords('order_items.*,coupons.type as coupons_type,coupons.percent_value as coupons_percent_value,coupons.fix_value as coupons_fix_value,coupons.time_start as coupons_time_start,coupons.time_end as coupons_time_end', [
+                    'orther_cart'=>$orther_cart,
+                    'conditions' => 'order_items.order_id ="' .$id.'"',
+                    'joins' => ['product','user']
                 ]);
                 $this->display();
             }
