@@ -83,11 +83,22 @@ class vendor_main_model {
 							$joinFields .= ", ".$joinTable.".".$field." as ".$joinTable."_".$field;
 						}
 						$join .= " RIGHT JOIN ".$joinTable." ON ".$this->table.".id=".$joinTable.".".$v['key']." ";
+					}else if($k=="hasMany" && isset($options['search-left-join']) && $options['search-left-join']) {
+						if(isset($options['onlycolumn']) && $options['onlycolumn']){
+						}else{
+							foreach ($joinTableFields as $field) {
+								$joinFields .= ", ".$joinTable.".".$field." as ".$joinTable."_".$field;
+							}
+						}
+						$join .= " LEFT JOIN ".$joinTable." ON ".$this->table.".id=".$joinTable.".".$v['key']." ";
 					}
 				}
 			}
 			if($joinFields)	$fields .= $joinFields;
 		}
+		// this is jorn product ,product_use_coupon and coupon
+		$orther = (isset($options['orther']) && $options['orther']) ? '' . $options['orther'] : "";
+		// 
 		$conditions = (isset($options['conditions']) && $options['conditions'])? ' where '.$options['conditions']: "";
 
 		/* Becaful with group */
@@ -110,7 +121,7 @@ class vendor_main_model {
 		} else
 			$order .= $this->table.".created DESC";
 
-		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$conditions.$group.$order;
+		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$orther.$conditions.$group.$order;
 		// var_dump($sql);
 
 		return $this->con->query($sql);
@@ -357,6 +368,9 @@ class vendor_main_model {
 			}
 			if($joinFields)	$fields .= $joinFields;
 		}
+		// this is jorn product ,product_use_coupon and coupon
+		$orther = (isset($options['orther']) && $options['orther']) ? '' . $options['orther'] : "";
+		// 
 		$conditions = (isset($options['conditions']) && $options['conditions'])? ' where '.$options['conditions']: "";
 
 		if(isset($options['pagination'])) {
@@ -385,7 +399,7 @@ class vendor_main_model {
 			$order .= $this->table.".created_at DESC";
 
 		$limit = " LIMIT $this->nopp OFFSET ".($this->curp-1)*$this->nopp;
-		$sql = "SELECT ".$fields." FROM ".$this->table.$join.$conditions.$group.$order.$limit;
+		$sql = "SELECT ".$fields." FROM ".$this->table.$join. $orther.$conditions.$group.$order.$limit;
 		// exit($sql);
 		// echo ($sql);
 		// echo "Start <br/>"; echo '<pre>'; print_r($sql);echo '</pre>';exit("End Data");

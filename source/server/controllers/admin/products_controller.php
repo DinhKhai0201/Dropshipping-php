@@ -21,12 +21,14 @@ class products_controller extends vendor_backend_controller {
       " brands.name	like '%".$app['prs']['search']."%' OR ".
       " products.id like '%".$app['prs']['search']."%'";
     }
-   
-    $category = new category_type_model();
+    $category = new category_type_model(); 
     $this->recordsCategory = $category->getAllRecords('*', ['conditions' => '', 'joins' => '', 'order' => 'id ASC']);
-    
+    $coupon = new coupon_model();
+    $this->coupons = $coupon->getAllRecords('*', ['conditions' => '', 'joins' => '', 'order' => 'id DESC']);
     $product = new product_model();
-    $this->records = $product->allp('*',['conditions'=>$conditions, 'joins'=>[ 'brand', 'user'], 'order'=>'id DESC']);
+    $orther = "LEFT JOIN coupons ON product_use_coupons.coupon_id = coupons.id";
+    $this->records = $product->allp('products.*,coupons.id as coupons_id,coupons.name as coupons_name,coupons.slug as coupons_slug,coupons.id as coupons_id,coupons.coupon_code as coupons_coupon_code,coupons.status as coupons_status,coupons.decription as coupons_decription,coupons.type as coupons_type,coupons.percent_value as coupons_percent_value,coupons.fix_value as coupons_fix_value,coupons.time_start as coupons_time_start,coupons.time_end as coupons_time_end',['orther'=> $orther,'conditions'=>$conditions, 'joins'=>[ 'brand', 'user','product_use_coupon'], 'search-left-join'=>true, 'order'=>'products.id DESC']);
+    // exit(json_encode($this->records));
     $this->display();
   }
   public function edit($id) {
@@ -34,7 +36,6 @@ class products_controller extends vendor_backend_controller {
     $this->record = $pm->getRecord($id);
     if(isset($_POST['btn_submit'])) {
       $productData = $_POST['product'];
-      // exit(json_encode($productData));
       $valid = $pm->validator($productData, $id);
       if($valid['status']){
         if($pm->editRecord($id, $productData)) {
@@ -149,10 +150,12 @@ class products_controller extends vendor_backend_controller {
     if($product->editRecord($id, $productData)) echo "Change status successful";
     else echo "error";
   }
+  // dis
+
   public function changebestselling() {
 		global $app;
 		$id = $app['prs'][1];
-		$pm = new product_model();
+    $pm = new product_model();
 		$oiData['best_selling'] = ($app['prs'][2] == 0)?1:0;
 		if($pm->editRecord($id, $oiData)) echo "Change status successful";
 		else echo "error";

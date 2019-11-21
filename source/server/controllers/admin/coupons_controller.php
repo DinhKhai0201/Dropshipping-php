@@ -73,7 +73,33 @@ class coupons_controller extends vendor_backend_controller {
       $this->record = $cm->getRecord($id);
       $this->display();
     }
-  
+    public function discount() {
+    global $app;
+    $status =false;
+    $pm = new product_use_coupon_model();
+    $act = $app['prs'][1];
+    if ($act == 'add') {
+      $Data['product_id'] = $app['prs'][2];
+      $Data['coupon_id'] = $app['prs'][3];
+      $valid = $pm->validator($Data);
+      if($pm->addRecord($Data)) {
+          $status =true;
+      }
+        
+    } else if($act =='edit') {
+      $id = $app['prs'][2];
+      $Data['product_id'] = $app['prs'][3];
+      $Data['coupon_id'] = $app['prs'][4];
+      $valid = $pm->validator($Data, $id);
+      if($pm->editRecord($id, $Data)) {
+          $status =true;
+      }
+    } else {
+      $status =false;
+    }
+    http_response_code(200);
+    echo json_encode($status);
+  }
     public function changestatus() {
       global $app;
       $id = $app['prs'][1];

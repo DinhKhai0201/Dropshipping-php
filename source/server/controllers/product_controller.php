@@ -10,21 +10,30 @@ class product_controller extends vendor_main_controller
         if (isset($app['slug']) && isset($app['id'])) {
             $id = $app['id'];
             $slug = $app['slug'];
-            $conditions .= (($conditions) ? " AND " : "") . " id={$id} and slug='{$slug}'";
+            $conditions .= (($conditions) ? " AND " : "") . " products.id={$id} and products.slug='{$slug}'";
             // exit(json_encode($conditions));
             $product_model = new product_model();
-            $this->products = $product_model->getAllRecords('products.*,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
+            $orther = "LEFT JOIN coupons ON product_use_coupons.coupon_id = coupons.id";
+            $this->products = $product_model->getAllRecords('products.*,coupons.id as coupons_id,coupons.name as coupons_name,coupons.slug as coupons_slug,coupons.id as coupons_id,coupons.coupon_code as coupons_coupon_code,coupons.status as coupons_status,coupons.decription as coupons_decription,coupons.type as coupons_type,coupons.percent_value as coupons_percent_value,coupons.fix_value as coupons_fix_value,coupons.time_start as coupons_time_start,coupons.time_end as coupons_time_end,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
+                'orther'=>$orther,
                 'conditions' => $conditions,
-                'order' => 'id ASC',
+                'joins'=>['product_use_coupon'],
+                'search-left-join'=>true,
+                'order' => 'products.id ASC',
             ]);
+           
             $gallery_model = new gallery_model();
             $this->galleries = $gallery_model->getAllRecords('*', [
                 'conditions' => 'product_id ='.$id,
                 'order' => 'id ASC',
             ]);
             // also purchase
-            $this->alsoproducts = $product_model->getAllRecords('products.*,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
+            
+            $this->alsoproducts = $product_model->getAllRecords('products.*,coupons.id as coupons_id,coupons.name as coupons_name,coupons.slug as coupons_slug,coupons.id as coupons_id,coupons.coupon_code as coupons_coupon_code,coupons.status as coupons_status,coupons.decription as coupons_decription,coupons.type as coupons_type,coupons.percent_value as coupons_percent_value,coupons.fix_value as coupons_fix_value,coupons.time_start as coupons_time_start,coupons.time_end as coupons_time_end,(SELECT image FROM galleries WHERE product_id = products.id limit 1) as oneImage', [
+                'orther'=>$orther,
                 'conditions' => 'best_selling = 1',
+                'joins'=>['product_use_coupon'],
+                'search-left-join'=>true,
                 'order' => 'id ASC',
             ]);
             $cm = new comment_model();

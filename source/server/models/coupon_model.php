@@ -14,7 +14,6 @@ class coupon_model extends vendor_pagination_model
 		global $app;
 	    return [
         	'name' => ['required', 'unique', 'string', ['max', 'value'=>50]]
-        	// 'coupon_code' 	=> ['required', 'unique', 'string', ['max', 'value'=>50]],
 	    ];
 	}
 

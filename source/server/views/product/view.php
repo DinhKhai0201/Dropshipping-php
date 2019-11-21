@@ -184,7 +184,29 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                             </p>
                                             <div class="price-box">
                                                 <span class="regular-price" id="product-price-<?= $product['id'] ?>">
-                                                    <span class="price"><?php echo "$" . $product['price']; ?></span> </span>
+                                                    <span class="price">
+                                                   
+                                                    <?php if (isset($product['coupons_type'])) {?>
+                                                    <p class="old-price">
+                                                        <span class="price-label">Regular Price:</span>
+                                                        <span class="price" id="old-price-<?= $product['id'] ?>">
+                                                            <?php echo "$".$product['price']; ?> </span>
+                                                    </p>
+                                                    <p class="special-price">
+                                                    <span class="price-label">Special Price</span>
+                                                    <?php if (intval($product['coupons_type']) == 0) {?>
+                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                            $<?php echo (intval($product['price']) - (intval($product['price'])*(intval($product['coupons_percent_value'])))/100);?>
+                                                        </span>
+                                                    <?php } else if (intval($product['coupons_type']) == 1) {?>
+                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                        $<?php echo (intval($product['price']) - (intval($product['coupons_fix_value'])))?></span>
+                                                <?php }?>
+                                                </p>
+                                                 <?php } else {?>
+                                                  <?php echo "$" . $product['price']; ?>
+                                                 <?php }?>
+                                                    </span> </span>
                                             </div>
                                         </div>
 
@@ -514,8 +536,11 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                 <img class="defaultImage" src="<?php echo RootREL . 'media/upload/products/' . $alsoproduct['oneImage']; ?>" alt="<?php echo $alsoproduct['name']; ?>" />
                                                 <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $alsoproduct['oneImage']; ?>" alt="<?php echo $alsoproduct['name']; ?>" />
                                             </a>
-                                            <div class="product-label" style="right: 10px;"><span class="sale-product-icon">-30%</span></div>
-                                        </div>
+                                             <?php if (isset($alsoproduct['coupons_type'])) {?>
+
+                                                    <?php if (intval($alsoproduct['coupons_type']) == 0) { echo '<div class="product-label" style="right: 10px;"><span class="sale-product-icon">-'.$alsoproduct['coupons_percent_value']."%"; } else if (intval($alsoproduct['coupons_type']) == 1) {
+                                                       echo '<div class="product-label" style="right: 10px;"><span class="sale-product-icon">-'.$alsoproduct['coupons_fix_value']." USD" ;}?> </div> <?php }?></span></div>
+                                        
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $alsoproduct['slug'] . "-" . $alsoproduct['id']])) ?>" title="<?php echo $alsoproduct['name']; ?>"><?php echo $alsoproduct['name']; ?></a>
                                             </h2>
@@ -523,14 +548,21 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                 <p class="old-price">
                                                     <span class="price-label">Regular Price:</span>
                                                     <span class="price" id="old-price-<?= $alsoproduct['id'] ?>">
-                                                        <?php echo $alsoproduct['price']; ?> </span>
+                                                        <?php echo "$".$alsoproduct['price']; ?> </span>
                                                 </p>
-
-                                                <p class="special-price">
+                                                <?php if (isset($alsoproduct['coupons_type'])) {?>
+                                                    <p class="special-price">
                                                     <span class="price-label">Special Price</span>
-                                                    <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
-                                                        $20.99 </span>
+                                                    <?php if (intval($alsoproduct['coupons_type']) == 0) {?>
+                                                         <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
+                                                            $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['price'])*(intval($alsoproduct['coupons_percent_value'])))/100);?>
+                                                        </span>
+                                                    <?php } else if (intval($alsoproduct['coupons_type']) == 1) {?>
+                                                         <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
+                                                        $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['coupons_fix_value'])))?></span>
+                                                <?php }?>
                                                 </p>
+                                                 <?php }?>
                                             </div>
                                         </div>
                                     </div>

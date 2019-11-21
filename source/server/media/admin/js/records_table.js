@@ -72,6 +72,32 @@ $(document).ready(function () {
 				delRecord(idAct, 'del');
 			}
 		});
+		// dis
+		$('tbody.records').on('click','td .btn-dis', function () {
+			let id = $(this).attr('key');
+			let act = $(this).attr('act');
+			let id_u = $(this).attr('key_u');
+			$('.choice-record').click(function () {
+				let cou = $(this).attr('alt');
+				if (act == 'add') {
+					url = rootUrl + "admin/" + ctl + "/discount/" + act+ "/"+ id + "/" + cou;
+					console.log(url)
+				} else if (act == 'edit'){
+					url = rootUrl + "admin/" + ctl + "/discount/" + act+ "/"+id_u+ "/"+ id + "/" + cou;
+					console.log(url)
+				}
+				$.ajax({
+					url: url,
+					success: function (data) {
+						let status = JSON.parse(data);
+						if (status == true) {
+							location.reload();
+						}
+						console.log(data);
+					}
+				})
+		});
+		});
 		$('tbody.records').on('click', 'td.btn-act button.process-record', function () {
 			idAct = $(this).attr('alt');
 			status = $(this).attr('status')
@@ -95,11 +121,12 @@ $(document).ready(function () {
 		$('tbody.records').on('click', '.best-selling-record', function () {
 			idAct = $(this).attr('alt');
 			status = $(this).attr('status')
-			urlToggle = rootUrl + "admin/" + ctl + "/changebestselling/" + idAct + "/" + status;
-			console.log(status)
+			urlToggle = rootUrl + "admin/products/changebestselling/" + idAct + "/" + status;
+			
 			$.ajax({
 				url: urlToggle,
 				success: function (data) {
+					console.log(urlToggle)
 					if (status == 0) {
 						$('#best' + idAct).removeClass("btn-success").addClass("btn-danger");
 						$('#best' + idAct).html('Hot');

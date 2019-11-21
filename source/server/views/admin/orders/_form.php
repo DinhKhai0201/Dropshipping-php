@@ -6,6 +6,7 @@
 					<h2 class="box-title">Order code: <?php foreach ($this->record as $key => $record) {
 															echo $record['id'];
 														} ?></h2>
+					<a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'invoice', 'act' => 'view/' . $record['token'] . '-' . $record['id'])); ?>">Print invoice</a>
 					<div class="modaly">
 						<div class="modal-contenty">
 							<span class="close-button">&times;</span>
@@ -14,16 +15,16 @@
 							<div class="row modaly-body">
 								<button data-placement="right" status="0" key=" <?php foreach ($this->record as $key => $record) {
 																					echo $record['id'];
-																				} ?>" title="status orders"  type="button" class="modaly-bt btn btn-warning">Pendding</button>
+																				} ?>" title="status orders" type="button" class="modaly-bt btn btn-warning">Pendding</button>
 								<button data-placement="right" status="1" key=" <?php foreach ($this->record as $key => $record) {
 																					echo $record['id'];
-																				} ?>" title="status orders"  type="button" class="modaly-bt btn btn-danger">Cancel</button><br>
+																				} ?>" title="status orders" type="button" class="modaly-bt btn btn-danger">Cancel</button><br>
 								<button data-placement="right" status="2" key=" <?php foreach ($this->record as $key => $record) {
 																					echo $record['id'];
-																				} ?>" title="status orders"  type="button" class="modaly-bt btn btn-info">Shipping</button>
+																				} ?>" title="status orders" type="button" class="modaly-bt btn btn-info">Shipping</button>
 								<button data-placement="right" status="3" key=" <?php foreach ($this->record as $key => $record) {
 																					echo $record['id'];
-																				} ?>" title="status orders"  type="button" class="modaly-bt btn btn-success">Complete</button>
+																				} ?>" title="status orders" type="button" class="modaly-bt btn btn-success">Complete</button>
 							</div>
 
 						</div>
@@ -115,7 +116,7 @@
 													<?php echo $record['users_firstname'] . " " . $record['users_lastname']; ?>
 
 												</a>
-												<?php echo '<i>'.$record['users_phone'].'</i>'; ?>
+												<?php echo '<i>' . $record['users_phone'] . '</i>'; ?>
 											</td>
 											<td class="tabletShow" id="<?php echo ("order-date-" .  $record['id']); ?>">
 												<?php echo $record['created']; ?>
@@ -124,13 +125,13 @@
 											<td class="tabletShow <?php echo 'status-Order' . $record['order_status'] ?>" id="<?php echo ("status" .  $record['id']); ?>">
 
 												<?php if ($record['order_status'] == 0) { ?>
-													<button data-placement="right" title="status orders" status ="<?=$record['order_status']?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-warning">Pendding</button>
+													<button data-placement="right" title="status orders" status="<?= $record['order_status'] ?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-warning">Pendding</button>
 												<?php } else if ($record['order_status'] == 1) { ?>
-													<button data-placement="right" title="status orders" status ="<?=$record['order_status']?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-danger">Cancel</button>
+													<button data-placement="right" title="status orders" status="<?= $record['order_status'] ?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-danger">Cancel</button>
 												<?php } else if ($record['order_status'] == 2) { ?>
-													<button data-placement="right" title="status orders" status ="<?=$record['order_status']?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-info">Shipping</button>
+													<button data-placement="right" title="status orders" status="<?= $record['order_status'] ?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-info">Shipping</button>
 												<?php } else { ?>
-													<button data-placement="right" title="status orders" status ="<?=$record['order_status']?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-success">Complete</button>
+													<button data-placement="right" title="status orders" status="<?= $record['order_status'] ?>" id="status<?php echo $record['id']; ?>" type="button" class="trigger btn btn-success">Complete</button>
 												<?php } ?>
 											</td>
 											<td class="tabletShow" id="<?php echo ("to-address-" .  $record['id']); ?>">
@@ -171,7 +172,7 @@
 							<table controller="products" class="table table-bordered table-striped no-margin dataTable" style="text-align:center; width:100%;min-width:800px;">
 								<thead>
 									<tr role="row">
-									
+
 										<th style="width: 20px;">ID</th>
 										<th style="width: 250px;">Product</th>
 										<th class="tabletShow" style="width: 200px;">Supplier</th>
