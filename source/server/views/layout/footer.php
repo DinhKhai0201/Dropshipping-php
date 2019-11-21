@@ -280,7 +280,7 @@
                 });
             </script>
             <script src="<?php echo RootREL; ?>media/js/products/removecartpopup.js"></script>
-
+            
             </div>
             </div>
             <?php

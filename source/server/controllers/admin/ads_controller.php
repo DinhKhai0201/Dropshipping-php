@@ -29,7 +29,7 @@ class ads_controller extends vendor_adsmanager_controller
 		}
 		$conditions .= (($conditions)? " AND ":"")." user_id=".$_SESSION['user']['id'];
 		$ad = new ad_model();
-		$this->records = $ad->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
+		$this->records = $ad->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=> 'id DESC']);
 		$this->display();
 	}
 	public function edit($id) {

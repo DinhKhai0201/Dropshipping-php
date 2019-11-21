@@ -247,11 +247,7 @@
                                         </div>
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <div class="rating" style="width:0"></div>
-                                                </div>
-                                            </div>
+                                           
                                             <div class="price-box">
                                                 <span class="regular-price" id="product-price-<?= $product['id']?>">
                                                     <span class="price"><?php echo "$" . $product['price']; ?></span> </span>

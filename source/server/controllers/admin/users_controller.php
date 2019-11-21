@@ -34,7 +34,7 @@ class users_controller extends vendor_backend_controller {
 		}
 		// exit($app['prs']);
 		$user = new user_model();
-		$this->records = $user->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
+		$this->records = $user->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=> 'id DESC']);
 		$this->display();
 	}
 

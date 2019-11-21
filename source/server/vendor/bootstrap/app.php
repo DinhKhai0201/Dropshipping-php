@@ -105,6 +105,13 @@ if(isset($_GET["pr"])) {
 				$app['ordertoken'] = $matches[1];
 				$app['id'] = $matches[2];
 				$app['page-type'] = 'order-vieworder';
+			}else if (preg_match('/customer\/invoice\/view\/(.*)-(.*)/', $link_url, $matches)) {
+				$prs = explode("/", "customer/invoice/view/" . $matches[1].'-'.$matches[2]);
+				$app['linkpage'] = "invoice-view";
+				$app['ordertoken'] = $matches[1];
+				$app['id'] = $matches[2];
+				$app['page-type'] = 'invoice-view';
+			
 			}else{
 				switch($par){
 

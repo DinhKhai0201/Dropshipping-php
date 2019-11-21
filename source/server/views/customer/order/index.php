@@ -88,7 +88,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                     <td class="a-center">
                                         <span class="nobr"><a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'vieworder/'.$value['token'].'-'.$value['id'])); ?>">View
                                                 Order</a>
-                                            <span class="separator">|</span> <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order', 'act' => 'invoice')); ?>" class="link-reorder">Invoice</a>
+                                            <span class="separator">|</span> <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'invoice', 'act' => 'view/' . $value['token'] . '-' . $value['id'])); ?>" class="link-reorder">Invoice</a>
                                         </span>
                                     </td>
                                 </tr>

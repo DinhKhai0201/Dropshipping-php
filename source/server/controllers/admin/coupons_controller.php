@@ -20,7 +20,7 @@ class coupons_controller extends vendor_backend_controller {
       }
 
       $coupon = new coupon_model();
-      $this->records = $coupon->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id ASC']);
+      $this->records = $coupon->allp('*',['conditions'=>$conditions, 'joins'=>false, 'order'=>'id DESC']);
       $this->display();
     }
     public function edit($id) {
@@ -49,7 +49,8 @@ class coupons_controller extends vendor_backend_controller {
       if(isset($_POST['btn_submit'])) {
         $um = new coupon_model();
         $couponData = $_POST['coupon'];
-        // exit(json_encode($_POST));
+        $couponData['time_start'] = implode(' ', explode("T", $couponData['time_start']));
+        $couponData['time_end'] = implode(' ', explode("T", $couponData['time_end']));
         $valid = $um->validator($couponData);
         if($valid['status']) {
           

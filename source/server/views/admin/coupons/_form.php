@@ -127,7 +127,7 @@
 							<div class="form-group col-sm-6">
 								<label for="time_start">Time start<span style="color:red;">*</span></label>
 								<div class='input-group ' id ='datetimepicker1' >
-									<input <?php if($app['act']=='view') echo "disabled"; ?> data-format="yyyy-MM-dd hh:mm:ss"   type='text' class="form-control "  value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
+									<input <?php if($app['act']=='view') echo "disabled"; ?> data-format="yyyy-MM-dd hh:mm:ss"   type='datetime-local' class="form-control "  value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_start']);}?>" name="coupon[time_start]" required="required" placeholder=""/>
 									<?php if( isset($this->errors['time_start'])) { ?>
 										<p class="text-danger"><?=$this->errors['time_start']; ?></p>
 									<?php } ?>
@@ -136,7 +136,7 @@
 							<div class="form-group col-sm-6">
 								<label for="time_end">Time end<span style="color:red;">*</span></label>
 								<div class='input-group date'  >
-									<input <?php if($app['act']=='view') echo "disabled"; ?> id='datetimepicker2' type='text' class="form-control"  value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_end']);}?>" name="coupon[time_end]" required="required" placeholder=""/>
+									<input <?php if($app['act']=='view') echo "disabled"; ?> id='datetimepicker2' type='datetime-local' class="form-control"  value="<?php if(isset($this->record['time_start'])){echo ($this->record['time_end']);}?>" name="coupon[time_end]" required="required" placeholder=""/>
 								
 									<?php if( isset($this->errors['time_end'])) { ?>
 										<p class="text-danger"><?=$this->errors['time_end']; ?></p>
