@@ -10,7 +10,19 @@ class orders_controller extends vendor_backend_controller {
             $status = $app['prs']['status']; 
             $conditions .= (($conditions)? " AND ":"")." orders.order_status=".($status =='all'?'':($status=='pendding'?0:($status=='cancel'?1:($status=='shipping'?2:3))));
           }
-          
+          if(isset($app['prs']['start']) && isset($app['prs']['end'])){
+			$start = $app['prs']['start']; 
+			$end = $app['prs']['end']; 
+			$conditions .= (($conditions)? " AND ":"")." orders.created BETWEEN '".$start."' AND '".$end."'";
+          } else if (isset($app['prs']['start']) && empty($app['prs']['end'])) {
+				$start = $app['prs']['start']; 
+				$conditions .= (($conditions)? " AND ":"")." orders.created >= '".$start."'";
+		  } else if(empty($app['prs']['start']) && isset($app['prs']['end'])) {
+				$end = $app['prs']['end']; 
+				$conditions .= (($conditions)? " AND ":"")." orders.created <= '".$end."'";
+		  } else {
+
+		  }
           if(isset($app['prs']['search'])){
             $conditions .= (($conditions)? " AND ":"").
 			" orders.order_status	like '%".$app['prs']['search']."%' OR ".

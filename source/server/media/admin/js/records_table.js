@@ -39,8 +39,13 @@ $(document).ready(function () {
 			position= $('#select_list_'+ctl+'_position').val();
 			page= $('#select_list_'+ctl+'_page').val();
 			type= $('#select_list_'+ctl+'_type').val();
+			order_start =$('#order-start').val();
+			order_end =$('#order-end').val();
+			console.log(order_start)
 			content = '';
 			if(status && status != 'all') content+='/status='+status;
+			if(order_start && order_start != '') content+='/start='+order_start;
+			if(order_end && order_end != '') content+='/end='+order_end;
 			if(type && type != 'all') content+='/type='+type;
 			if(position && position != 'all') content+='/position='+position;
 			if(page && page != 'all') content+='/page='+page;

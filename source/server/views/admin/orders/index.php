@@ -38,6 +38,7 @@ if (isset($app['prs']['status'])) {
 				<div class="col-sm-8 col-xs-6">
 					<ul class="list-inline list_all">
 						<li>
+							<label for ="select_list_orders_status">From date</label>
 							<select id="select_list_orders_status">
 								<option value="all" <?php if (isset($app['prs']['status']) && $app['prs']['status'] == 'all') echo 'selected' ?>>All</option>
 								<option value="pendding" <?php if (isset($app['prs']['status']) && $app['prs']['status'] == 'pendding') echo 'selected' ?>>Pedding</option>
@@ -46,6 +47,13 @@ if (isset($app['prs']['status'])) {
 								<option value="complete" <?php if (isset($app['prs']['status']) && $app['prs']['status'] == 'complete') echo 'selected' ?>>Complete</option>
 
 							</select>
+							</br>
+							<label for ="order-start">From date</label>
+							<span><input id ="order-start" type="date" name="Sday" min="1000-01-01"
+										max="3000-12-31" class="form-control" value ="<?php if (isset($app['prs']['start'])) echo $app['prs']['start']; ?>"></span>
+							<label for ="order-end">To date</label>
+							<span><input id ="order-end" type="date" name="Eday" min="1000-01-01"
+										max="3000-12-31" class="form-control" value ="<?php if (isset($app['prs']['end'])) echo $app['prs']['end']; ?>"></span>
 							<button class="btn btn-apply" id='btn_filter_orders_table'>Filter</button>
 						</li>
 					</ul>
