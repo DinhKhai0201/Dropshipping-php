@@ -3,7 +3,6 @@ global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
-
 <div class="main-container col2-left-layout">
     <div class="main container">
         <div class="row">

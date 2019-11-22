@@ -8,30 +8,25 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
     <div class="main-container col1-layout">
         <div class="main container">
             <div class="col-main">
-<style>
-
-.etalage_small_thumb {
-    width: 126px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-}
-.etalage_small_thumbs ul .etalage_thumb_active {
-    object-fit: cover;
-    object-position: top;
-}
-/* .etalage_thumb_active {
-    height: 460px;
-    overflow:hidden;
-} */
-#etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM  {
-    height: 420px!important;
-}
-#etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM  .etalage_thumb_active .etalage_thumb_image {
-    height:400px!important;
-    object-position: top!important;
-}
-</style>
+            <style>
+            .etalage_small_thumb {
+                width: 126px;
+                height: 100px;
+                object-fit: cover;
+                object-position: center;
+            }
+            .etalage_small_thumbs ul .etalage_thumb_active {
+                object-fit: cover;
+                object-position: top;
+            }
+            #etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM  {
+                height: 420px!important;
+            }
+            #etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM  .etalage_thumb_active .etalage_thumb_image {
+                height:400px!important;
+                object-position: top!important;
+            }
+            </style>
                 <div id="messages_product_view"></div>
                 <div class="product-view custom  ">
                     <div class="product-essential">
@@ -110,7 +105,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                     <div class="product-name">
                                         <h1><?php echo $product['name']; ?></h1>
                                     </div>
-
                                     <div class="ratings">
                                         <div class="rating-box">
                                             <div class="rating" style="width:0"></div>

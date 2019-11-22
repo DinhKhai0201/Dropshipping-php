@@ -138,7 +138,7 @@
 												<?php echo $record['to_address']; ?>
 											</td>
 											<td class="tabletShow" id="<?php echo ("total-price-" .  $record['id']); ?>">
-												<?php echo $record['total_price']; ?>
+												<?php echo '$'.$record['total_price']; ?>
 											</td>
 											<td class="tabletShow" id="<?php echo ("detail-" .  $record['id']); ?>">
 												<?php echo $record['info']; ?>
@@ -212,7 +212,7 @@
 													<?php echo $record['size']; ?>
 												</td>
 												<td class="tabletShow" id="<?php echo ("sub_price-" . $record['id']); ?>">
-													<?php echo intval($record['price']) * intval($record['quantity']); ?>
+													<?php echo '$'.intval($record['price']) * intval($record['quantity']); ?>
 												</td>
 
 												<td class="btn-act" class="pull-right">

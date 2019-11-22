@@ -45,7 +45,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/about_page.css");
                     <p class="required">* Required Fields</p>
                     <button type="submit" title="Submit" name="btn_submit" class="button"><span><span>Submit</span></span></button>
                 </div>
-
             </form>
         </div>
     </div>

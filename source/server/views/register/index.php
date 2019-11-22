@@ -81,11 +81,6 @@
                         <button type="submit" name="btn_submit" title="Submit" class="button"><span><span>Submit</span></span></button>
                     </div>
                 </form>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    var dataForm = new VarienForm('form-validate', true);
-                    //]]>
-                </script>
             </div>
         </div>
     </div>

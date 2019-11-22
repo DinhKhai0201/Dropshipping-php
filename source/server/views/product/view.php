@@ -3,37 +3,9 @@ global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
 array_push($mediaFiles['css'], RootREL . "media/css/product/comment.css");
 array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
-
-
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <?php foreach ($this->products as $product) { ?>
-    <style>
-        .etalage_small_thumb {
-            width: 126px;
-            height: 100px;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .etalage_small_thumbs ul .etalage_thumb_active {
-            object-fit: cover;
-            object-position: top;
-        }
-
-        /* .etalage_thumb_active {
-    height: 460px;
-    overflow:hidden;
-} */
-        #etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM {
-            height: 420px !important;
-        }
-
-        #etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM .etalage_thumb_active .etalage_thumb_image {
-            height: 400px !important;
-            object-position: top !important;
-        }
-    </style>
     <div class="modaly">
         <div class="modal-contenty">
             <span class="close-button">&times;</span>
@@ -583,21 +555,15 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
 <script>
     jQuery(function($) {
         let product_id = $('#product_id').val();
-
         let product_image = $('#product_image').val();
         let product_name = $('#product_name').val();
         let product_price = $('#product_price').val();
         let product_slug = $('#product_slug').val();
         var product_qty = $('.qty').val();
-
-
     });
 </script>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/comment.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/rate.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/view.js"></script>
-
-
-
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

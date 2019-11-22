@@ -16,9 +16,7 @@
                      </div>
                  </div>
                  <span class="split"></span>
-
                  <span class="split"></span>
-                
                  <div class="top-links-area">
                      <div class="top-links-icon">
                          <a href="javascript:void(0)">Menu</a>
@@ -50,7 +48,6 @@
                  <a href="javascript:void(0)" class="mybag-link"><span class="minicart-label">Cart</span><i class="fas fa-shopping-cart"></i><span class="cart-info"><span class="cart-qty"><?= $navbar['nocart'] ?></span><span>Item(s)</span></span></a>
                  <div class="topCartContent block-content theme-border-color" style="max-height:500px;overflow:hidden;overflow-y: scroll;">
                      <div class="inner-wrapper">
-
                          <?php if (isset($navbar['nocart']) && isset($_SESSION['user']) && $navbar['nocart'] > 0) { ?>
                              <?php foreach ($navbar['data'] as $key => $value) { ?>
                                  <ol class="mini-products-list item_<?= $value['id']; ?>">
@@ -190,15 +187,12 @@
                                      </div>
                                  </div>
                              </li>
-                          
                          </ul>
                      </div>
                  </div>
              </div>
          </div>
-
      </div>
-
      <script type="text/javascript">
          var SW_MENU_POPUP_WIDTH = 0;
          jQuery(function($) {

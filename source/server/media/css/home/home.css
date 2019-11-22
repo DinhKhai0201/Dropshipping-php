@@ -1,0 +1,76 @@
+#banner-slider-demo-4 .content h2 {
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
+
+#banner-slider-demo-4 .content span {
+    font-size: 18px;
+    line-height: 38px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#banner-slider-demo-4 .content p {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 10;
+}
+
+#banner-slider-demo-4 .content .btn-default {
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: 0.025em;
+    padding: 10px 34px;
+    border-radius: 3px;
+    background-color: #010204;
+    color: #fff;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    margin-top: 28px;
+}
+.main-container {
+    background-color: #f4f4f4;
+    margin-top: 48px;
+    padding-bottom: 20px;
+}
+@media(max-width:767px) {
+    #banner-slider-demo-4 .owl-controls {
+        display: none !important;
+    }
+
+    #banner-slider-demo-4 .content {
+        top: 15% !important;
+    }
+
+    #banner-slider-demo-4 .content h2 {
+        font-size: 24px;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    #banner-slider-demo-4 .content span {
+        font-size: 11px !important;
+        line-height: 23px;
+    }
+
+    #banner-slider-demo-4 .content span b {
+        font-size: 15px !important;
+    }
+
+    #banner-slider-demo-4 .content p {
+        font-size: 11px !important;
+        margin-bottom: 10px;
+    }
+
+    #banner-slider-demo-4 .content .btn-default {
+        font-size: 10px !important;
+        line-height: 20px;
+        padding: 3px 13px;
+        border-radius: 3px;
+        margin-top: 0px;
+    }
+}

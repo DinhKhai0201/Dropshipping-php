@@ -1,4 +1,9 @@
+<?php
+global $mediaFiles;
+array_push($mediaFiles['css'], RootREL . "media/css/home/home.css");
+?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
+
 <!-- start container -->
 <div class="top-container">
     <div id="slideshow">
@@ -142,80 +147,6 @@
                 </div>
             </div>
         </div>
-        <style>
-            #banner-slider-demo-4 .content h2 {
-                font-size: 44px;
-                font-weight: 900;
-                letter-spacing: -0.025em;
-                text-transform: uppercase;
-                line-height: 38px;
-                margin-bottom: 10px;
-            }
-
-            #banner-slider-demo-4 .content span {
-                font-size: 18px;
-                line-height: 38px;
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-
-            #banner-slider-demo-4 .content p {
-                font-size: 14px;
-                font-weight: 300;
-                margin-bottom: 10;
-            }
-
-            #banner-slider-demo-4 .content .btn-default {
-                font-size: 14px;
-                line-height: 25px;
-                letter-spacing: 0.025em;
-                padding: 10px 34px;
-                border-radius: 3px;
-                background-color: #010204;
-                color: #fff;
-                font-family: 'Oswald';
-                text-transform: uppercase;
-                margin-top: 28px;
-            }
-
-            @media(max-width:767px) {
-                #banner-slider-demo-4 .owl-controls {
-                    display: none !important;
-                }
-
-                #banner-slider-demo-4 .content {
-                    top: 15% !important;
-                }
-
-                #banner-slider-demo-4 .content h2 {
-                    font-size: 24px;
-                    line-height: 1;
-                    margin-bottom: 5px;
-                }
-
-                #banner-slider-demo-4 .content span {
-                    font-size: 11px !important;
-                    line-height: 23px;
-                }
-
-                #banner-slider-demo-4 .content span b {
-                    font-size: 15px !important;
-                }
-
-                #banner-slider-demo-4 .content p {
-                    font-size: 11px !important;
-                    margin-bottom: 10px;
-                }
-
-                #banner-slider-demo-4 .content .btn-default {
-                    font-size: 10px !important;
-                    line-height: 20px;
-                    padding: 3px 13px;
-                    border-radius: 3px;
-                    margin-top: 0px;
-                }
-            }
-        </style>
     </div>
 </div>
 <div class="main-container col1-layout">
@@ -241,17 +172,13 @@
                                                 <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" />
                                                 <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" alt="IdeaPad" />
                                             </a>
-
                                             <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
-
                                         </div>
                                         <div class="details-area">
                                             <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>" class="click-view-bt" key="<?= $product['id'] ?>"><?php echo $product['name']; ?></a></h2>
-
                                             <div class="price-box">
                                                 <span class="regular-price" id="product-price-<?= $product['id'] ?>">
                                                     <span class="price">
-
                                                         <?php if (isset($product['coupons_type'])) { ?>
                                                             <p class="old-price">
                                                                 <span class="price-label">Regular Price:</span>
@@ -312,11 +239,7 @@
                     });
                 </script>
                 <style>
-                    .main-container {
-                        background-color: #f4f4f4;
-                        margin-top: 48px;
-                        padding-bottom: 20px;
-                    }
+                    
                 </style>
             </div>
         </div>
@@ -324,6 +247,5 @@
 </div>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/view.js"></script>
-
 <!-- start foooter -->
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

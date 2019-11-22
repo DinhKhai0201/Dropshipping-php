@@ -56,7 +56,6 @@
                                 </li>
                             </ul>
                         </div>
-
                         <div class="fieldset">
                             <h2 class="legend">Address</h2>
                             <ul class="form-list">
@@ -117,10 +116,8 @@
                             <button data-action="save-customer-address" name="btn_submit" type="submit" title="Save Address" class="button"><span><span>Save Address</span></span></button>
                         </div>
                     </form>
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>

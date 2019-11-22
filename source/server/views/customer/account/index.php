@@ -1,7 +1,6 @@
 <?php
 global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
-
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 
@@ -185,7 +184,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

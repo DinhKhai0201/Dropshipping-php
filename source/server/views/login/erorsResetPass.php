@@ -14,8 +14,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/about_page.css");
     </div>
 </div>
 <?php
-            array_push($mediaFiles['js'], RootREL . "media/js/home.js");
-            array_push($mediaFiles['js'], RootREL . "media/libs/select2/select2.min.js");
-
-            ?>
+array_push($mediaFiles['js'], RootREL . "media/js/home.js");
+array_push($mediaFiles['js'], RootREL . "media/libs/select2/select2.min.js");
+?>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

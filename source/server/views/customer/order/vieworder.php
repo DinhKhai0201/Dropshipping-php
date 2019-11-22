@@ -2,7 +2,6 @@
 global $mediaFiles;
 array_push($mediaFiles['css'], RootREL . "media/css/order/progress_order.css");
 array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
-
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <div class="main-container col2-left-layout">
@@ -11,7 +10,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
             <div class="col-left sidebar f-left col-lg-3">
                 <div class="block block-account">
                     <?php include_once 'views/customer/' . $this->layout . 'sidebar.php'; ?>
-
                 </div>
             </div>
             <div class="col-main col-lg-9 lg-order-12">

@@ -2,7 +2,6 @@
     Download
 </button>
 <div id="invoice-POS" class="invoice-POS">
-
     <center id="top">
         <div class="logo"></div>
         <div class="info">
@@ -23,7 +22,6 @@
         <div class="info">
             <h2>To Address</h2>
             <p>
-
                 <?php foreach ($this->order as $key => $value) {
                     echo ' Address : ' . $value['to_address'];
                 } ?>
@@ -31,9 +29,7 @@
         </div>
     </div>
     <!--End Invoice Mid-->
-
     <div id="bot">
-
         <h2>Order Info: <?php foreach ($this->order as $key => $value) {
                             echo '#' . $value['id'];
                         } ?></h2>
@@ -101,23 +97,17 @@
                                 } ?></h2>
                     </td>
                 </tr>
-
             </table>
         </div>
         <!--End Table-->
-
         <div id="legalcopy">
             <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
             </p>
-
-
         </div>
-
     </div>
     <!--End InvoiceBot-->
 </div>
 <!--End Invoice-->
-
 <style>
     #invoice-POS {
         box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
@@ -255,7 +245,6 @@
             scale: quality
         }).then(function(canvas) {
             var pdf = new jsPDF('p', 'pt', [w, h]);
-            //pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
             pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, 0, 0);
             pdf.save(filename);
         });

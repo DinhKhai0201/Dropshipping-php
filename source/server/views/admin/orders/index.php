@@ -140,7 +140,7 @@ if (isset($app['prs']['status'])) {
 											<?php echo $record['to_address']; ?>
 										</td>
 										<td class="tabletShow" id="<?php echo ("total-price-" . $record['id']); ?>">
-											<?php echo $record['total_price']; ?>
+											<?php echo '$'.$record['total_price']; ?>
 										</td>
 										<td class="tabletShow" id="<?php echo ("detail-" . $record['id']); ?>">
 											<?php echo $record['info']; ?>

@@ -8,7 +8,6 @@
                 </div>
                 <div class="form-wrap">
                     <h2 class="sub-title">Thank you for your purchase!</h2>
-
                     <p>Your order is: <a href="<?php echo vendor_app_util::url(array('area' => 'customer', 'ctl' => 'order')); ?>"><?php echo $this->id_order['id']; ?></a>.
                     </p>
                     <p>You will receive an order confirmation email with details of your order and a link to
@@ -63,7 +62,6 @@
                                     </div>
                                 </li>
                             <?php } ?>
-
                         </ol>
                         <script type="text/javascript">
                             decorateList('wishlist-sidebar');

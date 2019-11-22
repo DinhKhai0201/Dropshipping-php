@@ -50,3 +50,22 @@
 	display: none;
 }
 #comment_form { margin-top: 10px; }
+.etalage_small_thumb {
+    width: 126px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.etalage_small_thumbs ul .etalage_thumb_active {
+    object-fit: cover;
+    object-position: top;
+}
+#etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM {
+    height: 420px !important;
+}
+
+#etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM .etalage_thumb_active .etalage_thumb_image {
+    height: 400px !important;
+    object-position: top !important;
+}

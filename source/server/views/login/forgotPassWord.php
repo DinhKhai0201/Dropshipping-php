@@ -6,7 +6,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/login.css");
 <div class="main-container col1-layout">
     <div class="main container">
         <div class="col-main">
-
             <div class="page-title">
                 <h1>Forgot Your Password?</h1>
             </div>
@@ -31,7 +30,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/login.css");
                             </div>
                         </li>
                     </ul>
-
                 </div>
                 <div class="buttons-set">
                     <p class="required">* Required Fields</p>

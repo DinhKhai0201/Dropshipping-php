@@ -156,15 +156,6 @@
                                                 </ul>
                                             </dd>
                                         </dl>
-                                        <!-- <div class="discount-form" style="display: block;">
-                                            <input type="hidden" name="remove" id="remove-coupone" value="0">
-                                            <div class="input-box">
-                                                <label for="coupon_code">Enter your coupon code if you have one.</label>
-                                                <input class="input-text" id="coupon_code" name="coupon_code" value="">
-                                                <button type="button" title="Apply Coupon" class="button" value="Apply Coupon"><span><span>Apply Coupon</span></span></button>
-
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <div id="onepage-checkout-shipping-method-additional-load">
                                     </div>

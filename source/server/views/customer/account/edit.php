@@ -1,5 +1,4 @@
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
-
 <div class="main-container col2-left-layout">
     <div class="main container">
         <div class="row">
@@ -9,7 +8,6 @@
                 </div>
             </div>
             <div class="col-main col-lg-9 lg-order-12">
-
                 <div class="my-account">
                     <?php if (isset($this->errors['database'])) { ?>
                         <div class="alert alert-danger  alert-dismissible fade in" role="alert">
@@ -114,7 +112,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

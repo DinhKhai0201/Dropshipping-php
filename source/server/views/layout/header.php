@@ -7,7 +7,6 @@
     <meta name="description" content="Default Description" />
     <meta name="keywords" content="Drop Shipping, E-commerce" />
     <meta name="robots" content="INDEX,FOLLOW" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="<?php echo RootREL; ?>media/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="<?php echo RootREL; ?>media/favicon.ico" type="image/x-icon" />
@@ -76,7 +75,6 @@
         .header-wrapper {
             border-bottom: 0;
         }
-
         .main-nav {
             margin-bottom: 0;
         }
@@ -90,7 +88,6 @@ if ($enableOB) {
 }
 echo vendor_html_helper::_cssHeader();
 ?>
-
 <body class=" cms-index-index cms-porto-home-4">
     <script type="text/javascript">
         var rootUrl = "<?= RootURL; ?>";
