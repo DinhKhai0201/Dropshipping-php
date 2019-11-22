@@ -6,17 +6,15 @@
                 <div class="page-title">
                     <h1>Create an Account</h1>
                 </div>
-                <?php if ($this->errors) { ?>
-                    <div class="form-list">
-                        <div class="replay-forgotpassword">
-                            <?php echo $this->errors['message']; ?>
+                <?php if (($this->errors)) { ?>
+                    <div class="form-list" >
+                        <div class="replay-forgotpassword" style ="padding: 10px;background-color: beige;">
+                            <?php echo $this->errors; ?>
                         </div>
                     </div>
                 <?php } ?>
                 <form action="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'register')); ?>" method="post" id="form-validate">
                     <div class="fieldset">
-                        <input type="hidden" name="success_url" value="" />
-                        <input type="hidden" name="error_url" value="" />
                         <h2 class="legend">Personal Information</h2>
                         <ul class="form-list">
                             <li class="fields">
@@ -24,13 +22,13 @@
                                     <div class="field name-firstname">
                                         <label for="firstname" class="required"><em>*</em>First Name</label>
                                         <div class="input-box">
-                                            <input type="text" id="firstname" name="user[firstname]" value="" title="First Name" maxlength="255" class="input-text required-entry" />
+                                            <input type="text" id="firstname" name="user[firstname]" value="" title="First Name" required maxlength="255" class="input-text required-entry" />
                                         </div>
                                     </div>
                                     <div class="field name-lastname">
                                         <label for="lastname" class="required"><em>*</em>Last Name</label>
                                         <div class="input-box">
-                                            <input type="text" id="lastname" name="user[lastname]" value="" title="Last Name" maxlength="255" class="input-text required-entry" />
+                                            <input type="text" id="lastname" name="user[lastname]" value="" title="Last Name" required maxlength="255" class="input-text required-entry" />
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +38,7 @@
                                     <div class="field ">
                                         <label for="email" class="required"><em>*</em>Email Name</label>
                                         <div class="input-box">
-                                            <input type="text" id="email" name="user[email]" value="" title="Email" maxlength="255" class="input-text required-entry" />
+                                            <input type="text" id="email" name="user[email]" value="" title="Email" required maxlength="255" class="input-text required-entry" />
                                             <?php if (isset($this->errors['email'])) { ?>
                                                 <p class="text-danger"><?= $this->errors['email']; ?></p>
                                             <?php } ?>
@@ -49,7 +47,7 @@
                                     <div class="field ">
                                         <label for="phone" class="required"><em>*</em>Phone number</label>
                                         <div class="input-box">
-                                            <input type="text" id="phone" name="user[phone]" value="" title="Phone Number" maxlength="255" class="input-text required-entry" />
+                                            <input type="text" id="phone" name="user[phone]" value="" required title="Phone Number" maxlength="255" class="input-text required-entry" />
                                         </div>
                                     </div>
                                 </div>
@@ -63,14 +61,14 @@
                                 <div class="field">
                                     <label for="password" class="required"><em>*</em>Password</label>
                                     <div class="input-box">
-                                        <input type="password" name="user[password]" id="password" title="Password" class="input-text required-entry validate-password" />
+                                        <input type="password" name="user[password]" id="password" title="Password" required class="input-text required-entry validate-password" />
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label for="confirmation" class="required"><em>*</em>Confirm
                                         Password</label>
                                     <div class="input-box">
-                                        <input type="password" name="user[password_confirm]" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" />
+                                        <input type="password" name="user[password_confirm]" title="Confirm Password" required id="confirmation" class="input-text required-entry validate-cpassword" />
                                     </div>
                                 </div>
                             </li>

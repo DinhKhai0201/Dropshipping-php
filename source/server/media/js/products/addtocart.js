@@ -5,7 +5,7 @@ function tmp(element, rootUrl, RootREL) {
                         <li class="item">
                             <div class="clearfix product-details">
                                 <div class ="image-cart" style ="margin-right: 20px;width: 40%;float: left;">
-                                    <span><a href="${rootUrl}product/view/${element.slug}-${element.product_id}" title="${element.name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${element.name}"></a></span>
+                                    <span><a href="${rootUrl}product/view/${element.slug}-${element.product_id}" title="${element.name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${element.name}" style="height: 60px;object-fit: cover;object-position: top;width: 100%;"></a></span>
                                 <div class="clearer"></div>
 
                                 </div>
@@ -59,7 +59,7 @@ jQuery(function ($) {
                         <li class="item">
                             <div class="clearfix product-details">
                                 <div class ="image-cart" style ="margin-right: 20px;width: 40%;float: left;">
-                                    <span><a href="${rootUrl}product/view/${slug}-${element.product_id}" title="${name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${name}"></a></span>
+                                    <span><a href="${rootUrl}product/view/${slug}-${element.product_id}" title="${name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${name}" style="height: 60px;object-fit: cover;object-position: top;width: 100%;"></a></span>
                                 <div class="clearer"></div>
 
                                 </div>

@@ -4,27 +4,27 @@
         <div class="col-main">
             <div class="cart cart-append-product">
                 <div class="top-container">
-                        <div class="breadcrumbs" style ="margin-bottom: 20px">
-                            <div class="container">
-                                <div class="row">
-                                        <ul>
-                                            <li class="home">
-                                                <a href="<?php echo (vendor_app_util::url(['area'=>'',"ctl" => ""])) ?>" title="Go to Home Page">Home</a>
-                                                <span class="breadcrumbs-split">></span>
-                                            </li>
-                                            <li class="">
-                                                <a href="<?php echo (vendor_app_util::url(['area'=>'customer',"ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
-                                                <span class="breadcrumbs-split">></span>
-                                            </li>
-                                          
-                                            <li class="product">
-                                                <strong>Shopping cart </strong>
-                                            </li>
-                                        </ul>
-                                </div>
+                    <div class="breadcrumbs" style="margin-bottom: 20px">
+                        <div class="container">
+                            <div class="row">
+                                <ul>
+                                    <li class="home">
+                                        <a href="<?php echo (vendor_app_util::url(['area' => '', "ctl" => ""])) ?>" title="Go to Home Page">Home</a>
+                                        <span class="breadcrumbs-split">></span>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?php echo (vendor_app_util::url(['area' => 'customer', "ctl" => "account"])) ?>" title="My account Dropshipping">My account</a>
+                                        <span class="breadcrumbs-split">></span>
+                                    </li>
+
+                                    <li class="product">
+                                        <strong>Shopping cart </strong>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
                 <div class="page-title title-buttons">
                     <h1>Shopping Cart</h1>
                 </div>
@@ -52,7 +52,7 @@
                                                 <td colspan="50" class="a-right">
                                                     <button title="Continue Shopping" class="button btn-continue" onclick="window.location.href='<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>'"><span><span>Continue
                                                                 Shopping</span></span></button>
-                                                 
+
                                                     <button title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button"><span><span>Clear Shopping
                                                                 Cart</span></span></button>
                                                 </td>
@@ -62,15 +62,15 @@
                                             <?php foreach ($this->products as $product) { ?>
                                                 <tr id="item_<?= $product['id']; ?>">
                                                     <td class="action-td"><a href="javascript:void(0)" price="<?= $product['price']; ?>" value="<?= $product['id']; ?>" title="Remove item" class="btn-remove remove-key btn-remove2"></a></td>
-                                                    <td class="pr-img-td"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name']; ?>" class="product-image"><img src="<?php echo RootREL . "media/upload/products/" . $product['image']; ?>" width="80" height="80" alt="<?= $product['products_name']; ?>" /></a></td>
+                                                    <td class="pr-img-td"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name']; ?>" class="product-image click-view-bt" key="<?= $product['product_id'] ?>"><img src="<?php echo RootREL . "media/upload/products/" . $product['image']; ?>" width="80" height="80" alt="<?= $product['products_name']; ?>" style="height: 60px;object-fit: cover;object-position: top;" /></a></td>
                                                     <td class="product-name-td">
                                                         <h2 class="product-name">
-                                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>">
+                                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" key="<?= $product['product_id'] ?>" class="click-view-bt">
                                                                 <?= $product['products_name']; ?> </a>
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:void(0)" key="<?= $product['id']; ?>" size="<?= $product['size']; ?>" value="<?= $product['product_id']; ?>" colors="<?= $product['color']; ?>" supplier ="<?= $product['supplier_id']; ?>"  qty="<?= $product['quantity']; ?>" price="<?= $product['price']; ?>" image="<?= $product['image']; ?>" class="link-wishlist towishlist use-ajax">Add</a>
+                                                        <a href="javascript:void(0)" key="<?= $product['id']; ?>" size="<?= $product['size']; ?>" value="<?= $product['product_id']; ?>" colors="<?= $product['color']; ?>" supplier="<?= $product['supplier_id']; ?>" qty="<?= $product['quantity']; ?>" price="<?= $product['price']; ?>" image="<?= $product['image']; ?>" class="link-wishlist towishlist use-ajax">Add</a>
                                                     </td>
                                                     <td>
                                                         <span class="cart-price">
@@ -79,7 +79,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="qty-holder">
-                                                            <a href="javascript:void(0)" class="table_qty_dec qty_decrease" unit="<?= $product['price']; ?>" key ="<?= $product['id']; ?>">-</a><input value="<?=$product['quantity']?>" size="4" title="Qty" class="input-text qty" id="qtyValue" maxlength="12" /><a href="javascript:void(0)" class="table_qty_inc qty_increase" key ="<?= $product['id']; ?>" unit="<?= $product['price']; ?>">+</a>
+                                                            <a href="javascript:void(0)" class="table_qty_dec qty_decrease" unit="<?= $product['price']; ?>" key="<?= $product['id']; ?>">-</a><input value="<?= $product['quantity'] ?>" size="4" title="Qty" class="input-text qty" id="qtyValue" maxlength="12" /><a href="javascript:void(0)" class="table_qty_inc qty_increase" key="<?= $product['id']; ?>" unit="<?= $product['price']; ?>">+</a>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -132,11 +132,11 @@
                                                     <strong>Grand Total</strong>
                                                 </td>
                                                 <td style="" class="a-right">
-                                                    <strong><span class="price price-total-list">$<span class ="price-total-list-ajax"><?php $total = 0;
-                                                                                                    foreach ($this->products as $key => $value) {
-                                                                                                        $total += (intval($value['price']) * intval($value['quantity']));
-                                                                                                    }
-                                                                                                    echo $total; ?></span></span></strong>
+                                                    <strong><span class="price price-total-list">$<span class="price-total-list-ajax"><?php $total = 0;
+                                                                                                                                        foreach ($this->products as $key => $value) {
+                                                                                                                                            $total += (intval($value['price']) * intval($value['quantity']));
+                                                                                                                                        }
+                                                                                                                                        echo $total; ?></span></span></strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -145,11 +145,11 @@
                                                 <td style="" class="a-right" colspan="1">
                                                     Subtotal </td>
                                                 <td style="" class="a-right">
-                                                    <span class="price price-total-list">$<span class ="price-total-list-ajax"><?php $total = 0;
-                                                                                            foreach ($this->products as $key => $value) {
-                                                                                                $total += (intval($value['price']) * intval($value['quantity']));
-                                                                                            }
-                                                                                            echo $total; ?></span></span> </td>
+                                                    <span class="price price-total-list">$<span class="price-total-list-ajax"><?php $total = 0;
+                                                                                                                                foreach ($this->products as $key => $value) {
+                                                                                                                                    $total += (intval($value['price']) * intval($value['quantity']));
+                                                                                                                                }
+                                                                                                                                echo $total; ?></span></span> </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -178,16 +178,16 @@
             $.ajax({
                 url: rootUrl + "customer/checkout/editqty",
                 method: "POST",
-                 data: {
+                data: {
                     quantity: qty,
                     id: id
                 },
                 success: function(data) {
-                    $('.subtotal_price_'+data).html((unit*qty));
+                    $('.subtotal_price_' + data).html((unit * qty));
                     let new_price = parseInt($('.price-total-list-ajax').html()) + unit;
                     $('.price-total-list-ajax').html(new_price);
-                     $('.price-total .getPrice').html('$' + new_price);
-                     $('.qty_cart_'+ data).html(qty);
+                    $('.price-total .getPrice').html('$' + new_price);
+                    $('.qty_cart_' + data).html(qty);
 
                 }
             });
@@ -196,22 +196,23 @@
             let qty = $(this).parent().children(".qty").val();
             let unit = parseInt($(this).context.attributes.unit.value);
             let id = ($(this).context.attributes.key.value);
-             $.ajax({
+            $.ajax({
                 url: rootUrl + "customer/checkout/editqty",
                 method: "POST",
-                 data: {
+                data: {
                     quantity: qty,
                     id: id
                 },
                 success: function(data) {
-                    $('.subtotal_price_'+data).html((unit*qty));
+                    $('.subtotal_price_' + data).html((unit * qty));
                     let new_price = parseInt($('.price-total-list-ajax').html()) - unit;
                     $('.price-total-list-ajax').html(new_price);
-                     $('.price-total .getPrice').html('$' + new_price);
-                     $('.qty_cart_'+ data).html(qty);
+                    $('.price-total .getPrice').html('$' + new_price);
+                    $('.qty_cart_' + data).html(qty);
                 }
             });
         });
     });
 </script>
+<script src="<?php echo RootREL; ?>media/js/products/view.js"></script>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php';

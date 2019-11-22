@@ -85,7 +85,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                     <td><?= $value['to_address'] ?></td>
                                     <td><?= $value['info'] ?></td>
 
-                                    <td><span class="price"><?= (intval($value['total_price'])) ?></span></td>
+                                    <td><span class="price"><?php echo '$' . (intval($value['total_price'])) ?></span></td>
                                     <td><em>
                                     <?php if ($value['order_status'] == 0) {
                                             echo "<p class ='pendding'>Pendding</p>";

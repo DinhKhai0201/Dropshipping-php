@@ -39,7 +39,8 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                     <div class="page-title">
                         <h1>My Orders</h1>
                     </div>
-                    <div class="pager">
+                     <?php if($this->orders['norecords']  > 0) {?>
+                        <div class="pager">
                         <p class="amount">
                             <strong><?= $this->orders['norecords'] ?> Item(s)</strong>
                         </p>
@@ -95,6 +96,10 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                             <?php } ?>
                         </tbody>
                     </table>
+                     <?php } else {?>
+                        <p> You not no order </p>
+                     <?php }?>
+                    
                 </div>
                 <div class="buttons-set">
                     <p class="back-link"><a href="javascript:history.back()"><small>&laquo;

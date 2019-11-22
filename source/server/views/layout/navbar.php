@@ -57,7 +57,7 @@
                                      <li class="item">
                                          <div class="clearfix product-details">
                                              <div class="image-cart" style="margin-right: 20px;width: 40%;float: left;">
-                                                 <span><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $value['products_slug'] . "-" . $value['product_id']])) ?>" title="<?= $value['products_name']; ?>" class="product-image"><img src="<?php echo RootREL . "media/upload/products/" . $value['image']; ?>" alt="<?= $value['products_name']; ?>"></a></span>
+                                                 <span><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $value['products_slug'] . "-" . $value['product_id']])) ?>" title="<?= $value['products_name']; ?>" class="product-image"><img src="<?php echo RootREL . "media/upload/products/" . $value['image']; ?>" alt="<?= $value['products_name']; ?>" style="height: 60px;object-fit: cover;object-position: top;width: 100%;"></a></span>
                                                  <div class="clearer"></div>
 
                                              </div>

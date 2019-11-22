@@ -63,7 +63,7 @@
                                     <a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"> TOP CATEGORIES<a></h2>
                                 <ul>
                                     <?php foreach ($this->categories as $category) { ?>
-                                        <li id="category-<?= $category['id'] ?>"><a href=""> <?= $category['categoryName'] ?></a></li>
+                                        <li id="category-<?= $category['id'] ?>"><a href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"> <?= $category['categoryName'] ?></a></li>
                                     <?php }  ?>
 
                                 </ul>
@@ -109,35 +109,35 @@
             <div class="row" style="padding-bottom:10px;margin:0 -10px;">
                 <div class="col-md-3 col-6" style="padding:0 10px;padding-bottom:20px;">
                     <div style="margin-bottom:15px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image01.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image01.jpg" alt="" /></a>
                     </div>
                     <div style="margin-bottom:15px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image02.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image02.jpg" alt="" /></a>
                     </div>
                     <div style="margin-bottom:0px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image03.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image03.jpg" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6 md-order-12" style="padding:0 10px;padding-bottom:20px;">
                     <div style="margin-bottom:15px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image11.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image11.jpg" alt="" /></a>
                     </div>
                     <div style="margin-bottom:15px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image12.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image12.jpg" alt="" /></a>
                     </div>
                     <div style="margin-bottom:0px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image13.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image13.jpg" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-md-6" style="padding:0 10px;padding-bottom:20px;">
                     <div style="margin-bottom:28px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image21.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image21.jpg" alt="" /></a>
                     </div>
                     <div style="margin-bottom:28px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image22.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image22.jpg" alt="" /></a>
                     </div>
                     <div style="margin-bottom:0px;">
-                        <a class="image-link" href="#"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image23.jpg" alt="" /></a>
+                        <a class="image-link" href="<?php echo vendor_app_util::url(array('area' => '', 'ctl' => 'categories')); ?>"><img src="<?php echo RootREL; ?>media/wysiwyg/porto/homepage/slider/04/image23.jpg" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -235,43 +235,43 @@
                                                     <i class="ajax-loader medium animate-spin"></i>
                                                 </div>
                                             </div>
-                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "quickview/" . $product['slug'] . "-" . $product['id']])) ?>" class="quickview-icon  quickview" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>"><i class="icon-export"></i><span>Quick
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "quickview/" . $product['slug'] . "-" . $product['id']])) ?>" class="quickview-icon  quickview click-view-bt" id="product-<?php echo $product['id']; ?>" product_id="<?php echo $product['id']; ?>" key="<?= $product['id'] ?>"><i class="icon-export"></i><span>Quick
                                                     View</span></a>
-                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>" class="product-image">
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>" class="product-image click-view-bt" key="<?= $product['id'] ?>">
                                                 <img class="defaultImage porto-lazyload" data-src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" />
                                                 <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $product['oneImage']; ?>" width="250" height="250" alt="IdeaPad" />
                                             </a>
 
                                             <div class="product-label" style="right: 10px; "><span class="new-product-icon">Hot</span></div>
-                                           
+
                                         </div>
                                         <div class="details-area">
-                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>"><?php echo $product['name']; ?></a></h2>
-                                           
-                                             <div class="price-box">
+                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['slug'] . "-" . $product['id']])) ?>" title="<?php echo $product['name']; ?>" class="click-view-bt" key="<?= $product['id'] ?>"><?php echo $product['name']; ?></a></h2>
+
+                                            <div class="price-box">
                                                 <span class="regular-price" id="product-price-<?= $product['id'] ?>">
                                                     <span class="price">
-                                                   
-                                                    <?php if (isset($product['coupons_type'])) {?>
-                                                    <p class="old-price">
-                                                        <span class="price-label">Regular Price:</span>
-                                                        <span class="price" id="old-price-<?= $product['id'] ?>">
-                                                            <?php echo "$".$product['price']; ?> </span>
-                                                    </p>
-                                                    <p class="special-price">
-                                                    <span class="price-label">Special Price</span>
-                                                    <?php if (intval($product['coupons_type']) == 0) {?>
-                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
-                                                            $<?php echo (intval($product['price']) - (intval($product['price'])*(intval($product['coupons_percent_value'])))/100);?>
-                                                        </span>
-                                                    <?php } else if (intval($product['coupons_type']) == 1) {?>
-                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
-                                                        $<?php echo (intval($product['price']) - (intval($product['coupons_fix_value'])))?></span>
-                                                <?php }?>
-                                                </p>
-                                                 <?php } else {?>
-                                                  <?php echo "$" . $product['price']; ?>
-                                                 <?php }?>
+
+                                                        <?php if (isset($product['coupons_type'])) { ?>
+                                                            <p class="old-price">
+                                                                <span class="price-label">Regular Price:</span>
+                                                                <span class="price" id="old-price-<?= $product['id'] ?>">
+                                                                    <?php echo "$" . $product['price']; ?> </span>
+                                                            </p>
+                                                            <p class="special-price">
+                                                                <span class="price-label">Special Price</span>
+                                                                <?php if (intval($product['coupons_type']) == 0) { ?>
+                                                                    <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                                        $<?php echo (intval($product['price']) - (intval($product['price']) * (intval($product['coupons_percent_value']))) / 100); ?>
+                                                                    </span>
+                                                                <?php } else if (intval($product['coupons_type']) == 1) { ?>
+                                                                    <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                                        $<?php echo (intval($product['price']) - (intval($product['coupons_fix_value']))) ?></span>
+                                                                <?php } ?>
+                                                            </p>
+                                                        <?php } else { ?>
+                                                            <?php echo "$" . $product['price']; ?>
+                                                        <?php } ?>
                                                     </span> </span>
                                             </div>
                                         </div>
@@ -284,12 +284,7 @@
 
                 </div>
                 <script type="text/javascript">
-
-                </script>
-
-                <script type="text/javascript">
                     jQuery(function($) {
-                      
                         $("#new_product .filter-products .owl-carousel").owlCarousel({
                             lazyLoad: true,
                             itemsCustom: [
@@ -328,6 +323,7 @@
     </div>
 </div>
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
+<script src="<?php echo RootREL; ?>media/js/products/view.js"></script>
 
 <!-- start foooter -->
 <?php include_once 'views/layout/' . $this->layout . 'footer.php'; ?>

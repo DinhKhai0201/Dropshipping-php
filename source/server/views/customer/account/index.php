@@ -48,6 +48,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                 your recent account activity and update your account information. Select a
                                 link below to view or edit information.</p>
                         </div>
+                        <?php if($this->recordsorder['norecords']  > 0) {?>
                         <div class="box-account box-recent">
                             <div class="box-head">
                                 <h2>Recent Orders</h2>
@@ -81,7 +82,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                             <td><span class="nobr"><?= $value['created'] ?></span></td>
                                             <td><?= $value['to_address'] ?></td>
                                             <td><?= $value['info'] ?></td>
-                                            <td><span class="price"><?= (intval($value['total_price'])) ?></span></td>
+                                            <td><span class="price"><?php echo  "$".(intval($value['total_price'])) ?></span></td>
                                             <td><em>
                                             <?php if ($value['order_status'] == 0) {
                                                     echo "<p class ='pendding'>Pendding</p>";
@@ -107,6 +108,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                 </tbody>
                             </table>
                         </div>
+                        <?php } ?>
                         <div class="box-account box-info">
                             <div class="box-head">
                                 <h2>Account Information</h2>
@@ -158,8 +160,8 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                         <div class="col-1">
                                             <h4>Default Billing Address</h4>
                                             <address>
-                                                <?php if ($_SESSION['user']['address'] === '') {
-                                                    echo "Yddddou have not set a default shipping address.<br />";
+                                                <?php if ($_SESSION['user']['address'] == '') {
+                                                    echo "You have not set a default shipping address.<br />";
                                                 } else { ?>
                                                     <?php echo $_SESSION['user']['address'] ?><br />
                                                 <?php } ?>
@@ -169,8 +171,8 @@ array_push($mediaFiles['css'], RootREL . "media/css/order/color_progress.css");
                                         <div class="col-2">
                                             <h4>Default Shipping Address</h4>
                                             <address>
-                                                <?php if ($_SESSION['user']['address'] === '') {
-                                                    echo "Yddddou have not set a default shipping address.<br />";
+                                                <?php if ($_SESSION['user']['address'] == '') {
+                                                    echo "You have not set a default shipping address.<br />";
                                                 } else { ?>
                                                     <?php echo $_SESSION['user']['address'] ?><br />
                                                 <?php } ?>

@@ -94,9 +94,9 @@ function tmp_product(product, RootREL, rootUrl) {
                                                 <i class="ajax-loader medium animate-spin"></i>
                                             </div>
                                         </div>
-                                        <a href="${rootUrl}product/quickview/${product.slug}-${product.id}" class="quickview-icon quickview-icon-custom"><i class="icon-export"></i><span>Quick
+                                        <a href="${rootUrl}product/quickview/${product.slug}-${product.id}" class="quickview-icon quickview-icon-custom click-view-bt" key =${product.id}><i class="icon-export"></i><span>Quick
                                                 View</span></a>
-                                        <a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}" class="product-image">
+                                        <a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}" class="product-image click-view-bt" key =${product.id}>
                                             <img id="product-collection-image-${product.id}" class="defaultImage porto-lazyload" data-src="${RootREL}media/upload/products/${product.oneImage}" width="300" height="300" src="${RootREL}media/upload/products/${product.oneImage}" />
                                             <img class="hoverImage" src="${RootREL}media/upload/products/${product.oneImage}" width="300" alt="Black" />
      
@@ -114,7 +114,7 @@ function tmp_product(product, RootREL, rootUrl) {
     tmp += `                           
                                     </div>
                                     <div class="details-area">
-                                        <h2 class="product-name"><a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}">${product.name}</a>
+                                        <h2 class="product-name"><a href="${rootUrl}product/view/${product.slug}-${product.id}" title="${product.name}" key =${product.id} class ="click-view-bt">${product.name}</a>
                                         </h2>
                                         <ul class="configurable-swatch-list configurable-swatch-color">`;
     let colors = product.color.split(",");

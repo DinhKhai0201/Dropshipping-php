@@ -49,12 +49,12 @@
                                     <tbody>
                                         <?php foreach ($this->products as $product) { ?>
                                             <tr id="item_<?= $product['id'] ?>" user="user_<?= $product['user_id'] ?>" class="item-wishlist">
-                                                <td><a class="product-image" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name'] ?>">
-                                                        <img src="<?php echo RootREL . 'media/upload/products/' . $product['image']; ?>" width="80" height="80" alt="<?= $product['products_name'] ?>">
+                                                <td><a class="product-image click-view-bt" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name'] ?>" key ="<?= $product['product_id'] ?>">
+                                                        <img src="<?php echo RootREL . 'media/upload/products/' . $product['image']; ?>" width="80" height="80" alt="<?= $product['products_name'] ?>" style="height: 60px;object-fit: cover;object-position: top;">
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <h3 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name'] ?>"><?= $product['products_name'] ?></a></h3>
+                                                    <h3 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $product['products_slug'] . "-" . $product['product_id']])) ?>" title="<?= $product['products_name'] ?>" class ="click-view-bt" key ="<?=$product['product_id'] ?>"><?= $product['products_name'] ?></a></h3>
                                                     <div class="description std">
                                                         <div class="inner"><?= $product['products_description'] ?></div>
                                                     </div>
@@ -99,7 +99,7 @@
                         <li class="item">
                             <div class="clearfix product-details">
                                 <div class ="image-cart" style ="margin-right: 20px;width: 40%;float: left;">
-                                    <span><a href="${rootUrl}product/view/${slug}-${element.product_id}" title="${name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${name}"></a></span>
+                                    <span><a href="${rootUrl}product/view/${slug}-${element.product_id}" title="${name}" class="product-image"><img src="${RootREL}media/upload/products/${element.image}" alt="${name}" style="height: 60px;object-fit: cover;object-position: top;width: 100%;"></a></span>
                                 <div class="clearer"></div>
 
                                 </div>
@@ -225,4 +225,5 @@
         });
     });
 </script>
+<script src="<?php echo RootREL; ?>media/js/products/view.js"></script>
 <?php include_once 'views/layout/' . $this->layout . 'footer.php';

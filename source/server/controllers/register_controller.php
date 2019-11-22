@@ -9,6 +9,7 @@ class register_controller extends vendor_main_controller
             $um = new user_model();
             $userData = $_POST['user'];
             $userData['status'] = 0;
+            // exit($userData);
             $valid = $um->validator($userData);
             if ($valid['status']) {
                 $userData['password'] = vendor_app_util::generatePassword($userData['password']);
@@ -45,18 +46,15 @@ class register_controller extends vendor_main_controller
                                         ";
                         $nTo = 'Việc làm Đà Nẵng';
                         vendor_app_util::sendMail($title, $content, $nTo, $mTo);
-                        $valid = [
-                            'status' => true,
-                            'message' => 'Sign up successfully. Please check your email to activate  your account.'
-                        ];
+                        $this->errors = 'Sign up successfully. Please check your email to activate  your account.';
                     }
                 } 
                 else {
-                    $this->errors = ['database' => 'An error occurred when inserting data!'];
+                    $this->errors = 'An error occurred when inserting data!';
                     $this->record = $userData;
                 }
             } else {
-                $this->errors = $um::convertErrorMessage($valid['message']);
+                 $this->errors = 'Invalid';
                 $this->record = $userData;
             }
         }

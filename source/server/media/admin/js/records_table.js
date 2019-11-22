@@ -87,6 +87,46 @@ $(document).ready(function () {
 				delRecord(idAct, 'del');
 			}
 		});
+		// product
+		$('tbody.records').on('click','td.btn-act button.del-record-product', function () {
+			var isDel = confirm("Are you sure to delete this record???");
+			if(isDel){
+				idAct = $(this).attr('alt');
+				let urlDele = rootUrl+"admin/products/del/"+ idAct;
+				// console.log(urlDele);
+				$.ajax({
+					url: urlDele,
+					success: function (data) {
+						console.log(data);
+						if(data != 'error'){
+							$('#row'+idAct).remove();
+						}
+					}
+				})
+			}
+		});
+		$('#delete-records-product').on('click', function () {
+			if(listChecked.length > 0) {
+				var isDel = confirm("Are you sure delete those records!");
+				if(isDel){
+					var ids = listChecked.toString(); 
+					urlDel = rootUrl+"admin/products/delmany/ids="+ ids;
+					$.ajax({
+						url: urlDel,
+						success: function (data) {
+							if(data != 'error') {
+								$.each(listChecked, function (k, v) {
+									$('#row'+v).remove();
+								});
+								listChecked = [];
+							}
+						}
+					})
+				}
+			} else {
+				alert("Nobody to delete!");
+			}
+		});
 		// dis
 		$('tbody.records').on('click','td .btn-dis', function () {
 			let id = $(this).attr('key');

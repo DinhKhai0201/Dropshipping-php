@@ -8,6 +8,32 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
 ?>
 <?php include_once 'views/layout/' . $this->layout . 'top.php'; ?>
 <?php foreach ($this->products as $product) { ?>
+    <style>
+        .etalage_small_thumb {
+            width: 126px;
+            height: 100px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .etalage_small_thumbs ul .etalage_thumb_active {
+            object-fit: cover;
+            object-position: top;
+        }
+
+        /* .etalage_thumb_active {
+    height: 460px;
+    overflow:hidden;
+} */
+        #etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM {
+            height: 420px !important;
+        }
+
+        #etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM .etalage_thumb_active .etalage_thumb_image {
+            height: 400px !important;
+            object-position: top !important;
+        }
+    </style>
     <div class="modaly">
         <div class="modal-contenty">
             <span class="close-button">&times;</span>
@@ -44,40 +70,6 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
     <div class="main-container col1-layout">
         <div class="main container">
             <div class="col-main">
-
-                <script type="text/javascript">
-                    var optionsPrice = new Product.OptionsPrice({
-                        "priceFormat": {
-                            "pattern": "$%s",
-                            "precision": 2,
-                            "requiredPrecision": 2,
-                            "decimalSymbol": ".",
-                            "groupSymbol": ",",
-                            "groupLength": 3,
-                            "integerRequired": 1
-                        },
-                        "includeTax": "false",
-                        "showIncludeTax": false,
-                        "showBothPrices": false,
-                        "idSuffix": "_clone",
-                        "oldPlusDisposition": 0,
-                        "plusDisposition": 0,
-                        "plusDispositionTax": 0,
-                        "oldMinusDisposition": 0,
-                        "minusDisposition": 0,
-                        "productId": "319",
-                        "productPrice": 15,
-                        "productOldPrice": 15,
-                        "priceInclTax": 15,
-                        "priceExclTax": 15,
-                        "skipCalculate": 1,
-                        "defaultTax": 8.25,
-                        "currentTax": 0,
-                        "tierPrices": [],
-                        "tierPricesInclTax": [],
-                        "swatchPrices": null
-                    });
-                </script>
                 <div id="messages_product_view"></div>
                 <div class="product-view custom  ">
                     <div class="product-essential">
@@ -100,8 +92,8 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                         <?php foreach ($this->galleries as $gallery) { ?>
                                             <li>
                                                 <a rel="gallery" class="fancy-images fancy-images_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM" href="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>"><span class="glyphicon glyphicon-search"></span></a>
-                                                <img class="etalage_thumb_image" src="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>" alt="" />
-                                                <img class="etalage_source_image" src="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>" alt="" />
+                                                <img class="etalage_thumb_image" src="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>" alt="" style="object-fit: cover;object-position: center;height:200px;" />
+                                                <img class="etalage_source_image" src="<?php echo RootREL . "media/upload/products/" . $gallery['image']; ?>" alt="" style="object-fit: cover;object-position: center;height:200px;" />
                                             </li>
                                         <?php } ?>
                                     </ul>
@@ -128,7 +120,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                         <div class="product-nav product-prev">
                                             <?php if (isset($this->previousproduct)) {
                                                     foreach ($this->previousproduct as $previousproduct) { ?>
-                                                    <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $previousproduct['slug'] . "-" .  $previousproduct['id']])) ?>" title="Previous Product">
+                                                    <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $previousproduct['slug'] . "-" .  $previousproduct['id']])) ?>" title="Previous Product" key="<?= $previousproduct['id'] ?>" class="click-view-bt">
                                                         <i class="fas fa-caret-left"></i>
                                                         <div class="product-pop theme-border-color">
                                                             <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $previousproduct['oneImage']; ?>" width="100px" alt="Previous" />
@@ -141,7 +133,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                         <div class="product-nav product-next">
                                             <?php if (isset($this->nextproduct)) {
                                                     foreach ($this->nextproduct as $nextproduct) { ?>
-                                                    <a class="product-next" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $nextproduct['slug'] . "-" .   $nextproduct['id']])) ?>" title="Next Product">
+                                                    <a class="product-next click-view-bt" href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" .  $nextproduct['slug'] . "-" .   $nextproduct['id']])) ?>"  title="Next Product" key="<?= $nextproduct['id'] ?>">
                                                         <i class="fas fa-caret-right"></i>
                                                         <div class="product-pop theme-border-color">
                                                             <img class="product-image" src="<?php echo RootREL . 'media/upload/products/' . $nextproduct['oneImage']; ?>" width="100px" alt="Previous" />
@@ -156,9 +148,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                     <div class="product-name">
                                         <h1><?php echo $product['name']; ?></h1>
                                     </div>
-
                                     <div class="ratings">
-
                                         <div class="row" style="margin-left:0px">
                                             <p class="star-one"><?= $this->avenge ?>/5</p>
                                             <div id="156" class="ratingbar" data-rating-value="<?= round($this->avenge) ?>">
@@ -174,9 +164,8 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                         </div>
                                     </div>
 
-                                    <div class="short-description ">
-                                        <h2>Quick Overview</h2>
-                                        <div class="std"><?php echo $product['description']; ?></div>
+                                    <div class="short-view ">
+                                        <div class="std"><?php echo "Views: " . $product['num_of_view']; ?></div>
                                     </div>
                                     <div class="product-info">
                                         <div>
@@ -185,27 +174,27 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                             <div class="price-box">
                                                 <span class="regular-price" id="product-price-<?= $product['id'] ?>">
                                                     <span class="price">
-                                                   
-                                                    <?php if (isset($product['coupons_type'])) {?>
-                                                    <p class="old-price">
-                                                        <span class="price-label">Regular Price:</span>
-                                                        <span class="price" id="old-price-<?= $product['id'] ?>">
-                                                            <?php echo "$".$product['price']; ?> </span>
-                                                    </p>
-                                                    <p class="special-price">
-                                                    <span class="price-label">Special Price</span>
-                                                    <?php if (intval($product['coupons_type']) == 0) {?>
-                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
-                                                            $<?php echo (intval($product['price']) - (intval($product['price'])*(intval($product['coupons_percent_value'])))/100);?>
-                                                        </span>
-                                                    <?php } else if (intval($product['coupons_type']) == 1) {?>
-                                                         <span class="price" id="product-price-<?= $product['id'] ?>">
-                                                        $<?php echo (intval($product['price']) - (intval($product['coupons_fix_value'])))?></span>
-                                                <?php }?>
-                                                </p>
-                                                 <?php } else {?>
-                                                  <?php echo "$" . $product['price']; ?>
-                                                 <?php }?>
+
+                                                        <?php if (isset($product['coupons_type'])) { ?>
+                                                            <p class="old-price">
+                                                                <span class="price-label">Regular Price:</span>
+                                                                <span class="price" id="old-price-<?= $product['id'] ?>">
+                                                                    <?php echo "$" . $product['price']; ?> </span>
+                                                            </p>
+                                                            <p class="special-price">
+                                                                <span class="price-label">Special Price</span>
+                                                                <?php if (intval($product['coupons_type']) == 0) { ?>
+                                                                    <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                                        $<?php echo (intval($product['price']) - (intval($product['price']) * (intval($product['coupons_percent_value']))) / 100); ?>
+                                                                    </span>
+                                                                <?php } else if (intval($product['coupons_type']) == 1) { ?>
+                                                                    <span class="price" id="product-price-<?= $product['id'] ?>">
+                                                                        $<?php echo (intval($product['price']) - (intval($product['coupons_fix_value']))) ?></span>
+                                                                <?php } ?>
+                                                            </p>
+                                                        <?php } else { ?>
+                                                            <?php echo "$" . $product['price']; ?>
+                                                        <?php } ?>
                                                     </span> </span>
                                             </div>
                                         </div>
@@ -240,31 +229,33 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                     <?php } ?>
                                                 </ul>
                                             </dd>
-                                            <dt class="swatch-attr">
-                                                <label id="size_label" class="required">
-                                                    <em>*</em>Size:
-                                                    <span id="select_label_size" class="select-label"></span>
-                                                </label>
-                                            </dt>
-                                            <dd class="clearfix  last">
-                                                <div class="input-box">
-                                                   
-                                                    <ul id="configurable_swatch_size" class="configurable-swatch-list clearfix sizes">
-                                                     <?php $product['size'] = explode(",", $product['size']); ?>
-                                                        <?php foreach ($product['size'] as $key=> $size) { ?>
-                                                            <label for="id-size-<?php echo $size; ?>" style ="line-height: 2.4;">
-                                                                <li  style ="border:1px solid gray" class="clearfix">
-                                                                    <span class="clearfix">
-                                                                        <span class="swatch-label" style="height:30px; width:30px;">
-                                                                            <?= $size ?> </span>
-                                                                    </span>
-                                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
-                                                                </li>
-                                                            </label>
-                                                        <?php }?>
-                                                    </ul>
-                                                </div>
-                                            </dd>
+                                            <?php if (isset($product['size']) && $product['size'] != '') { ?>
+                                                <dt class="swatch-attr">
+                                                    <label id="size_label" class="required">
+                                                        <em>*</em>Size:
+                                                        <span id="select_label_size" class="select-label"></span>
+                                                    </label>
+                                                </dt>
+                                                <dd class="clearfix  last">
+                                                    <div class="input-box">
+
+                                                        <ul id="configurable_swatch_size" class="configurable-swatch-list clearfix sizes">
+                                                            <?php $product['size'] = explode(",", $product['size']); ?>
+                                                            <?php foreach ($product['size'] as $key => $size) { ?>
+                                                                <label for="id-size-<?php echo $size; ?>" style="line-height: 2.4;">
+                                                                    <li style="border:1px solid gray" class="clearfix">
+                                                                        <span class="clearfix">
+                                                                            <span class="swatch-label" style="height:30px; width:30px;">
+                                                                                <?= $size ?> </span>
+                                                                        </span>
+                                                                        <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
+                                                                    </li>
+                                                                </label>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                </dd>
+                                            <?php } ?>
                                         </dl>
                                         <p class="required">* Required Fields</p>
                                     </div>
@@ -532,55 +523,59 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                 <div class="item">
                                     <div class="item-area">
                                         <div class="product-image-area">
-                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $alsoproduct['slug'] . "-" . $alsoproduct['id']])) ?>" title="<?php echo $alsoproduct['name']; ?>" class="product-image">
+                                            <a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $alsoproduct['slug'] . "-" . $alsoproduct['id']])) ?>" title="<?php echo $alsoproduct['name']; ?>" class="product-image click-view-bt" key="<?= $alsoproduct['id'] ?>">
                                                 <img class="defaultImage" src="<?php echo RootREL . 'media/upload/products/' . $alsoproduct['oneImage']; ?>" alt="<?php echo $alsoproduct['name']; ?>" />
                                                 <img class="hoverImage" src="<?php echo RootREL . 'media/upload/products/' . $alsoproduct['oneImage']; ?>" alt="<?php echo $alsoproduct['name']; ?>" />
                                             </a>
-                                             <?php if (isset($alsoproduct['coupons_type'])) {?>
+                                            <?php if (isset($alsoproduct['coupons_type'])) { ?>
 
-                                                    <?php if (intval($alsoproduct['coupons_type']) == 0) { echo '<div class="product-label" style="right: 10px;"><span class="sale-product-icon">-'.$alsoproduct['coupons_percent_value']."%"; } else if (intval($alsoproduct['coupons_type']) == 1) {
-                                                       echo '<div class="product-label" style="right: 10px;"><span class="sale-product-icon">-'.$alsoproduct['coupons_fix_value']." USD" ;}?> </div> <?php }?></span></div>
-                                        
-                                        <div class="details-area">
-                                            <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $alsoproduct['slug'] . "-" . $alsoproduct['id']])) ?>" title="<?php echo $alsoproduct['name']; ?>"><?php echo $alsoproduct['name']; ?></a>
-                                            </h2>
-                                            <div class="price-box">
-                                                
-                                                <?php if (isset($alsoproduct['coupons_type'])) {?>
-                                                    <p class="old-price">
-                                                        <span class="price-label">Regular Price:</span>
-                                                        <span class="price" id="old-price-<?= $alsoproduct['id'] ?>">
-                                                            <?php echo "$".$alsoproduct['price']; ?> </span>
-                                                    </p>
-                                                    <p class="special-price">
-                                                    <span class="price-label">Special Price</span>
-                                                    <?php if (intval($alsoproduct['coupons_type']) == 0) {?>
-                                                         <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
-                                                            $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['price'])*(intval($alsoproduct['coupons_percent_value'])))/100);?>
-                                                        </span>
-                                                    <?php } else if (intval($alsoproduct['coupons_type']) == 1) {?>
-                                                         <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
-                                                        $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['coupons_fix_value'])))?></span>
-                                                <?php }?>
+                                                <?php if (intval($alsoproduct['coupons_type']) == 0) {
+                                                                echo '<div class="product-label" style="right: 10px;"><span class="sale-product-icon">-' . $alsoproduct['coupons_percent_value'] . "%";
+                                                            } else if (intval($alsoproduct['coupons_type']) == 1) {
+                                                                echo '<div class="product-label" style="right: 10px;"><span class="sale-product-icon">-' . $alsoproduct['coupons_fix_value'] . " USD";
+                                                            } ?> </div> <?php } ?></span>
+                                    </div>
+
+                                    <div class="details-area">
+                                        <h2 class="product-name"><a href="<?php echo (vendor_app_util::url(["ctl" => "product", "act" => "view/" . $alsoproduct['slug'] . "-" . $alsoproduct['id']])) ?>" title="<?php echo $alsoproduct['name']; ?>" key="<?= $alsoproduct['id'] ?>" class="click-view-bt"><?php echo $alsoproduct['name']; ?></a>
+                                        </h2>
+                                        <div class="price-box">
+
+                                            <?php if (isset($alsoproduct['coupons_type'])) { ?>
+                                                <p class="old-price">
+                                                    <span class="price-label">Regular Price:</span>
+                                                    <span class="price" id="old-price-<?= $alsoproduct['id'] ?>">
+                                                        <?php echo "$" . $alsoproduct['price']; ?> </span>
                                                 </p>
-                                                 <?php } else {?>
-                                                    <p class="special-price">
-                                                    <span class="price-label"> Price</span>
-                                                         <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
-                                                            $<?php echo intval($alsoproduct['price']);?>
+                                                <p class="special-price">
+                                                    <span class="price-label">Special Price</span>
+                                                    <?php if (intval($alsoproduct['coupons_type']) == 0) { ?>
+                                                        <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
+                                                            $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['price']) * (intval($alsoproduct['coupons_percent_value']))) / 100); ?>
                                                         </span>
-                                                 <?php }?>   
-                                            </div>
+                                                    <?php } else if (intval($alsoproduct['coupons_type']) == 1) { ?>
+                                                        <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
+                                                            $<?php echo (intval($alsoproduct['price']) - (intval($alsoproduct['coupons_fix_value']))) ?></span>
+                                                    <?php } ?>
+                                                </p>
+                                            <?php } else { ?>
+                                                <p class="special-price">
+                                                    <span class="price-label"> Price</span>
+                                                    <span class="price" id="product-price-<?= $alsoproduct['id'] ?>">
+                                                        $<?php echo intval($alsoproduct['price']); ?>
+                                                    </span>
+                                                <?php } ?>
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
                         </div>
-
+                    <?php } ?>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 <?php }  ?>
 <script src="<?php echo RootREL; ?>media/js/products/zoomimage.js"></script>
@@ -601,6 +596,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
 <script src="<?php echo RootREL; ?>media/js/products/addtocart.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/comment.js"></script>
 <script src="<?php echo RootREL; ?>media/js/products/rate.js"></script>
+<script src="<?php echo RootREL; ?>media/js/products/view.js"></script>
 
 
 

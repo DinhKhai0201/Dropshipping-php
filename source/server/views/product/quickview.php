@@ -8,40 +8,30 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
     <div class="main-container col1-layout">
         <div class="main container">
             <div class="col-main">
+<style>
 
-                <script type="text/javascript">
-                    var optionsPrice = new Product.OptionsPrice({
-                        "priceFormat": {
-                            "pattern": "$%s",
-                            "precision": 2,
-                            "requiredPrecision": 2,
-                            "decimalSymbol": ".",
-                            "groupSymbol": ",",
-                            "groupLength": 3,
-                            "integerRequired": 1
-                        },
-                        "includeTax": "false",
-                        "showIncludeTax": false,
-                        "showBothPrices": false,
-                        "idSuffix": "_clone",
-                        "oldPlusDisposition": 0,
-                        "plusDisposition": 0,
-                        "plusDispositionTax": 0,
-                        "oldMinusDisposition": 0,
-                        "minusDisposition": 0,
-                        "productId": "319",
-                        "productPrice": 15,
-                        "productOldPrice": 15,
-                        "priceInclTax": 15,
-                        "priceExclTax": 15,
-                        "skipCalculate": 1,
-                        "defaultTax": 8.25,
-                        "currentTax": 0,
-                        "tierPrices": [],
-                        "tierPricesInclTax": [],
-                        "swatchPrices": null
-                    });
-                </script>
+.etalage_small_thumb {
+    width: 126px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+.etalage_small_thumbs ul .etalage_thumb_active {
+    object-fit: cover;
+    object-position: top;
+}
+/* .etalage_thumb_active {
+    height: 460px;
+    overflow:hidden;
+} */
+#etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM  {
+    height: 420px!important;
+}
+#etalage_ODAxYmI4NDJiZTcyOWIyODQ5ODQ0NjYyMzE0MTJkNmM  .etalage_thumb_active .etalage_thumb_image {
+    height:400px!important;
+    object-position: top!important;
+}
+</style>
                 <div id="messages_product_view"></div>
                 <div class="product-view custom  ">
                     <div class="product-essential">
@@ -129,9 +119,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                             <a href="javascript:void(0)">0 Review(s)</a>
                                         </p>
                                     </div>
-                                    <div class="short-description ">
-                                        <h2>Quick Overview</h2>
-                                        <div class="std"><?php echo $product['description']; ?></div>
+                                    <div class="short-view ">
+                                      
+                                        <div class="std"><?php echo "Views: ".$product['num_of_view']; ?></div>
                                     </div>
                                     <div class="product-info">
                                         <div>

@@ -124,7 +124,7 @@ if (isset($app['prs']['status'])) {
 					<h2 class="box-title">Product</h2>
 				</div>
 				<div class="col-sm-4 col-xs-6">
-					<button id="delete-records" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete products">
+					<button id="delete-records-product" class="btn btn-danger pull-right ml-1 mb-1" data-toggle="tooltip" data-placement="top" title="Delete products">
 						<i class="fa fa-remove"></i>
 					</button>
 					<a href="<?php echo vendor_app_util::url(['ctl' => 'products', 'act' => 'add']); ?>" id="add-record">
@@ -268,7 +268,7 @@ if (isset($app['prs']['status'])) {
 												<button data-placement="top" title="Edit product" type="button" class="btn btn-primary edit-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-edit"></i></button>
 											</a>
 
-											<button data-placement="right" title="Delete product" id="del<?php echo $record['id']; ?>" type="button" class="btn btn-danger del-record" alt="<?php echo $record['id']; ?>"><i class="fa fa-remove"></i></button>
+											<button data-placement="right" title="Delete product" id="del<?php echo $record['id']; ?>" type="button" class="btn btn-danger del-record-product" alt="<?php echo $record['id']; ?>"><i class="fa fa-remove"></i></button>
 
 
 										</td>

@@ -276,6 +276,15 @@ class product_controller extends vendor_main_controller
        
         echo json_encode($this->rates);
     }
-  
+    public function click() {
+        if (isset($_POST['product_id'])) {
+            $id = $_POST['product_id'];
+            $pm = new product_model();
+            $this->record = $pm->getRecord($id);
+            $data['num_of_view'] = intval($this->record['num_of_view']) + 1;
+            if ($pm->editRecord($id,  $data)) echo "Change status successful";
+            else echo "error";
+        }
+    }
     
 }
