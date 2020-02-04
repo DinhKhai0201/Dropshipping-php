@@ -154,7 +154,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                                                         <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?php echo $color ?>" title="<?php echo $color ?>" width="24" height="24" />
                                                                     </span>
                                                                 </div>
-                                                                <input type="checkbox" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
+                                                                <input name="colorss" type="radio" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
                                                             </li>
                                                         </label>
                                                     <?php } ?>
@@ -166,6 +166,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                                     <span id="select_label_size" class="select-label"></span>
                                                 </label>
                                             </dt>
+                                             <dt>
+                                                <h5 class="error-size" style="color:red;display:none">Choose a size!</h5>
+                                            </dt><br>
                                             <dd class="clearfix  last">
                                                 <div class="input-box">
                                                    
@@ -178,7 +181,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/categories/colors.css");
                                                                         <span class="swatch-label" style="height:30px; width:30px;">
                                                                             <?= $size ?> </span>
                                                                     </span>
-                                                                    <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
+                                                                    <input  name="sizess"  type="radio"  class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
                                                                 </li>
                                                             </label>
                                                         <?php }?>
