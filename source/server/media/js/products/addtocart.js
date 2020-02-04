@@ -103,10 +103,12 @@ jQuery(function ($) {
         let qty =$(this).parent().children('.qty-holder').children().val();
         console.log(size);
         if (color.length == 0) {
-            console.log("a");
             $('.error-color').show();
             toastr.warning("Choose  a color");
-        } else {
+        } else if (size.length == 0) {
+		$('.error-size').show();
+            toastr.warning("Choose  a size");
+	} else {
             let image_p;
             if ((/upload\/products\/(.*)/g).test(product_image)) {
                 image_p = ((/upload\/products\/(.*)/g).exec(product_image))[1];
