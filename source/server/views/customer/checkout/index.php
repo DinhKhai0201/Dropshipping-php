@@ -44,6 +44,7 @@
                                                 <th colspan="1"><span class="nobr">Unit Price</span></th>
                                                 <th rowspan="1">Qty</th>
                                                 <th rowspan="1">Color</th>
+                                                <th rowspan="1">Size</th>
                                                 <th class="last" colspan="1">Subtotal</th>
                                             </tr>
                                         </thead>
@@ -85,6 +86,11 @@
                                                     <td>
                                                         <span class="cart-color">
                                                             <span class="color"><?= $product['color']; ?></span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="cart-size">
+                                                            <span class="size"><?= $product['size']; ?></span>
                                                         </span>
                                                     </td>
                                                     <td class="td-total">
