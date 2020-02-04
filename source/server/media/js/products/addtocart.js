@@ -97,6 +97,8 @@ jQuery(function ($) {
     $('.btn-cart').click(function () {
         let color = get_filter('color');
         let size = get_filter('size');
+        $('.error-color').hide();
+        $('.error-size').hide();
         let name = ($(this).context.attributes.name.value);
         let slug = ($(this).context.attributes.slug.value);
         let supplier = ($(this).context.attributes.supplier.value);

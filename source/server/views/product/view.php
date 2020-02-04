@@ -195,7 +195,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                                         <img src="<?php echo RootREL . 'media/img/colors/' . $color . '.png'; ?>" alt="<?php echo $color ?>" title="<?php echo $color ?>" width="24" height="24" />
                                                                     </span>
                                                                 </div>
-                                                                <input type="checkbox" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
+                                                                <input name="colorss" type="radio" class="filter_all color" id="id-color-<?php echo $color; ?>" value="<?php echo $color; ?>" hidden>
                                                             </li>
                                                         </label>
                                                     <?php } ?>
@@ -208,6 +208,9 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                         <span id="select_label_size" class="select-label"></span>
                                                     </label>
                                                 </dt>
+                                                <dt>
+                                                <h5 class="error-size" style="color:red;display:none">Choose a size!</h5>
+                                            </dt><br>
                                                 <dd class="clearfix  last">
                                                     <div class="input-box">
 
@@ -220,7 +223,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                                                             <span class="swatch-label" style="height:30px; width:30px;">
                                                                                 <?= $size ?> </span>
                                                                         </span>
-                                                                        <input type="checkbox" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
+                                                                        <input  name="sizess"  type="radio" class="filter_all size" id="id-size-<?php echo $size; ?>" value="<?php echo $size; ?>" hidden>
                                                                     </li>
                                                                 </label>
                                                             <?php } ?>
@@ -257,9 +260,7 @@ array_push($mediaFiles['css'], RootREL . "media/css/product/rate.css");
                                         <ul class="add-to-links">
                                             <li title="Add to Wish list " class="addWishlistJs" supplier="<?= $product['user_id']; ?>"><a href="javascript:void(0)" class="link-wishlist"> <img style="padding-top:10px;" width="50%" src="<?php echo RootREL . 'media/img/wishlist.png'; ?>" alt="Wish list" /><span>Add
                                                         to Wishlist</span></a></li>
-                                            <li title="Add to Compare"><a href="javascript:void(0)" onclick="ajaxCompare(this,'https://www.portotheme.com/magento/porto/index.php/demo1_en/catalog/product_compare/add/product/319/uenc/aHR0cHM6Ly93d3cucG9ydG90aGVtZS5jb20vbWFnZW50by9wb3J0by9pbmRleC5waHAvZGVtbzFfZW4vY2F0ZWdvcmllcy9zdHJpcGUtdHJpbS1hdGhsZXRpYy1tZXNoLXRlZS5odG1sP19fX1NJRD1V/form_key/gRxWBEl2ZMe5EQyi/','319'); return false;" class="link-compare"><i class="icon-compare"></i><span>Add
-                                                        to Compare</span></a></li>
-
+                                           
                                         </ul>
                                     </div>
                                     <div class="clearer"></div>
